@@ -1,0 +1,104 @@
+\documentclass[twoside,english,a4paper,12pt]{plantilla/twcam-tfm-doc}
+
+% Estilo para dar formato al código en los listados
+\usemintedstyle{borland}
+
+% La memoria del TFM se puede redactar en: español, valenciano o inglés.
+
+% Editar el título
+\title{Este es un muy largo título usado de prueba para ver cómo se formatea en varias líneas en la portada}
+
+% Si es una alumna se debe usar
+% \authorlabel{Autora}
+\authorlabel{Autor}
+% Editar el nombre
+\author{Mi nombre}
+
+
+% Si hay varios tutores:
+% \tutorlabel{Tutores}
+% \tutor{Nombre del tutor 1 \\[2mm] Nombre del turor2}
+% Si el tutor es masculino:
+% \tutorlabel{Tutor}
+\tutorlabel{Tutora}
+% Editar
+\tutor{El nombre de la tutora}
+
+% Editar: Poner mes y año de la convocatoria de lectura del TFM
+\convocatoria{Julio 2024}
+
+\begin{document}
+
+% NO EDITAR NI QUITAR ESTOS ELEMENTOS
+\portada
+\cleardoublepage
+\declaracion
+% Si es posible firma digitalmente la página donde se declara la
+% autoría del trabajo
+\cleardoublepage
+
+
+% Editar: Resumen en Español (obligatorio)
+\begin{resumen}
+  Este es el resumen del TFM. Debe ser corto (máximo media página) y cubrir los aspectos principales del TFM.
+\end{resumen}
+\cleardoublepage
+
+% Editar: Resumen en Inglés
+\begin{abstract}
+  This is the abstract of the TFM. It must be short and cover the main aspects of the TFM.
+\end{abstract}
+\cleardoublepage
+
+% Editar: Resumen en Valenciano
+\begin{resum}
+  Aquest és el resum del TFM. Ha de ser curt (màxim mitja pàgina) i cobrir els aspectes principals del TFM.
+\end{resum}
+\cleardoublepage
+
+
+% Editar: Agradecimientos (opcional)
+\begin{agradecimientos}
+  En primer lugar quiero agradecer a...
+
+  En segundo lugar...
+\end{agradecimientos}
+\cleardoublepage
+
+\tableofcontents
+
+\pagestyle{twcam}
+\justify
+
+% Las figuras se buscan en el directorio figs: pueden estar en formato
+% png, pdf o jpg
+
+% Cada capítulo está en su propio fichero tex. Ver el directorio tex.
+
+% La bibliografía está dentro del directorio bib
+
+
+
+\pagestyle{appendix}
+
+\appendix
+\chapter{Apéndice 1}
+\input{tex/apendice1.tex}
+
+\chapter{Apéndice 2}
+\input{tex/apendice2.tex}
+
+
+\addcontentsline{toc}{chapter}{Bibliografía}
+\bibliographystyle{unsrt}
+\bibliography{bib/bibliografia}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
