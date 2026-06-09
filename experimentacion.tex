@@ -1,0 +1,13 @@
+% KEPLER
+%   - Solucion del error de kepler en toma de consumo energetico GPU
+%       - Debido a un error en el metodo GetTotalEnergyConsumption en la librerira de nvidia nvml-ml, el cual no se encuentra
+%         disponible en los drivers de NVIDIA 580.159 para la vesion de Debian 13 que se esta utilizando en la fase de experimentacion
+%       - Esta funcion es utilizada por Kepler para poder calcular el consumo energetico de la GPU y al dar error al obtener los valores
+%         correspondientes a dicha funcion no se podia visualizar ningun otro valor asociado al consumo energetico de la GPU.
+%       - Para solventarlo se ha modificado el codigo fuente de Kepler y se ha forzado la respuesta en los lugares donde se invocaba dicha funciuon para que 
+%         retorne un valor fijo, en este caso 0. 
+%       - Una vez modificado el codigo fuente se ha procedido a la compilacion del mismo empleando un contenedor de docker basado en la imagen 
+%         golang:tip-trixie, con la configuracion del Dockerfile siguiente: src/docker/Dockerfile 
+%       - Despues de varias iteraciones, en las que se han corregido errores internos de compilacion, se ha obtenido un contenedor con el binario
+%         compilado de Kepler, el cual se ha ejecutado correctamente y nos ha dado una estimacion del consumo energetico de la GPU total.
+%       - Dado que se trata de una estimacion 

@@ -6,13 +6,13 @@
 % La memoria del TFM se puede redactar en: español, valenciano o inglés.
 
 % Editar el título
-\title{Este es un muy largo título usado de prueba para ver cómo se formatea en varias líneas en la portada}
+\title{ENERGY MEASUREMENTS ON CLOUD ENVIRONMENT}
 
 % Si es una alumna se debe usar
 % \authorlabel{Autora}
 \authorlabel{Autor}
 % Editar el nombre
-\author{Mi nombre}
+\author{Guillermo Blázquez Ortega}
 
 
 % Si hay varios tutores:
@@ -22,10 +22,10 @@
 % \tutorlabel{Tutor}
 \tutorlabel{Tutora}
 % Editar
-\tutor{El nombre de la tutora}
+\tutor{Juan Gutierrez Aguado}
 
 % Editar: Poner mes y año de la convocatoria de lectura del TFM
-\convocatoria{Julio 2024}
+\convocatoria{Julio 2026}
 
 \begin{document}
 
@@ -40,13 +40,41 @@
 
 % Editar: Resumen en Español (obligatorio)
 \begin{resumen}
-  Este es el resumen del TFM. Debe ser corto (máximo media página) y cubrir los aspectos principales del TFM.
+  % - Problema que intenta solucionar
+  % Enfoques del Trabajo
+  % Resultado Obtenidos
+  % Mejoras Futuras
+
+  %---
+La toma de metricas de consumo energetico en cargas de trabajo desplegadas sobre contenedores, ejecutas sobre arquitecturas
+de computacion a gran escala, es una tema de gran relevancia en la actualidad. Un estimacion precisa aporta mucha mas informacion relevante
+a la hora de tomar decisiones en multiples aspectos de gran importancia en el contexto de la computacion en la nube. 
+
+El contexto de este trabajo de fin de master se basa en la codificacion de video de alta calidad sobre contenedores, empleando los ajsutes de codificacion
+que mayor resolucion aporten con el menor consumo energetico posible.
+
+El objetivo de este Trabjo de Fin de Master se basa en la seleccion de la mejor configuracion de codificacion de video, llevada a cabo sobre contenedores
+y empleando aceleracion sobre tarjetas graficas fisicas, todo ello para videos con resoluciones de 1080p, 4k y 8k. Para ello, se ha requerido de una fase
+de experimentacion en la que se han varemado varias herramientas de software y su granulidad en la toma de metricas de consumo energetico, y se ha 
+decidido crear una herramienta propia que perita medir de forma precisa el consumo energetico, principalmente de la GPU y la CPU. 
+
+Por lograr llevar a cabo con exito la definicion de las mejores metricas de consumo energetico, se han realizado dos fases de experimentacion. La primera 
+fase se ha destinado al testeo de herramientas ya existentes de toma de metricas y se han empleado sus resultados como medida de baremacion frente a la creacion 
+de una herramienta propia. La segunda fase se ha centrado en el uso de la herramienta creada para evaluar el consumo energetico de diferentes cargas de trabajo
+de codificacion, variando los paramtros de esta, centrandonos sobre todo en el consumo energetico de la CPU y de la GPU.
+
+OBJETIVOS
+RESUTADOS EXPERIMENTACION
+
+  
+  
 \end{resumen}
 \cleardoublepage
 
 % Editar: Resumen en Inglés
 \begin{abstract}
-  This is the abstract of the TFM. It must be short and cover the main aspects of the TFM.
+  This is the abstract of the TFM. It must be short and cover the main aspects of the TFM. esto es una prueba de escritura 
+  usando el 
 \end{abstract}
 \cleardoublepage
 
@@ -70,16 +98,15 @@
 \pagestyle{twcam}
 \justify
 
-% Las figuras se buscan en el directorio figs: pueden estar en formato
-% png, pdf o jpg
-
-% Cada capítulo está en su propio fichero tex. Ver el directorio tex.
-
-% La bibliografía está dentro del directorio bib
-
-
-
 \pagestyle{appendix}
+
+% Introducción
+\section{Introducción}
+\input{tex/introduccion.tex}
+
+\section{Estado del Arte}
+\input{tex/estado_del_arte.tex}
+
 
 \appendix
 \chapter{Apéndice 1}
