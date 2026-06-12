@@ -6,7 +6,7 @@
 % La memoria del TFM se puede redactar en: español, valenciano o inglés.
 
 % Editar el título
-\title{ENERGY MEASUREMENTS ON CLOUD ENVIRONMENT}
+\title{Medición de Consumo Energético de cargas trabajo de codificación de video sobre contenedores}
 
 % Si es una alumna se debe usar
 % \authorlabel{Autora}
@@ -40,32 +40,15 @@
 
 % Editar: Resumen en Español (obligatorio)
 \begin{resumen}
-  % - Problema que intenta solucionar
-  % Enfoques del Trabajo
-  % Resultado Obtenidos
-  % Mejoras Futuras
+  % - Problematica
+  % - Experimento a realizar
+  % - Resultados Obtenidos
 
-  %---
-La toma de metricas de consumo energetico en cargas de trabajo desplegadas sobre contenedores, ejecutas sobre arquitecturas
-de computacion a gran escala, es una tema de gran relevancia en la actualidad. Un estimacion precisa aporta mucha mas informacion relevante
-a la hora de tomar decisiones en multiples aspectos de gran importancia en el contexto de la computacion en la nube. 
+  Conocer el consumo energético que una carga de trabajo necesita es un aspecto esencial en el contexto actual, en el cual la mayoría de la carga de computación se lleva a cabo en grandes CPDs empleando arquitectura de contenedores. Una toma de métricas constante permite realizar estimaciones precisas, aportando mucha información relevante a la hora de definir diferentes aspectos técnicos. \
+  
+  El siguiente Trabajo Fin de Máster gira en torno a esta premisa y a las problemáticas que ello implica, estando enfocado en la codificación de video de alta resolución sobre contenedores que emplean CPU y GPU física para acelerar el proceso. El objetivo es lograr la mejor configuración de codificación de video para FFmpeg que consuma la menor cantidad de energía sin empobrecer la calidad. Para poder lograrlo, se ha requerido una herramienta que permita medir el consumo de procesos individuales, tanto sobre la CPU como en la GPU, y para ello se ha realizado una comparativa entre herramientas, las cuales están pensadas para medir el consumo de trabajo de tareas desplegadas sobre contenedores.\
 
-El contexto de este trabajo de fin de master se basa en la codificacion de video de alta calidad sobre contenedores, empleando los ajsutes de codificacion
-que mayor resolucion aporten con el menor consumo energetico posible.
-
-El objetivo de este Trabjo de Fin de Master se basa en la seleccion de la mejor configuracion de codificacion de video, llevada a cabo sobre contenedores
-y empleando aceleracion sobre tarjetas graficas fisicas, todo ello para videos con resoluciones de 1080p, 4k y 8k. Para ello, se ha requerido de una fase
-de experimentacion en la que se han varemado varias herramientas de software y su granulidad en la toma de metricas de consumo energetico, y se ha 
-decidido crear una herramienta propia que perita medir de forma precisa el consumo energetico, principalmente de la GPU y la CPU. 
-
-Por lograr llevar a cabo con exito la definicion de las mejores metricas de consumo energetico, se han realizado dos fases de experimentacion. La primera 
-fase se ha destinado al testeo de herramientas ya existentes de toma de metricas y se han empleado sus resultados como medida de baremacion frente a la creacion 
-de una herramienta propia. La segunda fase se ha centrado en el uso de la herramienta creada para evaluar el consumo energetico de diferentes cargas de trabajo
-de codificacion, variando los paramtros de esta, centrandonos sobre todo en el consumo energetico de la CPU y de la GPU.
-
-OBJETIVOS
-RESUTADOS EXPERIMENTACION
-
+  Una vez se ha seleccionado la herramienta indicada, se han realizado un conjunto de baterías de pruebas que me han permitido llegar a las CONCLUSIONES. 
   
   
 \end{resumen}
@@ -87,9 +70,8 @@ RESUTADOS EXPERIMENTACION
 
 % Editar: Agradecimientos (opcional)
 \begin{agradecimientos}
-  En primer lugar quiero agradecer a...
-
-  En segundo lugar...
+  Me gustaria agrader el apollo de mi tutor Juan Gutierrez Aguado, quien me ha acompañado en todo el proceso de elaboracion y redaccion
+  del siguiente trabajo fin de master. Gracias a Juan, he podido emplear referencias de valor y definir pruebas que demuestren la relevancia de mi trabajo.
 \end{agradecimientos}
 \cleardoublepage
 
@@ -107,13 +89,18 @@ RESUTADOS EXPERIMENTACION
 \section{Estado del Arte}
 \input{tex/estado_del_arte.tex}
 
+\section{Metodologia}
+\input{tex/metodologia.tex}
+
+\section{Resultados}
+\input{tex/resultados.tex}
+
+\section{Conclusion}
+\input{tex/conclusiones.tex}
 
 \appendix
 \chapter{Apéndice 1}
-\input{tex/apendice1.tex}
-
-\chapter{Apéndice 2}
-\input{tex/apendice2.tex}
+\input{tex/apendice.tex}
 
 
 \addcontentsline{toc}{chapter}{Bibliografía}
