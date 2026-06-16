@@ -2,15 +2,20 @@
 En la actualidad, la carga computacional ha migrado del dispositivo local hacia grandes Centros de Procesamiento de Datos (CPD), los cuales emplean una arquitectura de microservicios basada
 en contenedores y gestionada por orquestadores como Kubernetes. Esta cambio de paradigama, a permitido aumentar la capacidad de los servicios y aplicaciones para dar servicios a multiples nuevos
 clientes, asi como la ejecucion simultanea de tareas de alta computacion en paralelo, las cuales antes estaban limitadas por la capacidad hardware del proveedor. Como consecuencia, el consumo de recursos
-se ha visto altamnete afectado, siendo uno de los mas afectados el consumo energetico, el cual segun se indica en REF-ENERGIA supone entre el 15 y 20\% del consumo global energetico.\
+se ha visto altamnete afectado, siendo uno de los mas afectados el consumo energetico, el cual segun se indica en \cite{ec-cloud-worflowscheduling} supone entre el 15 y 20\% del consumo global energetico.\
 
-Es por este motivo que la optencio de metricas precisas, segmentadas por proceso y por area de hardwared utilizada se ha convertido en una necesidad vital, tanto en el ambito de la estimacion 
-de usos y costes, como en la gestion de analisis de sostenibilidad. Siendo estos ultimos esenciales para la toma de decisiones a futuro, tanto en el contexto industrial como el contexto social\/politico
+Siendo mas precisos, basandome en el articulo \cite{survery-videoencoding} sabemos que la navegación por internet supone un 3.7\% de los Gases de Efecto Invernadero, del cual el 65\% corresponde al 
+streaming de video. Esto supone que el stremaing de video es responsable de las emisiones de efecto invernadero equivalentes a las liberadas por la industra de transporte aheros, como se cita el paper
+\cite{survery-videoencoding}.\
 
-En cuanto al consumo energetico 
+Es por este motivo que la obtención de métricas precisas, segmentadas por proceso y por area de hardwared utilizada, se ha convertido en una necesidad vital. Tanto en el ambito de la estimacion 
+de usos y costes, como en la gestion de analisis de sostenibilidad, siendo estos ultimos esenciales para la toma de decisiones a futuro, tanto en el contexto industrial como el contexto social\/politico
+
 % Contexto Del Trabajo
-Bajo este contexto, el presente Trabajo de Fin de Máster (TFM) se desarrolla en el marco del proyecto Energy-Conscious Optimization for Cloud-Edge Video Ecosystems (ECO-STREAM). Este proyecto se centra 
-en la optimización de cargas de trabajo de codificación y streaming de vídeo, en arquitectura de contenedores, mediante el uso de CPU y GPU físicas. El objetivo principal de este trabajo es 
+Bajo este contexto, se desarrolla el siguiente Trabajo de Fin de Máster (TFM) siguiendo la linea de investigacion del proyecto Energy-Conscious Optimization for Cloud-Edge Video Ecosystems (ECO-STREAM).
+Este proyecto tiene como objetivo la optimización de cargas de trabajo de codificación y streaming de vídeo de alta calidad, en arquitectura de contenedores, mediante el uso de CPU y GPU físicas. 
+% ----- AQUIIIIII --------
+El objetivo principal de este trabajo es 
 definir la configuración de codificación de alta resolución que minimice el consumo energético sin comprometer la calidad del resultado final. Para ello, 
 es indispensable contar con herramientas capaces de medir el consumo energético a nivel de contenedor de forma precisa, segmentando el gasto entre CPU y GPU.\
 

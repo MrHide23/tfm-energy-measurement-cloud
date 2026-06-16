@@ -1,10 +1,89 @@
-@misc{https://doi.org/10.48550/arxiv.2505.09375,
-  doi = {10.48550/ARXIV.2505.09375},
-  url = {https://arxiv.org/abs/2505.09375},
-  author = {Thamm,  Philipp and Leser,  Ulf},
-  keywords = {Distributed,  Parallel,  and Cluster Computing (cs.DC),  FOS: Computer and information sciences,  FOS: Computer and information sciences},
-  title = {Strategies to Measure Energy Consumption Using RAPL During Workflow Execution on Commodity Clusters},
-  publisher = {arXiv},
-  year = {2025},
-  copyright = {Creative Commons Attribution 4.0 International}
+
+@misc{container-metrics-kubernetes,
+	title = {Container-level {Energy} {Observability} in {Kubernetes} {Clusters}},
+	url = {http://arxiv.org/abs/2504.10702},
+	doi = {10.48550/arXiv.2504.10702},
+	abstract = {Kubernetes has been for a number of years the default cloud orchestrator solution across multiple application and research domains. As such, optimizing the energy efficiency of Kubernetes-deployed workloads is of primary interest towards controlling operational expenses by reducing energy consumption at data center level and allocated resources at application level. A lot of research in this direction aims on reducing the total energy usage of Kubernetes clusters without establishing an understanding of their workloads, i.e. the applications deployed on the cluster. This means that there are untapped potential improvements in energy efficiency that can be achieved through, for example, application refactoring or deployment optimization. For all these cases a prerequisite is establishing fine-grained observability down to the level of individual containers and their power draw over time. A state-of-the-art tool approved by the Cloud-Native Computing Foundation, Kepler, aims to provide this functionality, but has not been assessed for its accuracy and therefore fitness for purpose. In this work we start by developing an experimental procedure to this goal, and we conclude that the reported energy usage metrics provided by Kepler are not at a satisfactory level. As a reaction to this, we develop KubeWatt as an alternative to Kepler for specific use case scenarios, and demonstrate its higher accuracy through the same experimental procedure as we used for Kepler.},
+	language = {en},
+	urldate = {2026-06-15},
+	publisher = {arXiv},
+	author = {Pijnacker, Bjorn and Setz, Brian and Andrikopoulos, Vasilios},
+	month = apr,
+	year = {2025},
+	note = {arXiv:2504.10702 [cs.DC]},
+	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Software Engineering},
+	annote = {Comment: 11 pages, accepted for publication at ICT4S 2025},
+	file = {PDF:/Users/guillebo/Zotero/storage/GYHVWTF2/Pijnacker et al. - 2025 - Container-level Energy Observability in Kubernetes Clusters.pdf:application/pdf},
 }
+
+@misc{energy-rapl-mesurement,
+	title = {Strategies to {Measure} {Energy} {Consumption} {Using} {RAPL} {During} {Workflow} {Execution} on {Commodity} {Clusters}},
+	url = {http://arxiv.org/abs/2505.09375},
+	doi = {10.48550/arXiv.2505.09375},
+	abstract = {In science, problems in many fields can be solved by processing datasets using a series of computationally expensive algorithms, sometimes referred to as workflows. Traditionally, the configurations of these workflows are optimized to achieve a short runtime for the given task and dataset on a given (often distributed) infrastructure. However, recently more attention has been drawn to energy-efficient computing, due to the negative impact of energy-inefficient computing on the environment and energy costs. To be able to assess the energy-efficiency of a given workflow configuration, reliable and accurate methods to measure the energy consumption of a system are required. One approach is the usage of built-in hardware energy counters, such as Intel RAPL. Unfortunately, effectively using RAPL for energy measurement within a workflow on a managed cluster with the typical deep software infrastructure stack can be difficult, for instance because of limited privileges and the need for communication between nodes. In this paper, we describe three ways to implement RAPL energy measurement on a Kubernetes cluster while executing scientific workflows utilizing the Nextflow workflow engine, and one additional method using IPMI. We compare them by utilizing a set of eight criteria that should be fulfilled for accurate measurement, such as the ability to react to workflow faults, portability, and added overhead. We highlight advantages and drawbacks of each method and discuss challenges and pitfalls, as well as ways to avoid them. We also empirically evaluate all methods, and find that approaches using a shell script and a Nextflow plugin are both effective and easy to implement for workflow users. Additionally, we find that measuring the energy consumption of a single task is straight forward when only one task runs at a time, but concurrent task executions on the same node require approximating per-task energy usage using metrics such as CPU utilization.},
+	language = {en},
+	urldate = {2026-06-15},
+	publisher = {arXiv},
+	author = {Thamm, Philipp and Leser, Ulf},
+	month = may,
+	year = {2025},
+	note = {arXiv:2505.09375 [cs.DC]},
+	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing},
+	annote = {Comment: Added missing author and acknowledgements},
+	file = {PDF:/Users/guillebo/Zotero/storage/2X7GJA5K/Thamm y Leser - 2025 - Strategies to Measure Energy Consumption Using RAPL During Workflow Execution on Commodity Clusters.pdf:application/pdf},
+}
+
+@article{threds-number-encoding,
+	title = {Experimental suty of the impact of multiple-threading on video encoding energy consumption},
+	author = {Richard, Robin and Cecile, Anne and Maugey, Thomas},
+	pages = {5},
+	annote = {En el siguiente articulo se experimenta el uso de diferentes threads junto con diferente numero de CPU en el contexto de la codification de video. Resultados:
+            Se muestra claramente que a mayor numero de threads en conjunto con mayor numero de cpus el tiempo de codificacion y el consumo energetico baja.
+            Ademas el consumo energetico es mucho mas eficiente si se lanza un gran numero de threads para segmentar el video en tareas atomicas},
+}
+
+
+@misc{cloud-consuming-ieee,
+	title = {Cloud {Computing}’s {Coming} {Energy} {Crisis} - {IEEE} {Spectrum}},
+	url = {https://spectrum.ieee.org/cloud-computings-coming-energy-crisis},
+	abstract = {The cloud’s electricity needs are growing unsustainably},
+	language = {en},
+	urldate = {2026-06-16},
+	file = {Snapshot:/Users/guillebo/Zotero/storage/A53U337G/cloud-computings-coming-energy-crisis.html:text/html},
+}
+
+@article{ec-cloud-worflowscheduling,
+	title = {A workflow scheduling algorithm with task classification for reducing energy consumption and makespan in cloud},
+	volume = {50},
+	issn = {2210-5379},
+	url = {https://www.sciencedirect.com/science/article/pii/S2210537926000338},
+	doi = {10.1016/j.suscom.2026.101323},
+	abstract = {With increasing popularity of cloud computing platform for extensive scientific computing, huge energy consumed by cloud data centers has become a great challenge. Therefore, significant attention has been given towards developing energy-efficient workflow scheduling algorithms in the last decade. However, the literature reveals that task classification-based scheduling has been an underexplored area. In response to this gap, this paper proposes a task classification-based dynamic scheduling (TCDS) algorithm to minimize the energy consumption (EC) and makespan when scheduling deadline-constrained workflow applications in cloud environment. TCDS consists of three main sub-algorithms: task classification, task scheduling, and dynamic resource scaling. First, considering the fact that task runtimes within a workflow are non-uniform, a new concept of execution time importance factor is introduced as a guiding principle of task classification. Accordingly, task classification algorithm marks the type of each task. The proposed task scheduler then dynamically allocates the most suitable virtual machines (VMs) to dependency-free tasks in accordance with their type and deadline constraint. To achieve balance between EC and makespan, energy-efficient and time-efficient VMs are provisioned dynamically considering the computation speed requirements and type of the tasks. In addition, TCDS performs simultaneous optimization over active number of hosts through VM consolidation, and powers-off idle hosts to minimize the EC of idle resources. To validate TCDS, extensive experiments are performed in various scenarios using real-world scientific workflows. The results verify that TCDS effectively minimizes the workflow makespan in parallel to improving energy-efficiency by 13\%-40\% compared with related algorithms, while demonstrating scalability under varying workloads.},
+	urldate = {2026-06-16},
+	journal = {Sustainable Computing: Informatics and Systems},
+	author = {Kaur, Rupinder and Kaur, Gurjinder and Goraya, Major Singh},
+	month = jun,
+	year = {2026},
+	keywords = {Cloud computing, Computation speed, Energy consumption, Task classification, Workflow scheduling},
+	pages = {101323},
+	file = {ScienceDirect Snapshot:/Users/guillebo/Zotero/storage/INYE4TFT/S2210537926000338.html:text/html},
+}
+
+@misc{survery-videoencoding,
+	title = {A {Survey} on {Energy} {Consumption} and {Environmental} {Impact} of {Video} {Streaming}},
+	url = {http://arxiv.org/abs/2401.09854},
+	doi = {10.48550/arXiv.2401.09854},
+	abstract = {Climate change challenges require a notable decrease in worldwide greenhouse gas (GHG) emissions across technology sectors. Digital technologies, especially video streaming, accounting for most Internet traffic, make no exception. Video streaming demand increases with remote working, multimedia communication services (e.g., WhatsApp, Skype), video streaming content (e.g., YouTube, Netflix), video resolution (4K/8K, 50 fps/60 fps), and multi-view video, making energy consumption and environmental footprint critical. This survey contributes to a better understanding of sustainable and efficient video streaming technologies by providing insights into the state-of-the-art and potential future directions for researchers, developers, and engineers, service providers, hosting platforms, and consumers. We widen this survey's focus on content provisioning and content consumption based on the observation that continuously active network equipment underneath video streaming consumes substantial energy independent of the transmitted data type. We propose a taxonomy of factors that affect the energy consumption in video streaming, such as encoding schemes, resource requirements, storage, content retrieval, decoding, and display. We identify notable weaknesses in video streaming that require further research for improved energy efficiency: (1) fixed bitrate ladders in HTTP live streaming; (2) inefficient hardware utilization of existing video players; (3) lack of comprehensive open energy measurement dataset covering various device types and coding parameters for reproducible research.},
+	urldate = {2026-06-16},
+	publisher = {arXiv},
+	author = {Afzal, Samira and Mehran, Narges and Ourimi, Zoha Azimi and Tashtarian, Farzad and Amirpour, Hadi and Prodan, Radu and Timmerer, Christian},
+	month = jan,
+	year = {2024},
+	note = {arXiv:2401.09854 [cs.MM]},
+	keywords = {Computer Science - Multimedia},
+	annote = {Encuenta consumo energetico basado en video y streaming.
+    Remarca errore en protocolo http que lo hacen ineficiente para steaming de video
+    Metrias de consumo energetico
+    },
+    	file = {Preprint PDF:/Users/guillebo/Zotero/storage/DWP7HIXK/Afzal et al. - 2024 - A Survey on Energy Consumption and Environmental Impact of Video Streaming.pdf:application/pdf;Snapshot:/Users/guillebo/Zotero/storage/8IAD3M68/2401.html:text/html},
+    }
