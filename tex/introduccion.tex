@@ -1,47 +1,29 @@
-% CONTEXTO 
+
 En la actualidad, la carga computacional ha migrado del dispositivo local hacia grandes Centros de Procesamiento de Datos (CPD), los cuales emplean una arquitectura de microservicios basada
-en contenedores y gestionada por orquestadores como Kubernetes. Este cambio de paradigma ha transformado la planificación y estimación de costes, haciendo necesaria la obtención de métricas 
-de consumo con alta precisión, esenciales no solo para la gestión económica, sino también para el análisis de sostenibilidad.\
+en contenedores y gestionada por orquestadores como Kubernetes. Esta cambio de paradigama, a permitido aumentar la capacidad de los servicios y aplicaciones para dar servicios a multiples nuevos
+clientes, asi como la ejecucion simultanea de tareas de alta computacion en paralelo, las cuales antes estaban limitadas por la capacidad hardware del proveedor. Como consecuencia, el consumo de recursos
+se ha visto altamnete afectado, siendo uno de los mas afectados el consumo energetico, el cual segun se indica en REF-ENERGIA supone entre el 15 y 20\% del consumo global energetico.\
 
-% En la actualidad, la carga de computación se ha visto desplazada desde el dispositivo local hacia los grandes centros de computación (CPD), los cuales 
-% emplean una arquitectura de microservicios distribuidos en contenedores gestionados por orquestadores(Kubernetes). Este cambio de paradigma ha supuesto
-% una nueva forma de planificar y estimar costes, siendo necesario utilizar metricas de uso y consumo con una alta precision, las cuales independientemente
-% del modelo de negocio que exista destras del uso de carga computaciones se utiliza en apartados como la estimacion de costes, tanto a corto como a largo plazo.\
+Es por este motivo que la optencio de metricas precisas, segmentadas por proceso y por area de hardwared utilizada se ha convertido en una necesidad vital, tanto en el ambito de la estimacion 
+de usos y costes, como en la gestion de analisis de sostenibilidad. Siendo estos ultimos esenciales para la toma de decisiones a futuro, tanto en el contexto industrial como el contexto social\/politico
 
-Ante la creciente dependencia de recursos energéticos limitados y materias primas, calcular el coste de una carga de trabajo permite realizar estimaciones de impacto social y climático, más allá 
-del ámbito puramente económico. Por tanto, la capacidad de monitorizar estos datos es fundamental para la toma de decisiones, trascendiendo el nivel técnico del CPD para alcanzar el ámbito 
-legislativo y estratégico de las organizaciones.\
-% Teniendo en cuenta el contexto mundial actual y la dependencia de recursos limitados de energía y materias primas, conocer el costo de una tarea o de un grupo de ellas también ayuda a hacer
-% estimaciones de costos en términos sociales y climáticos, no solo económicos. Por tanto, ser consciente de estos datos influye en la toma de decisiones a varios niveles. Esto abarca
-% más allá del contexto de un CPD, llegando al nivel legislativo y político. Además, se debe tener en cuenta que la organización correspondiente haga uso de la información que se ha obtenido en 
-% forma de métricas.\
-
-% Conexto Proyecto y problematica  
+En cuanto al consumo energetico 
+% Contexto Del Trabajo
 Bajo este contexto, el presente Trabajo de Fin de Máster (TFM) se desarrolla en el marco del proyecto Energy-Conscious Optimization for Cloud-Edge Video Ecosystems (ECO-STREAM). Este proyecto se centra 
-en la optimización de cargas de trabajo de codificación y streaming de vídeo mediante el uso de CPU y GPU físicas. El objetivo principal de este trabajo es identificar la configuración de codificación de
- alta resolución que minimice el consumo energético sin comprometer la calidad del resultado final. Para ello, es indispensable contar con herramientas capaces de medir el consumo energético a nivel
- de contenedor, segmentando el gasto entre CPU y GPU.\
- 
-% Sobre este contexto y bajo el marco de trabajo del proyecto Energy-Conscious Optimization for Cloud-Edge Video Ecosystems (ECO-STREAM), el cual se centra en cargas
-% de trabajo de codificación y streaming de video empleando tarjetas gráficas físicas y CPUs físicas, se ha desarrollado el siguiente trabajo de fin de máster En el 
-% siguiente TFM se ha seguido una de las líneas de trabajo, en pos de encontrar la configuración para codificación de video de alta resolución que menos 
-% consumo energético requiera, sin afectar a la calidad del resultado final. Para ello es necesario tener una herramienta que permita medir el consumo energético del 
-% contenedor de forma precisa, y a la vez permita medir el consumo sobre la CPU y sobre la GPU, en caso de que esta última se incluya en el proceso de codificación.\
+en la optimización de cargas de trabajo de codificación y streaming de vídeo, en arquitectura de contenedores, mediante el uso de CPU y GPU físicas. El objetivo principal de este trabajo es 
+definir la configuración de codificación de alta resolución que minimice el consumo energético sin comprometer la calidad del resultado final. Para ello, 
+es indispensable contar con herramientas capaces de medir el consumo energético a nivel de contenedor de forma precisa, segmentando el gasto entre CPU y GPU.\
 
-Para la adquisición de métricas, se propone el uso de herramientas software adaptadas a arquitecturas de contenedores, utilizando la medición de consumo energético total del sistema como punto 
-de verificación. Se ha descartado el uso de hardware de medición externo debido a su complejidad de implementación, así como a los desafíos de mantenimiento y escalabilidad que presentan en
-entornos de producción.\
-% Para la toma de métricas, se emplearán herramientas software, las cuales estarán pensadas para usarse en arquitectura de contenedores, además de utilizar una herramienta software que permite tomar
-% métricas de consumo energético de todo el sistema, como punto de comparación y de verificación de funcionamiento. Se ha descartado el uso de herramientas físicas porque son moderadamente complejas de usar. Se
-% requiere hacer cambios en el hardware de los diferentes nodos, y su mantenimiento y manejo en un entorno de producción no son sostenibles ni realistas.
+Para la adquisición de métricas, se propone el uso de herramientas adaptadas para el contexto de las cargas de trabajo, utilizando la medición de consumo energético total del sistema como punto 
+de verificación. Estos datos de consumo seran proporcionados por una herramienta software, la cual se basará en RAPL para obtener un consumo total del sistema. En cuanto al uso de herramientas hardware,
+se ha descartado debido a su complejidad de implementación, así como a los desafíos de mantenimiento y escalabilidad que presentan en entornos de producción.\
 
-Finalmente, este trabajo aspira a establecer una configuración de codificación eficiente y, simultáneamente, validar la precisión de las herramientas de monitorización software 
-propuestas para entornos contenerizados con aceleración por GPU.\
-
-% Una vez realizadas las diferentes pruebas, se espera poder encontrar una configuración de codificación que cumpla las condiciones definidas anteriormente para el contexto de un contenedor, 
-% y que además se logre demostrar la eficiencia de las herramientas de toma de métricas de software creadas para ser usadas en este contexto, sobre un contenedor que utiliza CPU y GPU para la codificación. 
-Una vez definido el contexto y la problemática que se desea solventar en la introducción \ref{intro}, pasaremos al capítulo \ref{estado-del-arte}. En este capítulo se definirá el marco teórico y contexto 
-tecnológico, el cual será la base con la que justificaremos las decisiones tomadas a lo largo de este trabajo. Seguidamente, en el capítulo \ref{metodo} se describirán los diferentes pasos, 
-configuraciones y problemáticas encontradas durante el desarrollo del trabajo. En el apartado \ref{results}, se gestionarán diferentes tablas y ayudas gráficas, las cuales facilitarán la 
-comprensión y el desarrollo de las conclusiones, en base a los datos resultantes de la experimentación Para finalizar, en el capítulo \ref{conclusion}, se expondrán las conclusiones y reflexiones 
-acerca del trabajo realizado.
+% Resumen e indicacion de los capitulos
+Una vez definido el contexto y la problemática que se desea solventar en la introducción \ref{intro}, pasaremos al capítulo \ref{mot-obj} (Motivacion y Objetivos)
+donde se remarcaran los objetivos y motivaciones del
+proyecto. Posteriormente, en el capitulo \ref{estado-del-arte} (Estado del Arte) se definirá el marco teórico y contexto tecnológico, el cual será la base con la que justificaremos las decisiones tomadas a lo largo 
+de este trabajo. Seguidamente, en el capítulo \ref{metodo} (Desarrollo del Proyecto) se describirán los diferentes pasos, 
+configuraciones y problemáticas encontradas durante el desarrollo del trabajo. En el capitulo  \ref{results} (Resultados y Pruebas), se hara uso los datos y resultados obtenidos del apartado 
+anterior y se agregarán diferentes tablas y ayudas gráficas las cuales facilitarán la comprensión y el desarrollo de las conclusiones. Para finalizar, en el capítulo \ref{conclusion} (Conclusiones y Trabajo Futuro), 
+se expondrán las conclusiones y reflexiones acerca del trabajo realizado. Destacar que al final de este trabjo tambien se podra encontrar la bibliografia \ref{biblio}   y un anexo \ref{apendice} , el cual 
+contendrá informacion adicional.    
