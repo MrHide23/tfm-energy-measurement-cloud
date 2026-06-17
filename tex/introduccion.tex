@@ -12,16 +12,22 @@ Es por este motivo que la obtención de métricas precisas, segmentadas por proc
 de usos y costes, como en la gestion de analisis de sostenibilidad, siendo estos ultimos esenciales para la toma de decisiones a futuro, tanto en el contexto industrial como el contexto social\/politico
 
 % Contexto Del Trabajo
-Bajo este contexto, se desarrolla el siguiente Trabajo de Fin de Máster (TFM) siguiendo la linea de investigacion del proyecto Energy-Conscious Optimization for Cloud-Edge Video Ecosystems (ECO-STREAM).
-Este proyecto tiene como objetivo la optimización de cargas de trabajo de codificación y streaming de vídeo de alta calidad, en arquitectura de contenedores, mediante el uso de CPU y GPU físicas. 
-% ----- AQUIIIIII --------
-El objetivo principal de este trabajo es 
+Bajo este contexto, se desarrolla el siguiente Trabajo de Fin de Máster (TFM), siguiendo una de las lineas de investigacion del proyecto Energy-Conscious Optimization for Cloud-Edge Video Ecosystems 
+(ECO-STREAM). Este proyecto tiene como objetivo la optimización de cargas de trabajo de codificación y streaming de vídeo de alta calidad, en 
+arquitectura de contenedores, mediante el uso de CPU y GPU físicas.
+
+El objetivo principal de este trabajo de fin de mates es 
 definir la configuración de codificación de alta resolución que minimice el consumo energético sin comprometer la calidad del resultado final. Para ello, 
 es indispensable contar con herramientas capaces de medir el consumo energético a nivel de contenedor de forma precisa, segmentando el gasto entre CPU y GPU.\
 
-Para la adquisición de métricas, se propone el uso de herramientas adaptadas para el contexto de las cargas de trabajo, utilizando la medición de consumo energético total del sistema como punto 
-de verificación. Estos datos de consumo seran proporcionados por una herramienta software, la cual se basará en RAPL para obtener un consumo total del sistema. En cuanto al uso de herramientas hardware,
-se ha descartado debido a su complejidad de implementación, así como a los desafíos de mantenimiento y escalabilidad que presentan en entornos de producción.\
+Para la adquisición de métricas, se propone el uso de herramientas software adaptadas para el contexto de las cargas de trabajo, utilizando la medición de consumo energético total del
+sistema como punto de comparacion y verificación. El uso de herramientas hardware, se ha descartado debido a su complejidad de implementación, así como
+a los desafíos de mantenimiento y escalabilidad que presentan en entornos de producción.\
+
+Las herramientas seleccionadas utilizarán Running Average Power Limit Energy Reporting (RAPL) \cite{rapl-tool},
+una aplicacion de intel la cual permite extraer metricas precisas del consumo energetico de varios componentes dle sistema, junto con la api interna de NVIDIA y sus librerias asociadas.
+Cabe destacar que RAPL agrupa en grupos y subgrupos los componentes del sistema, como se observa en la imagen \ref{fig:rapl-too-working}, 
+permitiendo obtener metricas precisas. 
 
 % Resumen e indicacion de los capitulos
 Una vez definido el contexto y la problemática que se desea solventar en la introducción \ref{intro}, pasaremos al capítulo \ref{mot-obj} (Motivacion y Objetivos)
