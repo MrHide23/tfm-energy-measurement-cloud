@@ -51,6 +51,7 @@
 \usepackage[utf8]{inputenc} %Codificacion de entrada
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage[acronym]{glossaries}
 
 % Configuración para el código usando minted
 \setminted{frame=single,linenos=true,fontsize=\scriptsize,numberblanklines=false}
