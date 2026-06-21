@@ -1,40 +1,66 @@
 
-En la actualidad, la carga computacional ha migrado del dispositivo local hacia grandes Centros de Procesamiento de Datos (CPD), los cuales emplean una arquitectura de microservicios basada
-en contenedores y gestionada por orquestadores como Kubernetes. Esta cambio de paradigama, a permitido aumentar la capacidad de los servicios y aplicaciones para dar servicios a multiples nuevos
-clientes, asi como la ejecucion simultanea de tareas de alta computacion en paralelo, las cuales antes estaban limitadas por la capacidad hardware del proveedor. Como consecuencia, el consumo de recursos
-se ha visto altamnete afectado, siendo uno de los mas afectados el consumo energetico, el cual segun se indica en \cite{ec-cloud-worflowscheduling} supone entre el 15 y 20\% del consumo global energetico.\
+\section{Contexto del Trabajo}
+En la actualidad, la carga computacional ha migrado del dispositivo local hacia grandes Centros de Procesamiento de Datos (CPD), los cuales emplean 
+una arquitectura de microservicios basada en contenedores y gestionada por orquestadores como Kubernetes. Este cambio de paradigma ha permitido
+aumentar la capacidad de los servicios y aplicaciones para dar servicios a múltiples nuevos clientes, así como la ejecución simultánea de tareas 
+de alta computación en paralelo, las cuales antes estaban limitadas por la capacidad hardware del proveedor. Como consecuencia, el consumo de 
+recursos se ha visto altamente afectado, siendo uno de los más afectados el consumo energético, el cual, según se indica en 
+\cite{ec-cloud-worflowscheduling}, supone entre el 15 y el 20\% del consumo global energético.
 
-Siendo mas precisos, basandome en el articulo \cite{survery-videoencoding} sabemos que la navegación por internet supone un 3.7\% de los Gases de Efecto Invernadero, del cual el 65\% corresponde al 
-streaming de video. Esto supone que el stremaing de video es responsable de las emisiones de efecto invernadero equivalentes a las liberadas por la industra de transporte aheros, como se cita el paper
-\cite{survery-videoencoding}.\
+Siendo más precisos, basándome en el artículo \cite{survery-videoencoding}, sabemos que la navegación por internet supone un 3.7\% de los gases 
+de efecto invernadero, del cual el 65\% corresponde al streaming de video. Esto supone que el streaming de video es responsable de las emisiones
+de efecto invernadero equivalentes a las liberadas por la industria de transporte aéreo, como se cita en el paper \cite{survery-videoencoding}.\
 
-Es por este motivo que la obtención de métricas precisas, segmentadas por proceso y por area de hardwared utilizada, se ha convertido en una necesidad vital. Tanto en el ambito de la estimacion 
-de usos y costes, como en la gestion de analisis de sostenibilidad, siendo estos ultimos esenciales para la toma de decisiones a futuro, tanto en el contexto industrial como el contexto social\/politico
+Es por este motivo que la obtención de métricas precisas, segmentadas por proceso y por área de hardware utilizada, se ha convertido en
+una necesidad vital. Tanto en el ámbito de la estimación de usos y costes como en la gestión de análisis de sostenibilidad, siendo estos
+últimos esenciales para la toma de decisiones a futuro, tanto en el contexto industrial como en el contexto social\/político.
 
 % Contexto Del Trabajo
-Bajo este contexto, se desarrolla el siguiente Trabajo de Fin de Máster (TFM), siguiendo una de las lineas de investigacion del proyecto Energy-Conscious Optimization for Cloud-Edge Video Ecosystems 
-(ECO-STREAM). Este proyecto tiene como objetivo la optimización de cargas de trabajo de codificación y streaming de vídeo de alta calidad, en 
-arquitectura de contenedores, mediante el uso de CPU y GPU físicas.
+Bajo este contexto, se desarrolla el siguiente Trabajo de Fin de Máster (TFM), siguiendo una de las líneas de investigación del proyecto
+Energy-Conscious Optimization for Cloud-Edge Video Ecosystems (ECO-STREAM). Este proyecto tiene como objetivo la optimización de cargas de 
+trabajo de codificación y streaming de vídeo de alta calidad, en arquitectura de contenedores, mediante el uso de CPU y GPU físicas.
 
-El objetivo principal de este trabajo de fin de mates es 
-definir la configuración de codificación de alta resolución que minimice el consumo energético sin comprometer la calidad del resultado final. Para ello, 
-es indispensable contar con herramientas capaces de medir el consumo energético a nivel de contenedor de forma precisa, segmentando el gasto entre CPU y GPU.\
+El objetivo principal de este trabajo de fin de máster es definir la configuración de codificación de alta resolución que minimice 
+el consumo energético sin comprometer la calidad del resultado final. Para ello, es indispensable contar con herramientas capaces de
+medir el consumo energético a nivel de contenedor de forma precisa, segmentando el gasto entre CPU y GPU.
 
-Para la adquisición de métricas, se propone el uso de herramientas software adaptadas para el contexto de las cargas de trabajo, utilizando la medición de consumo energético total del
-sistema como punto de comparacion y verificación. El uso de herramientas hardware, se ha descartado debido a su complejidad de implementación, así como
-a los desafíos de mantenimiento y escalabilidad que presentan en entornos de producción.\
+Para la adquisición de métricas, se propone el uso de herramientas software adaptadas para el contexto de las cargas de trabajo, utilizando
+la medición de consumo energético total del sistema como punto de comparación y verificación. El uso de herramientas hardware se ha descartado 
+debido a su complejidad de implementación, así como a los desafíos de mantenimiento y escalabilidad que presentan en entornos de producción.
 
-Las herramientas seleccionadas utilizarán Running Average Power Limit Energy Reporting (RAPL) \cite{rapl-tool},
-una aplicacion de intel la cual permite extraer metricas precisas del consumo energetico de varios componentes dle sistema, junto con la api interna de NVIDIA y sus librerias asociadas.
-Cabe destacar que RAPL agrupa en grupos y subgrupos los componentes del sistema, como se observa en la imagen \ref{fig:rapl-too-working}, 
-permitiendo obtener metricas precisas. 
+Las herramientas seleccionadas utilizarán Running Average Power Limit Energy Reporting (RAPL) \cite{rapl-tool}, una aplicación de Intel 
+que permite extraer métricas precisas del consumo energético de varios componentes del sistema, junto con la API interna de NVIDIA y sus 
+librerías asociadas. Cabe destacar que RAPL agrupa en grupos y subgrupos los componentes del sistema, como se observa en la imagen 
+\ref{fig:rapl-too-working}, permitiendo obtener métricas precisas. 
 
 % Resumen e indicacion de los capitulos
-Una vez definido el contexto y la problemática que se desea solventar en la introducción \ref{intro}, pasaremos al capítulo \ref{mot-obj} (Motivacion y Objetivos)
-donde se remarcaran los objetivos y motivaciones del
-proyecto. Posteriormente, en el capitulo \ref{estado-del-arte} (Estado del Arte) se definirá el marco teórico y contexto tecnológico, el cual será la base con la que justificaremos las decisiones tomadas a lo largo 
-de este trabajo. Seguidamente, en el capítulo \ref{metodo} (Desarrollo del Proyecto) se describirán los diferentes pasos, 
-configuraciones y problemáticas encontradas durante el desarrollo del trabajo. En el capitulo  \ref{results} (Resultados y Pruebas), se hara uso los datos y resultados obtenidos del apartado 
-anterior y se agregarán diferentes tablas y ayudas gráficas las cuales facilitarán la comprensión y el desarrollo de las conclusiones. Para finalizar, en el capítulo \ref{conclusion} (Conclusiones y Trabajo Futuro), 
-se expondrán las conclusiones y reflexiones acerca del trabajo realizado. Destacar que al final de este trabjo tambien se podra encontrar la bibliografia \ref{biblio}   y un anexo \ref{apendice} , el cual 
-contendrá informacion adicional.    
+Una vez definido el contexto y la problemática que se desea solventar en la introducción \ref{intro}, asi como los objetivos y motivaciones del proyecto.
+Posteriormente, en el capítulo 
+\ref{estado-del-arte} (Estado del Arte) se definirá el marco teórico y contexto tecnológico, el cual será la base con la que justificaremos las 
+decisiones tomadas a lo largo de este trabajo. Seguidamente, en el capítulo \ref{metodo} (Desarrollo del Proyecto) se describirán los diferentes 
+pasos, configuraciones y problemáticas encontradas durante el desarrollo del trabajo. En el capítulo \ref{results} (Resultados y Pruebas), se hará uso 
+de los datos y resultados obtenidos del apartado anterior y se agregarán diferentes tablas y ayudas gráficas, las cuales facilitarán la comprensión y
+el desarrollo de las conclusiones. Para finalizar, en el capítulo \ref{conclusion} (Conclusiones y Trabajo Futuro), se expondrán las conclusiones y
+reflexiones acerca del trabajo realizado. Destacar que al final de este trabajo también se podrá encontrar la bibliografía \ref{biblio} y un 
+anexo \ref{apendice}, el cual contendrá información adicional.      
+
+\section{Motivaciones y Objetivos}
+El presente trabajo se centra en la identificación de configuraciones de codificación de vídeo energéticamente eficientes mediante el uso de FFmpeg 
+sobre entornos basados en contenedores. La gran cantidad de parámetros disponibles durante el proceso de codificación dificulta la selección de aquellas 
+configuraciones capaces de proporcionar una elevada calidad visual manteniendo un consumo energético reducido. Esta problemática adquiere una especial 
+relevancia en entornos cloud y de computación distribuida, donde pequeñas mejoras en la eficiencia pueden traducirse en reducciones significativas del 
+consumo energético y de los costes operativos.\
+
+Para abordar este problema, resulta necesario disponer de mecanismos que permitan medir de forma precisa el consumo energético asociado a cada carga de 
+trabajo. Sin embargo, las herramientas existentes presentan limitaciones en términos de precisión, granularidad o capacidad de integración con entornos
+basados en contenedores. Por este motivo, una parte fundamental del trabajo consiste en el análisis de las soluciones disponibles y en el desarrollo de 
+una herramienta propia capaz de monitorizar con precisión el consumo energético de los recursos hardware involucrados, especialmente la CPU y la GPU.\
+
+La motivación principal de este trabajo se encuentra alineada con los objetivos del proyecto ECO-STREAM, cuyo propósito es mejorar la eficiencia energética
+de los procesos de codificación y transmisión de vídeo. La optimización de estos procesos permite un mejor aprovechamiento de los recursos computacionales,
+una reducción del consumo energético y, en consecuencia, una disminución de la huella de carbono asociada a las infraestructuras de procesamiento multimedia.\
+
+Asimismo, este trabajo pretende aportar una metodología reproducible para la evaluación energética de cargas de trabajo de codificación de vídeo, así 
+como información de utilidad para futuras investigaciones relacionadas con la monitorización energética, la optimización de aplicaciones multimedia y el
+desarrollo de infraestructuras cloud más sostenibles.\
+
