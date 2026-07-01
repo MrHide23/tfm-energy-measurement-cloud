@@ -1,0 +1,9 @@
+%Caracteristicas del video: 
+%   - SDR --> color_space = bt709 y fullrange
+%   - Calidad 4k 
+%   - Codificado con h264(libx264) 
+%   - CRF 0, sin perdida
+%   - Perfil de color 4:4:4 - yuv420p 
+%   - Medidas: 3840 x 2160
+%   - Numero de frams por chunck --> 120 (ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4)
+%   - Profundidad de bit de color --> 8 bits(ffprobe -loglevel panic show_entries stream=bits_per_raw_sample select_streams v VIDEO.mp4)

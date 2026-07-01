@@ -1,62 +1,7 @@
-% +++ Entorno +++
-% - Consumo idel de la GPU, tomado a partir de nvidia-smi ---> 11 wattions
-% - Consumo idel de sistema con los contenedores de Energy Meter, ffmpeg-encoder arrancados pero sin ejecutar ninguna tarea es de  --> 544.049449 Julios
-% 
-% +++ EM +++
-% - Origen Herramienta
-% - COMO SE DESPLIEGA 
-% - CODIGO DE PYTHON MEJORADO
-% - Energy Meter es una herremienta que permite obtener el consumo energetico de todo el sistema y que es util como metrica comparativa para los experimentos a realizar
-%   ya que berifica la preiosion del resto de herramientas a la hora de tomar metricas de un proceso que se esta ejecutando.
-% 
-% +++ SCAPHANDRE: +++
-% - Origen herremienta
-% - COMO  SE DESPLIEGA
-% - ORDEN UTILIZADA PARA MEDIR
-% 
-% 
-% +++ KEPLER +++
-%   - Solucion del error de kepler en toma de consumo energetico GPU
-%       - Debido a un error en el metodo GetTotalEnergyConsumption en la librerira de nvidia nvml-ml, el cual no se encuentra
-%         disponible en los drivers de NVIDIA 580.159 para la vesion de Debian 13 que se esta utilizando en la fase de experimentacion
-%       - Esta funcion es utilizada por Kepler para poder calcular el consumo energetico de la GPU y al dar error al obtener los valores
-%         correspondientes a dicha funcion no se podia visualizar ningun otro valor asociado al consumo energetico de la GPU.
-%       - Para solventarlo se ha modificado el codigo fuente de Kepler y se ha forzado la respuesta en los lugares donde se invocaba dicha funciuon para que 
-%         retorne un valor fijo, en este caso 0. 
-%       - Una vez modificado el codigo fuente se ha procedido a la compilacion del mismo empleando un contenedor de docker basado en la imagen 
-%         golang:tip-trixie, con la configuracion del Dockerfile siguiente: src/docker/Dockerfile 
-%       - Despues de varias iteraciones, en las que se han corregido errores internos de compilacion, se ha obtenido un contenedor con el binario
-%         compilado de Kepler, el cual se ha ejecutado correctamente y nos ha dado una estimacion del consumo energetico de la GPU total.
-%       - Dado que se trata de una estimacion aproximada del consumo se han tomado medidas en paralelo empleando NVIDIA-SMI, como referencia de consumo estandar,
-%         para comprobar como de precison es la toma de metricas por parte de kepler.
-% - Para la fase de experimentacion se ha definido la toma de metricas cada 1 segundo y al intruccion empleada es la sigiente 
-%   CODE(sudo ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &),
-%   y para nvidia-smi se ha ejecutado la siguiente instruccion para obtener el consumo energetico de la GPU en formato CSV con la siguiente instruccion
-%   CODE(src/nvidia-smi-metrics.sh ). Una vez finalizada la tarea de codificacion se detuvo manualmente la ejecucion de la toma de metricas
-%   nvidia-smi y se ejecuto el siguiene online en la teerminal para obtner la media del consumo estimada por nvidia-smi 
-%   CODE(cat nvidia-smi-metrics.csv | cut -d',' -f7 | tr -d ' ' | st-console --mean}').
-% - Comparando las metricas obtenidas por Kepler y las metricas de Nvida-SMI, se observa que ambos resultado son bastante proctivamente iguales, y se obseva uan desviacion 
-%   del 1.07%, un valor muy bajo y por tanto despreciable
-% 
-%  +++ COMPARATIVA HERRAMIENTAS +++
-% 
-% - Comparativa de EM - Kepler - Scaphandre || CPU + GPU
-%   - Un aspecto negativo de Energy Meter es que no permite metricas aisladas por proceso, por tanto no es una opcion valida como herramienta final.
-%   - Schapahndre permite obtener metricas de consumo detallada por proceso, en cuanto al uso de CPU, pero no es capaz de tomar metricas de la GPU. La toma de 
-%     metricas de consumo energetico es fundamental para el proyecto, ya que la codificacion de video se lleva a cabo tambien en las GPU. Por este motivo
-%     se descarta su eleccion como herramienta final
-%   - Escogemos Kepler porque mide GPU ya que scp no mide gpu y em no mide por proesos ni permite segmentar procesos por cores de cpu
-%   - 
-% 
-% - Compartiva aislando Cores - Kepler vs EM || CPU
-%   - En la siguiente fase se medira la precision de kepler para medir procesos con limitacion de CPU , sin hacer uso de la acceleracion mediente GPU.
-%     Para este caso particualar, se limitaran las CPUs a 4 al lanzar el contenedor de Docker empleando las flags CODE(--cpus="4" --cpuset-cpus=0-3).
-%   - Para esta comparativa se plantearan dos escenarios, uno en el que o se limita el numero de CPUs y otro en el que se limitaran las CPUs a 4. Para cada
-%       escenario se lanzaran 5 iteraciones de codificacion y toma de metricas y posteriormete se compara entre ellas con el fin de ver si exite discrepancia
-%    entre la cantidad de energia de kepler mide del proceso con y sin limitaciones respecto a la energia total del sistema. 
-%   -  
-% 
+\section{Experimentación}
+A continuacion se desarrollan los diferentes experimentos llevados a cabo, con la intencion de lograr cumplir los objetivos definidos en la fase de la introduccion \ref{intro}.
+\subsection{Selección de Herramienta de Métricas}
+\input{tex/des/exp1.tex}
 
-% ++++++ Python Plot ++++++++++++
-% Se ha utilizado python con seaborn y matplotlib para crear las tablas comparativas de datos. Ha sido necesario instalar las 
-% librerias pyqt6(QUE ES ?? ) y la libreria de linux que se encarga de poder plotear figuras flotantes libxcb-cursor0
+\subsection{Selección de mejor Configuración FFMPEG}
+\input{tex/des/exp2.tex}

@@ -1,0 +1,108 @@
+%  +++ Entorno +++
+% - Consumo idel de la GPU, tomado a partir de nvidia-smi ---> 11 wattions
+% - Consumo idel de sistema con los contenedores de Energy Meter, ffmpeg-encoder arrancados pero sin ejecutar ninguna tarea es de  --> 544.049449 Julios
+% 
+% +++ EM +++
+% - Origen Herramienta
+% - COMO SE DESPLIEGA 
+% - CODIGO DE PYTHON MEJORADO
+% - Energy Meter es una herremienta que permite obtener el consumo energetico de todo el sistema y que es util como metrica comparativa para los experimentos a realizar
+%   ya que berifica la preiosion del resto de herramientas a la hora de tomar metricas de un proceso que se esta ejecutando.
+% 
+% +++ SCAPHANDRE: +++
+% - Origen herremienta
+% - COMO  SE DESPLIEGA
+% - ORDEN UTILIZADA PARA MEDIR
+% 
+% 
+% +++ KEPLER +++
+%   - Solucion del error de kepler en toma de consumo energetico GPU
+%       - Debido a un error en el metodo GetTotalEnergyConsumption en la librerira de nvidia nvml-ml, el cual no se encuentra
+%         disponible en los drivers de NVIDIA 580.159 para la vesion de Debian 13 que se esta utilizando en la fase de experimentacion
+%       - Esta funcion es utilizada por Kepler para poder calcular el consumo energetico de la GPU y al dar error al obtener los valores
+%         correspondientes a dicha funcion no se podia visualizar ningun otro valor asociado al consumo energetico de la GPU.
+%       - Para solventarlo se ha modificado el codigo fuente de Kepler y se ha forzado la respuesta en los lugares donde se invocaba dicha funciuon para que 
+%         retorne un valor fijo, en este caso 0. 
+%       - Una vez modificado el codigo fuente se ha procedido a la compilacion del mismo empleando un contenedor de docker basado en la imagen 
+%         golang:tip-trixie, con la configuracion del Dockerfile siguiente: src/docker/Dockerfile 
+%       - Despues de varias iteraciones, en las que se han corregido errores internos de compilacion, se ha obtenido un contenedor con el binario
+%         compilado de Kepler, el cual se ha ejecutado correctamente y nos ha dado una estimacion del consumo energetico de la GPU total.
+%       - Dado que se trata de una estimacion aproximada del consumo se han tomado medidas en paralelo empleando NVIDIA-SMI, como referencia de consumo estandar,
+%         para comprobar como de precison es la toma de metricas por parte de kepler.
+% - Para la fase de experimentacion se ha definido la toma de metricas cada 1 segundo y al intruccion empleada es la sigiente 
+%   CODE(sudo ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &),
+%   y para nvidia-smi se ha ejecutado la siguiente instruccion para obtener el consumo energetico de la GPU en formato CSV con la siguiente instruccion
+%   CODE(src/nvidia-smi-metrics.sh ). Una vez finalizada la tarea de codificacion se detuvo manualmente la ejecucion de la toma de metricas
+%   nvidia-smi y se ejecuto el siguiene online en la teerminal para obtner la media del consumo estimada por nvidia-smi 
+%   CODE(cat nvidia-smi-metrics.csv | cut -d',' -f7 | tr -d ' ' | st-console --mean}').
+% - Comparando las metricas obtenidas por Kepler y las metricas de Nvida-SMI, se observa que ambos resultado son bastante proctivamente iguales, y se obseva uan desviacion 
+%   del 1.07%, un valor muy bajo y por tanto despreciable
+
+\input{tex/des/exp1/exp1-enviroment.tex}
+%  +++ COMPARATIVA HERRAMIENTAS +++
+% ++++++ EXPERIMENTO 1 +++++++++
+% - Comparativa de EM - Kepler - Scaphandre || CPU + GPU
+%   - Un aspecto negativo de Energy Meter es que no permite metricas aisladas por proceso, por tanto no es una opcion valida como herramienta final.
+%   - Schapahndre permite obtener metricas de consumo detallada por proceso, en cuanto al uso de CPU, pero no es capaz de tomar metricas de la GPU. La toma de 
+%     metricas de consumo energetico es fundamental para el proyecto, ya que la codificacion de video se lleva a cabo tambien en las GPU. Por este motivo
+%     se descarta su eleccion como herramienta final
+%   - Escogemos Kepler porque mide GPU ya que scp no mide gpu y em no mide por proesos ni permite segmentar procesos por cores de cpu
+%   - 
+% -Comparativa empleando codificacion unicamente sobre CPU // Kepler vs SCP vs EM
+% -En la siguente fase se lanzara un proceso unicamente utilizando CPU para comprobar la precision de ambas herramientas, teniendo en cuenta que 
+%   scp no es capaz de medir la GPU, como se ha visto en la prueba anterior.
+% -Los resultados obtendios muestran XXXXX 
+%
+% ++++++ EXPERIMENTO 2 +++++++++
+% - Compartiva aislando Cores - Kepler vs SCP vs EM || CPU
+%   
+%   - En el siguiente experimento se medira la precision de ambas herramientas para medir procesos con limitacion de CPU , sin hacer uso 
+%       de la acceleracion mediente GPU.
+%     Para este caso particualar, se limitaran las CPUs a 3 al lanzar el contenedor de Docker empleando las flags CODE(--cpus="3" --cpuset-cpus=1-3).
+%   - Para esta comparativa se plantearan dos escenarios, uno en el que o se limita el numero de CPUs y otro en el que se limitaran las CPUs a 3. Para cada
+%       escenario se lanzaran 10 iteraciones de codificacion y toma de metricas y posteriormete se compara entre ellas con el fin de ver si exite discrepancia
+%    entre la cantidad de energia que la herramienta mide del proceso con y sin limitaciones respecto a la energia total del sistema. 
+%   -  Se observa XXXX
+
+% ++++++ EXPERIMENTO 3 +++++++++
+% - Contenedores Limitados a 3 CORES // EM - Kepler - Scaphandre || CPU 
+%   - Para finalizar la comparativa de herramientas, se lleva a acabo un ultimo experimento en el que cual Kepler y SCP tendran que tomar metricas de dos contenedores
+%   los cuales emplean codificacion sobre CPU con limitaciones a 3 en el numero de cores. Ambos contenedores se ejecutar simulataneamente.
+% - Este experimento se ejecutar un total de 10 veces y de los resultados obtenidos se scara la media respecto al numero total de ejecucion para cada herramienta. Cabe
+% destacar que se han dejado 2 minutos entre un tanda de experimentos y otra para evitar que el calor de la CPU influya en el consumo energetico influya en los resultados
+% finales de las pruebas. 
+% - Una vez finalizadas las pruebas y llevado a cabo el post-procesamiento indicado con anterioridad, se observa que ninguna de lso dos herramitnas es capaz de medir
+% correctamente la energia del nodo y la energia de los dos contendores, denotando una clara falta de energia respecto al consumo total del sistema, el cual se ha medido
+% empleadno la herramienta EM. 
+
+
+% +++ Uso de Herramiena Propia +++
+% ++++++ EXPERIMENTO 4 +++++++++
+% - Debido a los insatisfactorios resultados obtenidos con las herramientas kepler y scp, se ha propuesto utilizar una herramientas propia desarrollada en el proyecto Eco-Stream,
+%   la cual hace uso de diferentes herramientas y aplicaciones internas de los sistemas linux para lograr una precision mucho mayor a la hora de obtener metricas de consumo.
+% - Para comprobar su efectividad, se llevaran a cabo los mismos experimentos aplicando las mismas limitaciones sobre los conteneodres.
+% - Comparando los datos obtenidos, se puede observar que la herramienta MONITORING es mucho mas efectiva, tanto en la estimacion de consumo del nodo como en la toma de metricas
+%   multiples procesos ejecutandose simultanemente. Los resultados obtenido de la experimentacion se pueden observar a continuacion en la tabla REF TABLA
+% 
+
+% ++++++ Python Plot & POST PROCESADO DATOS ++++++++++++
+% + Comentar como se han procesado los datos y de devolvia cada herrameinta y enque forma
+%   -Formato datos Devueltos:
+%       - Kepler --> Informacion resumida desde el inicio hasta la peticion de datos
+%       - Schapndre --> Metricas tomadas cada X segundos(En nuestro caso se define 1), cada bucle metrica ssitema en ese instante
+%       - EM ---> JSON con infromacionconsumo (Tiempo, pkg, d_ram, total)
+%       - MONITOR :
+%           - Informacion resumida en .global
+%           - Informacion resumida en .csv cada iteracion(Igual que scaphandre)
+%           - Consumo total del sistema basandose en EM 
+%   - Procesado de los datos 
+%       - Bash script para schaphandre 
+%           - Caracteristicas XXX 
+%       - Bash script kepler 
+%           - Caracteristicas X 
+%       - Bash para METRICS 
+%           - Caracteriticas X
+% - En las siguientes graficas se aprecia la medida de los datos obtenidos con cada herramienta en cada experiménto, y como se puede aprecias la herramienta MONITORING es la 
+%   mas adecuada para la fase 2 del proyecto.
+% - Se ha utilizado python con seaborn y matplotlib para crear las tablas comparativas de datos. Ha sido necesario instalar las 
+%  librerias pyqt6(QUE ES ?? ) y la libreria de linux que se encarga de poder plotear figuras flotantes libxcb-cursor0
