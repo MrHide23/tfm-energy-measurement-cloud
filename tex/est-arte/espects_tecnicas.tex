@@ -1,1 +1,20 @@
 % Mencionar importancia seleccion compatibilidad intel con RAPL, no todos procesadores pueden leer tanto
+En cuanto al entorno en el que se ha llevado a cabo el experimento, se ha utilizado un ordenador con una CPU Intel i7-4790K y 8 cores. Esta CPU es relativamente actual y nos permite tomar medidas de casi cualquier parte del sistema utilizando RAPL \cite{intel-processor-sepcts}. También cuenta con una memoria RAM de 32 GB y 2 TB de memoria física HDD.\ 
+
+La tarjeta gráfica seleccionada es una NVIDIA Quadro M4000 \cite{nvidia_quadro_m4000}, elegida entre el conjunto de GPUs disponibles en el laboratorio. En primer lugar, la tarjeta es compatible con la interfaz NVIDIA System Management (NVIDIA-SMI) \cite{nvidia_smi}, herramienta empleada para la monitorización y extracción de métricas relacionadas con el estado y el consumo energético de la tarjeta gráfica. Además, también ofrece soporte para las versiones de CUDA y NVIDIA Container Toolkit \cite{nvidia-container-toolkit}, lo cual permite el acceso a la GPU desde contenedores y la ejecución de cargas de trabajo con aceleración de hardware. Esta tarjeta gráfica incluye soporte para la tecnología NVENC, la cual permite usar los codificadores de hardware H.264 (AVC) y H.265 (HEVC) en diferentes formatos de codificación. En la Tabla \ref{tab:nvidia_matrix_capacity} se muestran los formatos compatibles:
+
+\begin{table}[h!]
+\center
+\begin{tabular}{cccc}
+\hline
+\textbf{Codificador} & \textbf{Formato} & \textbf{CPU} & \textbf{GPU} \\ \hline
+H.264                & YUV 4:2:0        & x            & X            \\
+H.264                & YUV 4:4:4        & X            & X            \\
+H.264                & Lossless         & X            & X*           \\
+H.265                & 4K YUV 4:2:0     & X            & X            \\ \hline
+\end{tabular}
+\label{tab:nvidia_matrix_capacity}
+\caption{Matriz de Capacidad de Codificación de Video de NVIDIA Quadro M4000}
+\end{table}
+
+El SO sobre el que se han llevado a cabo las pruebas es un Debian 13.1-amd64 de 64 bits (x86\_64) con la versión de kernel 6.12.90-2. Sobre este sistema se han instalado los drivers de NVIDIA con la versión 580.159.04 y la versión de CUDA 13.0. Se ha decidido instalar este sistema operativo debido principalmente a su estabilidad y su flexibilidad, habiendo redactado todo el proceso de instalación y preparación del entorno en el subapartado \ref{entrono-desarrollo}. \\ 

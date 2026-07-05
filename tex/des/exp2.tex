@@ -1,3 +1,5 @@
+
+
 % Fase de la Experimentacion 2
 % ENTORNO PRUEBAS EXP2:
 %   + Caracteristicas del video
@@ -7,17 +9,25 @@
 %       - Bit da cada video [](TABLA)
 %       - Codificador base x264(FFMPEG PROBE)(TABLA)
 %   + Lugar de experimentacion --> Maquina de fase 1
+% Seleccion de codificadorres: 
+%  + Basandose en tabla \ref{tab:nvidia_matrix_capacity} son principalmente H.264 y H.265,
+\input{tex/des/exp2/exp2-enviroment-test.tex}
+
 % EXP 2.1 --> Seleccion de Videos(5-10) con diferente SITI y sacar matriza de ubicacion
 %   + Justificacion -->  Se ha relaizado esta seleccion debido a que se desea comprobar si el valor SITI influye en el consumo energetico y para ello es necesario
 %                          escoger videos que se encuentran en diferentes espacios de la tabla SITI con caracteristicas tecnicas similares.
 %   + Calculo de siti de cada chunck para defini un video de 10s con el siti mas omogeneo posible y con menor variacion entre chuncks
 %
+\input{tex/des/exp2/exp2.1-siti.tex}
+
 % EXP 2.2 --> Bateria de pruebas con codificaciones CPU(x264, x265) y GPU(H264_VENC y HEVC_NVENC) bariando el bitrate
 %   + Comprobar las calidades de ambos rangos de videos para comprobar que ambos rangos son diferentes
 %   + x264 --> {15, 20,25,30,35,40}
 %   + x265 --> {10, 15,20,25,30,35}
+\input{tex/des/exp2/exp2.2-codec-bitrate.tex}
+
+
 % EXP 2.3 --> Fase en la que se limita el numero de cores en el contenedor y se fueza el mismo numero de threads para ffmpeg
 %   + CORES = {1,3,6,9}
 %   + THREADS = CORES
-
-\input{tex/des/exp2/exp2-enviroment-test.tex}
+\input{tex/des/exp2/exp2.3-core-threads.tex}
