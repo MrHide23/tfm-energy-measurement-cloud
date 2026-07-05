@@ -102,7 +102,7 @@ pdfauthor=\@author}
 	 % Use small caps for all text on the title page
 
    \begin{center}
-     \includegraphics[width=0.55\ancho]{figs/etse_titulo.png}
+     \includegraphics[width=0.55\ancho]{figs/uv/etse_titulo.png}
    \end{center}
 
    \vspace*{1\baselineskip} % White space
@@ -112,7 +112,7 @@ pdfauthor=\@author}
    \vspace*{2\baselineskip} % White space
 
    \begin{center}
-      \includegraphics[width=0.35\ancho]{figs/escudo_logo_UV_narrow.png}
+      \includegraphics[width=0.35\ancho]{figs/uv/escudo_logo_UV_narrow.png}
    \end{center}
 
    \vspace*{3\baselineskip} % White space
