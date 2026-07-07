@@ -1,5 +1,56 @@
-% 
-% - Para la seleccion de video se ha calculado el chunck de cada video pero no es posible formarvideos de 10 segudos ya que los chuncks se encuentran distantes entre si. Es por eso que se va a utilizar un conjunto de chuncks que no pertenecen al mismo video pero si comparten las misma caracteristicas SI y TI 
+% - Para la seleccion de video se ha calculado el chunck de cada video pero no es posible formarvideos de 10 segudos ya que los chuncks se encuentran distantes entre si. Es por eso que se va a utilizar un conjunto de chuncks que no pertenecen al mismo video pero si comparten las misma caracteristicas SI y TI ( spatial information (SI) and temporal information (TI))
+Para la selección del conjunto de videos que serán utilizados durante la fase de experimentación 2 \ref{exp2}, se espera poder comprobar si el contenido del video, y más concretamente, la cantidad de información que contiene, afecta a la cantidad de energía que consume el contenedor durante el proceso de codificación. Es por este motivo que se han empleado los parámetros Spatial Information (SI) y Temporal Information (TI) para la selección de chunks que compondrán los videos. Estos parámetros de calidad subjetiva se encuentran definidos por el International Telecommunication Union Telecommunication Standardization Sector (ITU) \ref{itu-quality-metrics}, y se emplean de forma conjunta como métricas de calidad comprendida entre 0 y 100, donde Spatial Information (SI) representa la cantidad de detalles y objetos que aparecen en una escena, y el Temporal Information (TI) define la cantidad de cambios que suceden en una escena a lo largo del tiempo.\
+
+%CONTINUAR
+Del conjunto de video disponible, decidi utilizar los chuncks de los video de la siguiente lista \ref{tab:lista-videos-exp2}, escogiendo un numero de chunks aleatorio por video. A continuación calcul
+En un principio, seleccioné alguno chunks de videos secuenciales de un total de 6 videos para comprobar el SI y el TI general de cada video y poder 
+
+%MAL - REVISAR
+\begin{table}[h!]
+\center
+\begin{tabular}{cccc}
+\hline
+\textbf{Video} & \textbf{Origen} \\ \hline
+Eldorado & Cable Labs         \\
+Skateboarding & Cable Labs         \\
+LifeUntouched & Cable Labs         \\
+LiftingOff & Cable Labs         \\
+Sintel & Bender         \\
+SecondsThatCount & Cable Labs         \\
+IndoorSoccer & Cable Labs         \\ \hline
+\end{tabular}
+\label{tab:lista-videos-exp2}
+\caption{Videos Seleccionados para las pruebas}
+\end{table}
+
 % - Al comprobar el valor del SI y del Ti nos damos cuenta que TI es muy bajo <=16 por tanto accederemos a Cable Labs para obtener el video completo analizarlo y buscar los segundos con mayor movimiento apra extraer los chuncks y lograr subir el valor de TI y si fuera posible tambien subir el valor de SI, aunque este tiene un valor <= 40. Teniendo encuenta que son chuncks de 2 segundos es astante aceptable
-% - 
+% - Una vez gerado el esquema de SITI con los chuncks que disponemos, se han seleccionado los sigueintes chuncks para que se reproduczcan en bucle durante 10 segundos:
+%         - TI <  y SI <:
+%          - LifeUntouch - 53x
+%          - LifeUntouch - 48x
+%          - LifeUntouch - 55x
+%          - LifeUntouch - 56x
+%          - LifeUntouch - 75x
+% 
+%         - Ti > y SI <:
+%          - Sintel - 22
+%          - Sintel - 27
+%          - Sintel - 26
+%          - Sintel - 21
+%          - IndoSoccer - 46
+% 
+%         - Ti < y SI >:
+%          - IndoSoccer - 4 x
+%          - El Dorado - 12
+%          - El Dorado - 14
+%          - El Dorado - 15
+%          - El Dorado - 16
+% 
+%         - TI > y SI > :
+%          - Sintel - 282 
+%          - SkateBorading - 20
+%          - SkateBorading - 21 
+%          - SkateBorading - 27
+%          - El Dorado - 10 x 
+% En total tenemos 20 videso agrupados segun su TI y sy SI que seran utilizados en la siguiente subfase de la experimentacion \ref{exp2.2-codec-bitrate}.
 

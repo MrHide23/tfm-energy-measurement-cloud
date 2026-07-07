@@ -13,8 +13,17 @@ El segundo problema estaba relacionado con el mecanismo de instalación automát
 
 Pese a todo ello, no se logró una comunicación adecuada con la API interna de la tarjeta gráfica, lo que impidió el acceso a las métricas de consumo energético mediante nvidia-smi. Es por ello que se optó por instalar otra distribución de Linux más flexible, con mayor compatibilidad con los drivers de NVIDIA. Finalmente, se decidió instalar Debian, ya que cumplía con los requerimientos necesarios, además de ser una distribución que a lo largo de los años personalmente había utilizado para diferentes proyectos; por tanto, tenía experiencia de uso y conocía su funcionamiento interno y su filosofía de trabajo.\
 
-%PENDIENTE
-La versión de Debian seleccionada una version 2 releases por detras de la version actual (Duke - 15)\cite{debian-releases}, siendo la version 13(Trixie) la seleccionada para la instalacion. Durante la instalacion, se decidio marcar la autodeteccion de tarjeta grafica y la instalacion automatica de drivers de NVIDIA.
+Se seleccionó la versión Debian 13 (Trixie), que en el momento de realizar este trabajo se encontraba dos versiones por detrás de la versión estable más reciente (Debian 15 - Duke) \cite{debian-releases}, siguiendo las recomendaciones de la comunidad de Debian. Durante la instalación del sistema se habilitó la detección automática de la tarjeta gráfica y la instalación de los controladores propietarios de NVIDIA. Sin embargo, al intentar utilizar la GPU desde un contenedor Docker para ejecutar procesos de codificación acelerados mediante hardware, se obtuvo el error de compatibilidad mostrado en la Figura \ref{img:ffmpeg-compatibilidad}. Dicho error indicaba que la versión instalada del controlador no cumplía con la versión mínima requerida por el entorno de ejecución, siendo necesaria la versión 580 o superior. Tras actualizar los controladores a la versión requerida manualmente, fue posible acceder correctamente a la GPU desde los contenedores y ejecutar procesos de codificación mediante aceleración hardware, resolviendo así los problemas de compatibilidad entre los controladores de NVIDIA, Docker y las bibliotecas empleadas por FFmpeg.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{figs/error-ffmpeg}
+	\caption{Error de compatibilidad con version de drivers de NVIDIA}
+	\label{img:ffmpeg-compatibilidad}
+\end{figure}
+
+\subsection{Seleccion de Herramientas para la toma de métricas}
+Durante la seleccion de herramietas adecuadas para tom
 
 
 % Instalacio de requerimeintos del sistema para pruebas

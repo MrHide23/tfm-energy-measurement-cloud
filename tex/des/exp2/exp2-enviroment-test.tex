@@ -7,3 +7,5 @@
 %   - Medidas: 3840 x 2160
 %   - Numero de frams por chunck --> 120 (ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4)
 %   - Profundidad de bit de color --> 8 bits(ffprobe -loglevel panic show_entries stream=bits_per_raw_sample select_streams v VIDEO.mp4)
+% 
+El conjunto de videos que será utilizado para la fase 2 \ref{exp2} proviene de la base de videos que el proyecto EcoStrema tiene, y que proviene principalemente de \cite{cable-labs}. Estos videos tiene la caracteristica que estan codificados en formato H.265 sin perdida de calidad y sin compresion, ademas de 
