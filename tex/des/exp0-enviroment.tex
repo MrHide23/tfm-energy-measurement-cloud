@@ -1,36 +1,51 @@
 % Seleccon de S0 
 \subsection{Seleccion e Intalacion del Sistema Operativo}
-%DONE
-En un principio se decidió instalar el sistema operativo XUbuntu 26.04 en base a la recomendación de mi tutor de TFM, Juan Gutiérrez Aguado, ya que es un sistema operativo que él utiliza diariamente y sobre el que tiene una vasta experiencia de uso. Esto proporciona una capa extra de seguridad y de conocimiento sobre el entorno en el que se desarrollarían las pruebas, además del resto de recursos de conocimiento oficiales y no oficiales que existen sobre este sistema operativo.
+     % Instalacio de requerimeintos del sistema para pruebas
+     %   - Nvidia Drivers  
+     %   - Nvidia SMI
+     %   - Nvidia Container Toolkit
+     %   - Docker 
+ %DONE
+ En un principio se decidió instalar el sistema operativo XUbuntu 26.04 en base a la recomendación de mi tutor de TFM, Juan Gutiérrez Aguado, ya que es un sistema operativo que él utiliza diariamente y sobre el que tiene una vasta experiencia de uso. Esto proporciona una capa extra de seguridad y de conocimiento sobre el entorno en el que se desarrollarían las pruebas, además del resto de recursos de conocimiento oficiales y no oficiales que existen sobre este sistema operativo.
 
-Una vez finalizada la instalación, se hizo uso del gestor de versiones de drivers interno de Ubuntu, llamado 'ubuntu-drivers', para instalar la versión de los drivers de NVIDIA más compatible con la tarjeta gráfica NVIDIA Quadro M4000. Al comprobar si se podía acceder a los datos internos de consumo mediante nvidia-smi, se obtuvo un error que indicaba que no era capaz de comunicarse con la API interna de la tarjeta gráfica. Al revisar los mensajes proporcionados por el kernel, se pudo determinar que se trataba de un problema de compatibilidad de los drivers con la versión del kernel. Por este motivo se decidió instalar la versión 24.04 de XUbuntu, la cual hace uso de la versión 6.14 del kernel, solventando el problema de compatibilidad de los drivers.
+ Una vez finalizada la instalación, se hizo uso del gestor de versiones de drivers interno de Ubuntu, llamado 'ubuntu-drivers', para instalar la versión de los drivers de NVIDIA más compatible con la tarjeta gráfica NVIDIA Quadro M4000. Al comprobar si se podía acceder a los datos internos de consumo mediante nvidia-smi, se obtuvo un error que indicaba que no era capaz de comunicarse con la API interna de la tarjeta gráfica. Al revisar los mensajes proporcionados por el kernel, se pudo determinar que se trataba de un problema de compatibilidad de los drivers con la versión del kernel. Por este motivo se decidió instalar la versión 24.04 de XUbuntu, la cual hace uso de la versión 6.14 del kernel, solventando el problema de compatibilidad de los drivers.
 
-Una vez reinstalado el sistema operativo, se procedió a reinstalar nuevamente los drivers de NVIDIA junto con los paquetes requeridos por nvidia-smi, de la misma forma que con la versión anterior. De nuevo, al tratar de acceder a los datos de consumo mediante `nvidia-smi`, apareció el mismo problema, pero al revisar los mensajes del kernel, se indicaba que el error no era de compatibilidad, sino la ausencia de un componente concreto llamado 'nvidia-drm'. Este componente forma parte del conjunto de módulos del kernel de NVIDIA que permite al kernel comunicarse con la tarjeta gráfica de NVIDIA \cite{nvidia-drm-documentation}. Al tratar varias veces de reconstruir el módulo manualmente, sin lograr éxito, se optó por buscar información en foros oficiales de NVIDIA y foros de la comunidad Ubuntu y Xubuntu, llegando a la conclusión de que era un problema que sucedía en algunas versiones de XUbuntu debido a dos razones principales: La versión Nouveau de los drivers ,y la incompleta compatibilidad de los drivers con XUbuntu.\
+ Una vez reinstalado el sistema operativo, se procedió a reinstalar nuevamente los drivers de NVIDIA junto con los paquetes requeridos por nvidia-smi, de la misma forma que con la versión anterior. De nuevo, al tratar de acceder a los datos de consumo mediante `nvidia-smi`, apareció el mismo problema, pero al revisar los mensajes del kernel, se indicaba que el error no era de compatibilidad, sino la ausencia de un componente concreto llamado 'nvidia-drm'. Este componente forma parte del conjunto de módulos del kernel de NVIDIA que permite al kernel comunicarse con la tarjeta gráfica de NVIDIA \cite{nvidia-drm-documentation}. Al tratar varias veces de reconstruir el módulo manualmente, sin lograr éxito, se optó por buscar información en foros oficiales de NVIDIA y foros de la comunidad Ubuntu y Xubuntu, llegando a la conclusión de que era un problema que sucedía en algunas versiones de XUbuntu debido a dos razones principales: La versión Nouveau de los drivers ,y la incompleta compatibilidad de los drivers con XUbuntu.\
 
-El primer problema estaba relacionado con el controlador libre Nouveau, desarrollado por la comunidad mediante técnicas de ingeniería inversa. Aunque este controlador proporciona compatibilidad básica con un amplio número de tarjetas gráficas NVIDIA, no implementa completamente las funcionalidades propietarias ofrecidas por los controladores oficiales, entre ellas la interfaz NVML, utilizada por herramientas como nvidia-smi para acceder a métricas avanzadas de la GPU, incluido el consumo energético. Para solucionar este problema fue necesario deshabilitar la carga del módulo Nouveau y reinstalar exclusivamente los controladores oficiales proporcionados por NVIDIA.\
+ El primer problema estaba relacionado con el controlador libre Nouveau, desarrollado por la comunidad mediante técnicas de ingeniería inversa. Aunque este controlador proporciona compatibilidad básica con un amplio número de tarjetas gráficas NVIDIA, no implementa completamente las funcionalidades propietarias ofrecidas por los controladores oficiales, entre ellas la interfaz NVML, utilizada por herramientas como nvidia-smi para acceder a métricas avanzadas de la GPU, incluido el consumo energético. Para solucionar este problema fue necesario deshabilitar la carga del módulo Nouveau y reinstalar exclusivamente los controladores oficiales proporcionados por NVIDIA.\
 
-El segundo problema estaba relacionado con el mecanismo de instalación automática de controladores proporcionado por la utilidad ubuntu-drivers. Tras consultar la documentación oficial y diferentes foros de las comunidades de Ubuntu y Xubuntu, se comprobó que esta herramienta puede instalar automáticamente la versión más reciente del controlador junto con paquetes pertenecientes a versiones diferentes o dejar dependencias de instalaciones anteriores. Esta situación puede provocar inconsistencias entre los módulos del kernel y las bibliotecas de usuario, impidiendo que componentes como nvidia-drm o nvidia-smi funcionen correctamente. Como consecuencia, fue necesario eliminar completamente todos los paquetes relacionados con NVIDIA y realizar una instalación manual de una versión del controlador compatible con la tarjeta gráfica y con el sistema operativo empleado.\
+ El segundo problema estaba relacionado con el mecanismo de instalación automática de controladores proporcionado por la utilidad ubuntu-drivers. Tras consultar la documentación oficial y diferentes foros de las comunidades de Ubuntu y Xubuntu, se comprobó que esta herramienta puede instalar automáticamente la versión más reciente del controlador junto con paquetes pertenecientes a versiones diferentes o dejar dependencias de instalaciones anteriores. Esta situación puede provocar inconsistencias entre los módulos del kernel y las bibliotecas de usuario, impidiendo que componentes como nvidia-drm o nvidia-smi funcionen correctamente. Como consecuencia, fue necesario eliminar completamente todos los paquetes relacionados con NVIDIA y realizar una instalación manual de una versión del controlador compatible con la tarjeta gráfica y con el sistema operativo empleado.\
 
-Pese a todo ello, no se logró una comunicación adecuada con la API interna de la tarjeta gráfica, lo que impidió el acceso a las métricas de consumo energético mediante nvidia-smi. Es por ello que se optó por instalar otra distribución de Linux más flexible, con mayor compatibilidad con los drivers de NVIDIA. Finalmente, se decidió instalar Debian, ya que cumplía con los requerimientos necesarios, además de ser una distribución que a lo largo de los años personalmente había utilizado para diferentes proyectos; por tanto, tenía experiencia de uso y conocía su funcionamiento interno y su filosofía de trabajo.\
+ Pese a todo ello, no se logró una comunicación adecuada con la API interna de la tarjeta gráfica, lo que impidió el acceso a las métricas de consumo energético mediante nvidia-smi. Es por ello que se optó por instalar otra distribución de Linux más flexible, con mayor compatibilidad con los drivers de NVIDIA. Finalmente, se decidió instalar Debian, ya que cumplía con los requerimientos necesarios, además de ser una distribución que a lo largo de los años personalmente había utilizado para diferentes proyectos; por tanto, tenía experiencia de uso y conocía su funcionamiento interno y su filosofía de trabajo.\
 
-Se seleccionó la versión Debian 13 (Trixie), que en el momento de realizar este trabajo se encontraba dos versiones por detrás de la versión estable más reciente (Debian 15 - Duke) \cite{debian-releases}, siguiendo las recomendaciones de la comunidad de Debian. Durante la instalación del sistema se habilitó la detección automática de la tarjeta gráfica y la instalación de los controladores propietarios de NVIDIA. Sin embargo, al intentar utilizar la GPU desde un contenedor Docker para ejecutar procesos de codificación acelerados mediante hardware, se obtuvo el error de compatibilidad mostrado en la Figura \ref{img:ffmpeg-compatibilidad}. Dicho error indicaba que la versión instalada del controlador no cumplía con la versión mínima requerida por el entorno de ejecución, siendo necesaria la versión 580 o superior. Tras actualizar los controladores a la versión requerida manualmente, fue posible acceder correctamente a la GPU desde los contenedores y ejecutar procesos de codificación mediante aceleración hardware, resolviendo así los problemas de compatibilidad entre los controladores de NVIDIA, Docker y las bibliotecas empleadas por FFmpeg.
+ Se seleccionó la versión Debian 13 (Trixie), que en el momento de realizar este trabajo se encontraba dos versiones por detrás de la versión estable más reciente (Debian 15 - Duke) \cite{debian-releases}, siguiendo las recomendaciones de la comunidad de Debian. Durante la instalación del sistema se habilitó la detección automática de la tarjeta gráfica y la instalación de los controladores propietarios de NVIDIA. Sin embargo, al intentar utilizar la GPU desde un contenedor Docker para ejecutar procesos de codificación acelerados mediante hardware, se obtuvo el error de compatibilidad mostrado en la Figura \ref{img:ffmpeg-compatibilidad}. Dicho error indicaba que la versión instalada del controlador no cumplía con la versión mínima requerida por el entorno de ejecución, siendo necesaria la versión 580 o superior. Tras actualizar los controladores a la versión requerida manualmente, fue posible acceder correctamente a la GPU desde los contenedores y ejecutar procesos de codificación mediante aceleración hardware, resolviendo así los problemas de compatibilidad entre los controladores de NVIDIA, Docker y las bibliotecas empleadas por FFmpeg.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.4\textwidth]{figs/error-ffmpeg}
-	\caption{Error de compatibilidad con version de drivers de NVIDIA}
-	\label{img:ffmpeg-compatibilidad}
-\end{figure}
+ \begin{figure}[h!]
+ 	\centering
+ 	\includegraphics[width=0.4\textwidth]{figs/error-ffmpeg}
+ 	\caption{Error de compatibilidad con version de drivers de NVIDIA}
+ 	\label{img:ffmpeg-compatibilidad}
+  \end{figure}
 
-\subsection{Seleccion de Herramientas para la toma de métricas}
-Durante la seleccion de herramietas adecuadas para tom
+% Continuar
+\subsection{Condifguracion e Instalacion Herramientas de Toma de Metricas }
 
 
-% Instalacio de requerimeintos del sistema para pruebas
-%   - Nvidia Drivers  
-%   - Nvidia SMI
-%   - Nvidia Container Toolkit
-%   - Docker 
+%CONTINUAR
+\subsubsection*{Kepler}
+ 
+
+\subsubsection*{Scaphandre}
+
+
+\subsubsection*{Energy Meter}
+
+
+\subsubsection*{Monitor}
+
+%- Se ha modificado muestras por segundo a 3 ya que la codificacion empleando tarjeta grafica tarde una media de 3 segundos y al menos quuieren obtener j 10 metricas por cada prueba de codificacion.
+
+
 % Seleccion de Herramientas de metricas 
 %  - Criterio de Sleccion
 %  - Repos Visitados
