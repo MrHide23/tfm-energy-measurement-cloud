@@ -5,7 +5,7 @@ Teniendo en cuenta estas necesidades, se ha realizado una búsqueda entre divers
 Además, también se han proporcionado dos herramientas por parte de Juan Gutiérrez Aguado, uno de los directores del proyecto Eco-Stream: EnergyMeter, empleada como referencia de consumo energetico del sistema basado en las metricas del sistema obtenidas por RAPL; Y Monitor, una herramienta desarrollada por Juan Gutiérrez Aguado empleada como alternativa a las herramientas anteriores, la cual permite medir el consumo de una carga de trabajo desplegada sobre uno o varios contendores de forma simultanea y muy precisa.\
 
 %TABLA DE HERRAMIENTAS CAPACIDAD - NO SE SI FUNCIONA
-\begin{table}[]
+\begin{table}[h!]
      \begin{tabular}{|c|c|c|c|c|}
      \hline
      \rowcolor[HTML]{C0C0C0} 
@@ -19,7 +19,7 @@ Además, también se han proporcionado dos herramientas por parte de Juan Gutié
      \caption{Capacidad de toma de metricas de las Herramientas}
 \end{table}
 
-\subsubsection*{Kepler}
+\subsubsection*{Kepler}\label{arte-herr-kepler}
  Kubernetes Efficient Power Level Exporter (Kepler) es una herramienta de monitorización de consumo de energía pensada para ser utilziada en entornos con multiples nodos gestionados por Kubernetes sobre los cuales se pretende medir el consumo energetico de una carga de trabajo desplegada sobre un contenedor, y saber cual es el consumo energetico que este presenta.\\
 
 % DISTINGUE ENTRE:
@@ -40,10 +40,30 @@ Además, también se han proporcionado dos herramientas por parte de Juan Gutié
  %LIMITACION
  Segun se advierte en la documentacion oficial, Kepler presenta dificultades para medir de forma precisa el consumo energetico en entornos de carga mixta con patrones variables de cómputo y E/S, el modelo de atribución proporcional al tiempo de CPU puede ser inexacto, ya que no distingue entre el alto consumo de un proceso de cómputo intensivo y el menor gasto de uno que pasa gran parte del tiempo esperando operaciones de E/S, a pesar de que ambos puedan tener el mismo uso de CPU. Tambien presenta dificultades para realizar estimaciones sobre cargas de trabajo de alto rendimiento que usan instrucciones especializadas, como las vectoriales, la atribución basada únicamente en el tiempo de CPU no refleja el consumo energético real, que puede ser significativamente mayor. Por lo tanto, Kepler no es adecuado para decisiones de presupuesto energético absoluto ni para una optimización de grano fino que requiera mediciones precisas por proceso, ya que está diseñado para comparaciones relativas y análisis de tendencias, no para métricas exactas a nivel de proceso individual.
 
-\subsubsection*{Scaphandre}
+\subsubsection*{Scaphandre}\label{arte-herr-scp}
+ Scaphandre es un agente de monitorización especializado en la toma de métricas de consumo energético, diseñado por la empresa Hubblo para ayudar a organizaciones e individuos a cuantificar el consumo eléctrico de sus servicios tecnológicos, con un enfoque en la sostenibilidad. Su despliegue es versátil, pudiendo ejecutarse en múltiples entornos de multiples formas. En sistemas GNU/Linux, se puede instalar desde los repositorios oficiales o mediante paquetes *.deb*, asi como la posibilidad de desplegar un contendor Docker que monitorice el consumo energetico de un sistema y sus procesos. Además, Scaphandre puede compilarse con un conjunto limitado de características, lo que permite, por ejemplo, instalar únicamente el exportador para Prometheus Push Gateway o instalarse empleado Helm en entornos gestionada por Kubernetes.\
 
+ % Resultados de la herramienta Scaphandre
+ % - Toma metricas cada 2 segundos
+ % - Basado en rapl
+ % - Resultado final conjunto de metricas de rapel repetidas por cada toma de metricas de la herramienta del consumo del sistema operativo
+ % - Multiples formatos de Salida, destacando json y el formato de salida compatible con Prometheus
+ La salida de la herramienta Scaphandre puede presentarse en formato stdout del sistema, JSON o según el esquema compatible con Prometheus. Dicho archivo contiene las métricas ofrecidas por RAPL en cada instante al iniciar la recolección, en base al valor de monitorización y la duración total de la métrica, los cuales son definidos al lanzar la toma de métricas con la herramienta. Este contiene las métricas del sistema en cada instante, pudiendo diferenciar entre consumo del sistema y consumo de un proceso. Cabe destacar que el conjunto de datos que se muestra representa el consumo energético en el instante de la toma de la métrica y que, por tanto, se repite n veces, dependiendo de cada cuánto se haya definido la toma de estos valores y la duración total de la monitorización, lo cual implica que se han de realizar las operaciones pertinentes a cada métrica en el postprocesado de los datos.
+
+ % Limitaciones de la herramienta
+ % - Limitaciones Significativas 
+ % - Toma metricas basandose en RAPL pero no puede acceder a Nvidia SMI- no mide GPU
+ % - Tine poca granularidad con los datos
+ % - Baso en sistema linux, dependecia de kernel con version 5.11 o superior si es un procesador AMD - Alta dependecia del sistema operativo y del tipo de CPU
+ % - Incapacidad de uso en nubes publica a menos que se pueda modificar el hypervisor
+ En cuanto a la toma de métricas, nos encontramos con algunas limitaciones; la herramienta emplea RAPL (Running Average Power Limit) para obtener datos de consumo energético, pero no puede acceder a Nvidia\_SMI (System Management Interface) para medir el consumo de GPU. También presenta fuertes dependencias sobre el sistema operativo: requiere un entorno Linux y, en caso de utilizar procesadores AMD, una versión del kernel superior al 5.11. El uso de esta herramienta en nubes públicas se ve restringido porque obliga a modificar el hipervisor bajo el cual se lanzan las cargas de trabajo, las aplicaciones y las máquinas virtuales —una opción que la mayoría de los proveedores evita para evitar agotar su infraestructura al completo.\
 
 \subsubsection*{Energy Meter}
+ Energy Meter es una de las herramientas desarrollada por el tutor de la Tesis Final de Master Juan Gutierrez Aguado, la cual tiene la capacidad de tomar métricas del consumo de todo el sistema empleando la librería PyRAPL. El formato de salida consiste en un registro JSON que contiene; el consumo energético del paquete (pkg), del apartado *data* y la suma total de los dos apartados anteriores.\
 
+ Su principal valor radica en su bajo consumo, ya que opera únicamente consultando a RAPL al iniciarse la toma de métricas y al indicar su finalización. Además, se despliega fácilmente dentro de un contenedor y su uso requiere solo una solicitud HTTP. Sin embargo, aunque Energy Meter no permite tomar mediciones del consumo de la GPU ni distingue el consumo por proceso, es una herramienta ideal para servir como base comparativa frente a herramientas como Kepler \ref{arte-herr-kepler} y Scaphandre \ref{arte-herr-scp}, en el contexto del consumo energetico total del sistema.\
 
 \subsubsection*{Monitor}
+ Energy Meter es una de las herramientas proporcionadas por el tutor del Tesis Final de Master Juan Gutierrez Aguado; está diseñada como alternativa a las herramientas Kepler\ref{arte-herr-kepler} \ref{arte-herr-scp} y Scaphandre, superando sus principales limitaciones. Permite adquirir métricas con granularidad muy baja, tanto del sistema completo como de procesos múltiples ejecutados en contenedores, y brinda información adicional sobre la carga de trabajo, su duración exacta y el procesamiento de datos. Además, ofrece la posibilidad de medir el consumo energético de la tarjeta gráfica mediante Nvidia SMI.\ 
+
+ La herramienta se despliega mediante un archivo Docker Compose que incluye el contenedor de la aplicación y una base de datos MongoDB para almacenar los resultados de forma persistente, lo cual facilita su análisis posterior. Su despliegue es ligero y puede instalarse en cualquier entorno, independientemente del número de nodos, cumpliendo con las expectativas de las herramientas deseadas y resolviendo los puntos débiles de sus versiones anteriores.\

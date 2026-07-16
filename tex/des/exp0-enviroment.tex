@@ -37,6 +37,27 @@
 
 \subsubsection*{Scaphandre}
 
+%Uso de la herramienta:
+% - Se despliega el contenedor y se le indica duracion de la toma de metricas y la duracion del experimento, como no sabemos la duracione exacta se le atribulle un valor aproimado y se mata el proceso junto con el contenedor uan vez extraida las metricas. 
+% - 
+
+
+% # Start scaphandre
+% docker run --name scaphandre --rm  -v /sys/class/powercap:/sys/class/powercap -v /proc:/proc --privileged -d --entrypoint "sleep" hubblo/scaphandre 3600
+% delta_t=2
+% # Start monitoring with scaphandre
+% docker exec -d scaphandre sh -c "scaphandre stdout -s ${delta_t} -t 60 --raw-metrics > out.metrics"
+% # Run process
+% # Stop scaphandre monitoring
+% docker exec scaphandre sh -c "pkill -f scaphandre"
+% scapfile=local_file_with_scphandre_metrics.out
+% # Get data from scaphandre
+% docker cp scaphandre:/app/out.metrics ${scapfile}
+% # Change owner of file
+% sudo chown clouduser:clouduser ${scapFile}
+% # Stop scaphandre container
+% docker stop scaphandre
+
 
 \subsubsection*{Energy Meter}
 
