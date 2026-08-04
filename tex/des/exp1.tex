@@ -1,44 +1,18 @@
-%  +++ Entorno +++
-% - Consumo idel de la GPU, tomado a partir de nvidia-smi ---> 11 wattions
-% - Consumo idel de sistema con los contenedores de Energy Meter, ffmpeg-encoder arrancados pero sin ejecutar ninguna tarea es de  --> 544.049449 Julios
-% 
-% +++ EM +++
-% - Origen Herramienta
-% - COMO SE DESPLIEGA 
-% - CODIGO DE PYTHON MEJORADO
-% - Energy Meter es una herremienta que permite obtener el consumo energetico de todo el sistema y que es util como metrica comparativa para los experimentos a realizar
-%   ya que berifica la preiosion del resto de herramientas a la hora de tomar metricas de un proceso que se esta ejecutando.
-% 
-% +++ SCAPHANDRE: +++
-% - Origen herremienta
-% - COMO  SE DESPLIEGA
-% - ORDEN UTILIZADA PARA MEDIR
-% 
-% 
-% +++ KEPLER +++
-%   - Solucion del error de kepler en toma de consumo energetico GPU
-%       - Debido a un error en el metodo GetTotalEnergyConsumption en la librerira de nvidia nvml-ml, el cual no se encuentra
-%         disponible en los drivers de NVIDIA 580.159 para la vesion de Debian 13 que se esta utilizando en la fase de experimentacion
-%       - Esta funcion es utilizada por Kepler para poder calcular el consumo energetico de la GPU y al dar error al obtener los valores
-%         correspondientes a dicha funcion no se podia visualizar ningun otro valor asociado al consumo energetico de la GPU.
-%       - Para solventarlo se ha modificado el codigo fuente de Kepler y se ha forzado la respuesta en los lugares donde se invocaba dicha funciuon para que 
-%         retorne un valor fijo, en este caso 0. 
-%       - Una vez modificado el codigo fuente se ha procedido a la compilacion del mismo empleando un contenedor de docker basado en la imagen 
-%         golang:tip-trixie, con la configuracion del Dockerfile siguiente: src/docker/Dockerfile 
-%       - Despues de varias iteraciones, en las que se han corregido errores internos de compilacion, se ha obtenido un contenedor con el binario
-%         compilado de Kepler, el cual se ha ejecutado correctamente y nos ha dado una estimacion del consumo energetico de la GPU total.
-%       - Dado que se trata de una estimacion aproximada del consumo se han tomado medidas en paralelo empleando NVIDIA-SMI, como referencia de consumo estandar,
-%         para comprobar como de precison es la toma de metricas por parte de kepler.
-% - Para la fase de experimentacion se ha definido la toma de metricas cada 1 segundo y al intruccion empleada es la sigiente 
-%   CODE(sudo ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &),
-%   y para nvidia-smi se ha ejecutado la siguiente instruccion para obtener el consumo energetico de la GPU en formato CSV con la siguiente instruccion
-%   CODE(src/nvidia-smi-metrics.sh ). Una vez finalizada la tarea de codificacion se detuvo manualmente la ejecucion de la toma de metricas
-%   nvidia-smi y se ejecuto el siguiene online en la teerminal para obtner la media del consumo estimada por nvidia-smi 
-%   CODE(cat nvidia-smi-metrics.csv | cut -d',' -f7 | tr -d ' ' | st-console --mean}').
-% - Comparando las metricas obtenidas por Kepler y las metricas de Nvida-SMI, se observa que ambos resultado son bastante proctivamente iguales, y se obseva uan desviacion 
-%   del 1.07%, un valor muy bajo y por tanto despreciable
 
-\input{tex/des/exp1/exp1-enviroment.tex}
+\subsubsection{Muestra de Videos Para la fase de Experimentacion 1}
+% Fase de la Experimentacion 2
+% ENTORNO PRUEBAS EXP2:
+%   + Caracteristicas del video
+%       - Duracio 10s
+%       - CRF 0
+%       - Calidad 4k
+%       - Bit da cada video [](TABLA)
+%       - Codificador base x264(FFMPEG PROBE)(TABLA)
+%   + Lugar de experimentacion --> Maquina de fase 1
+% Seleccion de codificadorres: 
+%  + Basandose en tabla \ref{tab:nvidia_matrix_capacity} son principalmente H.264 y H.265,
+
+\subsubsection{Metricas de consumo: Transcodificacion usando 1 contendor sobre CPU+GPU}
 %  +++ COMPARATIVA HERRAMIENTAS +++
 % ++++++ EXPERIMENTO 1 +++++++++
 % - Comparativa de EM - Kepler - Scaphandre || CPU + GPU
@@ -47,12 +21,14 @@
 %     metricas de consumo energetico es fundamental para el proyecto, ya que la codificacion de video se lleva a cabo tambien en las GPU. Por este motivo
 %     se descarta su eleccion como herramienta final
 %   - Escogemos Kepler porque mide GPU ya que scp no mide gpu y em no mide por proesos ni permite segmentar procesos por cores de cpu
-%   - 
+
+\subsubsection{Metricas de consumo: Transcodificacion usando 1 contendor sobre CPU}
 % -Comparativa empleando codificacion unicamente sobre CPU // Kepler vs SCP vs EM
 % -En la siguente fase se lanzara un proceso unicamente utilizando CPU para comprobar la precision de ambas herramientas, teniendo en cuenta que 
 %   scp no es capaz de medir la GPU, como se ha visto en la prueba anterior.
 % -Los resultados obtendios muestran XXXXX 
-%
+
+\subsubsection{Metricas de consumo: Transcodificacion usando 1 contenedor con 3 cores de CPU limitados}
 % ++++++ EXPERIMENTO 2 +++++++++
 % - Compartiva aislando Cores - Kepler vs SCP vs EM || CPU
 %   
@@ -64,6 +40,7 @@
 %    entre la cantidad de energia que la herramienta mide del proceso con y sin limitaciones respecto a la energia total del sistema. 
 %   -  Se observa XXXX
 
+\subsubsection{Metricas de consumo: Transcodificacion usando 2 contenedores simultaneos con limite de 3 cores cada uno}
 % ++++++ EXPERIMENTO 3 +++++++++
 % - Contenedores Limitados a 3 CORES // EM - Kepler - Scaphandre || CPU 
 %   - Para finalizar la comparativa de herramientas, se lleva a acabo un ultimo experimento en el que cual Kepler y SCP tendran que tomar metricas de dos contenedores
@@ -81,10 +58,9 @@
 % - Debido a los insatisfactorios resultados obtenidos con las herramientas kepler y scp, se ha propuesto utilizar una herramientas propia desarrollada en el proyecto Eco-Stream,
 %   la cual hace uso de diferentes herramientas y aplicaciones internas de los sistemas linux para lograr una precision mucho mayor a la hora de obtener metricas de consumo.
 % - Para comprobar su efectividad, se llevaran a cabo los mismos experimentos aplicando las mismas limitaciones sobre los conteneodres.
-% - Comparando los datos obtenidos, se puede observar que la herramienta MONITORING es mucho mas efectiva, tanto en la estimacion de consumo del nodo como en la toma de metricas
-%   multiples procesos ejecutandose simultanemente. Los resultados obtenido de la experimentacion se pueden observar a continuacion en la tabla REF TABLA
+% - Comparando los datos obtenidos, se puede observar que la herramienta MONITORING es mucho mas efectiva, tanto en la estimacion de consumo del nodo como en la toma de metricas multiples procesos ejecutandose simultanemente. Los resultados obtenido de la experimentacion se pueden observar a continuacion en la tabla REF TABLA
 % 
-
+\subsubsection{Conclusiones fase 1 de la experimentacion }
 % ++++++ Python Plot & POST PROCESADO DATOS ++++++++++++
 % + Comentar como se han procesado los datos y de devolvia cada herrameinta y enque forma
 %   -Formato datos Devueltos:

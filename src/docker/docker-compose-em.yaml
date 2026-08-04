@@ -1,0 +1,12 @@
+services:
+   global-monitor:
+      image: energy-monitoring:1.0
+      container_name: global-energy-mon
+      privileged: true
+      ports:
+         - "6000:6000"
+      volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+         - /sys/fs/cgroup/system.slice:/sys/fs/cgroup/system.slice
+         - ./docker/app.py:/app/app.py
+

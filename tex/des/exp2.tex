@@ -1,33 +1,199 @@
-
-
-% Fase de la Experimentacion 2
-% ENTORNO PRUEBAS EXP2:
-%   + Caracteristicas del video
-%       - Duracio 10s
-%       - CRF 0
-%       - Calidad 4k
-%       - Bit da cada video [](TABLA)
-%       - Codificador base x264(FFMPEG PROBE)(TABLA)
-%   + Lugar de experimentacion --> Maquina de fase 1
-% Seleccion de codificadorres: 
-%  + Basandose en tabla \ref{tab:nvidia_matrix_capacity} son principalmente H.264 y H.265,
-\input{tex/des/exp2/exp2-enviroment-test.tex}\label{exp2.0-enviroment-test}
-
+\subsubsection{Muestra de videos para la fase 2 de experimentacion}
+ %Caracteristicas del video: 
+ %   - SDR --> color_space = bt709 y fullrange
+ %   - Calidad 4k 
+ %   - Codificado con h264(libx264) 
+ %   - CRF 0, sin perdida
+ %   - Perfil de color 4:4:4 - yuv420p 
+ %   - Medidas: 3840 x 2160
+ %   - Numero de frams por chunck --> 120 (ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4)
+ %   - Profundidad de bit de color --> 8 bits(ffprobe -loglevel panic show_entries stream=bits_per_raw_sample select_streams v VIDEO.mp4)
+ % 
+ El conjunto de videos que será utilizado para la fase 2 \ref{exp2-desarrollo} proviene de la base de videos que el proyecto EcoStrema tiene, y que proviene principalemente de \cite{cable-labs}. Estos videos tiene la caracteristica que estan codificados en formato H.265 sin perdida de calidad y sin compresion, ademas de 
 % EXP 2.1 --> Seleccion de Videos(5-10) con diferente SITI y sacar matriza de ubicacion
 %   + Justificacion -->  Se ha relaizado esta seleccion debido a que se desea comprobar si el valor SITI influye en el consumo energetico y para ello es necesario
 %                          escoger videos que se encuentran en diferentes espacios de la tabla SITI con caracteristicas tecnicas similares.
 %   + Calculo de siti de cada chunck para defini un video de 10s con el siti mas omogeneo posible y con menor variacion entre chuncks
 %
-\input{tex/des/exp2/exp2.1-siti.tex}\label{exp2.1-siti}
+\subsubsection{Seleccion de muestras Basado en SI y TI}
+ Para la selección del conjunto de videos que serán utilizados durante la fase de experimentación 2 \ref{exp2-desarrollo}, se espera poder comprobar si el contenido del video, y más concretamente, la cantidad de información que contiene, afecta a la cantidad de energía que consume el contenedor durante el proceso de codificación. Es por este motivo que se han empleado los parámetros Spatial Information (SI) y Temporal Information (TI) para la selección de chunks que compondrán los videos.\
 
-% EXP 2.2 --> Bateria de pruebas con codificaciones CPU(x264, x265) y GPU(H264_VENC y HEVC_NVENC) bariando el bitrate
-%   + Comprobar las calidades de ambos rangos de videos para comprobar que ambos rangos son diferentes
-%   + x264 --> {15, 20,25,30,35,40}
-%   + x265 --> {10, 15,20,25,30,35}
-\input{tex/des/exp2/exp2.2-codec-bitrate.tex}\label{exp2.2-codec-bitrate}
+ Estos parámetros de calidad subjetiva se encuentran definidos por el International Telecommunication Union Telecommunication Standardization Sector (ITU) \ref{itu-quality-metrics}, y se emplean de forma conjunta como métricas de calidad comprendida entre 0 y 100, donde Spatial Information (SI) representa la cantidad de detalles y objetos que aparecen en una escena, y el Temporal Information (TI) define la cantidad de cambios que suceden en una escena a lo largo del tiempo.\
+ 
+ %ANADIR SELECCION DE VIDEO BASADO EN PACO DATOS
+ Para ellos, se han seleccionado los vídeos mostrados en la Tabla \ref{tab:lista-videos-exp2}. A partir de cada uno de ellos se calcularán los índices de Información Espacial (SI) e Información Temporal (TI) de sus correspondientes chunks. Posteriormente, se generarán vídeos de 10 segundos de duración a partir de un único chunk, el cual se reproducirá de forma cíclica hasta completar el tiempo establecido. Este procedimiento permite mantener constantes los valores de SI y TI durante toda la secuencia, evitando que las variaciones del contenido afecten al análisis del consumo energético.\
+ 
+ %ACTUALIZAR TABLAS
+ %- Lista de videos Añadidos:
+ %    + Sintel_0022
+ %    + Sintel_0091
+ %    + LifeUntouched_0075
+ %    + LifeUntouched_0056 
+ %    + Tears_0235
+ %    + Tears_0234
+ \begin{table}[h!]
+ \center
+ \begin{tabular}{cccc}
+ \hline
+ \textbf{Video} & \textbf{Origen} \\ \hline
+ Eldorado & Cable Labs         \\
+ Skateboarding & Cable Labs         \\
+ LifeUntouched & Cable Labs         \\
+ LiftingOff & Cable Labs         \\
+ Sintel & Bender         \\
+ SecondsThatCount & Cable Labs         \\
+ IndoorSoccer & Cable Labs         \\ \hline
+ \end{tabular}
+ \label{tab:lista-videos-exp2}
+ \caption{Videos Seleccionados para las pruebas}
+ \end{table}
+ 
+ Con el objetivo de disponer de una muestra representativa de diferentes tipos de contenido, los chunks se han clasificado en cuatro categorías según sus valores de SI y TI, tal y como se muestra en la Lista \ref{lst:lista-zonas-exp2}. Para cada categoría se seleccionarán cinco chunks, obteniendo un total de veinte vídeos para la experimentación. Esta muestra permitirá analizar la posible relación entre las características espaciales y temporales del contenido y el consumo energético asociado al proceso de codificación.\
+
+ \begin{itemize}
+     \item Alto TI y bajo SI (High TI – Low SI).
+     \item Bajo TI y alto SI (Low TI – High SI).
+     \item Bajo TI y bajo SI (Low TI – Low SI).
+     \item Alto TI y alto SI (High TI – High SI).
+ \end{itemize}\label{lst:lista-zonas-exp2}
+
+ Para lograr calcular y visualizar los valores de SI y TI correspondientes a cada chunk, se han desarrollado dos scripts en Python. El primero \ref{code:exp2-siti-calculator} emplea la biblioteca \textit{siti-tools} \cite{siti-tool-pypip}, disponible en el gestor de paquetes de Python \href{https://pypi.org/}{PyPI}, para calcular las métricas de Información Espacial (SI) e Información Temporal (TI) de cada chunk y almacenar los resultados en un archivo CSV.
+
+ El segundo script \ref{code:exp2-siti-plotter} utiliza dicho archivo como entrada para generar una gráfica de dispersión, en la que el eje X representa los valores de SI y el eje Y los valores de TI. Cada punto de la gráfica corresponde a un chunk, cuya posición viene determinada por las métricas calculadas previamente. 
 
 
+ % - Al comprobar el valor del SI y del Ti nos damos cuenta que TI es muy bajo <=16 por tanto accederemos a Cable Labs para obtener el video completo analizarlo y buscar los segundos con mayor movimiento apra extraer los chuncks y lograr subir el valor de TI y si fuera posible tambien subir el valor de SI, aunque este tiene un valor <= 40. Teniendo encuenta que son chuncks de 2 segundos es astante aceptable
+ % - Una vez gerado el esquema de SITI con los chuncks que disponemos, se han seleccionado los sigueintes chuncks para que se reproduczcan en bucle durante 10 segundos:
+ %         - TI <  y SI <:
+ %          - LifeUntouch - 53x
+ %          - LifeUntouch - 48x
+ %          - LifeUntouch - 55x
+ %          - LifeUntouch - 56x
+ %          - LifeUntouch - 75x
+ % 
+ %         - Ti > y SI <:
+ %          - Sintel - 22
+ %          - Sintel - 27
+ %          - Sintel - 26
+ %          - Sintel - 21
+ %          - IndoSoccer - 46
+ % 
+ %         - Ti < y SI >:
+ %          - IndoSoccer - 4 x
+ %          - El Dorado - 12
+ %          - El Dorado - 14
+ %          - El Dorado - 15
+ %          - El Dorado - 16
+ % 
+ %         - TI > y SI > :
+ %          - Sintel - 282 
+ %          - SkateBorading - 20
+ %          - SkateBorading - 21 
+ %          - SkateBorading - 27
+ %          - El Dorado - 10 x 
+ % En total tenemos 20 videso agrupados segun su TI y sy SI que seran utilizados en la siguiente subfase de la experimentacion \ref{exp2.2-codec-bitrate}.
+ 
+ 
+ 
+ % EXP 2.2 --> Bateria de pruebas con codificaciones CPU(x264, x265) y GPU(H264_VENC y HEVC_NVENC) bariando el bitrate
+ %   + Comprobar las calidades de ambos rangos de videos para comprobar que ambos rangos son diferentes
+ %   + x264 --> {15, 20,25,30,35,40}
+ %   + x265 --> {10, 15,20,25,30,35}
+ 
+\subsection{Consumo energetico en relacion al SITI}
+ % - En esta subfase del experimento se llevara a cabo la transcodificacion de los videos cerados en la subfase de experimentacion 2.1 \ref{exp2.1-siti}. 
+ % RESULTADOS:
+ %   - El consumo energetico se ve afectado severamente por el numer de FPS de cada video, ay que al codificar el mismo video con diferentes FPS se obtiene un consumo mucho mayor a mayor cantidad de FPS.
+ % - Timpos de los video demasiado bajos para apreciar diferencias en la codificacion con tarjeta grafica
+ % - Se requiere mayor diversidad de videos con valores todavia mas altos de SI y TI
+ % - Se observa que hay otro tipo de metricas subjetivas que afectan al consumo energetico mas halla del SITI
+ %   - Para x264:
+ %        - El TI influye en el consumo energetico
+ %   - Para x265:
+ %        - El Ti influye pero no es del todo concluyente
+ %   
+ %   - Para H264:
+ %        - Las metricas de consumo son muy similares pero se puede observar que el SI es quien mas influye en el consumo energeticp 
+ %    - Para H265:
+ %        - Influye SI y Ti en consumo pero no se puede establecer correlacion clara, metricas de consumo muy similares
+ 
+
+% AMPLIACION 1:
+%    - Para descartar la eficiencia de los codificadores a la hora de codificar video y predecir la siguiente trama, se han creado una total de 4 videos empleando los chuncks de la sigiuente list \ref{list:chubkc-videos-fase2.2}, ubicando cada uno de estos videos en una de las zonas establecidas en base al SITI. 
+%    - Como resultado xxxx
+
+
+%LISTA DE LOS VIDEOS Y QUE CHUNCKS LA COMPONEN
+% - HTI_LSI --> TearsOfSeal(0231 - 0235)
+% - LTI_HSI --> ElDorado(0012-0016)
+% - LTI_LSI --> LifUntouch(0053-0057)
+% - HTI_HSI --> Skateboarding(0020-0024)
+% 
+% 
+
+ 
+\subsubsection{Consumo energetico al limitar threads y numero de cores}
 % EXP 2.3 --> Fase en la que se limita el numero de cores en el contenedor y se fueza el mismo numero de threads para ffmpeg
-%   + CORES = {1,3,6,9}
+%   + CORES = {0,1,3,6, 7}, donde 0 hace referencia a ninguna limitacion de cpu y de threads
 %   + THREADS = CORES
-\input{tex/des/exp2/exp2.3-core-threads.tex}\label{exp2.3-core-threads}
+
+ % FASE 3.0: VIDEOS A UTILIZAR - **SUJETO A CAMBIOS**
+ % - Para esta fase se utilizran 8 videos, uno por cada zona designada en base al SI y al TI \ref{lst:lista-zonas-exp2}, los cuales tendran una duracion de 30 segundos. La trascodificacion se llevara a cabo para con un bitrate de bajo requerimiento, como es 10 Mbps, y un bitrate con mayor requerimiento, siendo en este caso 30 Mbps. 
+ % - Los codecs a utlizar seran los mismo que se han testado en la segunda fase de experimentacion, subseccion 2 \ref{exp2.2-codec-bitrate}. 
+ % - En cuanto al bitrate se ha definido como valor constante 30 Mbps como valor constante para los cuatro condificadores x264, H264_NVENC, x265 y HEVC_NVENC. Ya que no existen mejoras de calidad perceptibles con btr superiores pero si se percibe el cambio respecto a btr inferiores. 
+ % - Los chuncks que formaran parte de esta seccion son: 
+ %   -  HT_LSI: 
+ %        - TearOfSteel_0235
+ %        - Sintel_0027
+ %   -  HTI_HSI
+ %        - El Dorado_0010
+ %        - Skate_0020
+ %   -  LTI_HSI
+ %        - IndorSoccer_0004
+ %        - ElDorado_0015
+ %   -  LTI_LSI
+ %        - LifUntouch_0053 
+ %        - LifUntouch_0056
+ %- La codificacion se llevara a cabo video a video, minimizando el numero de tareas del sistem.
+
+
+ % Fase 3.1: SELECCION DE UNA CONFIGURACION DE FFMPEG 
+ % - Se debe de seleccionar una configuracion para cada codec, que permita delimitar el numero de threads que es capaz de utilizar al transcodificar
+ % - Configuracion de ffmpeg para utilizar threads y cores, obtener configuraciones disponibles para cada codec con *ffmpeg -h long encoder=CODEC_NAME*
+ %   -libx264:
+ %        - Orden --> ffmpeg -y -i VIDEO_ENTRADA -c:v libx264 -threads X -thread_type frames -b:v 30M -c:a copy RUTA_VIDEO_FINAL
+ %        - Informacion sacada de FFMPEG Wiki y de PAPER THREADS 
+ %        - Prueba de funcionamiento IMG-exp3.2-libx264-threads
+ %   -libx265:
+ %        - Orden --> ffmpeg -y -i VIDEO_ENTRADA -c:v libx265 -x265-params frame-threads=X:pools=X -b:v 30M -c:a copy RUTA_VIDEO_FINA
+ %        - Informacion sacada de FFMPEG 265 WIKIy de PAPER THREADS 
+ %        - Prueba de funcionamiento IMG-exp3.2-libx265-threads
+ %   -H264: 
+ %        - Orden --> ffmpeg -y -i VIDEO_ENTRADA -c:v h264_nvenc -cpucount X_cpus  -b:v 30M -c:a copy RUTA_VIDEO_FINAL
+ %        - Se limita numero de CPUs que puede utilizar el codificador, informacion encontrada mediante 'ffmpeg -h encoder=h264_nvenc'
+ %   -HEVC:
+ %        - Orden --> ffmpeg -y -i VIDEO_ENTRADA -c:v h264_nvenc -cpucount X_cpus  -b:v 30M -c:a copy RUTA_VIDEO_FINAL
+ %        - Se limita numero de CPUs que puede utilizar el codificador, informacion encontrada mediante 'ffmpeg -h encoder=h264_nvenc'
+ % Script del experimento 2.3:
+ % - Se ha empleado un script similar al de la fase 2.2 aplicando modificaciones:
+ %   - Arranque de contenedores de forma dinamica con limitacion en el numero de CPUs
+ %   - Limitacion en numero de threads en la orden de ffmpeg para cada codficador
+ % 
+ % CONCLUSIONES:
+ % - En el caso de cada codificador se han llegado a conclusiones interesantes:
+ %   - X264:
+ %        + Es bastante eficiente empleando threads pero si se observa que una cierta saturacion al alcanzar  numero de cores del sistema mas elevados, pareciendo que satura sobre los 7 - 8 cores
+ %        + La diferencia de bit rate afecta a la cantidad de energia que se emplea en cada fase de codificacion, asi como en los tiemps que esta requiere. A mayor es el bitrate mas intensa es la tarea de codificacion y mas visible se hace el intento de saturacion del que se ha hablado con anterioridad
+ %   - x265:
+ %        + Se observa que el codec se ajusta a la cantidad de cores y threads establecidos, consumiendo mayor cantidad de recursos en relacion al numero de cores y reduciendo el tiempo de codificacion.
+ %        + Se puede on¡bservar cierta saturacin tanto con 10 como con 30 Mbps en el numero de cores aunque no se puede asegurara al 100 x 100, tambien se obsevan diferentes respuesta para cada video, en relacion a los valores SITI, aunque se sospecha que otras metricas pueden estar influyendo.
+ %   - H264 y Hevc_nvenc:
+ %        + Se observa saturacion al rededor de los 6 cores, tanto para 10 como para 30 Mbps
+ %        + El unico escenario en el que la eficiencia energetica es mejor es cuando no se limitan el numero de cores, aunque las metricas se encuentran muy cercanas a las obtenidas con 6 cores y 6 threads. 
+ %        + Destacar que hevc_nvenc es un poco mas eficiente energeticamente respecto a h264
+ %        + Tambien se debe destacar que al igual que en el resto de codecs, dependiendo del video se ven mejores performace en la codificacion, lo que indica que tanto el SITI como otras metricas del video estan afectando al consumo y a los tiempos del proceso de codificacion. 
+ %    
+ % - Si se observan las graficas de consumo de los codecs que funcionan unicamente sobre CPU frente a los que emplean GPU+CPU, se puede aprecias que aquellos que utilizan codificacion basada en GPU consumen mucho menos recursos energeticos y necesitan de un menor tiempo para llevar a cabo el proceso. 
+ % - 
+ % - Se debe tener en cuenta el entorno en el que se han desarrollado las pruebas cuenta unicamente con 8 cores, lo cual no nos ha permitido encontrar el limite en el numero de cores y establer un numero que sature la utilidad de threads con firmeza para cada encoder
+ % 

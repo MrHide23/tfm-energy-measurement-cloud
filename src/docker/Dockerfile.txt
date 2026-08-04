@@ -5,11 +5,8 @@ FROM golang:tip-trixie
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gcc-x86-64-linux-gnu libc6-dev-amd64-cross && rm -rf /var/lib/apt/lists/*; 
 
-
 WORKDIR /workspace
-
 COPY . .
-
 RUN CROSS_CC=x86_64-linux-gnu-gcc; \
     make build \
     CGO_ENABLED=1 \

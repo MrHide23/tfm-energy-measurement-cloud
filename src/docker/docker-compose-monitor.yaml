@@ -1,0 +1,31 @@
+services:
+  monitor:
+    image: routerdi1315.uv.es:33443/energy-monitoring:1.0
+    container_name: container-energy-mon
+    privileged: true
+    ports:
+      - "5000:5000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /sys/fs/cgroup/system.slice:/sys/fs/cgroup/system.slice
+      - ./data:/data
+      #- ./docker/app.py:/app/app.py
+      #- ./docker/monitor.py:/app/monitor.py
+      #- ./docker/mdb.py:/app/mdb.py
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - NVIDIA_VISIBLE_DEVICES=all
+      - MONITOR_GPU=True
+      - SAMPLES_PER_SECOND=3
+    runtime: nvidia
+
+  mongodb:
+    image: mongo:8.2.2-noble
+    container_name: mongodb
+    volumes:
+      - ./mongodb/data:/data/db
+    ports:
+      - "27017:27017"
+    command:
+      - "--quiet"
