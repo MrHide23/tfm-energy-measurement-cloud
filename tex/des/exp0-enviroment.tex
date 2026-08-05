@@ -1,5 +1,6 @@
+\section{Configuración de Entorno \& Herramientas}
 % Seleccon de S0 
-\subsubsection{Seleccion e Intalacion del Sistema Operativo}
+\subsection{Seleccion e Intalacion del Sistema Operativo}
      % Instalacio de requerimeintos del sistema para pruebas
      %   - Nvidia Drivers  
      %   - Nvidia SMI
@@ -8,9 +9,9 @@
  %DONE
  En un principio se decidió instalar el sistema operativo XUbuntu 26.04 en base a la recomendación de mi tutor de TFM, Juan Gutiérrez Aguado, ya que es un sistema operativo que él utiliza diariamente y sobre el que tiene una vasta experiencia de uso. Esto proporciona una capa extra de seguridad y de conocimiento sobre el entorno en el que se desarrollarían las pruebas, además del resto de recursos de conocimiento oficiales y no oficiales que existen sobre este sistema operativo.
 
- Una vez finalizada la instalación, se hizo uso del gestor de versiones de drivers interno de Ubuntu, llamado 'ubuntu-drivers', para instalar la versión de los drivers de NVIDIA más compatible con la tarjeta gráfica NVIDIA Quadro M4000. Al comprobar si se podía acceder a los datos internos de consumo mediante nvidia-smi, se obtuvo un error que indicaba que no era capaz de comunicarse con la API interna de la tarjeta gráfica. Al revisar los mensajes proporcionados por el kernel, se pudo determinar que se trataba de un problema de compatibilidad de los drivers con la versión del kernel. Por este motivo se decidió instalar la versión 24.04 de XUbuntu, la cual hace uso de la versión 6.14 del kernel, solventando el problema de compatibilidad de los drivers.
+ Una vez finalizada la instalación, se hizo uso del gestor de versiones de drivers interno de Ubuntu, llamado 'ubuntu-drivers', para instalar la versión de los drivers de NVIDIA más compatible con la tarjeta gráfica NVIDIA Quadro M4000. Al comprobar si se podía acceder a los datos internos de consumo mediante nvidia-smi, se obtuvo un error que indicaba que no era capaz de comunicarse con la API interna de la tarjeta gráfica. Al revisar los mensajes proporcionados por el kernel, se pudo determinar que se trataba de un problema de compatibilidad de los drivers con la versión del kernel. Por este motivo se decidió instalar la versión 24.04 de XUbuntu \cite{xubutu-releases}, la cual hace uso de la versión 6.14 del kernel, solventando el problema de compatibilidad de los drivers.
 
- Una vez reinstalado el sistema operativo, se procedió a reinstalar nuevamente los drivers de NVIDIA junto con los paquetes requeridos por nvidia-smi, de la misma forma que con la versión anterior. De nuevo, al tratar de acceder a los datos de consumo mediante `nvidia-smi`, apareció el mismo problema, pero al revisar los mensajes del kernel, se indicaba que el error no era de compatibilidad, sino la ausencia de un componente concreto llamado 'nvidia-drm'. Este componente forma parte del conjunto de módulos del kernel de NVIDIA que permite al kernel comunicarse con la tarjeta gráfica de NVIDIA \cite{nvidia-drm-documentation}. Al tratar varias veces de reconstruir el módulo manualmente, sin lograr éxito, se optó por buscar información en foros oficiales de NVIDIA y foros de la comunidad Ubuntu y Xubuntu, llegando a la conclusión de que era un problema que sucedía en algunas versiones de XUbuntu debido a dos razones principales: La versión Nouveau de los drivers ,y la incompleta compatibilidad de los drivers con XUbuntu.\
+ Una vez reinstalado el sistema operativo, se procedió a reinstalar nuevamente los drivers de NVIDIA junto con los paquetes requeridos por nvidia-smi, de la misma forma que con la versión anterior. De nuevo, al tratar de acceder a los datos de consumo mediante `nvidia-smi`, apareció el mismo problema, pero al revisar los mensajes del kernel, se indicaba que el error no era de compatibilidad, sino la ausencia de un componente concreto llamado 'nvidia-drm'. Este componente forma parte del conjunto de módulos del kernel de NVIDIA que permite al kernel comunicarse con la tarjeta gráfica de NVIDIA \cite{kernel-modules-nvida-drivers}. Al tratar varias veces de reconstruir el módulo manualmente, sin lograr éxito, se optó por buscar información en foros oficiales de NVIDIA y foros de la comunidad Ubuntu y Xubuntu, llegando a la conclusión de que era un problema que sucedía en algunas versiones de XUbuntu debido a dos razones principales: La versión Nouveau de los drivers ,y la incompleta compatibilidad de los drivers con XUbuntu.\
 
  El primer problema estaba relacionado con el controlador libre Nouveau, desarrollado por la comunidad mediante técnicas de ingeniería inversa. Aunque este controlador proporciona compatibilidad básica con un amplio número de tarjetas gráficas NVIDIA, no implementa completamente las funcionalidades propietarias ofrecidas por los controladores oficiales, entre ellas la interfaz NVML, utilizada por herramientas como nvidia-smi para acceder a métricas avanzadas de la GPU, incluido el consumo energético. Para solucionar este problema fue necesario deshabilitar la carga del módulo Nouveau y reinstalar exclusivamente los controladores oficiales proporcionados por NVIDIA.\
 
@@ -22,45 +23,32 @@
 
  \begin{figure}[h!]
  	\centering
- 	\includegraphics[width=0.4\textwidth]{figs/error-ffmpeg}
+ 	\includegraphics[width=0.45\textwidth]{figs/error-ffmpeg}
  	\caption{Error de compatibilidad con version de drivers de NVIDIA}
  	\label{img:ffmpeg-compatibilidad}
   \end{figure}
 
 % Continuar
-\subsubsection{Configuración e Instalación de Herramientas}
- A continuacio se exponen los procesos de instalacion, configuracion y modificaciones que se han llevado a cabo sobre las herramientas de toma de metricas.
-
+\subsection{Configuración e Instalación de Herramientas}
+ A continuacio se exponen los procesos de instalacion, configuracion y modificaciones que se han llevado a cabo sobre las herramientas de toma de metricas. Todas esta herramientas monitorizan el consumo energetico del sistema y delas cargas de trabajo que desplegaran sobre contenedores basados en la imagen de ffmpeg gestioanada por el grupo linux-server \cite{ffmpeg-linuxserver-image} \cite{linux-server-group}.
   
-  % 
-  % +++ EM +++
-  % - Origen Herramienta
-  % - COMO SE DESPLIEGA 
-  % - CODIGO DE PYTHON MEJORADO
-  % - Energy Meter es una herremienta que permite obtener el consumo energetico de todo el sistema y que es util como metrica comparativa para los experimentos a realizar
-  %   ya que berifica la preiosion del resto de herramientas a la hora de tomar metricas de un proceso que se esta ejecutando.
-  % 
-  % +++ SCAPHANDRE: +++
-  % - Origen herremienta
-  % - COMO  SE DESPLIEGA
-  % - ORDEN UTILIZADA PARA MEDIR
+ \subsubsection{Kepler}
+ La instalación de Kepler en sistemas operativos Linux es relativamente sencilla, ya que la herramienta se distribuye en forma de ejecutable. Una vez descargado, dicho ejecutable debe añadirse a la variable de entorno \textit{PATH} del sistema, permitiendo invocar la herramienta desde cualquier ubicación sin necesidad de indicar su ruta completa.
+ 
+ Una vez configurado el entorno, Kepler debe ejecutarse con privilegios de superusuario mediante el comando \texttt{sudo}, ya que necesita acceder a la interfaz \textit{Running Average Power Limit} (RAPL) para recopilar las métricas de consumo energético, tal y como se muestra en el ejemplo de la Sección \ref{exp0:kepler-recoleccion-datos}. La herramienta admite múltiples opciones de configuración, especificadas mediante \textit{flags} durante su ejecución. Para la fase experimental desarrollada en este trabajo se han utilizado las siguientes:
+ 
+ \begin{itemize}
+     \item \texttt{--monitor.interval=1s}: establece un intervalo de muestreo de un segundo.
+     \item \texttt{--metrics=container}: habilita la exportación de las métricas de consumo correspondientes a los contenedores monitorizados.
+     \item \texttt{--metrics=node}: habilita la exportación de las métricas de consumo del nodo sobre el que se ejecuta la herramienta.
+     \item \texttt{--experimental.gpu.enabled}: activa la recopilación de métricas asociadas a la GPU.
+ \end{itemize}
+ 
+ Por último, la salida estándar se redirige a \texttt{/dev/null}, ya que Kepler genera una gran cantidad de información relacionada con su configuración y estado de ejecución. Aunque esta información resulta útil durante las tareas de depuración, no es necesaria durante la ejecución de los experimentos y dificulta la interpretación de la salida por consola.
+ 
+ La obtención de las métricas se realiza mediante una petición HTTP utilizando la herramienta \texttt{curl} al puerto \texttt{28282}, redirigiendo la respuesta a un archivo de salida para su posterior procesamiento. Una vez finalizada la recopilación de datos, Kepler debe detenerse manualmente, ya que, en caso contrario, continuará ejecutándose en segundo plano y seguirá recopilando métricas a la espera de nuevas peticiones, tal y como se muestra en la Sección \ref{exp0:kepler-recoleccion-datos}.
   
- \paragraph{Kepler}
-  La instalación de la herramienta Kepler para sistemas operativos Linux es relativamente sencilla, ya que permite descargar un ejecutable. Este ejecutable debe ser añadido al path del sistema, para poder invocar a Kepler desde cualquier parte del sistema.
-
-  %Como tomar metricas de kepler
-  Una vez añadido al path del sistema, es necesario ejecutar la herramienta como 'sudo', permitiendo que esta tenga acceso a RAPL. La forma en la que ejecutaremos la herramienta será a través del siguiente comando:
-  \begin{minted}{sh} 
-  ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &)
-  \end{minted}\label{exp0:kepler-execution}
-
-  Para cumplir con las necesidades concretas del experimento, es necesario definir una serie de opciones a través de flags: '--monitor.interval=1s' indica que debe tomar métricas cada segundo; '--metrics=container' y '--metrics=node' indican que se desea exportar las métricas de consumo del nodo sobre el que se está ejecutando y de los contenedores que están siendo ejecutados; '--experimental.gpu.enabled' indica que queremos exportar métricas de la tarjeta gráfica. Por último, se redirecciona el resto de la salida a '/dev/null', ya que la herramienta de por sí muestra el conjunto de flags, además de información relativa a la ejecución de sí misma por pantalla de una manera muy verbose, adecuada para depurar en pruebas, pero no para su uso en producción.
-
-  La obteneción de metricas, se debe realizar una petición curl al puerto '28282' y redireccionar la salida a un fichero de salida. Una vez obtenidos los datos, la herramienta debe ser detenida manualmente, ya que si no, seguirá tomando métricas en el background esperando a una nueva petición para devolver el conjunto de datos, como se aprecia en \ref{exp0:kepler-recoleccion-datos}.
-  \begin{minted}{sh} 
-   curl -s http://localhost:28282/metrics > "nombre_archivo.metrics"
-   sudo pkill kepler 2>&1 &
-  \end{minted}\label{exp0:kepler-recoleccion-datos}
+  
   %   - Solucion del error de kepler en toma de consumo energetico GPU
    %       - Debido a un error en el metodo GetTotalEnergyConsumption en la librerira de nvidia nvml-ml, el cual no se encuentra
    %         disponible en los drivers de NVIDIA 580.159 para la vesion de Debian 13 que se esta utilizando en la fase de experimentacion
@@ -75,23 +63,37 @@
   Tras investigar y comentar las posibles soluciones con mi tutor Juan, se decidió que se realizaría un hotfix sobre la herramienta Kepler, ya que se había logrado una estabilidad con los drivers y la reinstalación comprometería dicha estabilidad, además de no asegurar solventar el problema. Para ello se modificó aquellas funciones que llamavan a la funcion 'GetTotalEnergyConsumption' para que retornaran siempre 0 en su lugar. Una vez finalizado la modifiacion sobre el codigo de kepler, se recompiló el codigo sobre un contendor de docker definido a aprtir de un Dockerfile \ref{exp0:goland-container-compile}.
 
   % TEST Correcion Error:
-  %    - Dado que se trata de una estimacion aproximada del consumo se han tomado medidas en paralelo empleando NVIDIA-SMI, como referencia de consumo estandar, para comprobar como de precison es la toma de metricas por parte de kepler.
-  % - Para la fase de experimentacion se ha definido la toma de metricas cada 1 segundo y al intruccion empleada es la sigiente CODE(sudo ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &), y para nvidia-smi se ha ejecutado la siguiente instruccion para obtener el consumo energetico de la GPU en formato CSV con la siguiente instruccion CODE(src/nvidia-smi-metrics.sh ). Una vez finalizada la tarea de codificacion se detuvo manualmente la ejecucion de la toma de metricas nvidia-smi y se ejecuto el siguiene online en la teerminal para obtner la media del consumo estimada por nvidia-smi CODE(cat nvidia-smi-metrics.csv | cut -d',' -f7 | tr -d ' ' | st-console --mean}').
-  % - Comparando las metricas obtenidas por Kepler y las metricas de Nvida-SMI, se observa que ambos resultado son bastante proctivamente iguales, y se obseva uan desviacion del 1.07%, un valor muy bajo y por tanto despreciable
+   %    - Dado que se trata de una estimacion aproximada del consumo se han tomado medidas en paralelo empleando NVIDIA-SMI, como referencia de consumo estandar, para comprobar como de precison es la toma de metricas por parte de kepler.
+   % - Para la fase de experimentacion se ha definido la toma de metricas cada 1 segundo y al intruccion empleada es la sigiente CODE(sudo ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &), y para nvidia-smi se ha ejecutado la siguiente instruccion para obtener el consumo energetico de la GPU en formato CSV con la siguiente instruccion CODE(src/nvidia-smi-metrics.sh ). Una vez finalizada la tarea de codificacion se detuvo manualmente la ejecucion de la toma de metricas nvidia-smi y se ejecuto el siguiene online en la teerminal para obtner la media del consumo estimada por nvidia-smi CODE(cat nvidia-smi-metrics.csv | cut -d',' -f7 | tr -d ' ' | st-console --mean}').
+   % - Comparando las metricas obtenidas por Kepler y las metricas de Nvida-SMI, se observa que ambos resultado son bastante proctivamente iguales, y se obseva uan desviacion del 1.07%, un valor muy bajo y por tanto despreciable
   Para comprobar que el hotfix ha funcionado adecuadamente, se lanzó un tarea de codificacion y se monitorizo el consumo energetico, tanto con kepler como con nvidia-smi. Tras analizar y procesar  dando como resultado unos resultados muy cercanos, los cuales tenian una desviacion entre si del 1,07\%. Es necesario remarcar, que kepler esta devolviendo la potencia de la GPU durante el proceso de codificacion, lo que implica que para obtener el consumo en Juliouse es necesario multiplicarlo por la duracion del proceso de codificacion.
- 
-  \inputminted{dockerfile}{src/docker/Dockerfile.txt}\label{exp0:goland-container-compile}
+
+  \begin{lstlisting}[language=sh,caption={Ejemplo de Ejecucion y Recoleccion de metricas de la herramiento Kepler},label={exp0:kepler-recoleccion-datos}]
   
- \paragraph{Scaphandre}
+   #Toma de Metricas con Kepler
+   sudo ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &)
+   whait_finish_container() #ESPERA FINALIZACION PROCESO DE CODIFICACION
+   
+   #Recoleccion de metricas y finalizacion de la herramienta
+   curl -s http://localhost:28282/metrics > "nombre_archivo.metrics"
+   sudo pkill kepler 2>&1 &
+  \end{lstlisting}
+ 
+  \lstinputlisting{src/docker/Dockerfile.txt}
+  \label{exp0:goland-container-compile}
+  
+ \subsubsection{Scaphandre}
   Schaphandre puede ser desplegado de varias formas, pero la más sencilla es desplegarlo empleando el contenedor de Docker con la instrucción \ref{exp0:scp-docker-deploy}. Esta instrucción ha sido modificada para desplegar Schaphandre en un estado de 'sleep', a la espera de instrucciones, ya que únicamente queremos tomar métricas cuando el proceso de codificación inicie y no queremos que el arranque del contenedor añada ruido a las métricas de consumo.
   
-  \begin{minted}{sh}
+  \begin{lstlisting}[language=bash, label={exp0:scp-docker-deploy}, caption={Arranque y puesta a punto de Scaphandre}] 
 	docker run --name scaphandre -v /sys/class/powercap:/sys/class/powercap -v /proc:/proc --privileged -d --entrypoint "sleep" hubblo/scaphandre:1.0.2 3600
-  \end{minted}\label{exp0:scp-docker-deploy}
+  \end{lstlisting} 
 
   Para llevar a cabo la toma de métricas con Schaphandre, es necesario especificar cada cuánto tiempo se llevará a cabo la toma de métricas y durante cuánto tiempo, ya que, a diferencia de Kepler, Schaphandre sí que define un tiempo máximo de recolección de métricas. Además, también es necesario indicarle las métricas que se desean obtener y sobre qué archivo debe hacer el volcado de dichas métricas. Como se observa en el fragmento de código \ref{exp0:scp-execution} correspondiente a la fase de experimentación 1 \ref{exp1-desarrollo}, las órdenes de inicio de toma de métricas se llevan a cabo a través de la instrucción 'docker exec', indicando los parámetros de duración, tiempo de métricas y métricas que se desean obtener. En nuestro caso concreto, le indicamos que queremos obtener todas las métricas y que estas deben ser volcadas al archivo 'out.metrics'. Una vez finalizado el proceso de codificación, detenemos el proceso de forma forzosa y extraemos el archivo resultante del contenedor, para acto seguido apagarlo.
 
-  \begin{minted}{sh}
+  Al desplegar escaphandre de esta forma, tenemos control sobre el momento exacto del inicio de la recolección de toma de métricas y cuándo finaliza dicho proceso, eliminando posible ruido derivado del arranque del contenedor y los subprocesos asociados, logrando una replicabilidad en cada iteración para la fase experimental.   
+
+  \begin{lstlisting}[language=bash, label={exp0:scp-execution}, caption={Ejemplo de Incio y Recoleccion de Metricas con Scaphandre}] 
     delta_t=1 # Tiempo de toma de metricas
     t_metrics=60 #Tiempo de 
     # Start monitoring with scaphandre
@@ -108,28 +110,37 @@
     sudo chown clouduser:clouduser ${scapFile}
     # Stop scaphandre container
     docker stop scaphandre
-  \end{minted}\caption{Script que ejemplifica la monitorizacion y recoleccion de datos empleado scaphandre}\label{exp0:scp-execution}
+  \end{lstlisting}
+  
 
-  Al desplegar escaphandre de esta forma, tenemos control sobre el momento exacto del inicio de la recolección de toma de métricas y cuándo finaliza dicho proceso, eliminando posible ruido derivado del arranque del contenedor y los subprocesos asociados, logrando una replicabilidad en cada iteración para la fase experimental.   
-
- \paragraph{Energy Meter}
+ \subsubsection{Energy Meter}
  Para instalar Energy Meter unicamente es necesario desplegar el docker compose creado por Juan Guatierrez \ref{exp0:em-docker-compose}, el cual se descarga del repositorio del proyecto la imagen 'energy-monitoring:1.0' y escuchapeticiones en el puesto 6000.
 
- Para tomar metricas del sistema con la herramienta una vez docker compose esta arrancado, unicamente es necesario realizar una peticion curl de la sigueinte forma \begin{minted}{sh}curl -s http://localhost:6000/api/start \end{minted}. Y para recoger los datos de consumo, se debe realizar una nueva peticion curl \begin{minted}{sh}curl -s http://localhost:28282/metrics > "output.json" \end{minted} pero esta vez redirigiendo la salida a un fichero, ya que al detener la toma de una métrica esta nos devuelve los datos de consumo del sistema en formato json.
+ Para tomar metricas del sistema con la herramienta una vez docker compose esta arrancado, unicamente es necesario realizar una peticion curl de la siguiente forma \lstinline[language=bash]|curl -s http://localhost:6000/api/start|. Y para recoger los datos de consumo, se debe realizar una nueva peticion curl \lstinline[language=bash]|curl -s http://localhost:28282/metrics > "output.json"| pero esta vez redirigiendo la salida a un fichero, ya que al detener la toma de una métrica esta nos devuelve los datos de consumo del sistema en formato json.
  
- \inputminted{dockerfile}{src/docker/docker-compose-em.yaml}\caption{Docker Compose File de la Herramienta Energy Monitorig}\label{exp0:em-docker-compose}
+ \lstinputlisting{src/docker/docker-compose-em.yaml}
+ \label{exp0:em-docker-compose}
  
- \paragraph{Monitor}
+ \subsubsection{Monitor}
  Al igual que la anterior herramienta, Monitor ha sido desarrollada por Juan Gutierrez Aguado como alternativa a Kepler y Schaphandre. Para instalarla unicamente es necesario descargar el contenedor *energy-monitoring:1.0* del repositorio del proyecto de investigacion y desplegarlo utilizado docker compose \ref{exp0:monitor-docker-compose}. Este archivo compose expondra la herramienta en el puesto 5000 para recibir peticiones de monitorizacion.\\
 
  %USO HERRAMIENTA
- En el fragmento de codigo \ref{exp0:monitor-tooluse} muestra un ejermplo de uso y recolecion de datos, donde se puede apreciar que tanto para iniciar la toma de metricas como para finalizarla es necesario emplear una llamara mediante curl al puerto 5000.\
+ El fragmento de código mostrado en la Sección \ref{exp0:monitor-tooluse} presenta un ejemplo del proceso de inicio y finalización de la monitorización, así como de la posterior obtención de las métricas recopiladas. Como puede observarse, tanto el inicio como la finalización de la monitorización se realizan mediante peticiones HTTP enviadas con la herramienta curl al puerto 5000, donde se encuentra desplegada la API de la herramienta.
+ 
+ Antes de iniciar el proceso de monitorización es necesario construir un payload en formato JSON, que será enviado en el cuerpo de la petición HTTP. Este payload contiene la información necesaria para identificar y configurar la carga de trabajo que se desea monitorizar.
+ 
+ En primer lugar, el atributo \texttt{workload\_id} identifica de forma única el proceso de codificación, permitiendo asociar todas las métricas recopiladas a una misma carga de trabajo. A continuación, el atributo \texttt{container} especifica el nombre del contenedor cuya ejecución será monitorizada. Este parámetro resulta especialmente importante, ya que la herramienta permite monitorizar múltiples contenedores de forma simultánea.
+ 
+ Otro de los parámetros obligatorios es \texttt{gpu\_indices}, mediante el cual se indica la GPU sobre la que se desea realizar la monitorización. Gracias a este mecanismo es posible trabajar con sistemas que disponen de varias tarjetas gráficas, asignando diferentes cargas de trabajo a cada una de ellas y obteniendo métricas independientes para cada contenedor y para cada GPU utilizada.
+ 
+ Finalmente, el atributo \texttt{persist\_data} permite indicar si las métricas recopiladas deben almacenarse de forma persistente en la base de datos MongoDB. Este parámetro admite dos valores: \texttt{0}, para deshabilitar el almacenamiento persistente, y \texttt{1}, para guardar los datos una vez finalizada la monitorización.
 
- Tambien se puede observar, que antes de inciar el proceso de monitorizacion es necesario definir un *payload* el cual se incluye en el header de la cabecera. Este contiene informacion impo
+ La recoleccion de las metricas puede hacerse de dos formas diferentes; La primera es a traves de la respuesta que devuelve el comando que detiene la monitorizacion, el cual consisten en un json con el consumo energetico de varias partes del sistema asi como de la tarje grafica; Y a traves de una peticion a *id\_proceso/samples*, la cual devuelve cada una de las metricas obtenida enla primera opcion pero enformato csv en el que cada linea corresponde a un instante de medicion. \\ 
 
- Este contiene informacion crucial para el proceso de monitorizacion como: 'workload_id' que marca el proceso de monitorizacion,  'container' que indica que contendor se desea monitorizar a traves del nombre,
+ Cabe destacar que, con el objetivo de garantizar la obtención de al menos diez muestras durante los procesos de transcodificación tanto en CPU como en GPU, fue necesario modificar el parámetro *SAMPLES\_PER\_SECOND* definido en el archivo Docker Compose de la herramienta, incrementando su valor de 1 a 3. De este modo, la herramienta pasa a realizar tres muestreos por segundo de monitorización, lo que permite obtener un número suficiente de muestras incluso en aquellos procesos de transcodificación cuya duración es reducida
+ 
 
- \begin{minted}{sh}
+ \begin{lstlisting}[language=bash, label={exp0:monitor-tooluse}]
     uid=$(uuid)
     payload='{"workload_id": "'$uid'",
     "container": "'$container'",
@@ -148,25 +159,20 @@
     
     curl -s http://localhost:5000/api/monitor/workload/$uid/samples > ${csvFile}
     
- \end{minted}\caption{Ejemplo de monitorizacion y recoleccion de metricas empleando la herramienta Monitor}\label{exp0:monitor-tooluse}
+ \end{lstlisting}
 
  %MOFICACIONES
  %- Se ha modificado muestras por segundo a 3 ya que la codificacion empleando tarjeta grafica tarde una media de 3 segundos y al menos quuieren obtener j 10 metricas por cada prueba de codificacion.
  
 
-\inputminted{dockerfile}{src/docker/docker-compose-monitor.yaml}\caption{Docker Compose File de la Herramienta Monitor}\label{exp0:monitor-docker-compose}
+\lstinputlisting{src/docker/docker-compose-monitor.yaml}
+\label{exp0:monitor-docker-compose}
 
 \subsection{Estado Final del Sistema}
 %  +++ Entorno +++
 % - Consumo idel de la GPU, tomado a partir de nvidia-smi ---> 11 wattions
 % - Consumo idel de sistema con los contenedores de Energy Meter, ffmpeg-encoder arrancados pero sin ejecutar ninguna tarea es de  --> 544.049449 Julios
 
-% Instalacion y Uso de herramientas
-%   - Container de linux-server ffmpeg 
-%   - Container de Juan EM
-%   - Kepler
-%         - Problemas y Modificacion de kepler manual - libnvida-ml
-%   - Scaphandre Container
 Una vez finalizado el conjunto de ajustes y de herramientas necesarias para llevar a cabo las diferentes fases experimentales, se han tomado métricas de consumo del sistema. El consumo energético del sistema, teniendo arrancada la herramienta EM y el contenedor de codificación (en un estado de sleep), se obtiene que el sistema está consumiendo de forma pasiva unos 544-545 julios. Por otra parte, la tarjeta gráfica está consumiendo unos 11 vatios de forma pasiva.
 
 Sabiendo cuál es el estado de consumo del sistema en reposo, es posible empezar con las fases de experimentación que se han llevado a cabo a lo largo de este proyecto de investigación.  

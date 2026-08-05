@@ -52,9 +52,40 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[acronym]{glossaries}
+\usepackage[table]{xcolor}
+\usepackage{listings}
 
 % Configuración para el código usando minted
+
 \setminted{frame=single,linenos=true,fontsize=\scriptsize,numberblanklines=false}
+
+\definecolor{codegreen}{rgb}{0,0.5,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.96,0.96,0.96}
+
+\lstdefinestyle{tfmstyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen}\itshape,
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=8pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{black!15}
+}
+
+\lstset{style=tfmstyle}
 
 % Ruta donde buscar las figuras
 \graphicspath{{figs/}}

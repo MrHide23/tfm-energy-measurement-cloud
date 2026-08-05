@@ -1,5 +1,5 @@
-
-\subsubsection{Muestra de Videos Para la fase de Experimentacion 1}
+\section{Selección de Herramienta para Métricas de Consumo}
+\subsection{Muestra de Videos Para la fase de Experimentacion 1}
 % Fase de la Experimentacion 2
 % ENTORNO PRUEBAS EXP2:
 %   + Caracteristicas del video
@@ -12,7 +12,7 @@
 % Seleccion de codificadorres: 
 %  + Basandose en tabla \ref{tab:nvidia_matrix_capacity} son principalmente H.264 y H.265,
 
-\subsubsection{Metricas de consumo: Transcodificacion usando 1 contendor sobre CPU+GPU}
+\subsection{Metricas de consumo: Transcodificacion usando 1 contendor sobre CPU+GPU}
 %  +++ COMPARATIVA HERRAMIENTAS +++
 % ++++++ EXPERIMENTO 1 +++++++++
 % - Comparativa de EM - Kepler - Scaphandre || CPU + GPU
@@ -22,13 +22,13 @@
 %     se descarta su eleccion como herramienta final
 %   - Escogemos Kepler porque mide GPU ya que scp no mide gpu y em no mide por proesos ni permite segmentar procesos por cores de cpu
 
-\subsubsection{Metricas de consumo: Transcodificacion usando 1 contendor sobre CPU}
+\subsection{Metricas de consumo: Transcodificacion usando 1 contendor sobre CPU}
 % -Comparativa empleando codificacion unicamente sobre CPU // Kepler vs SCP vs EM
 % -En la siguente fase se lanzara un proceso unicamente utilizando CPU para comprobar la precision de ambas herramientas, teniendo en cuenta que 
 %   scp no es capaz de medir la GPU, como se ha visto en la prueba anterior.
 % -Los resultados obtendios muestran XXXXX 
 
-\subsubsection{Metricas de consumo: Transcodificacion usando 1 contenedor con 3 cores de CPU limitados}
+\subsection{Metricas de consumo: Transcodificacion usando 1 contenedor con 3 cores de CPU limitados}
 % ++++++ EXPERIMENTO 2 +++++++++
 % - Compartiva aislando Cores - Kepler vs SCP vs EM || CPU
 %   
@@ -40,7 +40,7 @@
 %    entre la cantidad de energia que la herramienta mide del proceso con y sin limitaciones respecto a la energia total del sistema. 
 %   -  Se observa XXXX
 
-\subsubsection{Metricas de consumo: Transcodificacion usando 2 contenedores simultaneos con limite de 3 cores cada uno}
+\subsection{Metricas de consumo: Transcodificacion usando 2 contenedores simultaneos con limite de 3 cores cada uno}
 % ++++++ EXPERIMENTO 3 +++++++++
 % - Contenedores Limitados a 3 CORES // EM - Kepler - Scaphandre || CPU 
 %   - Para finalizar la comparativa de herramientas, se lleva a acabo un ultimo experimento en el que cual Kepler y SCP tendran que tomar metricas de dos contenedores
@@ -60,7 +60,7 @@
 % - Para comprobar su efectividad, se llevaran a cabo los mismos experimentos aplicando las mismas limitaciones sobre los conteneodres.
 % - Comparando los datos obtenidos, se puede observar que la herramienta MONITORING es mucho mas efectiva, tanto en la estimacion de consumo del nodo como en la toma de metricas multiples procesos ejecutandose simultanemente. Los resultados obtenido de la experimentacion se pueden observar a continuacion en la tabla REF TABLA
 % 
-\subsubsection{Conclusiones fase 1 de la experimentacion }
+\subsection{Conclusiones fase 1 de la experimentacion }
 % ++++++ Python Plot & POST PROCESADO DATOS ++++++++++++
 % + Comentar como se han procesado los datos y de devolvia cada herrameinta y enque forma
 %   -Formato datos Devueltos:

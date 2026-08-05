@@ -1,6 +1,6 @@
 
 @misc{container-metrics-kubernetes,
-	title = {Container-level {Energy} {Observability} in {Kubernetes} {Clusters}},
+	title = {Container-level Energy Observability in Kubernetes Clusters},
 	url = {http://arxiv.org/abs/2504.10702},
 	doi = {10.48550/arXiv.2504.10702},
 	abstract = {Kubernetes has been for a number of years the default cloud orchestrator solution across multiple application and research domains. As such, optimizing the energy efficiency of Kubernetes-deployed workloads is of primary interest towards controlling operational expenses by reducing energy consumption at data center level and allocated resources at application level. A lot of research in this direction aims on reducing the total energy usage of Kubernetes clusters without establishing an understanding of their workloads, i.e. the applications deployed on the cluster. This means that there are untapped potential improvements in energy efficiency that can be achieved through, for example, application refactoring or deployment optimization. For all these cases a prerequisite is establishing fine-grained observability down to the level of individual containers and their power draw over time. A state-of-the-art tool approved by the Cloud-Native Computing Foundation, Kepler, aims to provide this functionality, but has not been assessed for its accuracy and therefore fitness for purpose. In this work we start by developing an experimental procedure to this goal, and we conclude that the reported energy usage metrics provided by Kepler are not at a satisfactory level. As a reaction to this, we develop KubeWatt as an alternative to Kepler for specific use case scenarios, and demonstrate its higher accuracy through the same experimental procedure as we used for Kepler.},
@@ -17,7 +17,7 @@
 }
 
 @misc{energy-rapl-mesurement,
-	title = {Strategies to {Measure} {Energy} {Consumption} {Using} {RAPL} {During} {Workflow} {Execution} on {Commodity} {Clusters}},
+	title = {Strategies to Measure Energy Consumption Using RAPL During Workflow Execution on Commodity Clusters},
 	url = {http://arxiv.org/abs/2505.09375},
 	doi = {10.48550/arXiv.2505.09375},
 	abstract = {In science, problems in many fields can be solved by processing datasets using a series of computationally expensive algorithms, sometimes referred to as workflows. Traditionally, the configurations of these workflows are optimized to achieve a short runtime for the given task and dataset on a given (often distributed) infrastructure. However, recently more attention has been drawn to energy-efficient computing, due to the negative impact of energy-inefficient computing on the environment and energy costs. To be able to assess the energy-efficiency of a given workflow configuration, reliable and accurate methods to measure the energy consumption of a system are required. One approach is the usage of built-in hardware energy counters, such as Intel RAPL. Unfortunately, effectively using RAPL for energy measurement within a workflow on a managed cluster with the typical deep software infrastructure stack can be difficult, for instance because of limited privileges and the need for communication between nodes. In this paper, we describe three ways to implement RAPL energy measurement on a Kubernetes cluster while executing scientific workflows utilizing the Nextflow workflow engine, and one additional method using IPMI. We compare them by utilizing a set of eight criteria that should be fulfilled for accurate measurement, such as the ability to react to workflow faults, portability, and added overhead. We highlight advantages and drawbacks of each method and discuss challenges and pitfalls, as well as ways to avoid them. We also empirically evaluate all methods, and find that approaches using a shell script and a Nextflow plugin are both effective and easy to implement for workflow users. Additionally, we find that measuring the energy consumption of a single task is straight forward when only one task runs at a time, but concurrent task executions on the same node require approximating per-task energy usage using metrics such as CPU utilization.},
@@ -71,7 +71,7 @@
 }
 
 @article{cpds-consumption-energy,
-	title = {A {Systematic} {Review} of {Energy} {Efficiency} {Metrics} for {Optimizing} {Cloud} {Data} {Center} {Operations} and {Management}},
+	title = {A Systematic Review of Energy Efficiency Metrics for Optimizing Cloud Data Center Operations and Management},
 	volume = {14},
 	issn = {2079-9292},
 	url = {https://www.mdpi.com/2079-9292/14/11/2214},
@@ -101,7 +101,7 @@
 }
 
 @misc{iae-report-consumption,
-	title = {Electricity 2026 – {Analysis}},
+	title = {Electricity 2026 – Analysis},
 	url = {https://www.iea.org/reports/electricity-2026},
 	abstract = {Electricity 2026 - Analysis and key findings. A report by the International Energy Agency.},
 	language = {en-GB},
@@ -112,7 +112,7 @@
 }
 
 @misc{iae-report-generation,
-	title = {Global {Energy} {Review} 2026 – {Analysis}},
+	title = {Global Energy Review 2026 – Analysis},
 	url = {https://www.iea.org/reports/global-energy-review-2026},
 	abstract = {Global Energy Review 2026 - Analysis and key findings. A report by the International Energy Agency.},
 	language = {en-GB},
@@ -150,13 +150,13 @@
 	file = {Full Text PDF:/Users/guillebo/Zotero/storage/EILV4CWW/Khan et al. - 2018 - RAPL in Action Experiences in Using RAPL for Power Measurements.pdf:application/pdf},
 }
 
-@article{ec-cloud-worflowscheduling,
+@article{ec-cloud-workflows,
 	title = {A workflow scheduling algorithm with task classification for reducing energy consumption and makespan in cloud},
 	volume = {50},
 	issn = {2210-5379},
 	url = {https://www.sciencedirect.com/science/article/pii/S2210537926000338},
 	doi = {10.1016/j.suscom.2026.101323},
-	abstract = {With increasing popularity of cloud computing platform for extensive scientific computing, huge energy consumed by cloud data centers has become a great challenge. Therefore, significant attention has been given towards developing energy-efficient workflow scheduling algorithms in the last decade. However, the literature reveals that task classification-based scheduling has been an underexplored area. In response to this gap, this paper proposes a task classification-based dynamic scheduling (TCDS) algorithm to minimize the energy consumption (EC) and makespan when scheduling deadline-constrained workflow applications in cloud environment. TCDS consists of three main sub-algorithms: task classification, task scheduling, and dynamic resource scaling. First, considering the fact that task runtimes within a workflow are non-uniform, a new concept of execution time importance factor is introduced as a guiding principle of task classification. Accordingly, task classification algorithm marks the type of each task. The proposed task scheduler then dynamically allocates the most suitable virtual machines (VMs) to dependency-free tasks in accordance with their type and deadline constraint. To achieve balance between EC and makespan, energy-efficient and time-efficient VMs are provisioned dynamically considering the computation speed requirements and type of the tasks. In addition, TCDS performs simultaneous optimization over active number of hosts through VM consolidation, and powers-off idle hosts to minimize the EC of idle resources. To validate TCDS, extensive experiments are performed in various scenarios using real-world scientific workflows. The results verify that TCDS effectively minimizes the workflow makespan in parallel to improving energy-efficiency by 13\%-40\% compared with related algorithms, while demonstrating scalability under varying workloads.},
+	abstract = {With increasing popularity of cloud computing platform for extensive scientific computing, huge energy consumed by cloud data centers has become a great challenge. Therefore, significant attention has been given towards developing energy-efficient workflow scheduling algorithms in the last decade. However, the literature reveals that task classification-based scheduling has been an underexplored area. In response to this gap, this paper proposes a task classification-based dynamic scheduling (TCDS) algorithm to minimize the energy consumption (EC) and makespan when scheduling deadline-constrained workflow applications in cloud environment. TCDS consists of three main sub-algorithms: task classification, task scheduling, and dynamic resource scaling. First, considering the fact that task runtimes within a workflow are non-uniform, a new concept of execution time importance factor is introduced as a guiding principle of task classification. Accordingly, task classification algorithm marks the type of each task. The proposed task scheduler then dynamically allocates the most suitable virtual machines (VMs) to dependency-free tasks in accordance with their type and deadline constraint. To achieve balance between EC and makespan, energy-efficient and time-efficient VMs are provisioned dynamically considering the computation speed requirements and type of the tasks. In addition, TCDS performs simultaneous optimization over active number of hosts through VM consolidation, and powers-off idle hosts to minimize the EC of idle resources. To validate TCDS, extensive experiments are performed in various scenarios using real-world scientific workflows. The results verify that TCDS effectively minimizes the workflow makespan in parallel to improving energy-efficiency by 13%-40% compared with related algorithms, while demonstrating scalability under varying workloads.},
 	urldate = {2026-06-16},
 	journal = {Sustainable Computing: Informatics and Systems},
 	author = {Kaur, Rupinder and Kaur, Gurjinder and Goraya, Major Singh},
@@ -186,8 +186,8 @@
     	file = {Preprint PDF:/Users/guillebo/Zotero/storage/DWP7HIXK/Afzal et al. - 2024 - A Survey on Energy Consumption and Environmental Impact of Video Streaming.pdf:application/pdf;Snapshot:/Users/guillebo/Zotero/storage/8IAD3M68/2401.html:text/html},
     }
 
-@misc{COP2030,
-    title = {{COP2030} {Presidency} {Releases} {Executive} {Report} and {Outlines} {Next} {Steps} to {Accelerate} {Global} {Climate} {Implementation}},
+@misc{cop2030,
+    title = {COP2030 Presidency Releases Executive Report and Outlines Next Steps to Accelerate Global Climate Implementation},
     url = {https://cop30.br/en/cop30-executive-report},
     abstract = {Document consolidates the road to Belém, summarizes conference outcomes, and highlights the COP30 Presidency’s commitments to advance Roadmaps and the Global Climate Action Agenda},
     language = {en},

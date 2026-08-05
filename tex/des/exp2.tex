@@ -1,4 +1,5 @@
-\subsubsection{Muestra de videos para la fase 2 de experimentacion}
+\section{Fase de Experimentacion 2: Consumo energetico en relacion al SITI y el Numero de Threas}\label{exp2-desarrollo}
+\subsection{Muestra de videos para la fase 2 de experimentacion}
  %Caracteristicas del video: 
  %   - SDR --> color_space = bt709 y fullrange
  %   - Calidad 4k 
@@ -9,16 +10,16 @@
  %   - Numero de frams por chunck --> 120 (ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4)
  %   - Profundidad de bit de color --> 8 bits(ffprobe -loglevel panic show_entries stream=bits_per_raw_sample select_streams v VIDEO.mp4)
  % 
- El conjunto de videos que será utilizado para la fase 2 \ref{exp2-desarrollo} proviene de la base de videos que el proyecto EcoStrema tiene, y que proviene principalemente de \cite{cable-labs}. Estos videos tiene la caracteristica que estan codificados en formato H.265 sin perdida de calidad y sin compresion, ademas de 
+ El conjunto de videos que será utilizado para en el apartado del desarrollo \ref{exp2-desarrollo} proviene de la base de videos que el proyecto EcoStrema tiene, y que proviene principalemente de \cite{cable-labs}. Estos videos tiene la caracteristica que estan codificados en formato H.265 sin perdida de calidad y sin compresion, ademas de 
 % EXP 2.1 --> Seleccion de Videos(5-10) con diferente SITI y sacar matriza de ubicacion
 %   + Justificacion -->  Se ha relaizado esta seleccion debido a que se desea comprobar si el valor SITI influye en el consumo energetico y para ello es necesario
 %                          escoger videos que se encuentran en diferentes espacios de la tabla SITI con caracteristicas tecnicas similares.
 %   + Calculo de siti de cada chunck para defini un video de 10s con el siti mas omogeneo posible y con menor variacion entre chuncks
 %
-\subsubsection{Seleccion de muestras Basado en SI y TI}
+\subsection{Seleccion de muestras Basado en SI y TI}
  Para la selección del conjunto de videos que serán utilizados durante la fase de experimentación 2 \ref{exp2-desarrollo}, se espera poder comprobar si el contenido del video, y más concretamente, la cantidad de información que contiene, afecta a la cantidad de energía que consume el contenedor durante el proceso de codificación. Es por este motivo que se han empleado los parámetros Spatial Information (SI) y Temporal Information (TI) para la selección de chunks que compondrán los videos.\
 
- Estos parámetros de calidad subjetiva se encuentran definidos por el International Telecommunication Union Telecommunication Standardization Sector (ITU) \ref{itu-quality-metrics}, y se emplean de forma conjunta como métricas de calidad comprendida entre 0 y 100, donde Spatial Information (SI) representa la cantidad de detalles y objetos que aparecen en una escena, y el Temporal Information (TI) define la cantidad de cambios que suceden en una escena a lo largo del tiempo.\
+ Estos parámetros de calidad subjetiva se encuentran definidos por el International Telecommunication Union Telecommunication Standardization Sector (ITU) \cite{itu-quality-metrics}, y se emplean de forma conjunta como métricas de calidad comprendida entre 0 y 100, donde Spatial Information (SI) representa la cantidad de detalles y objetos que aparecen en una escena, y el Temporal Information (TI) define la cantidad de cambios que suceden en una escena a lo largo del tiempo.\
  
  %ANADIR SELECCION DE VIDEO BASADO EN PACO DATOS
  Para ellos, se han seleccionado los vídeos mostrados en la Tabla \ref{tab:lista-videos-exp2}. A partir de cada uno de ellos se calcularán los índices de Información Espacial (SI) e Información Temporal (TI) de sus correspondientes chunks. Posteriormente, se generarán vídeos de 10 segundos de duración a partir de un único chunk, el cual se reproducirá de forma cíclica hasta completar el tiempo establecido. Este procedimiento permite mantener constantes los valores de SI y TI durante toda la secuencia, evitando que las variaciones del contenido afecten al análisis del consumo energético.\
@@ -132,7 +133,7 @@
 % 
 
  
-\subsubsection{Consumo energetico al limitar threads y numero de cores}
+\subsection{Consumo energetico al limitar threads y numero de cores}
 % EXP 2.3 --> Fase en la que se limita el numero de cores en el contenedor y se fueza el mismo numero de threads para ffmpeg
 %   + CORES = {0,1,3,6, 7}, donde 0 hace referencia a ninguna limitacion de cpu y de threads
 %   + THREADS = CORES

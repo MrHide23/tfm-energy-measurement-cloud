@@ -1,3 +1,9 @@
+% arara: clean: { extensions: [ aux, log, out, toc, lof, lot, bbl, blg, fdb_latexmk, fls, synctex.gz, minted, pyg, vrb ] }
+% arara: pdflatex: { shell: true}
+% arara: bibtex
+% arara: pdflatex: { shell: true}
+% arara: pdflatex: { shell: true}
+% arara: clean: { extensions: [ aux, log, out, toc, lof, lot, bbl, blg, fdb_latexmk, fls, synctex.gz, minted, pyg, vrb ] }
 \documentclass[twoside,english,a4paper,12pt]{plantilla/twcam-tfm-doc}
 
 % Estilo para dar formato al código en los listados
@@ -105,7 +111,7 @@
 \addcontentsline{toc}{chapter}{Bibliografía}
 \bibliographystyle{unsrt}
 \label{biblio}
-\bibliography{bib/bibliografia, bib/bib-docs_web} 
+\bibliography{bib/bibliografia,bib/bib-docs_web} 
 
 
 
