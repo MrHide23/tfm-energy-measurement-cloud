@@ -1,5 +1,40 @@
 \section{Fase de Experimentacion 2: Consumo energetico en relacion al SITI y el Numero de Threas}\label{exp2-desarrollo}
+En esta segunda fase de experimentación, se comprobara si exite relacion entre los valores del SITI de un conjunto de videos seleccionado y el consumo energetico resultante de cada carga de trabajo emplea para codificarlo. Se ha seleccionado este par de metricas ya que el doctor XXXX ya ha realizado contribuciones al proyecto durante el desarrollo de su tesis YYYYY, en la cual calculó el SI y TI de cada uno de los chunks de videos empleados para el desarrollo de su tesis. Estos chunks son la base sobre la que se llevaran a cabo el conjunto de pruebas experimentales de este Trabajo Fin de Master. 
+
+% Bariacion del Bitrate
+Del conjunto de videos que seran utilizados en la fase experimental, se variara el parametro del bitrate, en base a las recomendaciones oficiales de cada codificador \cite{bitrate-encoder-selection}
+
+% SELECCION DE CODECS
+Se han seleccioonad los codecs de la lista \ref{tab:exp1-codecs-selection} para llevar a cabo las pruebas, y dado que h264\_nvenc y hevc\_nvec emplean aceleracion mediante tarjeta grafica, se requiere la capacidad para leer el consumo de estar de forma precisa. Entre aquellas herrameintas que cuenten cone esta misma capacidad, se seleccionará aquella que aporte mayor granularidad y certeza en los datos de consumo.
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|
+>{\columncolor[HTML]{EFEFEF}}c |c|c|}
+\hline
+\cellcolor[HTML]{C0C0C0}CODECS & \cellcolor[HTML]{C0C0C0}CPU & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}GPU} \\ \hline
+libx264                        & X                           & -                                                \\ \hline
+libx265                        & X                           & -                                                \\ \hline
+h264\_nvenc                    & X                           & X                                                \\ \hline
+hevc\_nvenc                    & X                           & X                                                \\ \hline
+\end{tabular}
+\label{tab:exp1-codecs-selection}
+\caption{Codecs seleccionados para la fase de experimentacion}
+\end{table}
+
 \subsection{Muestra de videos para la fase 2 de experimentacion}
+ % ENTORNO PRUEBAS EXP2:
+ %   + Caracteristicas del video
+ %       - Duracio 50s
+ %       - CRF 0
+ %       - Calidad 4k
+ %       - Bit da cada video [](TABLA)
+ %       - Codificador base x264(FFMPEG PROBE)(TABLA)
+ %   + Lugar de experimentacion --> Maquina de fase 1
+ % Seleccion de codificadorres: 
+ %  + Basandose en tabla \ref{tab:nvidia_matrix_capacity} son principalmente H.264 y H.265,
+
  %Caracteristicas del video: 
  %   - SDR --> color_space = bt709 y fullrange
  %   - Calidad 4k 

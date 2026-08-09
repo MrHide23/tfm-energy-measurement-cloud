@@ -1,4 +1,4 @@
-\section{Configuración de Entorno \& Herramientas}
+\section{Configuración de Entorno \& Herramientas}\label{exp0-environment}
 % Seleccon de S0 
 \subsection{Seleccion e Intalacion del Sistema Operativo}
      % Instalacio de requerimeintos del sistema para pruebas
@@ -79,9 +79,6 @@
    sudo pkill kepler 2>&1 &
   \end{lstlisting}
  
-  \lstinputlisting{src/docker/Dockerfile.txt}
-  \label{exp0:goland-container-compile}
-  
  \subsubsection{Scaphandre}
   Schaphandre puede ser desplegado de varias formas, pero la más sencilla es desplegarlo empleando el contenedor de Docker con la instrucción \ref{exp0:scp-docker-deploy}. Esta instrucción ha sido modificada para desplegar Schaphandre en un estado de 'sleep', a la espera de instrucciones, ya que únicamente queremos tomar métricas cuando el proceso de codificación inicie y no queremos que el arranque del contenedor añada ruido a las métricas de consumo.
   
@@ -118,8 +115,7 @@
 
  Para tomar metricas del sistema con la herramienta una vez docker compose esta arrancado, unicamente es necesario realizar una peticion curl de la siguiente forma \lstinline[language=bash]|curl -s http://localhost:6000/api/start|. Y para recoger los datos de consumo, se debe realizar una nueva peticion curl \lstinline[language=bash]|curl -s http://localhost:28282/metrics > "output.json"| pero esta vez redirigiendo la salida a un fichero, ya que al detener la toma de una métrica esta nos devuelve los datos de consumo del sistema en formato json.
  
- \lstinputlisting{src/docker/docker-compose-em.yaml}
- \label{exp0:em-docker-compose}
+ \lstinputlisting[label={exp0:em-docker-compose}, caption={Docker Compose que permite desplegar la herramienta Energy Meter}]{src/docker/docker-compose-em.yaml}
  
  \subsubsection{Monitor}
  Al igual que la anterior herramienta, Monitor ha sido desarrollada por Juan Gutierrez Aguado como alternativa a Kepler y Schaphandre. Para instalarla unicamente es necesario descargar el contenedor *energy-monitoring:1.0* del repositorio del proyecto de investigacion y desplegarlo utilizado docker compose \ref{exp0:monitor-docker-compose}. Este archivo compose expondra la herramienta en el puesto 5000 para recibir peticiones de monitorizacion.\\
@@ -140,7 +136,7 @@
  Cabe destacar que, con el objetivo de garantizar la obtención de al menos diez muestras durante los procesos de transcodificación tanto en CPU como en GPU, fue necesario modificar el parámetro *SAMPLES\_PER\_SECOND* definido en el archivo Docker Compose de la herramienta, incrementando su valor de 1 a 3. De este modo, la herramienta pasa a realizar tres muestreos por segundo de monitorización, lo que permite obtener un número suficiente de muestras incluso en aquellos procesos de transcodificación cuya duración es reducida
  
 
- \begin{lstlisting}[language=bash, label={exp0:monitor-tooluse}]
+ \begin{lstlisting}[language=bash, caption={Codigo que ejemplifica el proceso de incio y recoleccion final de metricas de consumo con la herramientas Monitor},label={exp0:monitor-tooluse}]
     uid=$(uuid)
     payload='{"workload_id": "'$uid'",
     "container": "'$container'",
@@ -158,15 +154,8 @@
     docker exec $container sh -c "ffprobe -v error -select_streams v -of default=noprint_wrappers=1:nokey=1 -show_entries stream=r_frame_rate,width,height,duration,bit_rate -of default=noprint_wrappers=1  /config/output.mp4" >> ${infoFile}
     
     curl -s http://localhost:5000/api/monitor/workload/$uid/samples > ${csvFile}
-    
  \end{lstlisting}
 
- %MOFICACIONES
- %- Se ha modificado muestras por segundo a 3 ya que la codificacion empleando tarjeta grafica tarde una media de 3 segundos y al menos quuieren obtener j 10 metricas por cada prueba de codificacion.
- 
-
-\lstinputlisting{src/docker/docker-compose-monitor.yaml}
-\label{exp0:monitor-docker-compose}
 
 \subsection{Estado Final del Sistema}
 %  +++ Entorno +++
@@ -175,4 +164,16 @@
 
 Una vez finalizado el conjunto de ajustes y de herramientas necesarias para llevar a cabo las diferentes fases experimentales, se han tomado métricas de consumo del sistema. El consumo energético del sistema, teniendo arrancada la herramienta EM y el contenedor de codificación (en un estado de sleep), se obtiene que el sistema está consumiendo de forma pasiva unos 544-545 julios. Por otra parte, la tarjeta gráfica está consumiendo unos 11 vatios de forma pasiva.
 
-Sabiendo cuál es el estado de consumo del sistema en reposo, es posible empezar con las fases de experimentación que se han llevado a cabo a lo largo de este proyecto de investigación.  
+
+%VIDEOS:
+% AncientThought_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 3:00 [0,75]
+% Eldorado_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 3':00" [0,85]
+% IndoorSoccer_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 4:11 [0,109]
+% LifeUntouched_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 3:20 [0,139]
+% LiftingOff_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 3:28 [0,91]
+% MomentofIntensity_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 3:10 [0,83]
+% SecondsThatCount_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 5:30 [0,134]
+% Sintel_Bender_4096x1744_chunk0001_crf0.mp4 - Duracion: 15:24 [4,370]
+% Skateboarding_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 4:50 [0, 125]
+% TearsOfSteel_Bender_4096x1714_chunk0001_crf0.mp4 - Duracion: 12:20 [4,290]
+% UnspokenFriend_CableLabs_3840x2160_chunk0001_crf0.mp4 - Duracion: 4:20 [0,113]

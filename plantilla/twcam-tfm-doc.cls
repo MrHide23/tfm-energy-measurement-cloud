@@ -52,8 +52,10 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[acronym]{glossaries}
-\usepackage[table]{xcolor}
+\usepackage[table,xcdraw]{xcolor}
 \usepackage{listings}
+\usepackage{tabularx}
+\usepackage{tablefootnote}
 
 % Configuración para el código usando minted
 
@@ -85,7 +87,11 @@
     rulecolor=\color{black!15}
 }
 
-\lstset{style=tfmstyle}
+\lstset{style=tfmstyle,
+  inputencoding=utf8,
+  extendedchars=true,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'ú}}1 {ñ}{{\~n}}1,
+  basicstyle=\ttfamily\small}
 
 % Ruta donde buscar las figuras
 \graphicspath{{figs/}}
