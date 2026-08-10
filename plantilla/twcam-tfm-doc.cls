@@ -56,6 +56,7 @@
 \usepackage{listings}
 \usepackage{tabularx}
 \usepackage{tablefootnote}
+\usepackage{subfigure}
 
 % Configuración para el código usando minted
 

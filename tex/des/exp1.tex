@@ -1,7 +1,9 @@
-\section{Selección de Herramienta para la toma de Métricas de Consumo}
-En esta primera fase de experimentación se llevará a cabo un test entre las diferentes herramientas disponibles para la toma de métricas de consumo sobre cargas de trabajo desplegadas en contenedores. Estas cargas de trabajo están basadas en la codificación de video y se llevarán a cabo empleando la herramienta \textbf{ffmpeg}.
+\section{Selección de Herramienta para la toma de Métricas de Consumo}\label{exp1-selecttool}
+En esta primera fase de experimentación se han llevado a cabo una comparativa entre las diferentes herramientas disponibles para la toma de métricas de consumo sobre cargas de trabajo desplegadas en contenedores. Estas cargas de trabajo están basadas en la codificación de video y se llevarán a cabo empleando la herramienta \textbf{ffmpeg}.
 
-Únicamente se utilizará un video para esta fase experimental, ya que el objetivo principal es determinar qué herramienta es capaz de tomar el conjunto de métricas de consumo más precisas. Este video tendrá una duración de 50 segundos con un CRF 0 a una calidad 4K y con un bitrate de 1012693 kbps (1012,693 Mbps). Pese a que no es un video con una gran duración, tiene una gran calidad con 0 pérdida y un bitrate muy elevado, proporcionando sufiente carga de trabajo al codificador. Permitiendo extraer suficientes métricas  en un tiempo prolongado del proceso de codificación mediante CPU y GPU, ya que, por lo general, los códecs que utilizan la GPU para llevar a cabo la codificación son notablemente más rápidos que los codificadores que utilizan codificación únicamente sobre CPU.
+Se ha utilizado un unico video compuesto por los chunks \textbf{18 a 43} del video \textbf{Skateboarding\_CableLabs} disponible en el directorio de \textbf{test}\ref{tab:lista-videos-test} del servidor de video del proyecto ecostream. La razon por la que se ha utilizado un unico video es debido a que el objetivo principal es determinar qué herramienta es capaz de tomar el conjunto de métricas de consumo más precisas.
+
+El video resultante de la union de los chuncks, consta de una duración de 50 segundos con un CRF 0 a una calidad 4K(3840 x 2160) y con un bitrate de 1012693 kbps (1012,693 Mbps). Pese a que no es un video con una gran duración, tiene una gran calidad con 0 pérdida y un bitrate muy elevado, proporcionando sufiente carga de trabajo al codificador. Permitiendo extraer suficientes métricas  en un tiempo prolongado del proceso de codificación mediante CPU y GPU, ya que, por lo general, los códecs que utilizan la GPU para llevar a cabo la codificación son notablemente más rápidos que los codificadores que utilizan codificación únicamente sobre CPU.
 
 \subsection{Desarrollo de los experimentos de la primera fase}
 
@@ -56,7 +58,7 @@ A continuacion se detalla una lista de los posibles valores y su representación
 
  \begin{figure}[h!]
     \centering
-    \includegraphics[scale=0.38]{figs/exp1-1cont-nolimitcpuygpu.png}
+    \includegraphics[width=\linewidth]{figs/exp1-1cont-nolimitcpuygpu.png}
     \caption{Histograma resultante de las metricas de consumo energetico en julios sobre una tarea de codificación empleando GPU y CPU}
     \label{fig:exp1-es1-resultados}
  \end{figure}
@@ -75,12 +77,13 @@ A continuacion se detalla una lista de los posibles valores y su representación
 
 \subsubsection{Escenario 3: Transcodificacion empleando un contenedor limitado a tres cores}
  En este tercer escenario, se ha limitado el numero de cores a los que el contenedor tiene acceso con el fin de medir la granularidad de cada una de las herramientas en relacion a las metricas de consumo. Para limitar el numero de cores se han añadido las opciones:
- \begin{itemize} 
- \item \texttt{ \lstinline[language=sh]{--cpus="3"}}: Numero de cores que el contenedor puede utilizar.
+\begin{itemize} 
+ \item \texttt{\lstinline[language=sh]{--cpus="3"}}: Numero de cores que el contenedor puede utilizar.
  \item \texttt{\lstinline[language=sh]{--cpuset-cpus=1-3}}: Rango de las cores de las que dispone, en este caso reservamos la 0 para el sistema.
- \end{itemize}
+\end{itemize}
  
- Analizando el consumo energetico general de las diferentes metricas, se observa un aumento del consumo energetico del \textbf{$40\%$} respecto al escenario que no presentaba limitacion en el numero de cores de la CPU. En cuanto a la metrica de consumo energetico del nodo, Monitor es el que menor discrepancia tiene respecto a la energia medida por Energy Meter con una tasa de error del \textbf{$0.25\%$}. Seguido por Scaphandre, quien presenta un tasa de error del \textbf{$2.59\%$} respecto a la energia medida por Energy Meter, y en ultimo lugar, Kepler el cual presenta un tasa de error del \textbf{$62.59}\%$, una gran diferencia respecto tasa de error de las dos herramientas.
+ 
+ Analizando el consumo energetico general de las diferentes metricas, se observa un aumento del consumo energetico del \textbf{$40\%$} respecto al escenario que no presentaba limitacion en el numero de cores de la CPU. En cuanto a la metrica de consumo energetico del nodo, Monitor es el que menor discrepancia tiene respecto a la energia medida por Energy Meter con una tasa de error del \textbf{$0.25\%$}. Seguido por Scaphandre, quien presenta un tasa de error del \textbf{$2.59\%$} respecto a la energia medida por Energy Meter, y en ultimo lugar, Kepler el cual presenta un tasa de error del \textbf{$62.59\%$}, una gran diferencia respecto tasa de error de las dos herramientas.
  
  En cuanto a la metrica de energia en relacio al proceso, se ara uso de la siguiento equación \ref{eq:exp1-proceso-percent} para calcular el porcentage de energia respecto al total consumido por el nodo es atribuido al proceso de transcodificacion. De las tres herramientas, Monitor es la menor diferencia presenta respecto a la energia total del nodo, con una diferencia de \textbf{753.76 julios} que supone un  \textbf{$82.10\%$} de la energia total. En el caso de Scaphandre se observa una diferencia de \textbf{1830.56 julios} respecto a la energia del nodo, lo que supone un \textbf{$48.88\%$}. En cambio Kepler presenta una discrepancia minima  respecto a la energia del nodo, sindo del \textbf{24.842 julios}($98.41\%$),lo que refuerza la hipotesis de que Kepler esta ajustando la energia del nodo basando se en la equacion \ref{eq:exp1-error-note}. 
 
@@ -116,7 +119,7 @@ A continuacion se detalla una lista de los posibles valores y su representación
      \includegraphics[width=\linewidth]{figs/exp1-2cont-limited3cpus.png}
      \caption{Histograma resultante de las metricas de consumo de dos contenedores limitados a 3 cores cada uno ejecutando tareas de codificacion simultaneamente}
      \label{fig:exp1-es4-resultados}
-     \end{figure}
+ \end{figure}
 
 \subsection{Conclusiones fase 1 de la experimentacion }
 % ++++++ Python Plot & POST PROCESADO DATOS ++++++++++++
