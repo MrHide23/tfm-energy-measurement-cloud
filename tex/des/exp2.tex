@@ -69,21 +69,39 @@ En ambas fases se ejecutara unicamente un contenedor por prueba, sin concurrenci
 En cuanto a los video seleccionados para llevar a cabo los distinto experimentos, nuevamente, se ha empleado la base de video ya existente del proyecto ecostream. Se han utilizado video compuestos por los chuncks de los videos de la tabla  \ref{tab:lista-videos-test}. En concreto, para los experimentos de esta sección, han sido codificados utilizando el encoder libx264 con una calidad 4k(3840 x 2160) SDR, un CRF 0 y 30 fps. Destacar tienen un perfil de color yuv420p(4:4:4) con una profundidad de 8 bits \ref{ffmpeg-achive-colordeep} y 48 frams por chunk \ref{code:ffmpeg-achive-frames}.
 
 
-% EXP 2.1 --> Seleccion de Videos(5-10) con diferente SITI y sacar matriza de ubicacion
-%   + Justificacion -->  Se ha relaizado esta seleccion debido a que se desea comprobar si el valor SITI influye en el consumo energetico y para ello es necesario
-%                          escoger videos que se encuentran en diferentes espacios de la tabla SITI con caracteristicas tecnicas similares.
-%   + Calculo de siti de cada chunck para defini un video de 10s con el siti mas omogeneo posible y con menor variacion entre chuncks
-
 \subsubsection{Clasificacion de chunks en base a los valores SI y TI}
-% CLASIFICACION DE CHUNCKS 
- % - Establecemos 4 zonas
- % - Revisamos datos de Mico \cite orientativamente pero ITU a cambiado estandar por eso toca recalcular
- % - Creamos Script para calcular siti de video seleccionada con lo de Mico y con seleccion personal a ojo
- % - Resultado Obtenidos:
- %   - Grafica Mico
- %   - Grafica Chuncks
  
-Para podre establecer un correlación entre el consumo energetico en el proceso de codificacion de video y las metricas Spatial Information(SI) y Temporal Information(TI), se han definido cuatro categorias \ref{tab:siti-zones-definition}en base al valor de estas dos metricas. 
+Con el objetivo de establecer una correlación entre el consumo energético asociado al proceso de codificación de vídeo y las métricas \textit{Spatial Information} (SI) y \textit{Temporal Information} (TI), se definieron cuatro categorías en función de los valores de SI y TI. Posteriormente, se seleccionó una serie de \textit{chunks} en función de sus valores potenciales de SI y TI, tomando como referencia tanto la visualización de los vídeos como los datos obtenidos de la tesis del Doctor Francisco Miguel Mico Enguidanos.
+
+Cabe destacar que, aunque el conjunto de datos proporcionado en la tesis del Doctor Francisco Miguel Mico Enguidanos contiene los valores de SI y TI calculados para todos los chunks del conjunto de vídeos utilizado en los experimentos, dichos valores no pudieron emplearse directamente, ya que fueron obtenidos utilizando una versión anterior\footnote{https://www.itu.int/rec/T-REC-P.910-202310-I/en} del estándar SITI. Para este trabajo, los valores de SI y TI se calcularon siguiendo el nuevo estándar \textbf{P.910 (07/26)}\footnote{https://www.itu.int/rec/T-REC-P.910-202607-P/en}.
+
+Por este motivo, se desarrolló el script \textbf{exp2.1-siticalculator} \ref{code:script-siti-calculation} \ref{code:script-siti-calculation-ob} en Python, que hace uso de la libreria \textit{SITI Tool} \cite{siti-tool-pypip} para calcular los valores de SI y TI de cada \textit{chunk}. Posteriormente, el script procesó los resultados obtenidos y los almacenó en un archivo CSV con la estructura mostrada en \ref{fig.1-sititool-header-csv}.
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figs/exp2.1-siti-pacomico.png}
+        \captionof{subfigure}{Ubicación de chunks de video en base a los datos del doctor Paco Mico}
+        \label{fig:exp2.1-chunks-data-pacomico}
+    \end{minipage}
+     \hfill
+     
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figs/exp2.1-ChucnkSITI-01.png}
+        \captionof{subfigure}{Ubicación de chunks de video según el SI y el TI}
+        \label{fig:exp2.1-chunks-selection}
+    \end{minipage}
+    
+    \caption{Graficas que ubican la posicion de los chuncks en base a las metricas SI y TI}
+    \label{fig:exp2.1-chunks-combined}
+\end{figure}
+
+Una vez determinada la posición de cada \textit{chunk} en función de sus valores de SI y TI, se definieron las cuatro zonas utilizadas para su clasificación, estableciendo para cada una de ellas los correspondientes rangos de SI y TI. El resultado de esta clasificación se recoge en la tabla \ref{tab:siti-zones-definition}.
+
+Cabe destacar que la definición de los límites de cada zona presentó cierta dificultad, debido a que una gran parte de los chunks se concentra en la zona media-central del espacio SI-TI. Por este motivo, los rangos establecidos para las diferentes zonas presentan valores relativamente próximos entre sí. Asimismo, se encontraron dificultades para obtener chunks con valores elevados de TI, ya que no se identificó ningún \textit{chunk} con un valor superior a 35. De forma similar, los valores de SI obtenidos no superaron el valor de 45.
 
 
 \begin{table}[h]
@@ -98,123 +116,115 @@ Para podre establecer un correlación entre el consumo energetico en el proceso 
      Alto SI y Alto TI  & \multicolumn{1}{c|}{HSI\_HTI}   & \multicolumn{1}{c|}{\textless 15}    & \multicolumn{1}{c|}{\textless 8}    \\ \hline
      \end{tabular}
      \label{tab:siti-zones-definition}
-     \capion{Zonas de video para la clasificacion de chuncks en base al SITI}
+     \caption{Zonas de video para la clasificacion de chuncks en base al SITI}
 \end{table}
-
-Al establecer estos cuatro grupos se intento difernecias los valores de las 4 zonas al maximo, pero la muestra de chuncks que se empleo logro como maximo un valor de 35 en TI y un valor de 38 en SI. Perteneciento esto dos valores a dos chuncks completamente aislados del resto. Es
-
-
-% ---
- Para la selección del conjunto de videos que serán utilizados durante la fase de experimentación 2 \ref{exp2-desarrollo}, se espera poder comprobar si el contenido del video, y más concretamente, la cantidad de información que contiene, afecta a la cantidad de energía que consume el contenedor durante el proceso de codificación. Es por este motivo que se han empleado los parámetros Spatial Information (SI) y Temporal Information (TI) para la selección de chunks que compondrán los videos.\
-
- Estos parámetros de calidad subjetiva se encuentran definidos por el International Telecommunication Union Telecommunication Standardization Sector (ITU) \cite{itu-quality-metrics}, y se emplean de forma conjunta como métricas de calidad comprendida entre 0 y 100, donde Spatial Information (SI) representa la cantidad de detalles y objetos que aparecen en una escena, y el Temporal Information (TI) define la cantidad de cambios que suceden en una escena a lo largo del tiempo.\
- 
- %ANADIR SELECCION DE VIDEO BASADO EN PACO DATOS
- Para ellos, se han seleccionado los vídeos mostrados en la Tabla . A partir de cada uno de ellos se calcularán los índices de Información Espacial (SI) e Información Temporal (TI) de sus correspondientes chunks. Posteriormente, se generarán vídeos de 10 segundos de duración a partir de un único chunk, el cual se reproducirá de forma cíclica hasta completar el tiempo establecido. Este procedimiento permite mantener constantes los valores de SI y TI durante toda la secuencia, evitando que las variaciones del contenido afecten al análisis del consumo energético.\
- 
- %ACTUALIZAR TABLAS
- %- Lista de videos Añadidos:
- %    + Sintel_0022
- %    + Sintel_0091
- %    + LifeUntouched_0075
- %    + LifeUntouched_0056 
- %    + Tears_0235
- %    + Tears_0234
-
- Con el objetivo de disponer de una muestra representativa de diferentes tipos de contenido, los chunks se han clasificado en cuatro categorías según sus valores de SI y TI, tal y como se muestra en la Lista. Para cada categoría se seleccionarán cinco chunks, obteniendo un total de veinte vídeos para la experimentación. Esta muestra permitirá analizar la posible relación entre las características espaciales y temporales del contenido y el consumo energético asociado al proceso de codificación.\
-
- 
-
- Para lograr calcular y visualizar los valores de SI y TI correspondientes a cada chunk, se han desarrollado dos scripts en Python. El primero \ref{code:exp2-siti-calculator} emplea la biblioteca \textit{siti-tools} \cite{siti-tool-pypip}, disponible en el gestor de paquetes de Python \href{https://pypi.org/}{PyPI}, para calcular las métricas de Información Espacial (SI) e Información Temporal (TI) de cada chunk y almacenar los resultados en un archivo CSV.
-
- El segundo script \ref{code:exp2-siti-plotter} utiliza dicho archivo como entrada para generar una gráfica de dispersión, en la que el eje X representa los valores de SI y el eje Y los valores de TI. Cada punto de la gráfica corresponde a un chunk, cuya posición viene determinada por las métricas calculadas previamente. 
-
-
- % - Al comprobar el valor del SI y del Ti nos damos cuenta que TI es muy bajo <=16 por tanto accederemos a Cable Labs para obtener el video completo analizarlo y buscar los segundos con mayor movimiento apra extraer los chuncks y lograr subir el valor de TI y si fuera posible tambien subir el valor de SI, aunque este tiene un valor <= 40. Teniendo encuenta que son chuncks de 2 segundos es astante aceptable
- % - Una vez gerado el esquema de SITI con los chuncks que disponemos, se han seleccionado los sigueintes chuncks para que se reproduczcan en bucle durante 10 segundos:
- %         - TI <  y SI <:
- %          - LifeUntouch - 53x
- %          - LifeUntouch - 48x
- %          - LifeUntouch - 55x
- %          - LifeUntouch - 56x
- %          - LifeUntouch - 75x
- % 
- %         - Ti > y SI <:
- %          - Sintel - 22
- %          - Sintel - 27
- %          - Sintel - 26
- %          - Sintel - 21
- %          - IndoSoccer - 46
- % 
- %         - Ti < y SI >:
- %          - IndoSoccer - 4 x
- %          - El Dorado - 12
- %          - El Dorado - 14
- %          - El Dorado - 15
- %          - El Dorado - 16
- % 
- %         - TI > y SI > :
- %          - Sintel - 282 
- %          - SkateBorading - 20
- %          - SkateBorading - 21 
- %          - SkateBorading - 27
- %          - El Dorado - 10 x 
- % En total tenemos 20 videso agrupados segun su TI y sy SI que seran utilizados en la siguiente subfase de la experimentacion \ref{exp2.2-codec-bitrate}.
- 
- 
- 
- % EXP 2.2 --> Bateria de pruebas con codificaciones CPU(x264, x265) y GPU(H264_VENC y HEVC_NVENC) bariando el bitrate
- %   + Comprobar las calidades de ambos rangos de videos para comprobar que ambos rangos son diferentes
- %   + x264 --> {15, 20,25,30,35,40}
- %   + x265 --> {10, 15,20,25,30,35}
  
 \subsection{Consumo energetico en relacion al SITI}
-% - EXPERIMENTACION SITI Consumo
-%    - Se espera comprobar si la metricas de SITI implican un mayor consumo energetico
-%    - Esplicar como se han llevado a cabo pruebas
-%    - Lista de Codec a utilizar
-%    - Lista de bitrates a utilizar(Seleccioandos en base recomendacion Oficial + Seleccion rangos extremos para ver su influencia) 
-%    - Usamos scrpt para llevar a cabo pruebas
-%         - Iteracion sobre caracteristicas y almacenamiento de resultado de Monitor en estructura de path siguiente \img{path-ejemplo-dibujo}
-%    - Resultado Obtenetinos Procesados con python script ploter-2.1
-%         - Explicacion partes script:
-%              + Como procesa y almacena datos en CSV + Estructura
-%              + Graficas que genera
-%    - Analisis de Resultado SubParte 1
-%    
-% 
+% FASE 2.2 
+ % - Videos para pruebas:
+ %  - Seleccion de chuncks + necesidades de duracion de cada video
+ %  - Creacion video continuo para descartar eficiencia intrinseca de los encoders
+ %  - Figura de los chunks seleccionados
+ % - Ejecucion de pruebas
+ %    - Como se ejecutaran las pruebas
+ %    - Script que lo ejecutara
+ %    - Como y donde almacena los datos
+ % - Pos procesameinto de los datos
+ %    - Script de python que procesa datos
+ %    - Como procesa y almacena datos en CSV
+ %    - Grafica que genera
+ % - Analisis de resultados
+% SELECCION VIDEOS
+En este primer subapartado se ha definido el conjunto de vídeos que se utilizará para analizar la relación entre el consumo energético asociado al proceso de codificación y los valores de las métricas \textbf{SI} y \textbf{TI}. Para ello, se requirieron vídeos de \textbf{10 segundos de duración} que no presentaran cambios de escena significativos ni cortes bruscos que pudieran alterar los valores medios de las métricas \textbf{SI} y \textbf{TI}. 
 
- % - En esta subfase del experimento se llevara a cabo la transcodificacion de los videos cerados en la subfase de experimentacion 2.1 \ref{exp2.1-siti}. 
- % RESULTADOS:
- %   - El consumo energetico se ve afectado severamente por el numer de FPS de cada video, ay que al codificar el mismo video con diferentes FPS se obtiene un consumo mucho mayor a mayor cantidad de FPS.
- % - Timpos de los video demasiado bajos para apreciar diferencias en la codificacion con tarjeta grafica
- % - Se requiere mayor diversidad de videos con valores todavia mas altos de SI y TI
- % - Se observa que hay otro tipo de metricas subjetivas que afectan al consumo energetico mas halla del SITI
- %   - Para x264:
- %        - El TI influye en el consumo energetico
- %   - Para x265:
- %        - El Ti influye pero no es del todo concluyente
- %   
- %   - Para H264:
- %        - Las metricas de consumo son muy similares pero se puede observar que el SI es quien mas influye en el consumo energeticp 
- %    - Para H265:
- %        - Influye SI y Ti en consumo pero no se puede establecer correlacion clara, metricas de consumo muy similares
- 
+Para generar los vídeos utilizados en los experimentos se siguieron dos estrategias diferentes. La primera estrategia consistió en seleccionar un único \textit{chunk} y reproducirlo de forma continua hasta alcanzar una duración de 10 segundos, utilizando ffmpeg de la siguiente forma \lstinline[language=sh,label={code:ffmpeg-loopvideo},caption={}]{ffmpeg -y -stream_loop 15 -i CHUNCKXXX.mp4 -t 30 -b:v 30000k -r 30 -c:v copy -an VIDEO_10S_CHUNCKXXX.mp4}. De esta forma, se evitó introducir cambios bruscos de escena y se mantuvieron las características espaciales y temporales del \textit{chunk} original. Cada vídeo generado se identificó mediante el nombre del vídeo de procedencia y el número del \textit{chunk} seleccionado.
+
+La segunda estrategia consistió en generar un vídeo a partir de la concatenación de la mayor cantidad posible de \textit{chunks} pertenecientes a una misma zona, utilizando además los \textit{chunks} consecutivos correspondientes al vídeo original. Esta estrategia permitió reducir la variabilidad que pudiera derivarse de las características internas de optimización de cada códec durante el proceso de codificación. Los vídeos generados mediante esta estrategia se identificaron utilizando el nombre del vídeo original y el identificador del primer \textit{chunk} empleado, correspondiente al \textit{chunk} \textit{0000}.
+
+En total, se seleccionaron \textit{cinco vídeos por zona}, a excepcion de las zonas \textbf{HTI\_LSI}, habiendo añadido un video mas, y \textbf{HTI\_HSI}, habiendo añadido dos videos de mas. Adicionalmente, se ha generado un video por zona empleando varios chunks, lo que ha resultado en una muestra final de \textit{28 vídeos}. Resultanes se muestran en la tabla \ref{tab:exp2.2-videos}.
+
+\begin{table}[h!]
+ \centering
+ \small   % Reducimos un poco el tamaño de letra
+ \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+ \hline
+ \rowcolor[HTML]{C0C0C0}
+ \textbf{LSI\_LTI} & \textbf{HSI\_LTI} & \textbf{LSI\_HTI} & \textbf{HSI\_HTI} \\
+ \hline
+ LifeUntouched\_0053                 & Sintel\_0021                         & Eldorado\_0014                & Skateboarding\_0027                 \\ \hline
+ LifeUntouched\_0055                 & Sintel\_0026                         & Eldorado\_0016                & Skateboarding\_0021                 \\ \hline
+ LifeUntouched\_0048                 & Sintel\_0027                         & Eldorado\_0012                & Skateboarding\_0020                 \\ \hline
+ LifeUntouched\_0075                 & IndoorSoccer\_0046                   & Eldorado\_0015                & Eldorado\_0011                      \\ \hline
+ LifeUntouched\_0056                 & Sintel\_0022                         & IndoorSoccer\_0004            & Eldorado\_0010                      \\ \hline
+ LifeUntouched\_0000 {[} 51 - 55 {]} & TearsOfSteel\_0235                   & Eldorado\_0000 {[} 12 - 16{]} & Sintel\_0091                        \\ \hline
+ \textbf{-}                          & TearsOfSteel\_0234                   & \textbf{-}                    & Skateboarding\_0000 {[} 20 - 25 {]} \\ \hline
+ \textbf{-}                          & TearsOfSteel\_0000 {[} 231 - 235 {]} & \textbf{-}                    & \textbf{-}                          \\ \hline
+ \end{tabularx}
+ \caption{Videos creados para la experimentación de consumo energético en relación con las métricas SITI}
+ \label{tab:exp2.2-videos}
+\end{table}
+
+% SELECCION DE EXPERIMENTOS
+La fase de experimentacion se ha llevado a cabo empleando el script \textbf{exp2.2-sisti-energy} \ref{code:exp2.2-sitienergy}, desarrollado en bash. Este lleva a cabo la transcodificcion de cada uno de los videos \ref{tab:exp2.2-videos} empleando con cada uno de los codficadores especificados en \ref{tab:exp2-codecs-selection}, junto con los correspondientes bitrates definidos para cada generacion de codificadores. Adicionalmente, el script permite realizar todo el proceso de transcodificacion y toma de metricas son muliples contenedores simultaneamente. No obstante, en los experimentos realizados en esta fase se utilizó un único contenedor, sin establecer restricciones sobre el número de CPU y\/o núcleos disponibles.
+
+El resultado de la toma de metricas de cada uno de los proceso de transcodificacion es almacenado en la estructura de directorios \ref{fig:exp2.2-datapath}, siendo el primero de todos el nombre del experimento. Esta estructura se diseñó con el objetivo de facilitar la automatización del procesamiento posterior de los datos mediante un script de Python.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\linewidth]{figs/exp2.1-DataPathSITI.png}
+    \caption{Estructura de directorios en la que se almacenan los datos de consumo de cada iteracion}
+    \label{fig:exp2.2-datapath}
+\end{figure}
+
+%POST-PROCESAMIENTO DATOS
+El postprocesamiento de las métricas recopiladas se realizó mediante el script de Python \textbf{ploter-exp2.2} \ref{code.2-ploter} \ref{code.2-ploter-obj}. Este script permite procesar y estructurar los datos obtenidos, almacenándolos en un archivo CSV con la estructura mostrada en \ref{fig.2-csvheader-dataprocess}. Asimismo, permite generar diferentes representaciones gráficas a partir de los datos procesados.
+
+El script está diseñado para ejecutarse desde la interfaz de línea de comandos (\textit{CLI}), mediante diferentes \textit{flags} que permiten especificar tanto el tipo de procesamiento que se desea realizar como la ubicación de los datos de entrada. Las principales opciones disponibles son las siguientes:
+
+\begin{itemize}
+     \item \textbf{process}: permite procesar las métricas de consumo obtenidas durante el experimento \textit{exp2.2}. Por defecto, el script accede al directorio \textit{AllMetrics}, aunque es posible especificar una ruta alternativa.
+     \item \textbf{plot3d}: permite representar la posición de cada vídeo en un gráfico tridimensional, en el que el eje X representa el valor de TI, el eje Y el valor de SI y el eje Z el consumo energético del contenedor. Se genera una gráfica para cada combinación de codificador y \textit{bitrate}.
+     \item \textbf{plot-consumo-ti}: permite generar una gráfica bidimensional de tipo \textit{stream} para cada combinación de codificador y \textit{bitrate}. En este caso, el eje X representa el valor de TI y el eje Y el consumo energético, expresado en julios, del proceso de transcodificación.
+     \item \textbf{plot-consumo-si}: permite generar una gráfica bidimensional de tipo \textit{stream} para cada combinación de codificador y \textit{bitrate}. En este caso, el eje X representa el valor de SI y el eje Y el consumo energético, expresado en julios, del proceso de transcodificación.
+\end{itemize}
+
+Por defecto, el script \textbf{ploter-exp2.2} determina el directorio en el que se almacenarán los datos resultantes del procesamiento, así como el directorio destinado al almacenamiento de las gráficas generadas. Asimismo, muestra los datos correspondientes al consumo energético de un único contenedor. No obstante, estos parámetros pueden modificarse mediante las siguientes opciones:
+
+\begin{itemize}
+     \item \textbf{--data-final-dir=PATH\_ARCHIVO}: permite definir una ruta alternativa para almacenar el archivo CSV resultante del procesamiento de los datos. Por defecto, se utiliza la ruta \textit{./data/ex2.2\_process\_data.csv}.
+     \item \textbf{--container=consumo\_container0\_j}: permite seleccionar el contenedor cuyos datos de consumo se utilizarán para generar las gráficas, en caso de que se hayan ejecutado varios contenedores. Por defecto, se utilizan los datos correspondientes a la columna \textit{consumo\_container0\_j}.
+\end{itemize}
+
+% ANALISI DE RESULTADOS
+% % RESULTADOS:
+%   - El consumo energetico se ve afectado severamente por el numer de FPS de cada video, ay que al codificar el mismo video con diferentes FPS se obtiene un consumo mucho mayor a mayor cantidad de FPS.
+% - Timpos de los video demasiado bajos para apreciar diferencias en la codificacion con tarjeta grafica
+% - Se requiere mayor diversidad de videos con valores todavia mas altos de SI y TI
+% - Se observa que hay otro tipo de metricas subjetivas que afectan al consumo energetico mas halla del SITI
+%   - Para x264:
+%        - El TI influye en el consumo energetico
+%   - Para x265:
+%        - El Ti influye pero no es del todo concluyente
+%   
+%   - Para H264:
+%        - Las metricas de consumo son muy similares pero se puede observar que el SI es quien mas influye en el consumo energeticp 
+%    - Para H265:
+%        - Influye SI y Ti en consumo pero no se puede establecer correlacion clara, metricas de consumo muy similares
+
 
 % AMPLIACION 1:
 %    - Para descartar la eficiencia de los codificadores a la hora de codificar video y predecir la siguiente trama, se han creado una total de 4 videos empleando los chuncks de la sigiuente list \ref{list:chubkc-videos-fase2.2}, ubicando cada uno de estos videos en una de las zonas establecidas en base al SITI. 
 %    - Como resultado xxxx
 
+El conjunto de graficas obtenidas mediante el script de Python \textbf{ploter-exp2.2} a partir de las metricas resultantes del proceso experimental, llevado a a cabo por el script en Bash \textbf{exp2.2-sisti-energy}, unicamente se mostrar algunas de ellas para facilitar el analisis y el resto se se encuentran al completo en el apendice RRR ReF. Esto se debe a que hay un gran numero de graficas e insertarlar todas en este apartado incomodaría al lector.
 
-%LISTA DE LOS VIDEOS Y QUE CHUNCKS LA COMPONEN
-% - HTI_LSI --> TearsOfSeal(0231 - 0235)
-% - LTI_HSI --> ElDorado(0012-0016)
-% - LTI_LSI --> LifUntouch(0053-0057)
-% - HTI_HSI --> Skateboarding(0020-0024)
-% 
-% 
+\tresubfigs
+     {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-30_ConsumoSITI.png}{Consumo energetico frente a Si y TI codificado con libx264 a 30 Mbps}{fig:exp2.2-plot3d-libx264-30}
+     {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-30_ConsumoSI.png}{Consumo energetico frente a SI codificado con libx264 a 30 Mbps}{fig:exp2.2-consumoxti-libx264-30}
+     {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-30_ConsumoTI.png}{Consumo energetico frente a TI codificado con libx264 a 30 Mbps}{fig:exp2.2-consumoxsi-libx264-30}
 
  
+
 \subsection{Relación entre numero de cores, tiempo de codificación y consumo energetico}
 % - EXPERIMENTACION THREADS CONSUMO
 %    - Se espera comprobar si el numero de threads empleando en el proceso de codificacion influye en el tiempo de codificacion y en el consumo energetico

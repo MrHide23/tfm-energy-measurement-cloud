@@ -57,6 +57,51 @@
 \usepackage{tabularx}
 \usepackage{tablefootnote}
 \usepackage{subfigure}
+\usepackage{subcaption}
+
+% COMANDOS PERSONALES 
+\newcommand{\dosubfigs}[6]{%
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{#1}
+    \captionof{subfigure}{#2}
+    \label{#3}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{#4}
+    \captionof{subfigure}{#5}
+    \label{#6}
+  \end{minipage}%
+  \par\vspace{1ex}%
+}
+
+
+\newcommand{\tresubfigs}[9]{%
+  \begin{minipage}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{#1}
+    \captionof{subfigure}{#2}
+    \label{#3}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{#4}
+    \captionof{subfigure}{#5}
+    \label{#6}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{#7}
+    \captionof{subfigure}{#8}
+    \label{#9}
+  \end{minipage}%
+  \par\vspace{1ex}%
+}
+
 
 % Configuración para el código usando minted
 
@@ -68,21 +113,21 @@
 \definecolor{backcolour}{rgb}{0.96,0.96,0.96}
 
 \lstdefinestyle{tfmstyle}{
-    backgroundcolor=\color{backcolour},   
+    backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen}\itshape,
     keywordstyle=\color{blue}\bfseries,
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
     basicstyle=\ttfamily\scriptsize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=8pt,                  
-    showspaces=false,                
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=8pt,
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
+    showtabs=false,
     tabsize=2,
     frame=single,
     rulecolor=\color{black!15}
