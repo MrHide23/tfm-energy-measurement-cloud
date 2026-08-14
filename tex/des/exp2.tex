@@ -118,8 +118,8 @@ Cabe destacar que la definición de los límites de cada zona presentó cierta d
      \label{tab:siti-zones-definition}
      \caption{Zonas de video para la clasificacion de chuncks en base al SITI}
 \end{table}
- 
-\subsection{Consumo energetico en relacion al SITI}
+
+\subsection{Consumo energetico en relacion al SITI}\label{section:exp2.2-sitixconsumo}
 % FASE 2.2 
  % - Videos para pruebas:
  %  - Seleccion de chuncks + necesidades de duracion de cada video
@@ -195,56 +195,32 @@ Por defecto, el script \textbf{ploter-exp2.2} determina el directorio en el que 
      \item \textbf{--container=consumo\_container0\_j}: permite seleccionar el contenedor cuyos datos de consumo se utilizarán para generar las gráficas, en caso de que se hayan ejecutado varios contenedores. Por defecto, se utilizan los datos correspondientes a la columna \textit{consumo\_container0\_j}.
 \end{itemize}
 
-% ANALISI DE RESULTADOS
-% % RESULTADOS:
-%   - El consumo energetico se ve afectado severamente por el numer de FPS de cada video, ay que al codificar el mismo video con diferentes FPS se obtiene un consumo mucho mayor a mayor cantidad de FPS.
-% - Timpos de los video demasiado bajos para apreciar diferencias en la codificacion con tarjeta grafica
-% - Se requiere mayor diversidad de videos con valores todavia mas altos de SI y TI
-% - Se observa que hay otro tipo de metricas subjetivas que afectan al consumo energetico mas halla del SITI
-%   - Para x264:
-%        - El TI influye en el consumo energetico
-%   - Para x265:
-%        - El Ti influye pero no es del todo concluyente
-%   
-%   - Para H264:
-%        - Las metricas de consumo son muy similares pero se puede observar que el SI es quien mas influye en el consumo energeticp 
-%    - Para H265:
-%        - Influye SI y Ti en consumo pero no se puede establecer correlacion clara, metricas de consumo muy similares
 
 
-% AMPLIACION 1:
-%    - Para descartar la eficiencia de los codificadores a la hora de codificar video y predecir la siguiente trama, se han creado una total de 4 videos empleando los chuncks de la sigiuente list \ref{list:chubkc-videos-fase2.2}, ubicando cada uno de estos videos en una de las zonas establecidas en base al SITI. 
-%    - Como resultado xxxx
-
-El conjunto de graficas obtenidas mediante el script de Python \textbf{ploter-exp2.2} a partir de las metricas resultantes del proceso experimental, llevado a a cabo por el script en Bash \textbf{exp2.2-sisti-energy}, unicamente se mostrar algunas de ellas para facilitar el analisis y el resto se se encuentran al completo en el apendice RRR ReF. Esto se debe a que hay un gran numero de graficas e insertarlar todas en este apartado incomodaría al lector.
-
-\tresubfigs
-     {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-30_ConsumoSITI.png}{Consumo energetico frente a Si y TI codificado con libx264 a 30 Mbps}{fig:exp2.2-plot3d-libx264-30}
-     {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-30_ConsumoSI.png}{Consumo energetico frente a SI codificado con libx264 a 30 Mbps}{fig:exp2.2-consumoxti-libx264-30}
-     {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-30_ConsumoTI.png}{Consumo energetico frente a TI codificado con libx264 a 30 Mbps}{fig:exp2.2-consumoxsi-libx264-30}
-
- 
-
-\subsection{Relación entre numero de cores, tiempo de codificación y consumo energetico}
+\subsection{Relación entre numero de cores, tiempo de codificación y consumo energetico}\label{section:exp2.3-coresxconsumo}
 % - EXPERIMENTACION THREADS CONSUMO
-%    - Se espera comprobar si el numero de threads empleando en el proceso de codificacion influye en el tiempo de codificacion y en el consumo energetico
-%    - DataSet de videos
-%         - Seleccion de dos vidos por zona, lo que da un total de 8 videos + 4 videos formados por videos de chincks consecutivos
-%         - Duracion de 30 segundos cada video
-%         - 30 frames 
-%         - 4k
-%         - Lista de chuncks seleccionados \ref{lst:chuncks}
-%    - Se ha modificado script de anterior subfase experimental para que:
-%         + Itere sobre contenedores con limited en numero de cores y cpus[1,3,6,7,ningun]
-%         + Se llevar a cabo el proceso de codificacion selectivo dependiendo de el numero de cpu que disponga el contenedor \ref{tabla_workflows} (Explicar Funcionamiento de cada Codificador y limitaciones en indicar numero de threads en cada uno)
-%         + Se lleva a cabo codificacion con 10 Mbps y a 30 Mbps, ya que a el Bitrate influye en el consumo energetico y se quiere como afecta a resultados finales
-%         + No se lanzan contenedores en paralelo pero script soporta definicion multiples contenedores para ampliaciones futuras
-%    - procesameinto de datos con script ploter-2.3
-%         - Como procesa y almacena datos en CSV + Estructura
-%         - Graficas que genera
-%    - Analisis de graficas 
-%    -Conclusiones Subfase 2 experimentacion
-%         
+ %    - Se espera comprobar si el numero de threads empleando en el proceso de codificacion influye en el tiempo de codificacion y en el consumo energetico
+ %    - DataSet de videos
+ %         - Seleccion de dos vidos por zona, lo que da un total de 8 videos + 4 videos formados por videos de chincks consecutivos
+ %         - Duracion de 30 segundos cada video
+ %         - 30 frames 
+ %         - 4k
+ %         - Lista de chuncks seleccionados \ref{lst:chuncks}
+ %    - Se ha modificado script de anterior subfase experimental para que:
+ %         + Itere sobre contenedores con limited en numero de cores y cpus[1,3,6,7,ningun]
+ %         + Se llevar a cabo el proceso de codificacion selectivo dependiendo de el numero de cpu que disponga el contenedor \ref{tabla_workflows} (Explicar Funcionamiento de cada Codificador y limitaciones en indicar numero de threads en cada uno)
+ %         + Se lleva a cabo codificacion con 10 Mbps y a 30 Mbps, ya que a el Bitrate influye en el consumo energetico y se quiere como afecta a resultados finales
+ %         + No se lanzan contenedores en paralelo pero script soporta definicion multiples contenedores para ampliaciones futuras
+ %    - procesameinto de datos con script ploter-2.3
+ %         - Como procesa y almacena datos en CSV + Estructura
+ %         - Graficas que genera
+ %    - Analisis de graficas 
+ %    -Conclusiones Subfase 2 experimentacion
+ %         
+
+En esta segunda subfase de experimentacion perteneciente al seccion \textbf{Consumo energetico en relacion al SITI y el Numero de Threas}\ref{exp2-desarrollo}, se ha analizado el consumo energetico de un proceso de transcodificacion llevado a cabo sobre un contenedor de docker con limitaciones de acceso a los cores de la CPU y con limitaciones en la cantidad de threads a nivel de codificador.  Bajo esta premisa se han desarrollado los experimentos siguientes, tratando de encontrar la relacion entre el consumo energetico, el tiempo de codificacion,y el numero de cores y threads disponibles. 
+
+Asi pues, para esta subfase experimental se han utilizado el conjunto de \textit{videos} \ref{tab:exp2.2-videos} creados y clasificados para la subfase \textbf{Consumo energetico en relacion al SITI}\ref{section:exp2.2-sitixconsumo}. De este conjunto de videos se han seleccionado 
 
 % EXP 2.3 --> Fase en la que se limita el numero de cores en el contenedor y se fueza el mismo numero de threads para ffmpeg
 %   + CORES = {0,1,3,6, 7}, donde 0 hace referencia a ninguna limitacion de cpu y de threads
