@@ -85,32 +85,32 @@
 \pagestyle{appendix}
 
 % Introducción
-\chapter{Introducción}\label{intro}
+\chapter{Introducción}\label{chapt:intro}
 \input{tex/introduccion.tex}
-
-%\chapter{Motivacion y Objetivos}\label{mot-obj}
-%\input{tex/motivacion_objetivos.tex}
     
-\chapter{Estado del Arte} \label{estado-del-arte}
+\chapter{Estado del Arte} \label{chapt:estado-del-arte}
 \input{tex/estado_del_arte.tex}
 
-\chapter{Desarrollo de Proyecto}\label{metodo}
+\chapter{Especificación}
+\input{tex/especificacion.tex}\label{chapt:especificacion}
+
+\chapter{Desarrollo de Proyecto}\label{chapt:metodo}
 \input{tex/desproyecto.tex}
 
-\chapter{Pruebas y Resultados}\label{results}
+\chapter{Pruebas y Resultados}\label{chapt:results}
 \input{tex/resultados.tex}
 
-\chapter{Conclusiones y Trabajo Futuro}\label{conclusion}
+\chapter{Conclusiones y Trabajo Futuro}\label{chapt:conclusion}
 \input{tex/conclusiones.tex}
 
 \appendix
-\chapter{Apéndice} \label{apendice}
+\chapter{Apéndice} \label{chapt:apendice}
 \input{tex/apendice.tex} 
 
 
 \addcontentsline{toc}{chapter}{Bibliografía}
 \bibliographystyle{unsrt}
-\label{biblio}
+\label{chapt:biblio}
 \bibliography{bib/bibliografia,bib/bib-docs_web} 
 
 

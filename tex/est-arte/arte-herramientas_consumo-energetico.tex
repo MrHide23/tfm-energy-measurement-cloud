@@ -1,25 +1,3 @@
-Las herramientas encargadas de llevar a cabo la toma de métricas de consumo de las cargas de codificación desplegadas sobre contenedores de Docker tendrían que estar enfocadas a entornos de altas prestaciones compuestos por múltiples nodos. Además, debería ser capaz de tomar métricas de consumo de recursos hardware implicados, como la GPU, y poder diferenciar qué porcentaje de recursos ha sido utilizado por el contenedor.
-
-Teniendo en cuenta estas necesidades, se ha realizado una búsqueda entre diversos repositorios, fuentes académicas y papers, como PAPER-KEPLER, y se ha llevado a cabo una selección de las herramientas que más se mencionan, tanto de forma directa como en la bibliografía. Estas dos herramientas han sido: Kepler \cite{kepler} y Scaphandre \cite{scaphandre}.
-
-Además, también se han proporcionado dos herramientas por parte de Juan Gutiérrez Aguado, uno de los directores del proyecto Eco-Stream: EnergyMeter, empleada como referencia de consumo energetico del sistema basado en las metricas del sistema obtenidas por RAPL; Y Monitor, una herramienta desarrollada por Juan Gutiérrez Aguado empleada como alternativa a las herramientas anteriores, la cual permite medir el consumo de una carga de trabajo desplegada sobre uno o varios contendores de forma simultanea y muy precisa.\
-
-%TABLA DE HERRAMIENTAS CAPACIDAD - NO SE SI FUNCIONA
-\begin{table}[h!]
-     \centering
-     \begin{tabular}{|c|c|c|c|c|}
-     \hline
-     \rowcolor[HTML]{C0C0C0} 
-     \textit{\textbf{HERRAMIENTA}}                          & \textit{\textbf{NODO}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}\textit{\textbf{PROCESO}}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}\textit{\textbf{CPU}}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}\textit{\textbf{GPU}}} \\ \hline
-     \cellcolor[HTML]{EFEFEF}\textit{\textbf{Energy Meter}} & \textbf{X}             & \textbf{-}                                                             & \textbf{X}                                                         & \textbf{-}                                                         \\ \hline
-     \cellcolor[HTML]{EFEFEF}\textit{\textbf{Kepler}}       & \textbf{X}             & \textbf{X}                                                             & \textbf{X}                                                         & \textbf{X}                                                         \\ \hline
-     \cellcolor[HTML]{EFEFEF}\textit{\textbf{Scaphandre}}   & \textbf{X}             & \textbf{X}                                                             & \textbf{X}                                                         & \textbf{-}                                                         \\ \hline
-     \cellcolor[HTML]{EFEFEF}\textit{\textbf{Monitor}}      & \textbf{X}             & \textbf{X}                                                             & \textbf{X}                                                         & \textbf{-}                                                         \\ \hline
-     \end{tabular}
-     \label{tab:arte-herramientas-capacidad-metricas}
-     \caption{Capacidad de toma de metricas de las Herramientas}
-\end{table}
-
 \subsubsection*{Kepler}\label{arte-herr-kepler}
  Kubernetes Efficient Power Level Exporter (Kepler) es una herramienta de monitorización de consumo de energía pensada para ser utilziada en entornos con multiples nodos gestionados por Kubernetes sobre los cuales se pretende medir el consumo energetico de una carga de trabajo desplegada sobre un contenedor, y saber cual es el consumo energetico que este presenta.\\
 

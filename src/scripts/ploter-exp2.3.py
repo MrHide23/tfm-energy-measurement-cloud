@@ -227,7 +227,7 @@ def plot_consumoxcores_gpusvscpu(data_csv_file, grafics_save='./grafics/gpusvscp
                     )
     
                     ax[idx].set_title(video)
-                    ax[idx].set_xlabel("Número de cores")
+                    ax[idx].set_xlabel("Numero de cores")
                     ax[idx].set_ylabel("Consumo (J)")
                     ax[idx].grid(True)
     
@@ -277,7 +277,7 @@ def plot_tiempoxcores(data_csv_file, grafics_save='./grafics/tiempoxcores'):
         'libx264_libx265': ['libx264', 'libx265']
     }
 
-    # Obtener valores únicos de nombre_video y bitrate
+
     for nombre in df["nombre_video"].unique():
         for bitrate in df.loc[df["nombre_video"] == nombre, "bitrate_Mbps"].unique():
            
@@ -305,7 +305,7 @@ def plot_tiempoxcores(data_csv_file, grafics_save='./grafics/tiempoxcores'):
                 )
 
                 # Etiquetas y título
-                ax.set_xlabel("Número de Cores", fontsize=15, weight='bold')
+                ax.set_xlabel("Numero de Cores", fontsize=15, weight='bold')
                 ax.set_ylabel("Tiempo de Codificación (s)", fontsize=15, weight='bold')
                 ax.set_title(f'{nombre} - {bitrate} Mbps - {group_name.replace("_", " vs ")}')
                 ax.grid(True)
@@ -350,7 +350,7 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
         'libx264_libx265': ['libx264', 'libx265']
     }
 
-    # Obtener valores únicos de nombre_video y bitrate
+   
     for nombre in df["nombre_video"].unique():
         for bitrate in df.loc[df["nombre_video"] == nombre, "bitrate_Mbps"].unique():
            
