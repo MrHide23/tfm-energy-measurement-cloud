@@ -32,39 +32,75 @@
      {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-30_ConsumoSI.png}{Consumo energetico frente a SI codificado con libx264 a 30 Mbps}{fig:exp2.2-consumoxti-libx264-30}
      {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-30_ConsumoTI.png}{Consumo energetico frente a TI codificado con libx264 a 30 Mbps}{fig:exp2.2-consumoxsi-libx264-30}
 
-
-
  \subsection{Resultados de la experimentacion Numero de Threads en relacion al consumo energetico}
 
-  La hipotesis previa a la realización de los experimentos de la fase \textbf{Relación entre numero de cores, tiempo de codificación y consumo energetico}\ref{section:exp2.3-coresxconsumo} y su posterior analisis de resultados, planteaban que a menor numero de cores y threads se dispusiese, para llevar a cabo la tarea de transcodificacion, mayor seria el consumo energetico y mayor seria el tiempo necesario para completar la tarea. De esta misma forma, tambien se esperaba que a mayor numero de threads y cores disponibles menor seria el tiempo de codificacion y menor seria el consumo energetico. 
-
   % CONCLUSIONES: 
-  % - Analizando Consumo x Cores
-  %    - Bitrate influye en consumo energetico general pero no varia blos resultados finales
-  %    - Codec de CPU
-  %     + Reacciones diferentes a las limitaciones de consumo energetico
-  %     + x264:
-  %         - consume menor energia a mayor es el nuemro de cores del que dispone, pudiendo apreciar cierto estancamiento al pasar los 6 cores/threads pero no es posible confirmalo porque solo se aprecia en 2 videos(Ambos con valores elevados de TI)
-  %     + x265:
-  %         -  consumo energetico se majusta al nuemor de cores, siendo mayor cuanntos mas cores tiene, y teniendo un consumo similar a limitaciones con 3 cores respecto a no tener limitaciones de consumo. Las muestras que mayor consumo han tenido son aquellas que presentan valores elevados de SI.
-  %         - Se aprecian mejoras al codificar empleando 6 cores y al no emplear liitaciones de cores(8 cores del sistema). Por tanto se puede presuponer una saturacion a apartir de los 6 cores.
-  %   - Codec de GPU
-  %     + Formas de reaccion diferntes
-  %     + H264:
-  %         - Confirma hipetesis principal pero con comportameinto bastante lineal despues de pasar los 3 cores, teniendo un consumo muy similar con limitacion de 3 cores a ninguna limitacion
-  %         - Muestras presentan repunte de consumo del 3-4\% para 30 Mbps y menos del 1\% en el caso de 10 Mbps, al limitar el proceso con 7 cores.
-  %         - Mayor consumo parte de muestras con valores elevados de TI y las muestras de menor consumo tiene valores elevados de SI pero valores bajos de TI
-  %     +H265:
-  %         - Muestras que encuentran mejoras inmediatas al pasar de 1 core a 3 tiene valores elevados de TI. Mientras que aquellas que tiene valores bajos de TI son mas planas y en el caso de una de las muetras el consumo energetico aumenta. Esta mejora representa un descenso de consumo del 22.08\%
-  %         - Por lo general se adapta al numero de cores y tiende a consumir menor energia conforme mayor cantidad de cores tienes.
-  %         - Destcar que la mayoria de las muestras presentan un ligero aumento del 1.19\% del consumo energetico al pasar de 6 cores a 7 cores
+   % - Analizando Consumo x Cores
+   %    - Bitrate influye en consumo energetico general pero no varia blos resultados finales
+   %    - Codec de CPU
+   %     + Reacciones diferentes a las limitaciones de consumo energetico
+   %     + x264:
+   %         - consume menor energia a mayor es el nuemro de cores del que dispone, pudiendo apreciar cierto estancamiento al pasar los 6 cores/threads pero no es posible confirmalo porque solo se aprecia en 2 videos(Ambos con valores elevados de TI)
+   %     + x265:
+   %         -  consumo energetico se majusta al nuemor de cores, siendo mayor cuanntos mas cores tiene, y teniendo un consumo similar a limitaciones con 3 cores respecto a no tener limitaciones de consumo. Las muestras que mayor consumo han tenido son aquellas que presentan valores elevados de SI.
+   %         - Se aprecian mejoras al codificar empleando 6 cores y al no emplear liitaciones de cores(8 cores del sistema). Por tanto se puede presuponer una saturacion a apartir de los 6 cores.
+   %   - Codec de GPU
+   %     + Formas de reaccion diferntes
+   %     + H264:
+   %         - Confirma hipetesis principal pero con comportameinto bastante lineal despues de pasar los 3 cores, teniendo un consumo muy similar con limitacion de 3 cores a ninguna limitacion
+   %         - Muestras presentan repunte de consumo del 3-4\% para 30 Mbps y menos del 1\% en el caso de 10 Mbps, al limitar el proceso con 7 cores.
+   %         - Mayor consumo parte de muestras con valores elevados de TI y las muestras de menor consumo tiene valores elevados de SI pero valores bajos de TI
+   %     +H265:
+   %         - Muestras que encuentran mejoras inmediatas al pasar de 1 core a 3 tiene valores elevados de TI. Mientras que aquellas que tiene valores bajos de TI son mas planas y en el caso de una de las muetras el consumo energetico aumenta. Esta mejora representa un descenso de consumo del 22.08\%
+   %         - Por lo general se adapta al numero de cores y tiende a consumir menor energia conforme mayor cantidad de cores tienes.
+   %         - Destcar que la mayoria de las muestras presentan un ligero aumento del 1.19\% del consumo energetico al pasar de 6 cores a 7 cores
+   % 
+   % - Analisi del Tiempo x Cores: 
+   %      
+   % 
+   
+  
+  Los resultados obtenidos permiten confirmar parcialmente la segunda hipotesis de consumo energetico en relacion al numero de cores, planteada en el subapartado \textbf{Hipotesis Iniciales} \ref{subsec:hipotesis}. El comportamiento observado depende de en gran medida del codificador utilizado y de las características del vídeo procesado.En particular, se observa que la reducción del número de cores disponibles tiene un efecto sobre el tiempo de ejecución. Por tanto, disponer de un mayor número de cores no implica necesariamente una reducción proporcional del consumo energético pero si una reduccion de tiempos considerable. Esto puede implicar una mejor utilizacion de los recursos dispobles, un factor de gran interes en cuestion de aprovechameinto de recursos.
+  
+  En primer lugar, el análisis del consumo energético muestra que el bitrate utilizado durante la codificación tiene una influencia directa sobre el consumo energético general. Los procesos realizados a \textit{30 Mbps} presentan, en general, consumos superiores a los realizados a \textit{10 Mbps}. Sin embargo, el incremento del bitrate no modifica de forma significativa las tendencias observadas al variar el número de cores. Esto permite considerar que, aunque el bitrate determina el nivel general de consumo, la respuesta frente a las limitaciones de recursos depende principalmente del codificador y del contenido procesado.
+  
+  En los codificadores basados en CPU se observan comportamientos diferentes entre \textbf{libx264} y \textbf{libx265}. Para \textbf{libx264}, los resultados muestran una tendencia hacia un mayor consumo energético a medida que aumenta el número de cores disponibles. Este comportamiento es contrario a la hipótesis inicial si se considera exclusivamente el consumo energético, pero puede explicarse por el incremento de los recursos utilizados durante el proceso de codificación. Se aprecia una tendencia al estancamiento al añadir mas de \textit{6 cores}, lo que podría indicar que el aumento de recursos deja de producir variaciones significativas en el consumo. No obstante, esta posible saturación no es concluyente ya que no se observa dicho comportamiento en todas las muestras, unicamente en dos muestras las cuales tiene la peculiaridad de tener valores elevados de TI.
+  
+  En el caso de \textbf{libx265}, el comportamiento resulta más próximo a una relación directa entre el número de cores utilizados y el consumo energético. Las configuraciones con un mayor número de cores tienden a presentar un consumo superior, mientras que las ejecuciones limitadas a \textbf{3 cores} muestran consumos próximos a los obtenidos sin restricciones. Adicionalmente, se observa que las muestras con un mayor consumo energetico tiene valores elevados de SI, lo que indica sensibilidad en el codificador \textbf{libx265} por la cantidad de contenido del video.
+  
+  Asimismo, en \textbf{x265} se observan mejoras a partir de la utilización de \textbf{6 cores}, así como en la configuración sin limitación, que permite utilizar los 8 cores disponibles en el sistema. Estos resultados, puede plantearse la existencia de una posible zona de saturación alrededor de los \textbf{6 cores}, a partir de la cual el incremento de recursos disponibles no proporciona una mejora significativa. Sin embargo, al igual que en el caso de x264, sería necesario realizar un mayor número de experimentos sobre CPUs con mas cores disponibles.
+  
+  En los codificadores acelerados mediante GPU se observa un comportamiento diferente al de los codificadores basados exclusivamente en CPU. Para \textbf{H.264\_NVENC}, los resultados se aproximan en mayor medida a la hipótesis inicial, ya que el consumo energético tiende a disminuir a medida que aumenta el número de cores disponibles. Esta tendencia resulta especialmente clara a partir de los \textbf{3 cores}, donde el comportamiento se vuelve relativamente estable sin apreciar claras diferencias de consumo entre la configuración limitada a 3 cores y la configuración sin limitación. Lo que podría indicar que, a partir de este punto, disponer de un número adicional de cores tiene una influencia limitada sobre el consumo energético.
+  
+  No obstante, se observa un comportamiento particular al utilizar \textbf{7 cores}. En algunas muestras se produce un repunte del consumo energético de aproximadamente un \textbf{3--4\%} para un \textit{bitrate} de 30 Mbps, mientras que para 10 Mbps el incremento es inferior al \textbf{1\%}. Este comportamiento puede indicar que la relación entre el número de cores y el consumo no es estrictamente lineal y que, a partir de determinado nivel de utilización de los recursos, pueden aparecer incrementos marginales de consumo que no se traducen necesariamente en una mejora de consumo.
+  
+  En cuanto a las características del contenido para \textbf{H.264\_NVENC}, las muestras con mayores consumos presentan valores elevados de \textbf{TI}, ubicandose en ultimo lugar las muestras con valores elevados de \textbf{SI}. Este comportamiento refuerza la observación realizada en la fase experimental anterior, donde se identificó que las características espaciales y temporales del contenido pueden afectar de manera diferente al coste energético dependiendo del codificador utilizado.
+  
+  Por su parte, \textbf{HEVC\_NVENC} presenta también una tendencia general hacia la reducción del consumo energético a medida que aumenta el número de cores disponibles. Sin embargo, la magnitud de esta reducción depende considerablemente del contenido procesado. Algunas muestras presentan una mejora especialmente marcada al pasar de \textbf{1 a 3 cores}, siendo estas muestras las que presentan valores elevados de TI. En uno de los casos analizados, esta modificación supone una reducción del consumo energético del \textbf{22.08\%}. Por el contrario, las muestras caracterizadas por valores reducidos de TI presentan un comportamiento más estable frente al incremento del número de cores y, en uno de los casos, incluso se observa un aumento del consumo energético. Nuevamente, al igual que con el codificador \textbf{libx265}, se observa cierta sensibilidad al SI de los videos.
+  
+  En términos generales, \textbf{HEVC\_NVENC} muestra una adaptación más clara al número de cores disponibles que los codificadores basados en CPU, tendiendo a consumir menos energía conforme aumenta la disponibilidad de recursos. Sin embargo, se observa nuevamente un pequeño incremento del consumo al pasar de \textbf{6 a 7 cores}, con un aumento medio aproximado del \textbf{1.19\%} en la mayoría de las muestras. Este comportamiento sugiere que el incremento de recursos disponibles no siempre se traduce en una mejora energética y que puede existir un punto a partir del cual el aumento del número de cores deja de resultar beneficioso desde el punto de vista energético.
 
- \section{Reevaluación de Costes}
+  \tresubfigs
+   {figs/exp2.3/ploter2.3/consumoxcores/libx264-30Mbps_ConsumoxCores.png}{Grafica comparativa de consumo energetico frente a numero de cores codificador con libx264 y 30 Mbps de bitrate}{fig:result-exp3.2-consumoxcores-x264-30mbps}
+   {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s_HSI_HTI-10Mbps_libx264_libx265_TiempoxCores.png}{Grafica comparativa de tiempo de codificacion frente a numero de cores codificado con libx264 y libx265 a 30 Mbps de bitrate para el video Eldorado\_chunk0010}{fig:result-exp3.2-tiempoxcores-x264-30mbps}
+   {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s_HSI_HTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{Grafica comparativa de tiempo de codificacion frente a numero de cores codificador con libx264 y libx265 a  30 Mbps de bitrate para el video Eldorado\_chunk0010}{fig:result-exp3.2-tiempoxcores-x264-30mbps}
+  
+
+ \section{Reevaluación de Planificaion y Costes}
  % -  Reajuste del gant y reajuste de coste de acuerdo al tiempo 
-
+Reajuste de tiempos de bido a XXXX \ref{fig:results-gantt-final}
  \begin{figure}[h!]
      \centering
      \includegraphics[width=\linewidth]{figs/PlanificacionFinal.png}
      \caption{Ajuste planificacion de desarrollo del Diagrama de Gantt}
      \label{fig:results-gantt-final}
+ \end{figure}
+
+ Como resultado del reajuste en tiempo que se muestra en el diagrama de Gantt \ref{fig:results-gantt-final}.
+ 
+ \begin{figure}[ht!]
+     \centering
+     \includegraphics[width=\linewidth]{figs/estimacion-final-coste.png}
+     \caption{Header CSV del archivo de datos procesados de Kepler}
+     \label{fig:coste-final-spec}
  \end{figure}

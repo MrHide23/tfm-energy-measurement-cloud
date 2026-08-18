@@ -1,4 +1,5 @@
-\section{Subapendice: Experimentacion}
+\chapter{Apéndice} \label{chapt:apendice}
+\section{Codigo}
  \subsubsection{Docker Compose de la herramienta Monitor}
  \subsubsection{Imagen de Docker empleada para recompilar Kepler}
      \lstinputlisting[label={exp0:em-docker-compose},caption={Imagen de contenedor en Go utilizada para recompilar la version modificada de Kepler}]{src/docker/Dockerfile.txt}
@@ -61,6 +62,7 @@
     \caption{Experimento para comprobar la configuracion acerca de la limitacion de threads con el encoder libx265}
     \label{fig:exp2.3-test-x265-limit-threads}
 \end{figure}
+
  \subsubsection{Codigo de Experimentos en Bash}
 
      \lstinputlisting[language=sh,label={code:exp2.2-sitienergy},caption={Script exp2.2-sisti-energy script en bash que lleva a cabo el experimento y alamacenamiento de metricas de consumo energetico en realcion con el SI y el TI}]{src/scripts/exp2.2_siti_energy_encodig.sh}
@@ -106,11 +108,10 @@
          \label{img:exp2.3-csvheader-process-data}
      \end{figure}
      
- \section{Graficas de Resultados}
- 
+\chapter{Graficas y Resultados}\label{apendice:graficas}
  % Primera parte (h264_nvenc)
- \subsection{Graficas de resultados: Consumo Energetico en relacion con el SITI}\label{apen-section:sitixconsumo}
- \subsubsection{Grafica 3D de Consumo Energetico en relacion con SI y TI }
+ \section{Experimento 3.2: Consumo Energetico en relacion con el SITI}\label{apen-section:sitixconsumo}
+
      \begin{figure}[!ht]
           \centering
           \small
@@ -134,7 +135,7 @@
           \label{fig:exp2.2-plot-plot3d-h264}
      \end{figure}
      
-     % Segunda parte (hevc_nvenc)
+% Segunda parte (hevc_nvenc)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -161,7 +162,7 @@
           \label{fig:exp2.2-plot-plot3d-hevc}
      \end{figure}
      
-     % Tercera parte (libx264)
+% Tercera parte (libx264)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -183,9 +184,9 @@
           \end{minipage}
           \caption{Comparativa de Consumo(J), SI y TI, codificado con libx264 }
           \label{fig:exp2.2-plot-plot3d-libx264}
-     \end{figure}
+    \end{figure}
      
-     % Cuarta parte (libx265)
+% Cuarta parte (libx265)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -210,7 +211,6 @@
           \label{fig:exp2.2-plot-plot3d-libx265}
      \end{figure}
  
- \subsubsection{Graficas de Consumo frente a SI }
      % Primera parte (h264_nvenc)
      \begin{figure}[!ht]
           \centering
@@ -259,7 +259,7 @@
           \label{fig:exp2.2-consumoxsi-hevc}
      \end{figure}
      
-     % Tercera parte (libx264)
+% Tercera parte (libx264)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -283,7 +283,7 @@
           \label{fig:exp2.2-consumoxsi-libx264}
      \end{figure}
      
-     % Cuarta parte (libx265)
+% Cuarta parte (libx265)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -297,7 +297,7 @@
           \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-30_ConsumoSI.png}{libx265 - Bitrate:  30 Mbps}{fig:libx265-30}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-35_ConsumoSI.png}{libx265 - Bitrate:  35 Mbps}{fig:libx265-35}
-          \begin{minipage}[b]{0.48\textwidth}
+          \begin{minipage}[b]{0.40\textwidth}
           \centering
           \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-40_ConsumoSI.png}
           \captionof{subfigure}{libx265 - Bitrate:  40}
@@ -306,8 +306,7 @@
           \caption{Comparativa de consumo, SI y TI para el códec libx265.}
           \label{fig:exp2.2-consumoxsi-libx265}
      \end{figure}
- 
- \subsubsection{Graficas de Consumo frente al TI}
+
      % Primera parte (h264_nvenc)
      \begin{figure}[!ht]
           \centering
@@ -331,7 +330,7 @@
           \label{fig:exp2.2-consumoxti-h264}
      \end{figure}
      
-     % Segunda parte (hevc_nvenc)
+% Segunda parte (hevc_nvenc)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -355,7 +354,7 @@
           \label{fig:exp2.2-consumoxti-hevc}
      \end{figure}
      
-     % Tercera parte (libx264)
+% Tercera parte (libx264)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -379,7 +378,7 @@
           \label{fig:exp2.2-consumoxti-libx264}
      \end{figure}
      
-     % Cuarta parte (libx265)
+% Cuarta parte (libx265)
      \begin{figure}[!ht]
           \ContinuedFloat
           \centering
@@ -402,3 +401,31 @@
           \caption{Comparativa de consumo, SI y TI para el códec libx265}
           \label{fig:exp2.2-consumoxti-libx265}
      \end{figure}
+
+ \section{Experimento 3.3: Consumo Energetico en relacion del numero de threads y cores}
+     \begin{figure}[ht!]
+      \centering
+      \small
+      \dosubfigs
+      {figs/exp2.3/ploter2.3/consumoxcores/h264_nvenc-10Mbps_ConsumoxCores.png}{h264\_nvenc - Bitrate: 10 Mbps }{fig:consumoxcores-h264-10}
+      {figs/exp2.3/ploter2.3/consumoxcores/hevc_nvenc-10Mbps_ConsumoxCores.png}{hevc\_nvenc - Bitrate: 10 Mbps}{fig:consumoxcores-hevc-10}
+      \dosubfigs
+      {figs/exp2.3/ploter2.3/consumoxcores/libx264-10Mbps_ConsumoxCores.png}{libx264 - Bitrate: 10 Mbps }{fig:consumoxcores-libx264-10}
+      {figs/exp2.3/ploter2.3/consumoxcores/libx265-10Mbps_ConsumoxCores.png}{libx265 - Bitrate: 10 Mbps}{fig:consumoxcores-libx265-10}
+      \caption{Graficas resultantes de las metricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 10 Mbps}
+      \label{fig-group:consumoxcores-10mps}
+     \end{figure}
+
+     \begin{figure}[ht!]
+      \centering
+      \small
+      \dosubfigs
+      {figs/exp2.3/ploter2.3/consumoxcores/h264_nvenc-30Mbps_ConsumoxCores.png}{h264\_nvenc - Bitrate: 30 Mbps }{fig:consumoxcores-h264-30}
+      {figs/exp2.3/ploter2.3/consumoxcores/hevc_nvenc-30Mbps_ConsumoxCores.png}{hevc\_nvenc - Bitrate: 30 Mbps}{fig:consumoxcores-hevc-30}
+      \dosubfigs
+      {figs/exp2.3/ploter2.3/consumoxcores/libx264-30Mbps_ConsumoxCores.png}{libx264 - Bitrate: 30 Mbps }{fig:consumoxcores-libx264-30}
+      {figs/exp2.3/ploter2.3/consumoxcores/libx265-30Mbps_ConsumoxCores.png}{libx265 - Bitrate: 30 Mbps}{fig:consumoxcores-libx265-30}
+      \caption{Graficas resultantes de las metricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 30 Mbps}
+      \label{fig-group:consumoxcores-30mps}
+     \end{figure}
+ 

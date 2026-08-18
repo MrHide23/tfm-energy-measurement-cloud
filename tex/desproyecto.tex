@@ -1,7 +1,5 @@
 A continuacion se desarrollan los diferentes experimentos llevados a cabo, con la intencion de lograr cumplir los objetivos definidos en la fase de la introduccion \ref{chapt:intro}.
 
-\section{Analisis de Requerimientos}
-
 \section{Diseño de la metodología experimental}
 % Qué variables quieres estudiar.
 % Qué métricas necesitas.
@@ -9,6 +7,27 @@ A continuacion se desarrollan los diferentes experimentos llevados a cabo, con l
 % Qué características de los vídeos vas a utilizar.
 % Qué escenarios vas a estudiar.
 % Qué hipótesis planteas.
+
+%PASOS PROCESO EXPERIMENTAL
+% Cual es el ciclo de vida de cada experimento
+% 
+% El inicio del desarrollo del proyecto se ha establecido para el 20 de mayo, coincidiendo con la fecha de inicio de la actividad laboral como Personal No Doctorado Investigador (PDI). De forma simultánea, se iniciará la redacción del Trabajo Fin de Máster (TFM), en la que se irán documentando los avances realizados, así como las decisiones técnicas adoptadas durante cada una de las fases de planificación y desarrollo del proyecto.
+% 
+% La primera etapa del proyecto consistirá en definir su alcance, los objetivos que se pretenden alcanzar y las hipótesis iniciales, tomando como referencia el estado del arte en el ámbito de la codificación de vídeo y la estimación del consumo energético de cargas de trabajo desplegadas sobre contenedores. Una vez establecidos estos aspectos, se determinarán los requisitos y necesidades técnicas del proyecto y se procederá a la preparación del entorno experimental, incluyendo la instalación y configuración del sistema operativo y de las aplicaciones necesarias para la ejecución de las pruebas.
+% 
+% A continuación, se realizará la selección de los vídeos que se emplearán en los diferentes experimentos. Para ello, se utilizarán los vídeos disponibles en el servidor de contenido del proyecto Eco-Stream. En concreto, se emplearán los vídeos contenidos en el directorio \textbf{test}, procedentes de CableLabs y Blender \cite{cable-labs} \cite{blender-videos}. Estos vídeos se encuentran divididos en chunks de dos segundos de duración, manteniendo las propiedades de calidad de los vídeos originales.
+% 
+% Una vez preparado el entorno experimental y seleccionados los vídeos, se llevará a cabo el primero de los experimentos, cuyo objetivo será evaluar la capacidad de las diferentes herramientas de monitorización para estimar el consumo energético de un nodo y de un proceso de codificación ejecutado en un contenedor. Estas pruebas se realizarán en escenarios con múltiples contenedores y diferentes limitaciones de acceso a los núcleos de procesamiento del sistema.
+% 
+% Tras seleccionar la herramienta de monitorización que se utilizará durante el resto de los experimentos, se procederá a seleccionar un conjunto de chunks de vídeo a partir de los datos proporcionados por el Dr. Francisco Miguel Micó Enguídanos, quien ha empleado estos datos en el desarrollo de su tesis doctoral. Esta selección se complementará con un proceso de selección manual de chunks. Posteriormente, el conjunto seleccionado se clasificará en función de sus valores de Spatial Information (SI) y Temporal Information (TI), permitiendo seleccionar los chunks que se utilizarán para generar los vídeos empleados en las siguientes fases experimentales.
+% 
+% En el siguiente experimento se analizará el consumo energético asociado a la codificación de vídeo mediante la variación del bitrate y del codificador utilizado, mientras se realizan las correspondientes mediciones de consumo energético. Una vez recopiladas las muestras, se procesarán los resultados y se generarán las gráficas necesarias para su análisis. Finalmente, se redactarán las conclusiones correspondientes a esta fase experimental.
+% 
+% Por último, se llevará a cabo el último experimento, en el que se estudiará el efecto de variar el número de cores y threads asignados a cada proceso de codificación para los diferentes codificadores. A partir de los resultados obtenidos, se generarán gráficas que permitan analizar la relación entre el consumo energético, el número de cores utilizados y el tiempo requerido para completar cada proceso de codificación. Con base en este análisis, se establecerán las conclusiones correspondientes a esta fase experimental.
+% 
+% Finalmente, los resultados obtenidos durante la fase experimental serán revisados y contrastados con el tutor del TFM, Juan Gutiérrez Aguado. A partir de esta revisión se establecerán las conclusiones finales del proyecto y se completará la redacción del Trabajo Fin de Máster.
+% 
+% La estimación temporal de las diferentes actividades descritas se recoge en el diagrama de Gantt presentado a continuación \ref{fig:expect-ganttinicial}, que permite visualizar la duración prevista de cada tarea y su distribución a lo largo del desarrollo del proyecto.
 
 \section{Configuración de Entorno \& Herramientas}\label{exp0-environment}
 % - Preparacion del sistema
@@ -18,6 +37,7 @@ A continuacion se desarrollan los diferentes experimentos llevados a cabo, con l
 \input{tex/des/exp0-enviroment.tex}\label{sec:entrono-desarrollo}
 
 \section{Implementación de la infraestructura experimental}
+% - Explicar Implementacion de experimentos 
 % - Explicacion de los script que he utilizado y su funcionamiento
-% 
+
 

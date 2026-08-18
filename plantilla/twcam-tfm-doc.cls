@@ -79,21 +79,21 @@
 
 
 \newcommand{\tresubfigs}[9]{%
-  \begin{minipage}[b]{0.35\textwidth}
+  \begin{minipage}[b]{0.30\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#1}
     \captionof{subfigure}{#2}
     \label{#3}
   \end{minipage}%
   \hfill
-  \begin{minipage}[b]{0.35\textwidth}
+  \begin{minipage}[b]{0.30\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#4}
     \captionof{subfigure}{#5}
     \label{#6}
   \end{minipage}%
   \hfill
-  \begin{minipage}[b]{0.35\textwidth}
+  \begin{minipage}[b]{0.30\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#7}
     \captionof{subfigure}{#8}

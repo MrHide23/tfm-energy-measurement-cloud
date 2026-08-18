@@ -77,27 +77,9 @@ Cabe destacar que, aunque el conjunto de datos proporcionado en la tesis del Doc
 
 Por este motivo, se desarrolló el script \textbf{exp2.1-siticalculator} \ref{code:script-siti-calculation} \ref{code:script-siti-calculation-ob} en Python, que hace uso de la libreria \textit{SITI Tool} \cite{siti-tool-pypip} para calcular los valores de SI y TI de cada \textit{chunk}. Posteriormente, el script procesó los resultados obtenidos y los almacenó en un archivo CSV con la estructura mostrada en \ref{fig.1-sititool-header-csv}.
 
-
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figs/exp2.1-siti-pacomico.png}
-        \captionof{subfigure}{Ubicación de chunks de video en base a los datos del doctor Paco Mico}
-        \label{fig:exp2.1-chunks-data-pacomico}
-    \end{minipage}
-     \hfill
-     
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figs/exp2.1-ChucnkSITI-01.png}
-        \captionof{subfigure}{Ubicación de chunks de video según el SI y el TI}
-        \label{fig:exp2.1-chunks-selection}
-    \end{minipage}
-    
-    \caption{Graficas que ubican la posicion de los chuncks en base a las metricas SI y TI}
-    \label{fig:exp2.1-chunks-combined}
-\end{figure}
+\dosubfigs
+     {figs/exp2.1-siti-pacomico.png}{Ubicación de chunks de video en base a los datos del doctor Paco Mico}{fig:exp2.1-chunks-data-pacomico}
+     {figs/exp2.1-ChucnkSITI-01.png}{Graficas que ubican la posicion de los chuncks en base a las metricas SI y TI}{fig:exp2.1-chunks-combined}
 
 Una vez determinada la posición de cada \textit{chunk} en función de sus valores de SI y TI, se definieron las cuatro zonas utilizadas para su clasificación, estableciendo para cada una de ellas los correspondientes rangos de SI y TI. El resultado de esta clasificación se recoge en la tabla \ref{tab:siti-zones-definition}.
 
@@ -197,7 +179,7 @@ Por defecto, el script \textbf{ploter-exp2.2} determina el directorio en el que 
 
 
 
-\subsection{Relación entre numero de cores, tiempo de codificación y consumo energetico}\label{section:exp2.3-coresxconsumo}
+\subsection{Relación entre numero de cores y consumo energetico}\label{section:exp2.3-coresxconsumo}
     
 
 En esta segunda subfase de experimentación, perteneciente a la sección \textbf{Consumo energético en relación al SITI y el número de Threads} \ref{exp2-desarrollo}, se ha analizado el consumo energético de procesos de transcodificación ejecutados sobre contenedores de Docker con limitaciones en el acceso a los cores de la CPU y en el número de threads utilizados por los codificadores. Bajo esta premisa, se han desarrollado los experimentos descritos a continuación, con el objetivo de estudiar la relación existente entre el consumo energético, el tiempo de codificación y el número de cores y threads disponibles durante el proceso.
