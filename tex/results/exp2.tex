@@ -69,7 +69,7 @@ En ambas fases se ejecutara unicamente un contenedor por prueba, sin concurrenci
 En cuanto a los video seleccionados para llevar a cabo los distinto experimentos, nuevamente, se ha empleado la base de video ya existente del proyecto ecostream. Se han utilizado video compuestos por los chuncks de los videos de la tabla  \ref{tab:lista-videos-test}. En concreto, para los experimentos de esta sección, han sido codificados utilizando el encoder libx264 con una calidad 4k(3840 x 2160) SDR, un CRF 0 y 30 fps. Destacar tienen un perfil de color yuv420p(4:4:4) con una profundidad de 8 bits  \footnote{Profundidad de color obtenida con la orden de ffmpeg: \lstinline[language=sh]{ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4}} \ref{ffmpeg-achive-colordeep} y 48 frams por chunk \footnote{Numero de frames del segmento de video obtenidos con la orden de ffmpeg: \lstinline[language=sh]{ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4}}
 
 
-\subsubsection{Clasificacion de chunks en base a los valores SI y TI}
+\subsection{Experimento 2.1: Clasificacion de chunks en base a los valores SI y TI}
  
 Con el objetivo de establecer una correlación entre el consumo energético asociado al proceso de codificación de vídeo y las métricas \textit{Spatial Information} (SI) y \textit{Temporal Information} (TI), se definieron cuatro categorías en función de los valores de SI y TI. Posteriormente, se seleccionó una serie de \textit{chunks} en función de sus valores potenciales de SI y TI, tomando como referencia tanto la visualización de los vídeos como los datos obtenidos de la tesis del Doctor Francisco Miguel Mico Enguidanos.
 
@@ -101,7 +101,7 @@ Cabe destacar que la definición de los límites de cada zona presentó cierta d
      \caption{Zonas de video para la clasificacion de chuncks en base al SITI}
 \end{table}
 
-\subsection{Consumo energetico en relacion al SITI}\label{section:exp2.2-sitixconsumo}
+\subsection{Experimento 2.2: Consumo energético en relación al SITI}\label{section:exp2.2-sitixconsumo}
 % FASE 2.2 
  % - Videos para pruebas:
  %  - Seleccion de chuncks + necesidades de duracion de cada video
@@ -179,12 +179,12 @@ Por defecto, el script \textbf{ploter-exp2.2} determina el directorio en el que 
 
 
 
-\subsection{Relación entre numero de cores y consumo energetico}\label{section:exp2.3-coresxconsumo}
+\subsection{Experimento 2.3: Consumo energético en relación al numero de cores y threads}\label{section:exp2.3-coresxconsumo}
     
 
-En esta segunda subfase de experimentación, perteneciente a la sección \textbf{Consumo energético en relación al SITI y el número de Threads} \ref{exp2-desarrollo}, se ha analizado el consumo energético de procesos de transcodificación ejecutados sobre contenedores de Docker con limitaciones en el acceso a los cores de la CPU y en el número de threads utilizados por los codificadores. Bajo esta premisa, se han desarrollado los experimentos descritos a continuación, con el objetivo de estudiar la relación existente entre el consumo energético, el tiempo de codificación y el número de cores y threads disponibles durante el proceso.
+En esta segunda subfase de experimentación, perteneciente a la sección \textbf{Experimento 2: Consumo energético en relacion al SITI y el Numero de Threads} \ref{exp2-desarrollo}, se ha analizado el consumo energético de procesos de transcodificación ejecutados sobre contenedores de Docker con limitaciones en el acceso a los cores de la CPU y en el número de threads utilizados por los codificadores. Bajo esta premisa, se han desarrollado los experimentos descritos a continuación, con el objetivo de estudiar la relación existente entre el consumo energético, el tiempo de codificación y el número de cores y threads disponibles durante el proceso.
 
-Para esta subfase experimental se ha utilizado el conjunto de \textit{vídeos} descrito en \ref{tab:exp2.2-videos}, creado y clasificado durante la subfase \textbf{Consumo energético en relación al SITI} \ref{section:exp2.2-sitixconsumo}. Del conjunto de vídeos compuesto por un único \textit{chunk}, se han seleccionado dos vídeos correspondientes a cada una de las cuatro zonas definidas en \ref{tab:siti-zones-definition}, obteniendo un total de \textbf{ocho vídeos}, que se muestran en la Tabla \ref{tab:exp2.3-videos-30s}.
+Para esta subfase experimental se ha utilizado el conjunto de \textit{vídeos} descrito en \ref{tab:exp2.2-videos}, creado y clasificado en el experimento \textbf{Experimento 2.2: Consumo energético en relación al SITI} \ref{section:exp2.2-sitixconsumo}. Del conjunto de vídeos compuesto por un único \textit{chunk}, se han seleccionado dos vídeos correspondientes a cada una de las cuatro zonas definidas en \ref{tab:siti-zones-definition}, obteniendo un total de \textbf{ocho vídeos}, que se muestran en la Tabla \ref{tab:exp2.3-videos-30s}.
 
 En este caso, se requiere utilizar vídeos de mayor duración que permitan prolongar los procesos de transcodificación, aumentando el tiempo de trabajo de los codificadores y permitiendo recopilar un mayor número de métricas de consumo. Por este motivo, se han generado nuevos vídeos con una duración de \textbf{30 segundos}. Al igual que en la subfase anterior, estos vídeos presentan una resolución de 4K (3840x2160), una tasa de 30 fps y un \textit{bitrate} de 30 Mbps. Para su creación se ha utilizado el \textit{chunk} original, que se ha reproducido en bucle un total de \textit{quince veces}, obteniendo así vídeos con la duración requerida mediante el procedimiento mostrado en \ref{code:ffmpeg-loopvideo}.
 

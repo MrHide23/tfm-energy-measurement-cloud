@@ -54,7 +54,7 @@
 \usepackage[acronym]{glossaries}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{listings}
-\usepackage{tabularx}
+\usepackage{multirow, tabularx, booktabs}
 \usepackage{tablefootnote}
 \usepackage{subfigure}
 \usepackage{subcaption}
