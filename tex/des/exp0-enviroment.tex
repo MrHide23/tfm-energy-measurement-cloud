@@ -110,15 +110,15 @@
   \end{lstlisting}
   
 
- \subsubsection{Energy Meter}
- Para instalar Energy Meter unicamente es necesario desplegar el docker compose creado por Juan Guatierrez \ref{exp0:em-docker-compose}, el cual se descarga del repositorio del proyecto la imagen 'energy-monitoring:1.0' y escuchapeticiones en el puesto 6000.
+ \subsubsection{Global Energy Meter}
+ Para instalar Global Energy Meter unicamente es necesario desplegar el docker compose creado por Juan Guatierrez \ref{exp0:em-docker-compose}, el cual se descarga del repositorio del proyecto la imagen 'energy-monitoring:1.0' y escuchapeticiones en el puesto 6000.
 
  Para tomar metricas del sistema con la herramienta una vez docker compose esta arrancado, unicamente es necesario realizar una peticion curl de la siguiente forma \lstinline[language=bash]|curl -s http://localhost:6000/api/start|. Y para recoger los datos de consumo, se debe realizar una nueva peticion curl \lstinline[language=bash]|curl -s http://localhost:28282/metrics > "output.json"| pero esta vez redirigiendo la salida a un fichero, ya que al detener la toma de una métrica esta nos devuelve los datos de consumo del sistema en formato json.
  
- \lstinputlisting[label={exp0:em-docker-compose}, caption={Docker Compose que permite desplegar la herramienta Energy Meter}]{src/docker/docker-compose-em.yaml}
+ \lstinputlisting[label={exp0:em-docker-compose}, caption={Docker Compose que permite desplegar la herramienta Global Energy Meter}]{src/docker/docker-compose-em.yaml}
  
- \subsubsection{Monitor}
- Al igual que la anterior herramienta, Monitor ha sido desarrollada por Juan Gutierrez Aguado como alternativa a Kepler y Schaphandre. Para instalarla unicamente es necesario descargar el contenedor *energy-monitoring:1.0* del repositorio del proyecto de investigacion y desplegarlo utilizado docker compose \ref{exp0:monitor-docker-compose}. Este archivo compose expondra la herramienta en el puesto 5000 para recibir peticiones de monitorizacion.\\
+ \subsubsection{Container Energy Monitoring}
+ Al igual que la anterior herramienta, Container Energy Monitoring ha sido desarrollada por Juan Gutierrez Aguado como alternativa a Kepler y Schaphandre. Para instalarla unicamente es necesario descargar el contenedor *energy-monitoring:1.0* del repositorio del proyecto de investigacion y desplegarlo utilizado docker compose \ref{exp0:monitor-docker-compose}. Este archivo compose expondra la herramienta en el puesto 5000 para recibir peticiones de monitorizacion.\\
 
  %USO HERRAMIENTA
  El fragmento de código mostrado en la Sección \ref{exp0:monitor-tooluse} presenta un ejemplo del proceso de inicio y finalización de la monitorización, así como de la posterior obtención de las métricas recopiladas. Como puede observarse, tanto el inicio como la finalización de la monitorización se realizan mediante peticiones HTTP enviadas con la herramienta curl al puerto 5000, donde se encuentra desplegada la API de la herramienta.
@@ -136,7 +136,7 @@
  Cabe destacar que, con el objetivo de garantizar la obtención de al menos diez muestras durante los procesos de transcodificación tanto en CPU como en GPU, fue necesario modificar el parámetro *SAMPLES\_PER\_SECOND* definido en el archivo Docker Compose de la herramienta, incrementando su valor de 1 a 3. De este modo, la herramienta pasa a realizar tres muestreos por segundo de monitorización, lo que permite obtener un número suficiente de muestras incluso en aquellos procesos de transcodificación cuya duración es reducida
  
 
- \begin{lstlisting}[language=bash, caption={Codigo que ejemplifica el proceso de incio y recoleccion final de metricas de consumo con la herramientas Monitor},label={exp0:monitor-tooluse}]
+ \begin{lstlisting}[language=bash, caption={Codigo que ejemplifica el proceso de incio y recoleccion final de metricas de consumo con la herramientas Container Energy Monitoring},label={exp0:monitor-tooluse}]
     uid=$(uuid)
     payload='{"workload_id": "'$uid'",
     "container": "'$container'",

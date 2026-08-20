@@ -1,11 +1,11 @@
 \chapter{Apéndice} \label{chapt:apendice}
 \section{Codigo}
- \subsubsection{Docker Compose de la herramienta Monitor}
+ \subsubsection{Docker Compose de la herramienta Container Energy Monitoring}
  \subsubsection{Imagen de Docker empleada para recompilar Kepler}
      \lstinputlisting[label={exp0:em-docker-compose},caption={Imagen de contenedor en Go utilizada para recompilar la version modificada de Kepler}]{src/docker/Dockerfile.txt}
      
  \subsubsection{Configuracion del Sistema y Herramientas}
-     \lstinputlisting[label={exp0:monitor-docker-compose},caption={Docker Compose que permite desplegar Monitor}]{src/docker/docker-compose-monitor.yaml}
+     \lstinputlisting[label={exp0:monitor-docker-compose},caption={Docker Compose que permite desplegar Container Energy Monitoring}]{src/docker/docker-compose-monitor.yaml}
 
  \subsection{Experimentación Fase 1}
      \begin{figure}[h!]
@@ -25,7 +25,7 @@
      \begin{figure}[h!]
      \centering
      	\includegraphics[width=\linewidth]{figs/exp1_monitor_csv_header.png}  
-     	\caption{Header CSV del archivo de datos procesados de Monitor}  
+     	\caption{Header CSV del archivo de datos procesados de Container Energy Monitoring}  
      	\label{fig:exp1-monitor-csv_header}
      \end{figure}
 
@@ -33,19 +33,19 @@
      \lstinputlisting[language=sh,label={exp1:kepler-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico con la herramienta Kepler}]{src/scripts/ffmpeg_kepler_probe.sh}
   \subsubsection{Arranque y toma de metricas con Scaphandre}
     \lstinputlisting[language=sh,label={exp1:scp-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico con la herramienta Scaphandre}]{src/scripts/ffmpeg_scaphandre_probe.sh}
- \subsubsection{Arranque y toma de metricas con Monitor}
+ \subsubsection{Arranque y toma de metricas con Container Energy Monitoring}
     \lstinputlisting[language=sh,label={exp1:monitor-script-probes-1container},caption={Script en bash empleado para llevar}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
     
-    \lstinputlisting[language=sh,label={exp1:monitor-script-probes-2containers}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico sobre dos contenedor simultaneamente con la herramienta Monitor}]{src/scripts/monitor-experiment-ffmpeg-gpu-2-container.sh}
+    \lstinputlisting[language=sh,label={exp1:monitor-script-probes-2containers}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico sobre dos contenedor simultaneamente con la herramienta Container Energy Monitoring}]{src/scripts/monitor-experiment-ffmpeg-gpu-2-container.sh}
  \subsubsection{Procesamiento de Metricas}
      \lstinputlisting[language=sh,label={exp1:kepler-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Kepler y los alamcena en CSV}]{src/scripts/kepler_process_data.sh}
      
      \lstinputlisting[language=sh,label={exp1:scp-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Scaphandre y los alamcena en CSV}]{src/scripts/scaphandre_process_data.sh}
      
-     \lstinputlisting[language=sh,label={exp1:monitor-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herrameinta Monitor y los alamcena en CSV}]{src/scripts/process_monitor_data.sh}
+     \lstinputlisting[language=sh,label={exp1:monitor-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herrameinta Container Energy Monitoring y los alamcena en CSV}]{src/scripts/process_monitor_data.sh}
      
  \subsubsection{Obtencion de graficas Comparativas}
-     \lstinputlisting[language=python,label={exp1:python-bar-grafics},caption={Script en Python que permite obtener graficas comparativas de consumo energetico entre las herrameintas Monitor, Scaphandre y Kepler}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
+     \lstinputlisting[language=python,label={exp1:python-bar-grafics},caption={Script en Python que permite obtener graficas comparativas de consumo energetico entre las herrameintas Container Energy Monitoring, Scaphandre y Kepler}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
      
 \subsection{Experimetacion Fase 2}
 

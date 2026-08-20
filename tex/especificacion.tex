@@ -53,24 +53,10 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
   
   En cuanto a las herramientas con las que se llevará a cabo la monitorización y toma de métricas de consumo energético, se ha realizado una búsqueda entre diversos repositorios, fuentes académicas y papers, como \cite{container-metrics-kubernetes}, y se ha llevado a cabo una selección de las herramientas consolidadas en el estado del arte. Estas dos herramientas han sido: \textit{Kepler} \cite{kepler} y \textit{Scaphandre} \cite{scaphandre}.
   
-  Adicionalmente, también se han proporcionado dos herramientas por parte de Juan Gutiérrez Aguado, uno de los directores del proyecto Eco-Stream: \textit{EnergyMeter}, empleada como referencia de consumo energético del sistema basado en las métricas del sistema obtenidas por RAPL; Y \textit{Monitor}, una herramienta desarrollada por Juan Gutiérrez Aguado empleada como alternativa a las herramientas anteriores, la cual permite medir el consumo de una carga de trabajo desplegada sobre uno o varios contenedores de forma simultánea y muy precisa. Las capacidades y alcance de cada una de estas herramientas de medición se resumen en la tabla \ref{tab:especi-herramientas-capacidad-metricas}.
+  Adicionalmente, también se han proporcionado dos herramientas por parte de Juan Gutiérrez Aguado, uno de los directores del proyecto Eco-Stream: \textit{EnergyMeter}, empleada como referencia de consumo energético del sistema basado en las métricas del sistema obtenidas por RAPL; Y \textit{Container Energy Monitoring}, una herramienta desarrollada por Juan Gutiérrez Aguado empleada como alternativa a las herramientas anteriores, la cual permite medir el consumo de una carga de trabajo desplegada sobre uno o varios contenedores de forma simultánea y muy precisa. Las capacidades y alcance de cada una de estas herramientas de medición se resumen en la tabla \ref{tab:especi-herramientas-capacidad-metricas}.
   
   Para el procesamiento e interpretación de los datos se utilizará principalmente \textit{Python}, haciendo uso de la librería \textit{Pandas} para la manipulación y almacenamiento de datos en formato CSV. Asimismo, la generación de gráficos comparativos se basará en las librerías \textit{Matplotlib} y \textit{Seaborn}. En particular, \textit{Seaborn} simplifica la representación de estructuras de datos complejas y permite obtener visualizaciones más refinadas e intuitivas.
 
- \begin{table}[h!]
-      \centering
-      \begin{tabular}{|c|c|c|c|c|}
-      \hline
-      \rowcolor[HTML]{C0C0C0} 
-      \textit{\textbf{HERRAMIENTA}}                          & \textit{\textbf{NODO}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}\textit{\textbf{PROCESO}}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}\textit{\textbf{CPU}}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}\textit{\textbf{GPU}}} \\ \hline
-      \cellcolor[HTML]{EFEFEF}\textit{\textbf{Energy Meter}} & \textbf{X}             & \textbf{-}                                                             & \textbf{X}                                                         & \textbf{-}                                                         \\ \hline
-      \cellcolor[HTML]{EFEFEF}\textit{\textbf{Kepler}}       & \textbf{X}             & \textbf{X}                                                             & \textbf{X}                                                         & \textbf{X}                                                         \\ \hline
-      \cellcolor[HTML]{EFEFEF}\textit{\textbf{Scaphandre}}   & \textbf{X}             & \textbf{X}                                                             & \textbf{X}                                                         & \textbf{-}                                                         \\ \hline
-      \cellcolor[HTML]{EFEFEF}\textit{\textbf{Monitor}}      & \textbf{X}             & \textbf{X}                                                             & \textbf{X}                                                         & \textbf{-}                                                         \\ \hline
-      \end{tabular}
-      \label{tab:especi-herramientas-capacidad-metricas}
-      \caption{Capacidad de toma de metricas de las Herramientas}
-      \end{table}
 
 % SELECCION DE VIDEO
 \subsection{Seleccion de Muestras de Video}

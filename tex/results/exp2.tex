@@ -24,7 +24,7 @@ Tambien se ha variado el bitrate en cada transcodificacion de cada video, y depe
  \item \texttt{libx265 y H265\_NVENC}: 10,15,20,25,30,35,40   
  \end{itemize}
 
-Por tanto, se ha trasncodificado cada video empleando los codificadores y los bitrates correspondientes de la lista, midiendo cada proceso con la herramienta Monitor. Ya que como se ha desmostrado en la seccion anterior \ref{exp1-desarrollo}, es la herramienta mas precisa y mas adecuada para obtener los datos de consumo, asi como aportar mayor granularidad sobre estas metricas. 
+Por tanto, se ha trasncodificado cada video empleando los codificadores y los bitrates correspondientes de la lista, midiendo cada proceso con la herramienta Container Energy Monitoring. Ya que como se ha desmostrado en la seccion anterior \ref{exp1-desarrollo}, es la herramienta mas precisa y mas adecuada para obtener los datos de consumo, asi como aportar mayor granularidad sobre estas metricas. 
 
  
 \begin{table}[h!]
@@ -201,7 +201,7 @@ En este caso, se requiere utilizar vídeos de mayor duración que permitan prolo
  \label{tab:exp2.3-videos-30s}
 \end{table}
 
-Para llevar a cabo el lanzamiento de los procesos y la recopilación de métricas mediante \textit{Monitor}, se ha desarrollado el script \textbf{exp2.3-threadsxenergy.sh} \ref{code:exp2.3-threadsxenergy}, escrito en Bash. Este script parte de la misma base que el utilizado en la subfase anterior, \textbf{exp2.2-sisti-energy.sh}, pero incorpora determinadas modificaciones para adaptarlo a los nuevos requisitos experimentales. La codificación de los vídeos mostrados en la Tabla \ref{tab:exp2.3-videos-30s} se ha realizado únicamente con los \textit{bitrates} de \textit{10 Mbps} y \textit{30 Mbps}, definiendo de esta forma dos escenarios con diferente carga de trabajo y demanda de recursos.
+Para llevar a cabo el lanzamiento de los procesos y la recopilación de métricas mediante \textit{Container Energy Monitoring}, se ha desarrollado el script \textbf{exp2.3-threadsxenergy.sh} \ref{code:exp2.3-threadsxenergy}, escrito en Bash. Este script parte de la misma base que el utilizado en la subfase anterior, \textbf{exp2.2-sisti-energy.sh}, pero incorpora determinadas modificaciones para adaptarlo a los nuevos requisitos experimentales. La codificación de los vídeos mostrados en la Tabla \ref{tab:exp2.3-videos-30s} se ha realizado únicamente con los \textit{bitrates} de \textit{10 Mbps} y \textit{30 Mbps}, definiendo de esta forma dos escenarios con diferente carga de trabajo y demanda de recursos.
 
 Además, se ha añadido un nuevo nivel de iteración relacionado con el número de cores que el contenedor puede utilizar y con el número de threads que emplea \textit{FFmpeg} durante cada proceso de transcodificación. Para ello, se ha establecido una relación aproximada entre el número de cores disponibles para el contenedor y el número de threads utilizados por \textit{FFmpeg}, expresada como:
 
