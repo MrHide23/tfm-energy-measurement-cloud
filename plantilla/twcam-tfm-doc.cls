@@ -61,14 +61,14 @@
 
 % COMANDOS PERSONALES 
 \newcommand{\dosubfigs}[6]{%
-  \begin{minipage}[b]{0.48\textwidth}
+  \begin{minipage}[b]{0.40\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#1}
     \captionof{subfigure}{#2}
     \label{#3}
   \end{minipage}%
   \hfill
-  \begin{minipage}[b]{0.48\textwidth}
+  \begin{minipage}[b]{0.40\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#4}
     \captionof{subfigure}{#5}

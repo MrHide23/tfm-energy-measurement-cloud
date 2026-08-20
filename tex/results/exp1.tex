@@ -1,11 +1,11 @@
-\section{Experimento 1: Selección de Herramienta para la toma de Métricas de Consumo}\label{exp1-selecttool}
+\subsection{Experimento 1: Selección de Herramienta para la toma de Métricas de Consumo}\label{exp1-selecttool}
 En esta primera fase de experimentación se han llevado a cabo una comparativa entre las diferentes herramientas disponibles para la toma de métricas de consumo sobre cargas de trabajo desplegadas en contenedores. Estas cargas de trabajo están basadas en la codificación de video y se llevarán a cabo empleando la herramienta \textbf{ffmpeg}.
 
 Se ha utilizado un unico video compuesto por los chunks \textbf{18 a 43} del video \textbf{Skateboarding\_CableLabs} disponible en el directorio de \textbf{test}\ref{tab:lista-videos-test} del servidor de video del proyecto ecostream. La razon por la que se ha utilizado un unico video es debido a que el objetivo principal es determinar qué herramienta es capaz de tomar el conjunto de métricas de consumo más precisas.
 
 El video resultante de la union de los chuncks, consta de una duración de 50 segundos con un CRF 0 a una calidad 4K(3840 x 2160) y con un bitrate de 1012693 kbps (1012,693 Mbps). Pese a que no es un video con una gran duración, tiene una gran calidad con 0 pérdida y un bitrate muy elevado, proporcionando sufiente carga de trabajo al codificador. Permitiendo extraer suficientes métricas  en un tiempo prolongado del proceso de codificación mediante CPU y GPU, ya que, por lo general, los códecs que utilizan la GPU para llevar a cabo la codificación son notablemente más rápidos que los codificadores que utilizan codificación únicamente sobre CPU.
 
-\subsection{Desarrollo de los experimentos de la primera fase}
+\subsusection{Desarrollo de los experimentos de la primera fase}
 
  En total se han definido cuatro escenarios experimentales, cuyo objetivo es evaluar la capacidad de cada herramienta para recopilar métricas de consumo energético, así como el nivel de granularidad de la información obtenida. Para la ejecución de estos experimentos se ha desarrollado un conjunto de scripts en Bash, encargados de automatizar tanto el despliegue de las pruebas como la recopilación de las métricas generadas por cada herramienta. Cada escenario se ejecutará un total de diez veces y, entre conjunto de iteraciones consecutivas, se establecerá un intervalo mínimo de dos minutos. Este intervalo tiene como objetivo reducir la influencia que el estado térmico del sistema tras las ejecuciones anteriores pueda ejercer sobre las mediciones, así como minimizar las variaciones inherentes a la ejecución de las cargas de trabajo. De este modo, se pretende obtener resultados más representativos y consistentes.
  
@@ -38,7 +38,7 @@ A continuacion se detalla una lista de los posibles valores y su representación
  \item \texttt{gpu\_node\_jouls}: Energia consumida por la GPU durante el proceso de codificació estimado por la herramienta
  \end{itemize}
 
-\subsection{Analisis de los resultados obtenido en cada uno de los escenarios}
+\subsection{Analisis de resultadosde la sección Experimento 1}
 \subsubsection{Escenario 1: Transcodificacion sobre un contenedor empleando CPU y GPU}
  En este primer escenario se le da acceso al contenedor tanto a la GPU como al numero total de cores de la CPU. Con esta comparativa se espera poder medir las capacidades basicas de cada una de las herramientas al tratar de determinar el consumo del nodo y de la gpu, asi como del proceso que se estan ejecutando sobre este en comparacion a las metricas de energia recolectadas por la herramienta externa Energy Meter.
 

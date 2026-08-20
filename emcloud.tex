@@ -45,15 +45,16 @@
 
 % Editar: Resumen en Español (obligatorio)
 \begin{resumen}
-  % - Problematica
-  % - Experimento a realizar
-  % - Resultados Obtenidos
-
-  Conocer el consumo energético que una carga de trabajo necesita es un aspecto esencial en el contexto actual, en el cual la mayoría de la carga de computación se lleva a cabo en grandes CPDs empleando arquitectura de contenedores. Una toma de métricas constante permite realizar estimaciones precisas, aportando mucha información relevante a la hora de definir diferentes aspectos técnicos. \\
+  Conocer el consumo energético que una carga de trabajo necesita es un aspecto esencial en el contexto actual, donde la mayoría de la carga de computación se lleva a cabo en grandes CPDs empleando arquitectura de contenedores. Una toma de métricas de consumo energético mientras se ejecutan las cargas de trabajo a caracterizar permite realizar estimaciones precisas, aportando mucha información relevante a la hora de definir diferentes aspectos técnicos. \\
   
-  El siguiente Trabajo Fin de Máster gira en torno a esta premisa y a las problemáticas que ello implica, estando enfocado en la codificación de video de alta resolución sobre contenedores que emplean CPU y GPU física para acelerar el proceso. El objetivo es lograr la mejor configuración de codificación de video para FFmpeg que consuma la menor cantidad de energía sin empobrecer la calidad. Para poder lograrlo, se ha requerido una herramienta que permita medir el consumo de procesos individuales, tanto sobre la CPU como en la GPU, y para ello se ha realizado una comparativa entre herramientas, las cuales están pensadas para medir el consumo de trabajo de tareas desplegadas sobre contenedores.\\
+  El siguiente Trabajo Fin de Máster gira en torno a esta premisa y a las problemáticas que ello implica, estando enfocado en la codificación de video de alta resolución sobre contenedores que emplean CPU y GPU física para acelerar el proceso. El objetivo es probar diferentes configuraciones (de codificadores, con y sin GPU, variando el número de CPUs y de hilos, etc) de codificación de video para FFmpeg que consuma la menor cantidad de energía para una determinada tasa de bits. Para poder lograrlo, se ha requerido una herramienta que permita medir el consumo de procesos individuales, tanto sobre la CPU como en la GPU, y para ello se ha realizado una comparativa entre herramientas, las cuales están pensadas para medir el consumo de trabajo de tareas desplegadas sobre contenedores.\\
 
-  Una vez se ha seleccionado la herramienta indicada, se han realizado un conjunto de baterías de pruebas que me han permitido llegar a las CONCLUSIONES. 
+  Una vez llevada a cabo la comparativo y posterior selección de herramienta, se han realizado una serie de experimentos, los cuales han buscado correlacionar el consumo energetico con las metricas Spatial Information (SI) y Temporal Information (TI), ademas de evaluar el comportamiento del consumo energetico y los tiempos de codificacion de cada video en base a las caracteristicas del proceso de codificación (bitrate, numero de hilos empleado en el codificador, numero de cores disponiobles para el contenedor y codificador empleado).
+
+  Como resultado se ha observado una fuerte influencia del bitrate, tanto el consumo general de energia como en el tiempo necesario para llevar a cabo la codificación del video. En cuanto a las metricas SI y TI, se ha confirmado su influencia en el tiempo de codificacion y en el consumo energetico. No obstante, al tratar de analizar los resultados de consumo en base a los valores de SI y TI, con videos de 10 segundo de duracion, se han encontrado dificultades a la hora de poder establer una correlacion debido a la variadad de los resultados de consumode cada muestra. En cambio al llevar a cabo el analisis de consumo ergetico y el tiempo de codificacion sobre videos de 30 segundos de duración.  
+
+
+  Cabe destacar que a la hora de determinar que caracteristica concracteristica concreta tiene mayor influencia sobre cada codificador, se han encontrado discrepancias etre los videos con una duracion de 10 segundos y los videos con una duracion de 30 segundos, ya que estos ultimos han presentado metricas de consumo mucho mas distinguibles y con una influencia del SI y el TI mucho mas reconocible.
   
   
 \end{resumen}

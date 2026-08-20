@@ -7,7 +7,7 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
 
 \subsection{Hipotesis Iniciales}\label{subsec:hipotesis}
  Tras realizar una primera revisión de la literatura científica, en particular de los trabajos relacionados con las métricas de consumo energético en cargas de codificación de vídeo \cite{survery-videoencoding} \cite{rapl-tool} \cite{energy-rapl-mesurement}, se plantean dos hipótesis iniciales sobre los resultados esperados durante la fase de experimentación. 
- 
+
  La primera hipótesis afirma que los vídeos con valores elevados de SI y TI, tendrán un mayor consumo energético durante el proceso de codificación, siendo el TI la métrica con una mayor influencia sobre dicho consumo.
  
  La segunda hipótesis se apoya en el trabajo presentado en \cite{multithread-energy-consumption-videoencoding}, donde se espera que al aumentar el número de threads y cores empleados se observe una mejora en el consumo energético y el tiempo de codificación de los códecs. Sin embargo, se plantea que esta mejora llegará a un punto de saturación a partir del cual la incorporación de recursos adicionales no proporcionará beneficios significativos. De este modo, se espera identificar el máximo número de cores que permite obtener mejoras en consumo energético y tiempo de codificación, determinando a partir de qué punto deja de ser óptimo incrementar el número de cores y threads.

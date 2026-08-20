@@ -1,5 +1,52 @@
-\subsection{Conclusiones generales}
+\section{Conclusiones generales}
 
+% + CONFIRMADO:
+%  - Caracteristicas del video afectan a tiempo de codificacion y energia requerida para llevar a cabo proceso de codificacion
+%  - Bitrate afecta al consumo general de energia y al tiempo de codificacion
+%  - x264 y x265 presentan mejoras con 3 a 6 cores y estancamiento por encima de 6. 
+%  - h264 y hevc presentan mejora a partir de 3 pero saturacion por encima de 3. 
+% 
+%  - HEVC:
+%    - Valores elevaos de TI afectan al consumo energetico y al tiempo de codifcacion, mientras que mayoria de SI mayor tiempo de codificacion
+%    - 
+% - H264:
+%    - Se aprecia que el TI afecta al consumo energetico y el SI al tiempo de codificacion. En concreto metricas que mas consumen son HSI_LTI y HSI_HTI
+%    - Falta de informacion en el bit afecta en video de larga duracion LSI_LTI
+% 
+% - libx264.
+%    -  Merricas que mas consumen son las que tiene LSI y alto HTI junto con metricas con elevado valor de HSI y HTI con videos de 10 segundo
+%    - En cuanto al tiempo de codificacion es mayor cuando el codificador le falta informacion(LSI_LTI) con video de 30 segundos
+% 
+% - libx265:
+%    - Con video de 10 segundo de duracion, videos con mayor consumo son LSI_HTI y con bajo nivel de informacion (LSI_LTI)
+%    - Pero en pruebas con videos de 30 segundos se observa que TI influye en tiempo de codificacion
+%    - 
+% 
+% + PARCIAL:
+% - Codificadores de CPU presentan mejora inmediatas con 3 cores pero estancamiento con 6, pero no es visible en todas las muestras. Es necesario experimentar con un procesador que cuente con mas cores. 
+% 
+% 
+% + No CONFIRMADO.
+%  - Que grupo afecta al consumo energetico, valores muy iregulares y similares entre si. 
+%  - 
+% 
+
+El conjunto de experimentos realizados ha permitido analizar el consumo energetico de cargas de trabajo desplegadas sobre contenedores. En concreto se ha podido evaluar diferentes herramientas de toma de metricas de consumo energico, con la cual se ha evaluado la influencia de las carcteristicas de los videos junto con la asignacion de threads al codificador y limitaciones en el numero de cores que el contenedor puede utilizar. En concreto se han evaluado las metricas Spatial Information(SI) y Temporal Information(TI) junto con el bitrate para un conjunto de quatro codificadores, de los cuales dos estaban basados unicamente en CPU y otros dos basados en GPU.
+
+Los resultados obtenidos en el primer experimento, relativo a la selección de una herramienta precisa para llevar a cabo la recolección de métricas de consumo, muestran limitaciones para la recleccion de metricas y errores de calculo y asignacion de consumo energetico tanto en Scaphandre como en Kepler. Es por ello que la herramientas \textbf{Monitor}, se selecciona como la opcion mas viable, junto a las ventajas que esta proporciona frente al resto de herramientas.
+
+% --- Caracteristicas ---
+En cuanto a las caracteristicas de los videos, se ha podido demostrar como estas influyen en el consumo energetico y el tiempo de codificacion. En concreto, el \textbf{bitrate} ha demostrado tener una gran influencia general en estos dos parametros, y tras haber evaluado su influencia empleando rangos extensos de variacio, se ha llegado a la conclusion que una correcta definicion del valor del bitrate es fundamental para un correcto aprovechamiento de los recuros. 
+
+Adicionalmente, se ha observado que la duracion de los videos empleado en cada uno de los experimentos, ha provocado variaciones en los resultados de clasificacion de de metricas TI y SI. Al analizar los diagramas de steams REF XXX de un codificador concreto con un determinado bitrate se observa valores muy similares entre todos los videos, pero al analizar las graficas REF XXX donde se han tomado metricas de procesos de codificacion con videos de 30 segundos de duracion, se observa distinciones de consumo mas claras entre los distintos grupos definidos en base al SITI. <<<<< ----- AQUI
+
+Es por este motivo que en las conclusiones relativas a las caracteristicas del video del experimento \textit{Resultados del Experimento 2.2: Consumo energético en relación al SITI} \ref{subsec:exp2.2-siti} indican una tendica hacia alguno de los grupos definidos en base al SI y al TI para cada codificador, y en el analisis posterior se obtiene otras tendencias, las cuales suelen ser comune para ambos codificacdores que usan GPU o CPU
+
+Por otra parte, las metricas \textbf{Spatial Informatión (SI)} y \textbf{Temporal Informatión (TI)} han demostrado influenciar en los codificador, especialmente en los codificacodres basado en CPU (\textit{x264 y x265}). Tanto para \textbf{x264} como para \textbf{x265} se observa cirta sensibilidad al valor de \textit{TI}, aunque en el caso de x264 se observan dificultades para llevar a cabo la codificacion cuano la catidad de informacione en el video es muy elevada(\textit{HSI\_HTI})y, al mismo tiempo, cuando la falta de informacion es muy baja(\textit{LSI\_LTI}). En cambio para x265 se aprecia una mayor dificultad para procesar videos con baja informacion y destaca una influencia en los tiempos de codificacion por parte del \textit{TI}. 
+
+
+
+% --------- 
 El conjunto de experimentos realizados permite analizar la influencia de diferentes factores sobre el consumo energético asociado a cargas de codificación de vídeo ejecutadas en contenedores. En particular, se han estudiado las capacidades de diferentes herramientas de monitorización, la relación entre las características del contenido y el consumo energético, así como el efecto de modificar la disponibilidad de recursos de procesamiento durante la codificación. Los resultados obtenidos muestran que el consumo energético de una carga de codificación depende de múltiples factores y que no puede caracterizarse adecuadamente mediante una única variable.
 
 En primer lugar, la evaluación de las herramientas de monitorización ha permitido determinar las diferencias existentes entre las métricas obtenidas a nivel de nodo y aquellas que permiten atribuir el consumo a procesos concretos. Esta distinción resulta especialmente relevante en entornos contenerizados, donde varios procesos pueden ejecutarse simultáneamente sobre un mismo nodo. Los resultados muestran que las herramientas analizadas presentan diferentes niveles de granularidad y precisión, por lo que la selección de una herramienta de monitorización debe realizarse teniendo en cuenta el nivel de detalle requerido y el objetivo de la medición. En este sentido, la medición del consumo energético de un proceso no puede considerarse equivalente a la medición directa del consumo total del nodo, ya que existe una parte del consumo que no necesariamente puede atribuirse de forma directa a las cargas monitorizadas.
@@ -16,7 +63,7 @@ A partir de estos resultados, una posible evolución del trabajo consistiría en
 
 De esta forma, el estudio podría evolucionar desde un análisis descriptivo del consumo energético hacia un sistema de \textit{encoding} adaptativo capaz de seleccionar automáticamente el codificador, \textit{bitrate}, nivel de calidad, número de \textit{cores} y otros parámetros de \textbf{FFmpeg}. El objetivo sería encontrar un equilibrio entre calidad de vídeo, tiempo de ejecución y consumo energético, permitiendo optimizar dinámicamente la ejecución de las cargas de trabajo en función de las características de cada vídeo.
 
-\subsection{Limitaciones}
+\section{Limitaciones}
 % - Que no se ha estudiado
 % - Que s puede mejorar
 % - Como se podria ampliar o extender este trabajo de investigacion
@@ -42,3 +89,9 @@ Finalmente, las herramientas empleadas para la monitorización presentan sus pro
 
 Estas limitaciones no invalidan los resultados obtenidos, pero sí delimitan el alcance de las conclusiones y ponen de manifiesto la necesidad de realizar estudios adicionales con cargas de mayor duración, un conjunto más amplio de vídeos, diferentes arquitecturas de hardware y un mayor número de parámetros de codificación. La ampliación del número de muestras y variables analizadas permitiría, además, determinar con mayor precisión los factores que condicionan el consumo energético y avanzar hacia modelos capaces de predecir y optimizar automáticamente dicho consumo.
 
+\section{Ampliaciones y Trabajo Futuro}
+% - Desarrollo de ia
+% - Clasificacion masiva de caracteristicas
+% - Estudio metricas de consumo utilizando unikernels frente a docker container
+% - Estudio presets y configuracion fina de ffmpeg
+% - Ampliacion de estudio de limitacionde numero de cores con mayor cantidad de metricas mas variadas y con valores de SI TI mas elevados.
