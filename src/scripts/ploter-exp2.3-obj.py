@@ -1,7 +1,8 @@
 class DataObject:
     def __init__(
             self,
-            nombre_video=None, 
+            nombre_video=None,
+            kind="", 
             hw="cpu", 
             n_cores=0, 
             codec=None, 
@@ -11,6 +12,7 @@ class DataObject:
     ):
                 
         self.nombre_video=nombre_video
+        self.kind=kind
         self.hw=hw
         self.codec=codec
         self.n_cores=n_cores
@@ -21,6 +23,7 @@ class DataObject:
     def as_dict(self):
         data={
             "nombre_video": self.nombre_video,
+            "kind": self.kind,
             "hw": self.hw,
             "codec":self.codec,
             "n_cores": self.n_cores,

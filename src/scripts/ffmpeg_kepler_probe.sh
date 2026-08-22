@@ -23,8 +23,8 @@ function function_Endding_Procces() {
 # +++++++++++ Toma de Medidas de Kepler +++++++++++++++++++++++++
 iteracion=$1
 kind_iter="cpu" 
-dir="kepler/cpu" # Ubicacion del ARCHIVO final
-fem="em/cpu/em_kepler_${kind_iter}_${iteracion}.json" # Ubicacion archivos finales em
+dir="kepler/${kind}" # Ubicacion del ARCHIVO final
+fem="em/${kind_iter}/em_kepler_${kind_iter}_${iteracion}.json" # Ubicacion archivos finales em
 kepler_raw_results="$dir/zdirty_raw_kepler_${kind_iter}_${iteracion}.metrics" # RAW Data
 final_results_csv="$dir/kepler_10_it_${kind_iter}.csv" #Nombre del arcohivo final resultante
 container=("ffmpeg-encoder")

@@ -34,10 +34,10 @@ def process_data(data_path, result_data_path):
     category_mapping = {
             'LifeUntouched_chunk0053': 'LSI_LTI',
             'LifeUntouched_chunk0056': 'LSI_LTI',
-            'Sintel_chunk0027': 'HSI_LTI',
-            'TearsOfSteel_chunk0235': 'HSI_LTI',
-            'Eldorado_chunk0015': 'LSI_HTI',
-            'IndoorSoccer_chunk0004': 'LSI_HTI',
+            'Sintel_chunk0027': 'LSI_HTI',
+            'TearsOfSteel_chunk0235': 'LSI_HTI',
+            'Eldorado_chunk0015': 'HSI_LTI',
+            'IndoorSoccer_chunk0004': 'HSI_LTI',
             'Skateboarding_chunk0020': 'HSI_HTI',
             'Eldorado_chunk0010': 'HSI_HTI',
         }
@@ -52,7 +52,7 @@ def process_data(data_path, result_data_path):
         path_chunck=re.split(r'/', metrics_file)
         
         name=[vname for vname in path_chunck if re.search('chunk', vname)][0]
-        name_video = name + (f"_{category_mapping[k]}" if (k := next((k for k in category_mapping if k in name), None)) else "")
+        kind = (f"{category_mapping[k]}" if (k := next((k for k in category_mapping if k in name), None)) else "")
         cores=(
             int(m.group(1))
             if (
@@ -101,9 +101,10 @@ def process_data(data_path, result_data_path):
                 json_content=json.loads(clean_line)
                 data_obj.ex_time.append(f"{json_content['computation_time']}")
                 data_obj.consumo_process_j.append(json_content['total_energy'])
-                print(f" VIdeos: {name_video} - {bitrate} - {codec} - {cores} -- consumo: {json_content['total_energy']} -- tiempo: {json_content['computation_time']}")
+                print(f" VIdeos: {name} - {bitrate} - {codec} - {cores} -- consumo: {json_content['total_energy']} -- tiempo: {json_content['computation_time']}")
             
-        data_obj.nombre_video= name_video
+        data_obj.nombre_video= name
+        data_obj.kind=kind
         data_obj.hw= hw
         data_obj.n_cores=(cores if cores > 0 else 8)
         data_obj.codec=codec
@@ -137,7 +138,7 @@ def plot_consumoxcores(data_csv_file, grafics_save='./grafics/consumoxcores'):
         for bitrate in bitrate_list:
             data = df.loc[(df["codec"] == codec) & (df["bitrate_Mbps"] == bitrate)]
             
-            fig= plt.figure(figsize=(25, 10))
+            fig= plt.figure(figsize=(25, 15))
             ax=plt.subplot()
             
             sns.lineplot(
@@ -145,7 +146,7 @@ def plot_consumoxcores(data_csv_file, grafics_save='./grafics/consumoxcores'):
                 x="n_cores",
                 y="consumo_container0_j",
                 hue="nombre_video",
-                style="nombre_video",
+                style="kind",
                 marker="o",
                 ax=ax
             )
@@ -161,7 +162,7 @@ def plot_consumoxcores(data_csv_file, grafics_save='./grafics/consumoxcores'):
                 "axes.titlesize": 24,           # Aumentado (antes 20)
                 "xtick.labelsize": 20,          # Aumentado (antes 16)
                 "ytick.labelsize": 20,          # Aumentado (antes 16)
-                "legend.title_fontsize": 16,    # Aumentado (antes 15)
+                "legend.title_fontsize": 13,    # Aumentado (antes 15)
                 "legend.fontsize": 14,          # Aumentado (antes 13)
                 "xtick.major.size": 3.5,
                 "xtick.major.width": 1.5,
@@ -227,8 +228,8 @@ def plot_consumoxcores_gpusvscpu(data_csv_file, grafics_save='./grafics/gpusvscp
                     )
     
                     ax[idx].set_title(video)
-                    ax[idx].set_xlabel("Numero de cores")
-                    ax[idx].set_ylabel("Consumo (J)")
+                    ax[idx].set_xlabel("Número de cores",fontsize=15, weight='bold')
+                    ax[idx].set_ylabel("Consumo (J)",fontsize=15, weight='bold')
                     ax[idx].grid(True)
     
                 # Ocultar ejes no utilizados
@@ -277,7 +278,7 @@ def plot_tiempoxcores(data_csv_file, grafics_save='./grafics/tiempoxcores'):
         'libx264_libx265': ['libx264', 'libx265']
     }
 
-
+    # Obtener valores únicos de nombre_video y bitrate
     for nombre in df["nombre_video"].unique():
         for bitrate in df.loc[df["nombre_video"] == nombre, "bitrate_Mbps"].unique():
            
@@ -290,7 +291,7 @@ def plot_tiempoxcores(data_csv_file, grafics_save='./grafics/tiempoxcores'):
                     print(f"Advertencia: No hay datos para {group_name} en {nombre}-{bitrate}")
                     continue
 
-                fig = plt.figure(figsize=(25, 10))
+                fig = plt.figure(figsize=(25, 15))
                 ax = plt.subplot()
 
                 # Gráfico de líneas
@@ -305,9 +306,9 @@ def plot_tiempoxcores(data_csv_file, grafics_save='./grafics/tiempoxcores'):
                 )
 
                 # Etiquetas y título
-                ax.set_xlabel("Numero de Cores", fontsize=15, weight='bold')
-                ax.set_ylabel("Tiempo de Codificación (s)", fontsize=15, weight='bold')
-                ax.set_title(f'{nombre} - {bitrate} Mbps - {group_name.replace("_", " vs ")}')
+                ax.set_xlabel("Número de Cores", fontsize=20, weight='bold')
+                ax.set_ylabel("Tiempo de Codificación (s)", fontsize=20, weight='bold')
+                ax.set_title(f'{nombre} - {bitrate} - {group_name.replace("_", " vs ")}')
                 ax.grid(True)
 
                 # Parámetros de estilo
@@ -318,7 +319,7 @@ def plot_tiempoxcores(data_csv_file, grafics_save='./grafics/tiempoxcores'):
                     "axes.titlesize": 24,
                     "xtick.labelsize": 20,
                     "ytick.labelsize": 20,
-                    "legend.title_fontsize": 16,
+                    "legend.title_fontsize": 13,
                     "legend.fontsize": 14,
                     "xtick.major.size": 3.5,
                     "xtick.major.width": 1.5,
@@ -350,7 +351,7 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
         'libx264_libx265': ['libx264', 'libx265']
     }
 
-   
+    # Obtener valores únicos de nombre_video y bitrate
     for nombre in df["nombre_video"].unique():
         for bitrate in df.loc[df["nombre_video"] == nombre, "bitrate_Mbps"].unique():
            
@@ -363,7 +364,7 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
                     print(f"Advertencia: No hay datos para {group_name} en {nombre}-{bitrate}")
                     continue
 
-                fig = plt.figure(figsize=(20, 10))
+                fig = plt.figure(figsize=(20, 15))
                 ax = plt.subplot()
 
                 # Gráfico de líneas
@@ -371,7 +372,7 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
                     data=data_group,
                     x="ex_time_cont0_s",
                     y="consumo_container0_j",
-                    s=100,
+                    s=200,
                     hue="codec",
                     style="codec",
                     marker="o",
@@ -381,9 +382,9 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
                 plot_point_labels(ax, data_group, x="ex_time_cont0_s", y="consumo_container0_j", label="n_cores")
 
                 # Etiquetas y título
-                ax.set_xlabel("Tiempo (s)", fontsize=15, weight='bold')
-                ax.set_ylabel("Consumo Energetico (j)", fontsize=15, weight='bold')
-                ax.set_title(f'{nombre} - {bitrate} Mbps - {group_name.replace("_", " vs ")}')
+                ax.set_xlabel("Tiempo (s)", fontsize=20, weight='bold')
+                ax.set_ylabel("Consumo Energetico (j)", fontsize=20, weight='bold')
+                ax.set_title(f'{nombre} - {bitrate} - {group_name.replace("_", " vs ")}')
                 ax.grid(True)
 
                 # Parámetros de estilo
@@ -394,7 +395,7 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
                     "axes.titlesize": 24,
                     "xtick.labelsize": 20,
                     "ytick.labelsize": 20,
-                    "legend.title_fontsize": 16,
+                    "legend.title_fontsize": 13,
                     "legend.fontsize": 14,
                     "xtick.major.size": 3.5,
                     "xtick.major.width": 1.5,
@@ -416,7 +417,48 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
             # (Opcional) Mostrar los datos completos para depuración
             print(f"Datos para {nombre} - {bitrate}:\n{data}")
 
-        
+def plot_consumoxtiempo_grupal(data_csv_file, grafics_save='./grafics/consumoxtiempo-group'):
+    df = pd.read_csv(data_csv_file)
+     
+    # Obtener valores únicos de nombre_video y bitrate
+    for bitrate in df["bitrate_Mbps"].unique():
+        print(f"\t === Bitrate: {bitrate} ===")
+        for n in df["n_cores"].unique():
+            os.makedirs(f"{grafics_save}/{bitrate}/cores_{n}", exist_ok=True)
+            for codecs in df["codec"].unique():
+              data = df.loc[(df["n_cores"] == n) & (df["bitrate_Mbps"] == bitrate) & (df["codec"] == codecs)]
+              fig = plt.figure(figsize=(25, 15))
+              ax = plt.subplot()
+              ax=sns.scatterplot(
+                  data=data,
+                  x="ex_time_cont0_s",
+                  y="consumo_container0_j",
+                  hue="nombre_video",
+                  style="kind",
+                  s=200
+              )
+              
+              plot_point_labels(ax, data, x="ex_time_cont0_s", y="consumo_container0_j", label="kind")
+              
+              print(f"\t ---{n} cores y {codecs}--- \t \n\t  Media de Tiempo: {data["ex_time_cont0_s"].mean()} \tMedia de Consumo: {data["consumo_container0_j"].mean()}")
+              print(f"\t  Max de Tiempo: {data["ex_time_cont0_s"].max()} \tMax de Consumo: {data["consumo_container0_j"].max()}")
+              print(f"\t  Min de Tiempo: {data["ex_time_cont0_s"].min()} \tMin de Consumo: {data["consumo_container0_j"].min()}")
+      
+              # Etiquetas y título
+              ax.set_xlabel("Tiempo (s)", fontsize=20, weight='bold')
+              ax.set_ylabel("Consumo Energetico (j)", fontsize=20, weight='bold')
+              ax.set_title(f'Cores: {n} - {bitrate} - Codec: {codecs}')
+              ax.grid(True)
+              
+              # Parámetros de estilo
+              filename = f"{grafics_save}/{bitrate}/cores_{n}/{codecs}-{bitrate}_{n}_ConsumoxTiempoGroup.png"
+              plt.savefig(filename, dpi=210)
+              #plt.show()
+              plt.close()
+
+            # (Opcional) Mostrar los datos completos para depuración
+            #print(f"Datos para {nombre} - {bitrate}:\n{data}")
+
     
 if __name__ == "__main__":
     args = sys.argv
@@ -455,4 +497,6 @@ if __name__ == "__main__":
 
     if 'plot-consumoxtiempo' in args:
         plot_consumoxtiempo(result_data_path)
-       
+
+    if 'plot-consumoxtiempo-group' in args:
+        plot_consumoxtiempo_grupal(result_data_path)

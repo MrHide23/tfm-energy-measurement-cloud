@@ -5,6 +5,7 @@ from matplotlib import container
 import pandas as pd
 import _object as obj
 import subprocess
+import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
@@ -15,12 +16,17 @@ def get_global_consum(file_info_name):
         info_content = f.read()
     return [float(x) for x in re.findall(r'"total_energy":([0-9.]+)', info_content)]
 
+def get_global_tiempo(file_info_name):
+    with open(file_info_name, "r", encoding="utf-8") as f:
+        info_content = f.read()
+    return [float(x) for x in re.findall(r'"computation_time":([0-9.]+)', info_content)]
+
 def process_data(subpath_metrics, process_data_final):
     siti_data = (
-        f"{os.getenv('HOME')}/Documentos/Experiments/exp2/exp2.1-siti/siti-calculator/data/chuncks/video_10s_results.csv"
+        f"{os.getenv('HOME')}/Documents/TWCAM/2do/TFM/Experiments/exp2/exp2.1-siti/siti-calculator/data/chuncks/video_10s_results.csv"
     )
     metrics_path = (
-        f"{os.getenv('HOME')}/Documentos/Experiments/exp2/exp2.2-bitrate_codecs-pruebas/metricas/{subpath_metrics}"
+        f"{os.getenv('HOME')}/Documents/TWCAM/2do/TFM/Experiments/exp2/exp2.2-bitrate_codecs-pruebas/metricas/{subpath_metrics}"
     )
 
     # Listar directorios de primer nivel (cpu/gpu)
@@ -91,7 +97,8 @@ def process_data(subpath_metrics, process_data_final):
                     data_obj.codec = codec
                     data_obj.bitrate_Mbps = re.split("-", bitrate)[1]
                     data_obj.consumo_process_j = get_global_consum(global_metrics_filename)
-
+                    data_obj.tiempo_process_s=get_global_tiempo(global_metrics_filename)
+                    
                     data_object_list.append(data_obj)
 
     # Guardar resultados
@@ -256,7 +263,73 @@ def plot_si_consumo(process_data_final, container='consumo_container0_j', figs_s
            plt.savefig(f"{figs_save_path}/{container}-{codec}-{bitrate}_ConsumoSI.png", dpi=130)
            #plt.show()
            plt.close()
-               
+  
+def plot_consumoxtiempo_grupal(data_csv_file, grafics_save='./grafics/consumoxtiempo-group'):
+    df = pd.read_csv(data_csv_file)
+    
+    # Asegurar tipo texto en bitrate para evitar inconvenientes de formateo
+    df["bitrate_Mbps"] = df["bitrate_Mbps"].astype(str)
+
+    # Iterar por cada bitrate y codec presente en el CSV
+    for bitrate in df["bitrate_Mbps"].unique():
+        print(f"\t === Bitrate: {bitrate} Mbps ===")
+        os.makedirs(f"{grafics_save}/{bitrate}", exist_ok=True)
+        
+        for codec in df["codec"].unique():
+            # Filtrar datos por bitrate y codec
+            data = df.loc[(df["bitrate_Mbps"] == bitrate) & (df["codec"] == codec)]
+            
+            if data.empty:
+                continue
+
+            fig, ax = plt.subplots(figsize=(16, 10))
+            
+            # Gráfica de dispersión con Seaborn
+            sns.scatterplot(
+                data=data,
+                x="tiempo_process0_s",
+                y="consumo_container0_j",
+                hue="kind",
+                style="kind",
+                s=150,
+                palette=kind_colors if 'kind_colors' in globals() else None,
+                ax=ax
+            )
+            
+            # Etiquetar cada punto con el nombre del video
+            for _, row in data.iterrows():
+                ax.annotate(
+                    row['nombre_video'],
+                    (row['tiempo_process0_s'], row['consumo_container0_j']),
+                    xytext=(5, 5),
+                    textcoords='offset points',
+                    fontsize=8,
+                    alpha=0.8
+                )
+
+            # Métricas en consola
+            print(f"\t --- Codec: {codec} ---")
+            print(f"\t Media Tiempo: {data['tiempo_process0_s'].mean():.2f} s | Media Consumo: {data['consumo_container0_j'].mean():.2f} J")
+            print(f"\t Max Tiempo:   {data['tiempo_process0_s'].max():.2f} s | Max Consumo:   {data['consumo_container0_j'].max():.2f} J")
+            print(f"\t Min Tiempo:   {data['tiempo_process0_s'].min():.2f} s | Min Consumo:   {data['consumo_container0_j'].min():.2f} J\n")
+
+            # Configuración de ejes y etiquetas
+            ax.set_xlabel("Tiempo de Codificación (s)", fontsize=14, weight='bold')
+            ax.set_ylabel("Consumo Energético (J)", fontsize=14, weight='bold')
+            ax.set_title(f'Codec: {codec} - Bitrate: {bitrate} Mbps', fontsize=16, weight='bold')
+            ax.grid(True, linestyle='--', alpha=0.6)
+            
+            # Leyenda fuera de la figura para no solapar los puntos
+            ax.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0)
+
+            plt.tight_layout()
+            
+            # Guardar gráfica
+            filename = f"{grafics_save}/{bitrate}/{codec}-{bitrate}_ConsumoxTiempoGroup.png"
+            plt.savefig(filename, dpi=200)
+            #plt.show()
+            plt.close()
+            
 if __name__ == "__main__":
     args = sys.argv
     container = "consumo_container0_j"
@@ -313,3 +386,7 @@ if __name__ == "__main__":
             container=re.split(r'=', args[index])[1]
 
         plot_si_consumo(process_data_path, container)
+
+    if any(re.search(r'plot-consumoxtiempo-grupal', arg) for arg in args):
+    
+        plot_consumoxtiempo_grupal(process_data_path)
