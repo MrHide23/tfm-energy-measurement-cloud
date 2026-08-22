@@ -1,0 +1,72 @@
+\section{Análisis}
+ El proyecto \textbf{Medición de Consumo Energético de cargas trabajo de codificación de video sobre contenedores} consiste en un TFM de investigacion, lo cual implica que no sigue la dinamica clasica de los TFMs de desarrollo de software y productos. En su lugar, en este trabajo se han planteado una serie de problematicas y posibles soluciones, junto con hipotesis del potencial resultado.
+ 
+ Por tanto para demostrar la certeza de dichas hiptesis se han desarrollado un conjunto de experimentos que tratan cumplir una serie de objetivos y tratar de establecer patrones/leyes de comportamiento en el espectro teorico de este trabajo. El unico desarrollo de codigo que se ha llevado a cabo, es el desarrollo de los difetentes scripts que se han encargado de ejecutar las distintas pruebas de cada uno de los experimentos, asi como del procesameinto de los datos con los cuales se han generado diversas graficas.
+ 
+ \subsection{Casos de Uso}
+ Debido a la naturaleza investigadora del proyecto, la reutilización de los componentes desarrollados en otros contextos se encuentra condicionada por la dependencia de estos respecto a las características específicas del entorno experimental. Por este motivo, las herramientas con mayor grado de independencia respecto al proyecto son aquellas destinadas a la recopilación y monitorización de métricas de consumo energético. Asimismo, se ha incluido el proceso de cálculo de las métricas SI y TI sobre un conjunto de vídeos y la posterior generación de una gráfica de dispersión en función de los valores obtenidos, ya que este proceso puede ejecutarse de forma independiente de las características específicas de los experimentos planteados.
+ 
+ A continuación, se presentan los casos de uso identificados junto con sus correspondientes diagramas de secuencia, que permiten representar de forma estructurada el funcionamiento de cada uno de estos componentes. 
+ 
+ \subsubsection*{Metrica de Consumo Empleando Kepler y Global Energy Meter}
+ En este caso de uso se muestra el flujo de funcionamiento correspondiente a la recopilación de métricas de consumo energético mediante la herramienta \textit{Kepler}, junto con la monitorización realizada en paralelo por \textit{Global Energy Meter}, para un proceso de codificación concreto.
+ 
+ Cada ejecución del script corresponde a un único proceso de codificación asociado a un determinado vídeo. Antes de iniciar la ejecución, es necesario establecer los parámetros correspondientes a la ubicación de los archivos en los que se almacenarán las métricas, el nombre o identificador del experimento y el tipo de configuración de codificación empleada, indicando si la carga se ejecutará exclusivamente sobre la CPU o mediante una configuración combinada de CPU y GPU.
+ 
+ \begin{figure}[h!]
+ \centering
+ \includegraphics[width=\linewidth]{figs/kepler-caso-uso.png}
+ \caption{Diagram de funcionamiento interno del experimento 1.1 recoleccion de metricas con kepler y Global Energy Meter}
+ \label{fig:analisis-kepler-casouso}
+ \end{figure}
+ 
+ \subsubsection*{Metrica de Consumo Empleando Scaphandre y Global Energy Meter}
+ Para este caso de uso se emplea la herramienta \textit{Scaphandre} para realizar la recopilación de métricas de consumo energético. Al igual que en el caso de uso anterior, \textit{Global Energy Meter} realiza de forma paralela la recopilación de métricas a nivel de nodo, que posteriormente se utilizarán como referencia para comparar los resultados obtenidos mediante \textit{Scaphandre}.
+ 
+ El funcionamiento de este script se basa en el desarrollado para \textit{Kepler}, por lo que ambos presentan una estructura de ejecución prácticamente idéntica. El script se ejecuta una vez por cada proceso de codificación cuyo consumo se desee monitorizar. Antes de iniciar cada ejecución, es necesario definir los parámetros correspondientes al tipo de codificación realizada, así como el directorio de destino en el que se almacenarán las métricas recopiladas. De este modo, cada ejecución genera un conjunto de datos asociado a una configuración concreta de codificación, facilitando posteriormente su identificación y análisis.
+ 
+ \begin{figure}[h!]
+ \centering
+ \includegraphics[width=\linewidth]{figs/kepler-caso-uso.png}
+ \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de metricas con Scaphandre y Global Energy Meter}
+ \label{fig:analisis-scp-casouso}
+ \end{figure}
+ 
+ \subsubsection*{Metrica de Container Energy Meter y Global Energy Meter}
+ Para el caso de uso correspondiente a la toma de métricas de consumo mediante la herramienta \textit{Container Energy Meter}, se ha modificado el proceso de ejecución para permitir la realización de múltiples iteraciones de forma automatizada. Antes de iniciar la ejecución, se debe definir el número de iteraciones que se realizarán y un identificador que permita distinguir el conjunto de mediciones obtenidas. Asimismo, se establece la estructura de directorios en la que se almacenarán los datos generados durante las pruebas.
+ 
+ De este modo, el script ejecuta el proceso de monitorización y almacenamiento de las métricas un total de $n$ veces, donde $n$ corresponde al número de iteraciones definido previamente a la ejecución. Esto permite automatizar la repetición de las mediciones y mantener organizados los datos correspondientes a cada conjunto de pruebas.
+ 
+ \begin{figure}[h!]
+ \centering
+ \includegraphics[width=\linewidth]{figs/cem-caso-uso.png}
+ \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de metricas con Container Eneregy Monitoring y Global Energy Meter}
+ \label{fig:cem-scp-casouso}
+ \end{figure}
+ 
+ 
+ \subsubsection*{Seleccionar segmentos de 10 segundos que tengan un SITI similar}
+ En el siguiente caso de uso se muestra el diagrama básico de funcionamiento del script de Python \textit{exp2.1-siti-calculator.py} encargado de calcular las características SI y TI de los chunks de video. Una vez obtenidos estos valores, se empleará el script \textit{exp2.1-siti-ploter.py} para generar una gráfica de dispersión que represente la distribución de los chunks en función de sus características espaciales y temporales. Sobre esta representación se definirán las diferentes zonas de interés y se realizará la selección de los chunks que posteriormente se utilizarán para construir los vídeos con las características requeridas en cada uno de los experimentos.
+ 
+ \begin{figure}[h!]
+ \centering
+ \includegraphics[width=\linewidth]{figs/sitichuncks.png}
+ \caption{Caso de uso para calcular el SITI de los fragmentos de videos disponibles para experimentar}
+ \label{fig:siti-chunks-casouso}
+ \end{figure}
+
+\section{Diseño del proyecto}
+% Qué variables quieres estudiar.
+% Qué métricas necesitas.
+% Qué codificadores vas a comparar.
+% Qué características de los vídeos vas a utilizar.
+% Qué escenarios vas a estudiar.
+% Qué hipótesis planteas.
+% - Metricas con las que calculo error y diferencia media
+% - Formula seleccion de threads y cores
+% - 
+
+\section{Configuración de Entorno \& Herramientas}\label{exp0-environment}
+\input{tex/des/exp0-enviroment.tex} 
+
+
