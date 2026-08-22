@@ -65,6 +65,18 @@
 % - Metricas con las que calculo error y diferencia media
 % - Formula seleccion de threads y cores
 % - 
+\subsection{Equaciones y Calculos}
+En esta seccion se incluyen el conjunto de equaciones utlizadas para determinar diversas cuestiones comparativas, como el porcentaje de mejora entre herramientas o diferencias percentuales entre metricas.
+
+La primera de las ecuaciones permite determinar el porcentaje de energia que se le atribulle al nodo respecto a la herramienta \ref{eq:percent-energy-node}
+
+\[E\%_{porcentaje\_energia\_GEM} = \frac{E_{GEM}-E_{Herramienta}}{E_{GEM}}*100\label{eq:percent-energy-node}\]
+
+Equacion que permite determinar que porcentaje de energia corresponde con el de la herramienta respecto a la energia del nodo \ref{eq:percent-energy-tool}
+\[E\%_{porcentaje\_energia\_herramienta} = \frac{E_{GEM}-E_{Herramienta}}{E_{Herramienta}}*100\label{eq:percent-energy-tool}\]
+
+Equacion que determian que porcentaje de energia respecto a un total de energia del corresonde a la herramienta \ref{eq:percent-energy-tool_node}.
+\[E\%_{energia\_processo}=\frac{E_{Herramienta}}{E_{GEM}}*100\label{eq:percent-energy-tool_node}\]
 
 \section{Configuración de Entorno \& Herramientas}\label{exp0-environment}
 \input{tex/des/exp0-enviroment.tex} 

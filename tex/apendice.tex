@@ -1,43 +1,24 @@
-\chapter{Apéndice} \label{chapt:apendice}
+\chapter{Apéndice: Codigo} \label{chapt:apendice}
 \section{Codigo}
- \subsubsection{Docker Compose de la herramienta Container Energy Monitoring}
- \subsubsection{Imagen de Docker empleada para recompilar Kepler}
+ \subsection{Docker Compose \& Dockerfiles}
+ \subsubsection*{Imagen de Docker empleada para recompilar Kepler}
      \lstinputlisting[label={code:go-dockerfile},caption={Imagen de contenedor en Go utilizada para recompilar la version modificada de Kepler}]{src/docker/Dockerfile.txt}
      
- \subsubsection{Configuracion del Sistema y Herramientas}
+ \subsubsection*{Configuracion del Sistema y Herramientas}
      \lstinputlisting[label={exp0:monitor-docker-compose},caption={Docker Compose que permite desplegar Container Energy Monitoring}]{src/docker/docker-compose-monitor.yaml}
 
  \subsection{Experimentación Fase 1}
-     \begin{figure}[h!]
-          \centering
-     	\includegraphics[width=\linewidth]{figs/exp1_kepler_csv_header.png}  
-     	\caption{Header CSV del archivo de datos procesados de Kepler}  
-     	\label{fig:exp1-kepeler-csv_header}
-     \end{figure}
      
-     \begin{figure}[h!]
-          \centering
-     	\includegraphics[width=\linewidth]{figs/exp1_scp_csv_header.png}  
-     	\caption{Header CSV del archivo de datos procesados de Scaphandre}  
-     	\label{fig:exp1-scp-csv_header}
-     \end{figure}
-     
-     \begin{figure}[h!]
-     \centering
-     	\includegraphics[width=\linewidth]{figs/exp1_monitor_csv_header.png}  
-     	\caption{Header CSV del archivo de datos procesados de Container Energy Monitoring}  
-     	\label{fig:exp1-monitor-csv_header}
-     \end{figure}
 
-  \subsubsection{Arranque y toma de metricas con Kepler}
+  \subsubsection*{Arranque y toma de metricas con Kepler}
      \lstinputlisting[language=sh,label={exp1:kepler-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico con la herramienta Kepler}]{src/scripts/ffmpeg_kepler_probe.sh}
-  \subsubsection{Arranque y toma de metricas con Scaphandre}
+  \subsubsection*{Arranque y toma de metricas con Scaphandre}
     \lstinputlisting[language=sh,label={exp1:scp-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico con la herramienta Scaphandre}]{src/scripts/ffmpeg_scaphandre_probe.sh}
- \subsubsection{Arranque y toma de metricas con Container Energy Monitoring}
+ \subsubsection*{Arranque y toma de metricas con Container Energy Monitoring}
     \lstinputlisting[language=sh,label={exp1:monitor-script-probes-1container},caption={Script en bash empleado para llevar}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
     
     \lstinputlisting[language=sh,label={exp1:monitor-script-probes-2containers}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico sobre dos contenedor simultaneamente con la herramienta Container Energy Monitoring}]{src/scripts/monitor-experiment-ffmpeg-gpu-2-container.sh}
- \subsubsection{Procesamiento de Metricas}
+ \subsubsection*{Procesamiento de Metricas del Experimento 1}
      \lstinputlisting[language=sh,label={exp1:kepler-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Kepler y los alamcena en CSV}]{src/scripts/kepler_process_data.sh}
      
      \lstinputlisting[language=sh,label={exp1:scp-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Scaphandre y los alamcena en CSV}]{src/scripts/scaphandre_process_data.sh}
@@ -108,7 +89,7 @@
          \label{img:exp2.3-csvheader-process-data}
      \end{figure}
      
-\chapter{Graficas y Resultados}\label{apendice:graficas}
+\chapter{Apéndice: Graficas y Resultados}\label{apendice:graficas}
  % Primera parte (h264_nvenc)
  \section{Experimento 2.3: Consumo Energetico en relacion con el SITI}\label{apendice:exp2.2-graficas}
 
@@ -403,8 +384,8 @@
      \end{figure}
 
 \clearpage
-\section{Experimento 3.3: Consumo Energetico en relacion del numero de threads y cores} \label{apendice:exp2.3-graficas}
-%  % Consumoxcores
+\section{Experimento 2.3: Consumo Energetico en relacion del numero de threads y cores} \label{apendice:exp2.3-graficas}
+% Consumoxcores
 % Consumoxcores
      \begin{figure}[htbp]
       \centering
@@ -452,12 +433,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s_HSI_HTI-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-eldorado-10-h264hevc}
-    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s_HSI_HTI-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-eldorado-30-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-eldorado-10-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-eldorado-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s_HSI_HTI-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-eldorado-10-libx}
-    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s_HSI_HTI-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-eldorado-30-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-eldorado-10-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-eldorado-30-libx}
   \caption{Eldorado (chunk 0010): tiempo vs núcleos}
   \label{fig:tiempo-eldorado}
 \end{figure}
@@ -466,12 +447,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-indoor-10-h264hevc}
-    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-indoor-30-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-indoor-10-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-indoor-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-indoor-10-libx}
-    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-indoor-30-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-indoor-10-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-indoor-30-libx}
   \caption{IndoorSoccer (chunk 0004): tiempo vs núcleos}
   \label{fig:tiempo-indoor}
 \end{figure}
@@ -480,12 +461,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-life53-10-h264hevc}
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-life53-30-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-life53-10-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-life53-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-life53-10-libx}
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-life53-30-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-life53-10-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-life53-30-libx}
   \caption{LifeUntouched (chunk 0053): tiempo vs núcleos}
   \label{fig:tiempo-life53}
 \end{figure}
@@ -494,12 +475,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-life56-10-h264hevc}
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-life56-30-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-life56-10-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-life56-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-life56-10-libx}
-    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-life56-30-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-life56-10-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-life56-30-libx}
   \caption{LifeUntouched (chunk 0056): tiempo vs núcleos}
   \label{fig:tiempo-life56}
 \end{figure}
@@ -508,12 +489,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s_HSI_LTI-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-sintel-10-h264hevc}
-    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s_HSI_LTI-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-sintel-30-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-sintel-10-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-sintel-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s_HSI_LTI-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-sintel-10-libx}
-    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s_HSI_LTI-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-sintel-30-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-sintel-10-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-sintel-30-libx}
   \caption{Sintel (chunk 0027): tiempo vs núcleos}
   \label{fig:tiempo-sintel}
 \end{figure}
@@ -522,12 +503,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s_HSI_HTI-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-skate-10-h264hevc}
-    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s_HSI_HTI-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-skate-30-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-skate-10-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-skate-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s_HSI_HTI-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-skate-10-libx}
-    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s_HSI_HTI-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-skate-30-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-skate-10-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-skate-30-libx}
   \caption{Skateboarding (chunk 0020): tiempo vs núcleos}
   \label{fig:tiempo-skate}
 \end{figure}
@@ -536,12 +517,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-tears-10-h264hevc}
-    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-tears-30-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-tears-10-h264hevc}
+    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-tears-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-tears-10-libx}
-    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-tears-30-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-tears-10-libx}
+    {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-tears-30-libx}
   \caption{TearsOfSteel (chunk 0235): tiempo vs núcleos}
   \label{fig:tiempo-tears}
 \end{figure}
@@ -551,12 +532,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s_HSI_HTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-eldorado10-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s_HSI_HTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-eldorado10-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-eldorado10-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-eldorado10-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s_HSI_HTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-eldorado10-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s_HSI_HTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-eldorado10-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-eldorado10-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-eldorado10-30-libx}
   \caption{Eldorado (chunk 0010): consumo vs tiempo}
   \label{fig:consumo-eldorado10}
 \end{figure}
@@ -565,12 +546,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s_LSI_HTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-eldorado15-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s_LSI_HTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-eldorado15-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-eldorado15-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-eldorado15-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s_LSI_HTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-eldorado15-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s_LSI_HTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-eldorado15-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-eldorado15-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-eldorado15-30-libx}
   \caption{Eldorado (chunk 0015): consumo vs tiempo}
   \label{fig:consumo-eldorado15}
 \end{figure}
@@ -579,12 +560,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-indoor-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-indoor-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-indoor-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-indoor-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-indoor-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s_LSI_HTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-indoor-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-indoor-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-indoor-30-libx}
   \caption{IndoorSoccer (chunk 0004): consumo vs tiempo}
   \label{fig:consumo-indoor}
 \end{figure}
@@ -593,12 +574,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-life53-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-life53-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-life53-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-life53-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-life53-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s_LSI_LTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-life53-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-life53-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-life53-30-libx}
   \caption{LifeUntouched (chunk 0053): consumo vs tiempo}
   \label{fig:consumo-life53}
 \end{figure}
@@ -607,12 +588,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-life56-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-life56-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-life56-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-life56-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-life56-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s_LSI_LTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-life56-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-life56-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-life56-30-libx}
   \caption{LifeUntouched (chunk 0056): consumo vs tiempo}
   \label{fig:consumo-life56}
 \end{figure}
@@ -621,12 +602,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s_HSI_LTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-sintel-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s_HSI_LTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-sintel-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-sintel-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-sintel-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s_HSI_LTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-sintel-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s_HSI_LTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-sintel-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-sintel-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-sintel-30-libx}
   \caption{Sintel (chunk 0027): consumo vs tiempo}
   \label{fig:consumo-sintel}
 \end{figure}
@@ -635,12 +616,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s_HSI_HTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-skate-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s_HSI_HTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-skate-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-skate-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-skate-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s_HSI_HTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-skate-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s_HSI_HTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-skate-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-skate-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-skate-30-libx}
   \caption{Skateboarding (chunk 0020): consumo vs tiempo}
   \label{fig:consumo-skate}
 \end{figure}
@@ -649,12 +630,12 @@
   \centering
   \small
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-tears-10-h264hevc}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-tears-30-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-tears-10-h264hevc}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-tears-30-h264hevc}
   \vspace{1cm}
   \dosubfigs
-    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-tears-10-libx}
-    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s_HSI_LTI-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-tears-30-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-tears-10-libx}
+    {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-tears-30-libx}
   \caption{TearsOfSteel (chunk 0235): consumo vs tiempo}
   \label{fig:consumo-tears}
 \end{figure}

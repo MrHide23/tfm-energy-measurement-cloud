@@ -1,0 +1,2076 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Alpine Linux) (preloaded format=pdflatex 2026.8.5)  22 AUG 2026 22:59
+entering extended mode
+ \write18 enabled.
+ %&-line parsing enabled.
+**emcloud.tex
+(./emcloud.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(./plantilla/twcam-tfm-doc.cls
+
+LaTeX Warning: You have requested document class `plantilla/twcam-tfm-doc',
+               but the document class provides `twcam-tfm-doc'.
+
+Document Class: twcam-tfm-doc 2019/04/15 Plantilla para la memoria del TFM Mast
+er TWCAM
+(/usr/share/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count196
+\c@chapter=\count197
+\c@section=\count198
+\c@subsection=\count199
+\c@subsubsection=\count266
+\c@paragraph=\count267
+\c@subparagraph=\count268
+\c@figure=\count269
+\c@table=\count270
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen141
+)
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2025/02/14 v25.4 The multilingual framework for pdfLaTeX, LuaLaT
+eX and XeLaTeX
+\babel@savecnt=\count271
+\U@D=\dimen142
+\l@unhyphenated=\language89
+
+(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count272
+
+(/usr/share/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language19). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language19). Reported on input line 108.
+)
+(/usr/share/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks17
+\es@quotdepth=\count273
+Package babel Info: Making " an active character on input line 570.
+Package babel Info: Making . an active character on input line 675.
+Package babel Info: Making < an active character on input line 722.
+Package babel Info: Making > an active character on input line 722.
+Package babel Info: Making ' an active character on input line 740.
+))
+(/usr/share/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex
+Package babel Info: Importing font and identification data for spanish
+(babel)             from babel-es.ini. Reported on input line 11.
+)
+(/usr/share/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 11.
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2024/11/05 v2.17t AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen143
+))
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen144
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count274
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count275
+\leftroot@=\count276
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count277
+\DOTSCASE@=\count278
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box52
+\strutbox@=\box53
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen145
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count279
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count280
+\dotsspace@=\muskip17
+\c@parentequation=\count281
+\dspbrk@lvl=\count282
+\tag@help=\toks19
+\row@=\count283
+\column@=\count284
+\maxfields@=\count285
+\andhelp@=\toks20
+\eqnshift@=\dimen146
+\alignsep@=\dimen147
+\tagshift@=\dimen148
+\tagwidth@=\dimen149
+\totwidth@=\dimen150
+\lineht@=\dimen151
+\@envbody=\toks21
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip54
+\f@nch@offset@elh=\skip55
+\f@nch@offset@erh=\skip56
+\f@nch@offset@olh=\skip57
+\f@nch@offset@orh=\skip58
+\f@nch@offset@elf=\skip59
+\f@nch@offset@erf=\skip60
+\f@nch@offset@olf=\skip61
+\f@nch@offset@orf=\skip62
+\f@nch@height=\skip63
+\f@nch@footalignment=\skip64
+\f@nch@widthL=\skip65
+\f@nch@widthC=\skip66
+\f@nch@widthR=\skip67
+\@temptokenb=\toks23
+)
+(/usr/share/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2025/03/06 v3.6.0 Yet another Pygments shim for LaTeX
+
+(/usr/share/texmf-dist/tex/generic/catchfile/catchfile.sty
+Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
+
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)))
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count286
+)
+(/usr/share/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2025/03/04 v1.12.0 fvextra - extensions and patches for fancyv
+rb
+
+(/usr/share/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks24
+)
+\FV@CodeLineNo=\count287
+\FV@InFile=\read3
+\FV@TabBox=\box54
+\c@FancyVerbLine=\count288
+\FV@StepNumber=\count289
+\FV@OutFile=\write3
+)
+(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+
+(/usr/share/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+))
+(/usr/share/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2025/01/29 line numbers on paragraphs v5.4
+
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+\linenopenalty=\count290
+\output=\toks25
+\linenoprevgraf=\count291
+\linenumbersep=\dimen152
+\linenumberwidth=\dimen153
+\c@linenumber=\count292
+\c@pagewiselinenumber=\count293
+\c@LN@truepage=\count294
+\c@internallinenumber=\count295
+\c@internallinenumbers=\count296
+\quotelinenumbersep=\dimen154
+\bframerule=\dimen155
+\bframesep=\dimen156
+\bframebox=\box55
+\@LN@amsmath@ams@eqpen=\count297
+LaTeX Info: Redefining \\ on input line 3187.
+)
+\c@FancyVerbWriteLine=\count298
+\c@FancyVerbBufferLine=\count299
+\c@FV@TrueTabGroupLevel=\count300
+\c@FV@TrueTabCounter=\count301
+\FV@TabBox@Group=\box56
+\FV@bgcolorstructbox=\box57
+\FV@TmpLength=\skip68
+\c@FV@HighlightLinesStart=\count302
+\c@FV@HighlightLinesStop=\count303
+\FV@LoopCount=\count304
+\FV@NCharsBox=\box58
+\FV@BreakIndent=\dimen157
+\FV@BreakIndentNChars=\count305
+\FV@BreakSymbolSepLeft=\dimen158
+\FV@BreakSymbolSepLeftNChars=\count306
+\FV@BreakSymbolSepRight=\dimen159
+\FV@BreakSymbolSepRightNChars=\count307
+\FV@BreakSymbolIndentLeft=\dimen160
+\FV@BreakSymbolIndentLeftNChars=\count308
+\FV@BreakSymbolIndentRight=\dimen161
+\FV@BreakSymbolIndentRightNChars=\count309
+\c@FancyVerbLineBreakLast=\count310
+\FV@LineBox=\box59
+\FV@LineIndentBox=\box60
+\c@FV@BreakBufferDepth=\count311
+\FV@LineWidth=\dimen162
+)
+(/usr/share/texmf-dist/tex/latex/latex2pydata/latex2pydata.sty
+Package: latex2pydata 2025/03/03 v0.5.0 latex2pydata - write data to file in Py
+thon literal format
+)
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks26
+\pgfkeys@temptoks=\toks27
+
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.te
+x
+\pgfkeys@tmptoks=\toks28
+))) (/usr/share/texmf-dist/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks29
+\pgfopts@list@add@b@toks=\toks30
+)
+(/usr/share/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+)
+(/usr/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count312
+\float@exts=\toks31
+\float@box=\box61
+\@float@everytoks=\toks32
+\@floatcapt=\box62
+)
+\c@minted@FancyVerbLineTemp=\count313
+\@float@every@listing=\toks33
+\c@listing=\count314
+)
+(/usr/share/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks34
+\pgfutil@tempdima=\dimen163
+\pgfutil@tempdimb=\dimen164
+)
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box63
+)
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen165
+\Gin@req@width=\dimen166
+)
+(/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+\pgf@x=\dimen167
+\pgf@y=\dimen168
+\pgf@xa=\dimen169
+\pgf@ya=\dimen170
+\pgf@xb=\dimen171
+\pgf@yb=\dimen172
+\pgf@xc=\dimen173
+\pgf@yc=\dimen174
+\pgf@xd=\dimen175
+\pgf@yd=\dimen176
+\w@pgf@writea=\write4
+\r@pgf@reada=\read4
+\c@pgf@counta=\count315
+\c@pgf@countb=\count316
+\c@pgf@countc=\count317
+\c@pgf@countd=\count318
+\t@pgf@toka=\toks35
+\t@pgf@tokb=\toks36
+\t@pgf@tokc=\toks37
+\pgf@sys@id@count=\count319
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count320
+\pgfsyssoftpath@bigbuffer@items=\count321
+)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen177
+\pgfmath@count=\count322
+\pgfmath@box=\box64
+\pgfmath@toks=\toks38
+\pgfmath@stack@operand=\toks39
+\pgfmath@stack@operation=\toks40
+)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code
+.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.te
+x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
+.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count323
+))
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen178
+\pgf@picmaxx=\dimen179
+\pgf@picminy=\dimen180
+\pgf@picmaxy=\dimen181
+\pgf@pathminx=\dimen182
+\pgf@pathmaxx=\dimen183
+\pgf@pathminy=\dimen184
+\pgf@pathmaxy=\dimen185
+\pgf@xx=\dimen186
+\pgf@xy=\dimen187
+\pgf@yx=\dimen188
+\pgf@yy=\dimen189
+\pgf@zx=\dimen190
+\pgf@zy=\dimen191
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen192
+\pgf@path@lasty=\dimen193
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen194
+\pgf@shorten@start@additional=\dimen195
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box65
+\pgf@hbox=\box66
+\pgf@layerbox@main=\box67
+\pgf@picture@serial@count=\count324
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen196
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.t
+ex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen197
+\pgf@pt@y=\dimen198
+\pgf@pt@temp=\dimen199
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.te
+x
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen256
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen257
+\pgf@sys@shading@range@num=\count325
+\pgf@shadingcount=\count326
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box68
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box69
+)
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen258
+\pgf@nodesepend=\dimen259
+)
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+))
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen260
+\pgffor@skip=\dimen261
+\pgffor@stack=\toks41
+\pgffor@toks=\toks42
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
+x
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count327
+\pgfplotmarksize=\dimen262
+)
+\tikz@lastx=\dimen263
+\tikz@lasty=\dimen264
+\tikz@lastxsaved=\dimen265
+\tikz@lastysaved=\dimen266
+\tikz@lastmovetox=\dimen267
+\tikz@lastmovetoy=\dimen268
+\tikzleveldistance=\dimen269
+\tikzsiblingdistance=\dimen270
+\tikz@figbox=\box70
+\tikz@figbox@bg=\box71
+\tikz@tempbox=\box72
+\tikz@tempbox@bg=\box73
+\tikztreelevel=\count328
+\tikznumberofchildren=\count329
+\tikznumberofcurrentchild=\count330
+\tikz@fig@count=\count331
+ (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count332
+\pgfmatrixcurrentcolumn=\count333
+\pgf@matrix@numberofcolumns=\count334
+)
+\tikz@expandcount=\count335
+
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+topaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/usr/share/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip69
+\fb@frw=\dimen271
+\fb@frh=\dimen272
+\FrameRule=\dimen273
+\FrameSep=\dimen274
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count336
+\Gm@cntv=\count337
+\c@Gm@tempcnt=\count338
+\Gm@bindingoffset=\dimen275
+\Gm@wd@mp=\dimen276
+\Gm@odd@mp=\dimen277
+\Gm@even@mp=\dimen278
+\Gm@layoutwidth=\dimen279
+\Gm@layoutheight=\dimen280
+\Gm@layouthoffset=\dimen281
+\Gm@layoutvoffset=\dimen282
+\Gm@dimlist=\toks43
+)
+(/usr/share/texmf-dist/tex/generic/soul/soul.sty
+Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
+
+(/usr/share/texmf-dist/tex/generic/soul/soul-ori.sty
+Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
+\SOUL@word=\toks44
+\SOUL@lasttoken=\toks45
+\SOUL@syllable=\toks46
+\SOUL@cmds=\toks47
+\SOUL@buffer=\toks48
+\SOUL@token=\toks49
+\SOUL@syllgoal=\dimen283
+\SOUL@syllwidth=\dimen284
+\SOUL@charkern=\dimen285
+\SOUL@hyphkern=\dimen286
+\SOUL@dimen=\dimen287
+\SOUL@dimeni=\dimen288
+\SOUL@minus=\count339
+\SOUL@comma=\count340
+\SOUL@apo=\count341
+\SOUL@grave=\count342
+\SOUL@spaceskip=\skip70
+\SOUL@ttwidth=\dimen289
+\SOUL@uldp=\dimen290
+\SOUL@ulht=\dimen291
+))
+(/usr/share/texmf-dist/tex/latex/bold-extra/bold-extra.sty
+Package: bold-extra 2001/11/13 v0.1 Use fonts from cm/mf-extra/bold
+)
+(/usr/share/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip71
+\RaggedLeftLeftskip=\skip72
+\RaggedRightLeftskip=\skip73
+\CenteringRightskip=\skip74
+\RaggedLeftRightskip=\skip75
+\RaggedRightRightskip=\skip76
+\CenteringParfillskip=\skip77
+\RaggedLeftParfillskip=\skip78
+\RaggedRightParfillskip=\skip79
+\JustifyingParfillskip=\skip80
+\CenteringParindent=\skip81
+\RaggedLeftParindent=\skip82
+\RaggedRightParindent=\skip83
+\JustifyingParindent=\skip84
+)
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks50
+\inpenc@posthook=\toks51
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/share/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+
+(/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count343
+)
+(/usr/share/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen292
+\Hy@linkcounter=\count344
+\Hy@pagecounter=\count345
+
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count346
+
+(/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4424.
+\c@Hy@tempcnt=\count347
+
+(/usr/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4763.
+\XeTeXLinkMargin=\dimen293
+
+(/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count348
+\Field@Width=\dimen294
+\Fld@charsize=\dimen295
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
+
+(/usr/share/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count349
+\c@Item=\count350
+\c@Hfootnote=\count351
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
+
+(/usr/share/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count352
+\c@bookmark@seq@number=\count353
+
+(/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+)
+\Hy@SectionHShift=\skip85
+)
+(/usr/share/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+Package: glossaries 2025/03/03 v4.56 (NLCT)
+
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks52
+\XKV@tempa@toks=\toks53
+)
+\XKV@depth=\count354
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
+Package: mfirstuc 2022/10/14 v2.08 (NLCT)
+\@glsmfirst=\toks54
+\@glsmrest=\toks55
+)
+(/usr/share/texmf-dist/tex/latex/xfor/xfor.sty
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+(/usr/share/texmf-dist/tex/latex/tracklang/tracklang.sty
+Package: tracklang 2025/03/04 v1.6.5 (NLCT) Track Languages
+
+(/usr/share/texmf-dist/tex/generic/tracklang/tracklang.tex))
+(/usr/share/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2021-05-31 v1.12d Easy translation of strings in LaTeX
+)
+(/usr/share/texmf-dist/tex/latex/glossaries-english/glossaries-english.ldf
+File: glossaries-english.ldf 2014/11/23 v1.0
+)
+(/usr/share/texmf-dist/tex/latex/datatool/datatool-base.sty
+Package: datatool-base 2025/03/05 v3.0.1 (NLCT)
+
+(/usr/share/texmf-dist/tex/latex/datatool/datatool-l3fp.def
+File: datatool-l3fp.def 2025/03/05 v3.0.1 (NLCT)
+)
+\@dtl@toks=\toks56
+\@dtl@tmpcount=\count355
+\dtl@tmplength=\skip86
+\l__datatool_measure_box=\box74
+\dtl@sortresult=\count356
+
+(/usr/share/texmf-dist/tex/latex/datatool/datatool-utf8.ldf
+File: datatool-utf8.ldf 2025/03/05 v3.0.1 (NLCT)
+)
+\@dtl@datatype=\count357
+\l__datatool_tmpa_int=\count358
+\l__datatool_tmpb_int=\count359
+\l__datatool_tmpc_int=\count360
+\l__datatool_tmpd_int=\count361
+\l__datatool_count_int=\count362
+\l__datatool_tmp_datatype_int=\count363
+\l__datatool_tmpa_dim=\dimen296
+\l__datatool_tmpb_dim=\dimen297
+\c_datatool_unknown_int=\count364
+\l__datatool_year_int=\count365
+\l__datatool_month_int=\count366
+\l__datatool_day_int=\count367
+\l__datatool_hour_int=\count368
+\l__datatool_minute_int=\count369
+\l__datatool_second_int=\count370
+\l__datatool_tzhour_int=\count371
+\l__datatool_tzminute_int=\count372
+\l__datatool_julian_int=\count373
+\l__datatool_local_julian_int=\count374
+\l__datatool_prefix_int=\count375
+\l__datatool_suffix_int=\count376
+\@dtl@foreach@level=\count377
+
+(/usr/share/texmf-dist/tex/latex/datatool-english/datatool-english.ldf
+File: datatool-english.ldf 2025/03/01 v1.0 (NLCT)
+
+(/usr/share/texmf-dist/tex/latex/datatool-english/datatool-english-utf8.ldf
+File: datatool-english-utf8.ldf 2025/03/01 v1.0 (NLCT)
+))
+\dtl@codeA=\count378
+\dtl@codeB=\count379
+)
+\gls@level=\count380
+\@gls@tmpb=\toks57
+\gls@tmplen=\skip87
+\glskeylisttok=\toks58
+\glslabeltok=\toks59
+\glsshorttok=\toks60
+\glslongtok=\toks61
+
+(/usr/share/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
+Package: glossary-hypernav 2025/03/03 v4.56 (NLCT)
+)
+(/usr/share/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
+Package: glossary-list 2025/03/03 v4.56 (NLCT)
+\glslistdottedwidth=\skip88
+)
+(/usr/share/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+Package: glossary-long 2025/03/03 v4.56 (NLCT)
+
+(/usr/share/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
+\LTleft=\skip89
+\LTright=\skip90
+\LTpre=\skip91
+\LTpost=\skip92
+\LTchunksize=\count381
+\LTcapwidth=\dimen298
+\LT@head=\box75
+\LT@firsthead=\box76
+\LT@foot=\box77
+\LT@lastfoot=\box78
+\LT@gbox=\box79
+\LT@cols=\count382
+\LT@rows=\count383
+\c@LT@tables=\count384
+\c@LT@chunks=\count385
+\LT@p@ftn=\toks62
+)
+\glsdescwidth=\skip93
+\glspagelistwidth=\skip94
+)
+(/usr/share/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+Package: glossary-super 2025/03/03 v4.56 (NLCT)
+
+(/usr/share/texmf-dist/tex/latex/supertabular/supertabular.sty
+Package: supertabular 2024/07/20 v4.2c the supertabular environment
+\c@tracingst=\count386
+\ST@wd=\dimen299
+\ST@rightskip=\skip95
+\ST@leftskip=\skip96
+\ST@parfillskip=\skip97
+\ST@pageleft=\dimen300
+\ST@headht=\dimen301
+\ST@tailht=\dimen302
+\ST@pagesofar=\dimen303
+\ST@pboxht=\dimen304
+\ST@rowht=\dimen305
+\ST@prevht=\dimen306
+\ST@toadd=\dimen307
+\ST@dimen=\dimen308
+\ST@pbox=\box80
+))
+(/usr/share/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
+Package: glossary-tree 2025/03/03 v4.56 (NLCT)
+\glstreeindent=\skip98
+))
+(/usr/share/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
+Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
+\col@sep=\dimen309
+\ar@mcellbox=\box81
+\extrarowheight=\dimen310
+\NC@list=\toks63
+\extratabsurround=\skip99
+\backup@length=\skip100
+\ar@cellbox=\box82
+)
+\everycr=\toks64
+\minrowclearance=\skip101
+\rownum=\count387
+)
+
+LaTeX Warning: Package "xcolor" has already been loaded: ignoring load-time
+(LaTeX)        option "xcdraw".
+
+(/usr/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count388
+\lst@gtempboxa=\box83
+\lst@token=\toks65
+\lst@length=\count389
+\lst@currlwidth=\dimen311
+\lst@column=\count390
+\lst@pos=\count391
+\lst@lostspace=\dimen312
+\lst@width=\dimen313
+\lst@newlines=\count392
+\lst@lineno=\count393
+\lst@maxwidth=\dimen314
+
+(/usr/share/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+)
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count394
+\lst@skipnumbers=\count395
+\lst@framebox=\box84
+)
+(/usr/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+
+(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip102
+\multirow@cntb=\count396
+\multirow@dima=\skip103
+\bigstrutjot=\dimen315
+)
+(/usr/share/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+\TX@col@width=\dimen316
+\TX@old@table=\dimen317
+\TX@old@col=\dimen318
+\TX@target=\dimen319
+\TX@delta=\dimen320
+\TX@cols=\count397
+\TX@ftn=\toks66
+)
+(/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen321
+\lightrulewidth=\dimen322
+\cmidrulewidth=\dimen323
+\belowrulesep=\dimen324
+\belowbottomsep=\dimen325
+\aboverulesep=\dimen326
+\abovetopsep=\dimen327
+\cmidrulesep=\dimen328
+\cmidrulekern=\dimen329
+\defaultaddspace=\dimen330
+\@cmidla=\count398
+\@cmidlb=\count399
+\@aboverulesep=\dimen331
+\@belowrulesep=\dimen332
+\@thisruleclass=\count400
+\@lastruleclass=\count401
+\@thisrulewidth=\dimen333
+)
+(/usr/share/texmf-dist/tex/latex/tablefootnote/tablefootnote.sty
+Package: tablefootnote 2014/01/26 v1.1c Table foot notes (HMM)
+
+(/usr/share/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/share/texmf-dist/tex/latex/xifthen/xifthen.sty
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count402
+\calc@Bcount=\count403
+\calc@Adimen=\dimen334
+\calc@Bdimen=\dimen335
+\calc@Askip=\skip104
+\calc@Bskip=\skip105
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count404
+\calc@Cskip=\skip106
+)
+(/usr/share/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+)))
+(/usr/share/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip107
+\subfigcapskip=\skip108
+\subfigcaptopadj=\dimen336
+\subfigbottomskip=\skip109
+\subfigcapmargin=\dimen337
+\subfiglabelskip=\skip110
+\c@subfigure=\count405
+\c@lofdepth=\count406
+\c@subtable=\count407
+\c@lotdepth=\count408
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip111
+\subfig@bottom=\skip112
+)
+(/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+
+(/usr/share/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/share/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen338
+\captionmargin=\dimen339
+\caption@leftmargin=\dimen340
+\caption@rightmargin=\dimen341
+\caption@width=\dimen342
+\caption@indent=\dimen343
+\caption@parindent=\dimen344
+\caption@hangindent=\dimen345
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count409
+\c@continuedfloat=\count410
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
+Package caption Info: subfigure package is loaded.
+Package caption Info: supertabular package is loaded.
+)
+LaTeX Info: Redefining \subref on input line 189.
+Package subcaption Info: The counter `subfigure' was already defined by
+(subcaption)             an unknown document class or package on input line 238
+.
+Package subcaption Info: The counter `subtable' was already defined by
+(subcaption)             an unknown document class or package on input line 238
+.
+)
+
+Package geometry Warning: Over-specification in `h'-direction.
+    `width' (455.24408pt) is ignored.
+
+
+Package geometry Warning: Over-specification in `v'-direction.
+    `height' (725.54527pt) is ignored.
+
+\ancho=\skip113
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 169.
+
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 169.
+
+Package hyperref Info: Option `colorlinks' set `true' on input line 169.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 169.
+Package hyperref Info: Option `colorlinks' set `true' on input line 401.
+) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count411
+\l__pdf_internal_box=\box85
+)
+No file emcloud.aux.
+\openout1 = `emcloud.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Info: Redefining \. on input line 36.
+LaTeX Info: Redefining \% on input line 36.
+(/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count412
+\scratchdimen=\dimen346
+\scratchbox=\box86
+\nofMPsegments=\count413
+\nofMParguments=\count414
+\everyMPshowfont=\toks67
+\MPscratchCnt=\count415
+\MPscratchDim=\dimen347
+\MPnumerator=\count416
+\makeMPintoPDFobject=\count417
+\everyMPtoPDFconversion=\toks68
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 717.00946pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=717.00946pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-33.0119pt
+* \headheight=12.0pt
+* \headsep=19.8738pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=88.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package hyperref Info: Link coloring ON on input line 36.
+\@outlinefile=\write5
+\openout5 = `emcloud.out'.
+
+\c@lstlisting=\count418
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+<figs/uv/etse_titulo.png, id=7, 374.39874pt x 64.24pt>
+File: figs/uv/etse_titulo.png Graphic file (type png)
+<use figs/uv/etse_titulo.png>
+Package pdftex.def Info: figs/uv/etse_titulo.png  used on input line 39.
+(pdftex.def)             Requested size: 250.38562pt x 42.96214pt.
+<figs/uv/escudo_logo_UV_narrow.png, id=8, 602.25pt x 782.925pt>
+File: figs/uv/escudo_logo_UV_narrow.png Graphic file (type png)
+<use figs/uv/escudo_logo_UV_narrow.png>
+Package pdftex.def Info: figs/uv/escudo_logo_UV_narrow.png  used on input line 
+39.
+(pdftex.def)             Requested size: 159.3382pt x 207.13963pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
+
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+[1
+
+{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist
+/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./figs/uv/etse_titulo.png> <./figs/
+uv/escudo_logo_UV_narrow.png>]
+
+[2]
+
+[3
+
+]
+
+[4
+
+]
+
+[5
+
+]
+
+[6
+
+]
+No file emcloud.toc.
+\tf@toc=\write6
+\openout6 = `emcloud.toc'.
+
+
+
+[7
+
+
+]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[8
+
+]
+Cap\'{\i }tulo 1.
+(./tex/introduccion.tex
+
+LaTeX Warning: Citation `ec-cloud-workflows' on page 9 undefined on input line 
+3.
+
+
+LaTeX Warning: Citation `survery-videoencoding' on page 9 undefined on input li
+ne 5.
+
+
+LaTeX Warning: Citation `survery-videoencoding' on page 9 undefined on input li
+ne 5.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[9]
+
+LaTeX Warning: Citation `rapl-tool' on page 10 undefined on input line 16.
+
+
+LaTeX Warning: Reference `fig:rapl-too-working' on page 10 undefined on input l
+ine 16.
+
+<figs/rapl-funcionamiento.png, id=58, 507.8975pt x 507.8975pt>
+File: figs/rapl-funcionamiento.png Graphic file (type png)
+<use figs/rapl-funcionamiento.png>
+Package pdftex.def Info: figs/rapl-funcionamiento.png  used on input line 20.
+(pdftex.def)             Requested size: 318.66948pt x 318.67514pt.
+
+LaTeX Warning: Citation `energy-rapl-mesurement' on page 10 undefined on input 
+line 21.
+
+
+LaTeX Warning: Citation `energy-rapl-mesurement' on page 10 undefined on input 
+line 21.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[10 <./figs/rapl-funcionamiento.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+
+LaTeX Warning: Reference `chapt:intro' on page 11 undefined on input line 42.
+
+
+LaTeX Warning: Reference `chapt:estado-del-arte' on page 11 undefined on input 
+line 44.
+
+
+LaTeX Warning: Reference `chapt:especificacion' on page 11 undefined on input l
+ine 46.
+
+
+LaTeX Warning: Reference `chapt:anali-diseño' on page 11 undefined on input li
+ne 48.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[11]
+
+LaTeX Warning: Reference `chapt:results' on page 12 undefined on input line 50.
+
+
+
+LaTeX Warning: Reference `chapt:conclusion' on page 12 undefined on input line 
+52.
+
+
+LaTeX Warning: Reference `chapt:biblio' on page 12 undefined on input line 54.
+
+
+LaTeX Warning: Reference `chapt:apendice' on page 12 undefined on input line 54
+.
+
+)
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[12]
+Cap\'{\i }tulo 2.
+(./tex/estado_del_arte.tex (./tex/est-arte/arte-consumo-ernegetico.tex
+
+LaTeX Warning: Citation `cloud-bases' on page 13 undefined on input line 3.
+
+
+LaTeX Warning: Citation `cpds-consumption-energy' on page 13 undefined on input
+ line 5.
+
+
+LaTeX Warning: Citation `iae-report-consumption' on page 13 undefined on input 
+line 7.
+
+
+LaTeX Warning: Citation `iae-report-generation' on page 13 undefined on input l
+ine 7.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+
+[13
+
+]
+
+LaTeX Warning: Citation `iae-report-generation' on page 14 undefined on input l
+ine 12.
+
+
+LaTeX Warning: Citation `iae-report-generation' on page 14 undefined on input l
+ine 14.
+
+
+LaTeX Warning: Citation `cop2030' on page 14 undefined on input line 16.
+
+
+LaTeX Warning: Reference `exp2-desarrollo' on page 14 undefined on input line 2
+5.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[14]
+
+LaTeX Warning: Citation `itu-quality-metrics' on page 15 undefined on input lin
+e 27.
+
+) (./tex/est-arte/arte-herramientas_consumo-energetico.tex
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[15]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[16]))
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[17]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[18
+
+]
+Cap\'{\i }tulo 3.
+(./tex/especificacion.tex
+
+LaTeX Warning: Citation `survery-videoencoding' on page 19 undefined on input l
+ine 9.
+
+
+LaTeX Warning: Citation `rapl-tool' on page 19 undefined on input line 9.
+
+
+LaTeX Warning: Citation `energy-rapl-mesurement' on page 19 undefined on input 
+line 9.
+
+
+LaTeX Warning: Citation `multithread-energy-consumption-videoencoding' on page 
+19 undefined on input line 13.
+
+
+
+[19]
+
+LaTeX Warning: Citation `intel-processor-sepcts' on page 20 undefined on input 
+line 20.
+
+
+LaTeX Warning: Citation `nvidia-quadro-m4000' on page 20 undefined on input lin
+e 22.
+
+
+LaTeX Warning: Citation `nvidia-smi' on page 20 undefined on input line 22.
+
+
+LaTeX Warning: Citation `nvidia-container-toolkit' on page 20 undefined on inpu
+t line 24.
+
+
+LaTeX Warning: Reference `tab:nvidia-matrix-capacity' on page 20 undefined on i
+nput line 26.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[20]
+
+LaTeX Warning: Reference `sec:arte-herramientas' on page 21 undefined on input 
+line 54.
+
+
+LaTeX Warning: Reference `tab:especi-herramientas-capacidad-metricas' on page 2
+1 undefined on input line 54.
+
+
+LaTeX Warning: Citation `cable-labs' on page 21 undefined on input line 61.
+
+
+LaTeX Warning: Citation `blender-videos' on page 21 undefined on input line 61.
+
+
+
+LaTeX Warning: Reference `tab:lista-videos-test' on page 21 undefined on input 
+line 65.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[21]
+
+LaTeX Warning: Reference `form:formula-te-pert' on page 22 undefined on input l
+ine 94.
+
+
+LaTeX Warning: Reference `tab:tiempoesperado-pert' on page 22 undefined on inpu
+t line 98.
+
+
+LaTeX Warning: Reference `fig:espec-diagrampert' on page 22 undefined on input 
+line 98.
+
+
+LaTeX Warning: Reference `fig:expect-ganttinicial' on page 22 undefined on inpu
+t line 101.
+
+<figs/diagram-pert.png, id=145, 5263.665pt x 236.885pt>
+File: figs/diagram-pert.png Graphic file (type png)
+<use figs/diagram-pert.png>
+Package pdftex.def Info: figs/diagram-pert.png  used on input line 104.
+(pdftex.def)             Requested size: 318.66948pt x 14.33899pt.
+<figs/PlanificacionInicial.png, id=146, 1970.36125pt x 1199.48125pt>
+File: figs/PlanificacionInicial.png Graphic file (type png)
+<use figs/PlanificacionInicial.png>
+Package pdftex.def Info: figs/PlanificacionInicial.png  used on input line 111.
+
+(pdftex.def)             Requested size: 455.24411pt x 277.11946pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[22 <./figs/diagram-pert.png>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[23 <./figs/PlanificacionInicial.png (PNG copy)>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[][][][][]$\T1/cmr/m/n/10.95 https : / / www . seg-[]social . es / wps / portal
+ / wss / internet / Trabajadores /
+ []
+
+
+LaTeX Warning: Reference `tab:espect-estimacion-costesfinal' on page 25 undefin
+ed on input line 151.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+)
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[25
+
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[26]
+Cap\'{\i }tulo 4.
+(./tex/analisis-diseño.tex
+
+[27
+
+]
+<figs/kepler-caso-uso.png, id=205, 4524.905pt x 445.665pt>
+File: figs/kepler-caso-uso.png Graphic file (type png)
+<use figs/kepler-caso-uso.png>
+Package pdftex.def Info: figs/kepler-caso-uso.png  used on input line 18.
+(pdftex.def)             Requested size: 455.24411pt x 44.83432pt.
+File: figs/kepler-caso-uso.png Graphic file (type png)
+<use figs/kepler-caso-uso.png>
+Package pdftex.def Info: figs/kepler-caso-uso.png  used on input line 30.
+(pdftex.def)             Requested size: 455.24411pt x 44.83432pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[28 <./figs/kepler-caso-uso.png>]
+<figs/cem-caso-uso.png, id=215, 4778.85374pt x 654.445pt>
+File: figs/cem-caso-uso.png Graphic file (type png)
+<use figs/cem-caso-uso.png>
+Package pdftex.def Info: figs/cem-caso-uso.png  used on input line 42.
+(pdftex.def)             Requested size: 455.24411pt x 62.34268pt.
+<figs/sitichuncks.png, id=216, 2273.49374pt x 188.705pt>
+File: figs/sitichuncks.png Graphic file (type png)
+<use figs/sitichuncks.png>
+Package pdftex.def Info: figs/sitichuncks.png  used on input line 53.
+(pdftex.def)             Requested size: 455.24411pt x 37.78639pt.
+
+
+LaTeX Warning: Reference `eq:percent-energy-node' on page 29 undefined on input
+ line 71.
+
+
+LaTeX Warning: Reference `eq:percent-energy-tool' on page 29 undefined on input
+ line 75.
+
+
+LaTeX Warning: Reference `eq:percent-energy-tool_node' on page 29 undefined on 
+input line 78.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[29 <./figs/cem-caso-uso.png> <./figs/sitichuncks.png>]
+(./tex/des/exp0-enviroment.tex
+
+LaTeX Warning: Citation `debian-releases' on page 30 undefined on input line 9.
+
+
+
+LaTeX Warning: Reference `img:ffmpeg-compatibilidad' on page 30 undefined on in
+put line 11.
+
+<figs/error-ffmpeg.png, id=229, 1567.8575pt x 523.9575pt>
+File: figs/error-ffmpeg.png Graphic file (type png)
+<use figs/error-ffmpeg.png>
+Package pdftex.def Info: figs/error-ffmpeg.png  used on input line 15.
+(pdftex.def)             Requested size: 204.85846pt x 68.46065pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Citation `ffmpeg-linuxserver-image' on page 30 undefined on inpu
+t line 22.
+
+
+LaTeX Warning: Citation `linux-server-group' on page 30 undefined on input line
+ 22.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[30]
+
+LaTeX Warning: Reference `exp0:kepler-recoleccion-datos' on page 31 undefined o
+n input line 27.
+
+
+LaTeX Warning: Reference `exp0:kepler-recoleccion-datos' on page 31 undefined o
+n input line 38.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[31 <./figs/error-ffmpeg.png>]
+
+LaTeX Warning: Reference `code:go-dockerfile' on page 32 undefined on input lin
+e 42.
+
+(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 46.
+
+
+LaTeX Warning: Reference `exp0:scp-docker-deploy' on page 32 undefined on input
+ line 58.
+
+(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+
+LaTeX Warning: Reference `exp0:scp-execution' on page 32 undefined on input lin
+e 64.
+
+
+LaTeX Warning: Reference `exp1-desarrollo' on page 32 undefined on input line 6
+4.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[32]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 72.
+
+
+LaTeX Warning: Reference `exp0:em-docker-compose' on page 33 undefined on input
+ line 89.
+
+(./src/docker/docker-compose-em.yaml
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[33])
+
+LaTeX Warning: Reference `exp0:monitor-docker-compose' on page 34 undefined on 
+input line 96.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+
+LaTeX Warning: Reference `exp0:monitor-tooluse' on page 34 undefined on input l
+ine 99.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[34]))
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[35]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[36
+
+]
+Cap\'{\i }tulo 5.
+(./tex/resultados.tex (./tex/results/exp1.tex
+
+[37]
+
+LaTeX Warning: Reference `exp1:kepler-script-probes' on page 38 undefined on in
+put line 20.
+
+
+LaTeX Warning: Reference `exp1:scp-script-probes' on page 38 undefined on input
+ line 20.
+
+
+LaTeX Warning: Reference `exp1:monitor-script-probes-1container' on page 38 und
+efined on input line 22.
+
+
+LaTeX Warning: Reference `exp1:monitor-script-probes-2containers' on page 38 un
+defined on input line 22.
+
+
+LaTeX Warning: Reference `exp1:monitor-script-probes-2containers' on page 38 un
+defined on input line 24.
+
+
+LaTeX Warning: Reference `exp1:monitor-script-probes-1container' on page 38 und
+efined on input line 24.
+
+
+LaTeX Warning: Reference `exp1:kepler-data-procesor' on page 38 undefined on in
+put line 30.
+
+
+LaTeX Warning: Reference `exp1:scp-data-procesor' on page 38 undefined on input
+ line 30.
+
+<figs/exp1_kepler_csv_header.png, id=350, 1788.6825pt x 36.135pt>
+File: figs/exp1_kepler_csv_header.png Graphic file (type png)
+<use figs/exp1_kepler_csv_header.png>
+Package pdftex.def Info: figs/exp1_kepler_csv_header.png  used on input line 36
+.
+(pdftex.def)             Requested size: 455.24411pt x 9.19691pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[38]
+<figs/exp1_scp_csv_header.png, id=357, 1514.65875pt x 64.24pt>
+File: figs/exp1_scp_csv_header.png Graphic file (type png)
+<use figs/exp1_scp_csv_header.png>
+Package pdftex.def Info: figs/exp1_scp_csv_header.png  used on input line 43.
+(pdftex.def)             Requested size: 455.24411pt x 19.30743pt.
+<figs/exp1_monitor_csv_header.png, id=358, 1538.74875pt x 64.24pt>
+File: figs/exp1_monitor_csv_header.png Graphic file (type png)
+<use figs/exp1_monitor_csv_header.png>
+Package pdftex.def Info: figs/exp1_monitor_csv_header.png  used on input line 5
+0.
+(pdftex.def)             Requested size: 455.24411pt x 19.00552pt.
+
+
+LaTeX Warning: Reference `exp1:python-bar-grafics' on page 39 undefined on inpu
+t line 55.
+
+
+LaTeX Warning: Reference `fig:exp1-es2-resultados' on page 39 undefined on inpu
+t line 68.
+
+<figs/exp1-1cont-nolimit.png, id=359, 1445.4pt x 867.24pt>
+File: figs/exp1-1cont-nolimit.png Graphic file (type png)
+<use figs/exp1-1cont-nolimit.png>
+Package pdftex.def Info: figs/exp1-1cont-nolimit.png  used on input line 76.
+(pdftex.def)             Requested size: 455.24411pt x 273.14235pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[39 <./figs/exp1_kepler_csv_header.png> <./figs/exp1_scp_csv_header.png> <./fig
+s/exp1_monitor_csv_header.png>]
+Overfull \hbox (17.50296pt too wide) in paragraph at lines 84--85
+[]\T1/cmr/m/n/12 Cabe des-ta-car que la ener-g�a to-tal me-di-da por Glo-bal En
+ergy Me-ter (\T1/cmr/bx/n/12 em_total_energy\T1/cmr/m/n/12 )
+ []
+
+
+LaTeX Warning: Reference `eq:percent-energy-node' on page 40 undefined on input
+ line 88.
+
+
+Underfull \vbox (badness 5607) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[40 <./figs/exp1-1cont-nolimit.png>]
+<figs/exp1-1cont-nolimitcpuygpu.png, id=379, 1445.4pt x 867.24pt>
+File: figs/exp1-1cont-nolimitcpuygpu.png Graphic file (type png)
+<use figs/exp1-1cont-nolimitcpuygpu.png>
+Package pdftex.def Info: figs/exp1-1cont-nolimitcpuygpu.png  used on input line
+ 92.
+(pdftex.def)             Requested size: 455.24411pt x 273.14235pt.
+<figs/exp1-1cont-limited3cpus.png, id=380, 1445.4pt x 867.24pt>
+File: figs/exp1-1cont-limited3cpus.png Graphic file (type png)
+<use figs/exp1-1cont-limited3cpus.png>
+Package pdftex.def Info: figs/exp1-1cont-limited3cpus.png  used on input line 1
+11.
+(pdftex.def)             Requested size: 455.24411pt x 273.14235pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[41 <./figs/exp1-1cont-nolimitcpuygpu.png>]
+
+LaTeX Warning: Reference `fig:exp1-es4-resultados' on page 42 undefined on inpu
+t line 119.
+
+
+LaTeX Warning: Reference `eq:percent-energy-tool_node' on page 42 undefined on 
+input line 123.
+
+
+Underfull \vbox (badness 5607) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[42 <./figs/exp1-1cont-limited3cpus.png>]
+<figs/exp1-2cont-limited3cpus.png, id=395, 1445.4pt x 867.24pt>
+File: figs/exp1-2cont-limited3cpus.png Graphic file (type png)
+<use figs/exp1-2cont-limited3cpus.png>
+Package pdftex.def Info: figs/exp1-2cont-limited3cpus.png  used on input line 1
+32.
+(pdftex.def)             Requested size: 455.24411pt x 273.14235pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[43 <./figs/exp1-2cont-limited3cpus.png>]
+
+LaTeX Warning: Reference `tab:exp1-conclusiones-error' on page 44 undefined on 
+input line 159.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[44]
+! Package array Error: >{..} at wrong position: token ignored.
+
+See the array package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.176      \end{tabularx}
+                         
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.176      \end{tabularx}
+                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 38067 strings out of 473203
+ 749244 string characters out of 5723159
+ 1748098 words of memory out of 5000000
+ 60488 multiletter control sequences out of 15000+600000
+ 585161 words of font info for 96 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 117i,12n,145p,2387b,2157s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!
