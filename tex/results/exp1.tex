@@ -69,17 +69,17 @@ A continuacion se detalla una lista de los posibles valores y su representación
 
  En relación a las métricas de consumo del nodo respecto a la metrics recolectadas por Global Energy Meter, se observa que la herramieta con menor discrepancia es \textbf{Global Energy Container}, con una tasa de error del \textbf{$0,3113\%$}. Seguido por \textbf{Scaphandre} con un \textbf{$3,4955\%$} y Kepler con un \textbf{$4,6850\%$}. 
  
- Estos resultado muestran como la capacidad para tomar metricas de consumo de un unico proceso ejecutado sobre un contenedor tiene mayor precision que \textit{Kepler} y a \textit{Scaphandre}.
+ Estos resultado muestran como la capacidad para tomar métricas de consumo de un unico proceso ejecutado sobre un contenedor tiene mayor precision que \textit{Kepler} y a \textit{Scaphandre}.
 
  \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{figs/exp1-1cont-nolimit.png}
-    \caption{Histograma comparativo de las metricas de consumo energetico en julios de las tres herramientas sobre una tarea de transcodificacion llevada a cabo en un contenedore de docker (process1\_energy\_joules)}
+    \caption{Histograma comparativo de las métricas de consumo energetico en julios de las tres herramientas sobre una tarea de transcodificacion llevada a cabo en un contenedore de docker (process1\_energy\_joules)}
     \label{fig:exp1-es2-resultados}
  \end{figure}
 
 \subsubsection{Escenario 2: Transcodificación sobre un contenedor empleando CPU y GPU}
-  En este escenario se le da acceso al contenedor tanto a la GPU como al numero total de cores de la CPU. Con esta comparativa se espera poder medir las capacidades basicas de cada una de las herramientas al tratar de determinar el consumo del nodo y de la GPU, asi como del proceso que se estan ejecutando sobre este en comparacion a las metricas de energia recolectadas por la herramienta externa Global Energy Meter.
+  En este escenario se le da acceso al contenedor tanto a la GPU como al numero total de cores de la CPU. Con esta comparativa se espera poder medir las capacidades basicas de cada una de las herramientas al tratar de determinar el consumo del nodo y de la GPU, asi como del proceso que se estan ejecutando sobre este en comparacion a las métricas de energia recolectadas por la herramienta externa Global Energy Meter.
   
   Cabe destacar que la energía total medida por \textit{Global Energy Meter} (\textbf{em\_total\_energy}) y por las herramientas de métricas respecto al nodo (\textbf{node\_total\_joules}) miden el consumo energético basándose en RAPL, lo cual implica que ninguna de estas medidas incluye el consumo de la tarjeta gráfica. Por tanto, para conocer el consumo total del sistema durante el proceso de codificación empleando tarjeta gráfica, se deben sumar las métricas de consumo del nodo y la métrica de consumo de la GPU (\textbf{gpu\_node\_jouls}) \(\textbf{gpu\_node\_jouls}+\textbf{em\_total\_energy} = \textbf{Total\_Energy\_System}\).
  
@@ -90,26 +90,26 @@ A continuacion se detalla una lista de los posibles valores y su representación
   \begin{figure}[h!]
      \centering
      \includegraphics[width=\linewidth]{figs/exp1-1cont-nolimitcpuygpu.png}
-     \caption{Histograma resultante de las metricas de consumo energetico en julios sobre una tarea de codificación empleando GPU y CPU}
+     \caption{Histograma resultante de las métricas de consumo energetico en julios sobre una tarea de codificación empleando GPU y CPU}
      \label{fig:exp1-es1-resultados}
   \end{figure}
 
 
 \subsubsection{Escenario 3: Transcodificacion empleando un contenedor limitado a tres cores}
- En este tercer escenario, se ha limitado el numero de cores a los que el contenedor tiene acceso con el fin de medir la granularidad de cada una de las herramientas en relacion a las metricas de consumo. Para limitar el numero de cores se han añadido las opciones:
+ En este tercer escenario, se ha limitado el numero de cores a los que el contenedor tiene acceso con el fin de medir la granularidad de cada una de las herramientas en relacion a las métricas de consumo. Para limitar el numero de cores se han añadido las opciones:
  \begin{itemize} 
   \item \texttt{\lstinline[language=sh]{--cpus="3"}}: Numero de cores que el contenedor puede utilizar.
   \item \texttt{\lstinline[language=sh]{--cpuset-cpus=1-3}}: Rango de las cores de las que dispone, en este caso reservamos los cores \textit{0,4,5,6 y 7} para el sistema.
  \end{itemize}
  
- Analizando el consumo energetico general de las diferentes metricas, se observa un aumento del consumo energetico del \textbf{$31,99\%$} respecto al escenario que no presentaba limitacion en el numero de cores de la CPU. En cuanto a la metrica de consumo energetico del nodo, Container Energy Monitoring es el que menor discrepancia tiene respecto a la energia medida por Global Energy Meter con una tasa de error del \textbf{$0,2546\%$}. Seguido por Scaphandre, quien presenta un tasa de error del \textbf{$2,5921\%$} respecto a la energia medida por Global Energy Meter, y en ultimo lugar, Kepler el cual presenta un tasa de error del \textbf{$62,5930\%$}, una gran diferencia respecto tasa de error de las dos herramientas.
+ Analizando el consumo energetico general de las diferentes métricas, se observa un aumento del consumo energetico del \textbf{$31,99\%$} respecto al escenario que no presentaba limitacion en el numero de cores de la CPU. En cuanto a la metrica de consumo energetico del nodo, Container Energy Monitoring es el que menor discrepancia tiene respecto a la energia medida por Global Energy Meter con una tasa de error del \textbf{$0,2546\%$}. Seguido por Scaphandre, quien presenta un tasa de error del \textbf{$2,5921\%$} respecto a la energia medida por Global Energy Meter, y en ultimo lugar, Kepler el cual presenta un tasa de error del \textbf{$62,5930\%$}, una gran diferencia respecto tasa de error de las dos herramientas.
  
  Los resultados muestran que Container Energy Monitor es la herramienta que mejor atribuye la energía en el caso se que limite el número de cores asignados al contenedor. En este mismo escenario, Kepler y Scaphandre dan un valor muy bajo a la energía consumida por el contenedor. Para determinar las causas habría que analizar el código fuente, lo que queda fuera del ámbito de este trabajo.
 
  \begin{figure}[h!]
    \centering
    \includegraphics[width=\linewidth]{figs/exp1-1cont-limited3cpus.png}
-   \caption{Histograma resultante delas metricas de consumo sobre una tarea de codificacion emplendo un contenedor limitado a 3 cores}
+   \caption{Histograma resultante delas métricas de consumo sobre una tarea de codificacion emplendo un contenedor limitado a 3 cores}
    \label{fig:exp1-es3-resultados}
  \end{figure}
 
@@ -124,13 +124,13 @@ A continuacion se detalla una lista de los posibles valores y su representación
  
  Por su parte, Container Energy Monitoring proporciona una estimación del consumo energético asociado a los procesos cuya suma asciende a \textbf{$6212,860$ julios}, frente a un consumo energético medido por  Global Energy Meter de \textbf{$6733,879$ julios}. Esto supone una diferencia de \textbf{$521,019$ julios} y significa que \textbf{Container Energy Monitoring} atribuye aproximadamente el \textbf{$92,2627\%$} del consumo energético total del nodo a los procesos ejecutados en los dos contenedores. Este resultado es coherente con las condiciones del escenario descrito anteriormente, en el que la mayor parte de la carga de trabajo del sistema corresponde a los procesos de transcodificación ejecutados simultáneamente en ambos contenedores.
 
- En el el caso de la metricas tomadas por \textbf{Kepler}, se obtiene que ambos procesos han consumido un total de $4943,986$ julios mientras que Global Energy Meter indica que el nodo ha consumido $6694,905$ julios. Esto implica que kepler atribuye un \textbf{$73,8469\%$} de energia a los procesos de transcodificación. Esto implica que segun esta herramienta un \textbf{$26,19\%$} de la energia no se asigna a ningun proceso.
+ En el el caso de la métricas tomadas por \textbf{Kepler}, se obtiene que ambos procesos han consumido un total de $4943,986$ julios mientras que Global Energy Meter indica que el nodo ha consumido $6694,905$ julios. Esto implica que kepler atribuye un \textbf{$73,8469\%$} de energia a los procesos de transcodificación. Esto implica que segun esta herramienta un \textbf{$26,19\%$} de la energia no se asigna a ningun proceso.
 
 
  \begin{figure}[h!]
      \centering
      \includegraphics[width=\linewidth]{figs/exp1-2cont-limited3cpus.png}
-     \caption{Histograma resultante de las metricas de consumo de dos contenedores limitados a 3 cores cada uno ejecutando tareas de codificacion simultaneamente}
+     \caption{Histograma resultante de las métricas de consumo de dos contenedores limitados a 3 cores cada uno ejecutando tareas de codificacion simultaneamente}
      \label{fig:exp1-es4-resultados}
  \end{figure}
 

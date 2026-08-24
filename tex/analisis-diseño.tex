@@ -4,7 +4,7 @@
  Por tanto para demostrar la certeza de dichas hiptesis se han desarrollado un conjunto de experimentos que tratan cumplir una serie de objetivos y tratar de establecer patrones/leyes de comportamiento en el espectro teorico de este trabajo. El unico desarrollo de codigo que se ha llevado a cabo, es el desarrollo de los difetentes scripts que se han encargado de ejecutar las distintas pruebas de cada uno de los experimentos, asi como del procesameinto de los datos con los cuales se han generado diversas graficas.
  
  \subsection{Casos de Uso}
- Debido a la naturaleza investigadora del proyecto, la reutilización de los componentes desarrollados en otros contextos se encuentra condicionada por la dependencia de estos respecto a las características específicas del entorno experimental. Por este motivo, las herramientas con mayor grado de independencia respecto al proyecto son aquellas destinadas a la recopilación y monitorización de métricas de consumo energético. Asimismo, se ha incluido el proceso de cálculo de las métricas SI y TI sobre un conjunto de vídeos y la posterior generación de una gráfica de dispersión en función de los valores obtenidos, ya que este proceso puede ejecutarse de forma independiente de las características específicas de los experimentos planteados.
+ Debido a la naturaleza investigadora del proyecto, la reutilización de los componentes desarrollados en otros contextos se encuentra condicionada por la dependencia de estos respecto a las características específicas del entorno experimental. Por este motivo, las herramientas con mayor grado de independencia respecto al proyecto son aquellas destinadas a la recopilación y monitorización de métricas de consumo energético. Asimismo, se ha incluido el proceso de cálculo de las características SI y TI sobre un conjunto de vídeos y la posterior generación de una gráfica de dispersión en función de los valores obtenidos, ya que este proceso puede ejecutarse de forma independiente de las características específicas de los experimentos planteados.
  
  A continuación, se presentan los casos de uso identificados junto con sus correspondientes diagramas de secuencia, que permiten representar de forma estructurada el funcionamiento de cada uno de estos componentes. 
  
@@ -16,7 +16,7 @@
  \begin{figure}[h!]
  \centering
  \includegraphics[width=\linewidth]{figs/kepler-caso-uso.png}
- \caption{Diagram de funcionamiento interno del experimento 1.1 recoleccion de metricas con kepler y Global Energy Meter}
+ \caption{Diagram de funcionamiento interno del experimento 1.1 recoleccion de métricas con Kepler y Global Energy Meter}
  \label{fig:analisis-kepler-casouso}
  \end{figure}
  
@@ -28,7 +28,7 @@
  \begin{figure}[h!]
  \centering
  \includegraphics[width=\linewidth]{figs/kepler-caso-uso.png}
- \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de metricas con Scaphandre y Global Energy Meter}
+ \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de métricas con Scaphandre y Global Energy Meter}
  \label{fig:analisis-scp-casouso}
  \end{figure}
  
@@ -40,7 +40,7 @@
  \begin{figure}[h!]
  \centering
  \includegraphics[width=\linewidth]{figs/cem-caso-uso.png}
- \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de metricas con Container Eneregy Monitoring y Global Energy Meter}
+ \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de métricas con Container Eneregy Monitoring y Global Energy Meter}
  \label{fig:cem-scp-casouso}
  \end{figure}
  
@@ -54,19 +54,55 @@
  \caption{Caso de uso para calcular el SITI de los fragmentos de videos disponibles para experimentar}
  \label{fig:siti-chunks-casouso}
  \end{figure}
-
 \section{Diseño del proyecto}
-% Qué variables quieres estudiar.
-% Qué métricas necesitas.
-% Qué codificadores vas a comparar.
-% Qué características de los vídeos vas a utilizar.
-% Qué escenarios vas a estudiar.
-% Qué hipótesis planteas.
-% - Metricas con las que calculo error y diferencia media
-% - Formula seleccion de threads y cores
-% - 
-\subsection{Equaciones y Calculos}
-En esta seccion se incluyen el conjunto de equaciones utlizadas para determinar diversas cuestiones comparativas, como el porcentaje de mejora entre herramientas o diferencias percentuales entre metricas.
+El flujo de ejecución de los experimentos se mantiene uniforme a lo largo del estudio. En primer lugar, se ejecutan las pruebas mediante scripts de automatización en Bash; posteriormente, los datos recopilados se procesan en Python para generar la gráfica y métricas correspondientes. Finalmente, se realiza un análisis cuantitativo de los resultados y se redactan las conclusiones parciales que estructuran la síntesis final del trabajo.
+
+En cada experimento se iterará sobre un conjunto de variables independientes, cuyos valores específicos se ajustan según el contexto de la prueba:
+
+\begin{itemize}
+    \item \texttt{Herramienta de toma de métricas:} Variable exclusiva del \textit{Experimento 1 (Selección de Herramienta)}. Se evalúan las soluciones \textit{Kepler}, \textit{Scaphandre} y \textit{Container Energy Monitor} para determinar cuál ofrece mayor precisión al monitorizar procesos en contenedores.
+
+    \item \texttt{Tasa de bits (Bitrate):} Variable clave en los Experimentos 2 y 3. Rango de valores en Mbps según la generación del códec (H.264 o H.265), detallado en la Tabla \ref{tab:ana-bitrate-values}.
+
+    \item \texttt{Codificadores y base hardware:} Configuración evaluada en los Experimentos 2 y 3, abarcando ejecuciones sobre CPU pura y aceleración por GPU física (Tabla \ref{tab:exp2-codecs-selection}).
+
+    \item \texttt{Complejidad espacial y temporal (SI y TI):} Métricas empleadas en el Experimento 2 para analizar la correlación entre la carga del video y el consumo energético. Los videos del dataset se clasifican en cuatro cuadrantes de complejidad: \textit{HTI\_HSI}, \textit{HTI\_LSI}, \textit{LTI\_HSI} y \textit{LTI\_LSI}.
+
+    \item \texttt{Asignación de recursos (Cores y Threads):} Límite de núcleos de CPU asignados al contenedor y número de hilos de ejecución en el codificador, evaluado en el Experimento 3 para determinar el punto de saturación y eficiencia energética.
+\end{itemize}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    \textbf{Codificador} & \textbf{Experimento 2 (Mbps)} & \textbf{Experimento 3 (Mbps)} \\ \hline
+    \cellcolor[HTML]{EFEFEF}libx264 / h264\_nvenc & 10, 20, 25, 30, 35, 40, 50 & 10, 30 \\ \hline
+    \cellcolor[HTML]{EFEFEF}libx265 / hevc\_nvenc & 10, 15, 20, 25, 30, 35, 40 & 10, 30 \\ \hline
+  \end{tabular}
+  \caption{Valores de bitrate (Mbps) configurados por experimento y generación de códec.}
+  \label{tab:ana-bitrate-values}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{|>{\columncolor[HTML]{EFEFEF}}c |c|c|}
+    \hline
+    \rowcolor[HTML]{C0C0C0}
+    \textbf{Códec} & \textbf{CPU Host} & \textbf{GPU Acelerada} \\ \hline
+    libx264     & X & - \\ \hline
+    libx265     & X & - \\ \hline
+    h264\_nvenc & X & X \\ \hline
+    hevc\_nvenc & X & X \\ \hline
+  \end{tabular}
+  \caption{Matriz de códecs y plataforma de ejecución hardware.}
+  \label{tab:exp2-codecs-selection}
+\end{table}
+ 
+\subsection{Validacion de Resultados}
+
+% VALIDACION DE LOS RESULTADOS
+En esta seccion se incluyen el conjunto de equaciones utlizadas para determinar diversas cuestiones comparativas, como el porcentaje de mejora entre herramientas o diferencias percentuales entre métricas.
 
 La primera de las ecuaciones permite determinar el porcentaje de energia que se le atribulle al nodo respecto a la herramienta \ref{eq:percent-energy-node}
 
@@ -77,6 +113,7 @@ Equacion que permite determinar que porcentaje de energia corresponde con el de 
 
 Equacion que determian que porcentaje de energia respecto a un total de energia del corresonde a la herramienta \ref{eq:percent-energy-tool_node}.
 \[E\%_{energia\_processo}=\frac{E_{Herramienta}}{E_{GEM}}*100\label{eq:percent-energy-tool_node}\]
+
 
 \section{Configuración de Entorno \& Herramientas}\label{exp0-environment}
 \input{tex/des/exp0-enviroment.tex} 

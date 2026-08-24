@@ -1,5 +1,5 @@
 \section{Requisitos experimentales}\label{sect:requisitos-alcance-experimental}
-Entre los requisitos técnicos de este trabajo de fin de máster se necesita poder medir el consumo energético de un nodo y de los procesos que se estén ejecutando sobre contenedores. Para ellos, se ha seleccionado a \textit{Docker} como el gestor encargado del ciclo de vida de dichos contenedores, en base a la experiencia de uso y a su compatibilidad con el \textit{NVIDIA Container Toolkit}. Este nos proporciona un \textit{runtime}, el cual permite acceder a la GPU y hacer uso de su capacidad de cómputo desde aplicaciones que se ejecutan en los contenedores..
+Entre los requisitos técnicos de este trabajo de fin de máster se necesita poder medir el consumo energético de un nodo y de los procesos que se estén ejecutando sobre contenedores. Para ellos, se ha seleccionado a \textit{Docker} como el gestor encargado del ciclo de vida de dichos contenedores, en base a la experiencia de uso y a su compatibilidad con el \textit{NVIDIA Container Toolkit}. Este nos proporciona un \textit{runtime}, el cual permite acceder a la GPU y hacer uso de su capacidad de cómputo desde aplicaciones que se ejecutan en los contenedores.
 
 Las cargas de trabajo sobre las que se desea poder tomar métricas de consumo consisten en procesos de codificación de video, empleando exclusivamente CPU y CPU combinada con GPU. En concreto, los codificadores que hacen uso de la GPU deben pertenecer a la generación NVENC, compatible con el \textit{NVIDIA Container Toolkit} y con las tarjetas gráficas de la marca NVIDIA.
 
@@ -17,7 +17,7 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
 
 \section{Especificación del entorno experimental}
 \subsection{Arquitectura Hardware}
- Respecto al hardware sobre el que se ejecutan los experimentos, el equipo dispone de cuatro tarjetas de 8 GB de memoria RAM con conexion PCI-E DDR3 y una velocidad de 1600 MT/s, que cuenta con velocidades de transferencia de 600 MB/s. Tambien cuenta con una CPU modelo Intel i7-4790K de 8 cores con una velocidad maxima de 4.5 GHz, la cual permite tomar métricas de consumo energético de prácticamente cualquier componente del sistema mediante RAPL \cite{intel-processor-sepcts}.
+ Respecto al hardware sobre el que se ejecutan los experimentos, el equipo dispone de cuatro tarjetas de 8 GB de memoria RAM con conexion PCI-E DDR3 y una velocidad de 1600 MT/s, que cuenta con velocidades de transferencia de 600 MB/s. Tambien cuenta con una CPU modelo Intel i7-4790K de 8 cores con una velocidad maxima de 4,5 GHz, la cual permite tomar métricas de consumo energético de prácticamente cualquier componente del sistema mediante RAPL \cite{intel-processor-sepcts}.
 
  La tarjeta gráfica seleccionada para la realización de los experimentos es una NVIDIA Quadro M4000 \cite{nvidia-quadro-m4000}, equipada con 8 GB de memoria de vídeo GDDR5 y una interfaz PCI Express. Esta GPU fue seleccionada entre las tarjetas gráficas disponibles en el laboratorio debido a que cumple con los requisitos necesarios para la ejecución de las cargas de codificación de vídeo mediante aceleración hardware. Asimismo, proporciona compatibilidad con la interfaz NVIDIA System Management Interface (NVIDIA-SMI) \cite{nvidia-smi}, utilizada para la monitorización del estado de la GPU y la obtención de métricas relacionadas con su utilización y consumo energético.
  
@@ -134,7 +134,7 @@ Tambien se ha creado un diagrama de Gantt \ref{fig:expect-ganttinicial} que incl
   Experimento 1: Selección de mejor Herramienta & 12 & 7 & 20 & 10 \\ \hline
   Experimento 2.1: Clasificación de muestras en base al SITI & 5 & 3 & 8 & 5 \\ \hline
   Experimento 2.2: Consumo energético en relación al SITI & 12 & 7 & 20 & 10 \\ \hline
-  Experimento 2.3: Limitación de cores y threads & 8 & 5 & 15 & 7 \\ \hline
+  Experimento 3: Consumo Energetico en relacion al numero de cores y thread & 8 & 5 & 15 & 7 \\ \hline
   Análisis de Resultados & 2 & 1 & 3 & 2 \\ \hline
   Redacción del TFM & 21 & 14 & 31 & 20 \\ \hline
   \end{tabularx}

@@ -9,10 +9,11 @@
  %         - Definido con sleep para 5 dias ya que presuponemos tiempos de experimentacion mas largos --> docker run -d --name ffmpeg-encoder --network global_monitoring_default -v "$2":/config --runtime=nvidia --entrypoint sleep linuxserver/ffmpeg:8.0.1 18000
  %    - Necesitamos seleccionar un conjunto de video para las pruebas 
  %         
+ En la siguiente sección se desarrolla las distintas fases experimentales pertenecientes al experimento 2. El objetivo principal de este experimento es tratar de encontrar una relacion entre las caracteristicas de video, Spatial Information(SI) y Temporal Information(TI), y el consumo energetico necesario para llevar a cabo un proceso de transcodificación de video. 
 
-En esta fase de experientación tiene dos objetivos principales; El primero es demostrar la relacion entre el consumo energético y las métricas Spatial Information(SI) y Temporal Information(TI) de los videos empleados en las pruebas; Y el segundo consiste en buscar una correlacion entre el consumo energetico y el numero the threads empleados en el proceso de codificacion limitando tambien el numero de cores, en base a la siguiente relacion $C_{numero\_cpus}\approx T_{numero\_threads}$. 
+ Para poder llevar a cabo el experimento 2 con exito, previamente se debe de realizar un clasificacion de los videos del dataset en base a los valores del SI y el TI. Es por ello que esta seccion se ha dividido en dos subsecciones que expondran como se han llevado a cadabo cada uno de los experimentos y el post-procesamiento de los datos.
 
-Con el fin de poder exponer de forma clara los resultados y conclusiones de ambos objetivos, se ha dividido la redacción en subfases por objetivo. Cada una de estas subfases expondara como se han llevado a cadabo cada uno de los experimentos, el post-procesamiento de los datos, el analisis de las graficas obtenidas y las respectivas conclusiones. 
+ Finalmente, el analisis de las graficas y conclusiones del experimento 2, se llevara a cabo en la sección \textit{Resultados del Experimento 2.2: Consumo energético en relación al SITI} \ref{subsec:exp2.2-siti}. 
 
 %BASES GENERALES DEL EXPERIMENTO
 
@@ -24,24 +25,9 @@ Tambien se ha variado el bitrate en cada transcodificacion de cada video, y depe
  \item \texttt{libx265 y H265\_NVENC}: 10,15,20,25,30,35,40   
  \end{itemize}
 
-Por tanto, se ha trasncodificado cada video empleando los codificadores y los bitrates correspondientes de la lista, midiendo cada proceso con la herramienta Container Energy Monitoring. Ya que como se ha desmostrado en la seccion anterior \ref{exp1-desarrollo}, es la herramienta mas precisa y mas adecuada para obtener los datos de consumo, asi como aportar mayor granularidad sobre estas metricas. 
+Por tanto, se ha trasncodificado cada video empleando los codificadores y los bitrates correspondientes de la lista, midiendo cada proceso con la herramienta Container Energy Monitoring. Ya que como se ha desmostrado en la seccion anterior \ref{exp1-desarrollo}, es la herramienta mas precisa y mas adecuada para obtener los datos de consumo, asi como aportar mayor granularidad sobre estas métricas. 
 
  
-\begin{table}[h!]
- \centering
- \begin{tabular}{|
- >{\columncolor[HTML]{EFEFEF}}c |c|c|}
- \hline
- \cellcolor[HTML]{C0C0C0}CODECS & \cellcolor[HTML]{C0C0C0}CPU & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}GPU} \\ \hline
- libx264                        & X                           & -                                                \\ \hline
- libx265                        & X                           & -                                                \\ \hline
- h264\_nvenc                    & X                           & X                                                \\ \hline
- hevc\_nvenc                    & X                           & X                                                \\ \hline
- \end{tabular}
- \label{tab:exp2-codecs-selection}
- \caption{Codecs seleccionados para la fase de experimentacion}
-\end{table}
-
 % DECLARACION CONTENEDOR
 En ambas fases se ejecutara unicamente un contenedor por prueba, sin concurrencia de procesoso o contendores, basados en la imagen \textbf{linuxserver/ffmpeg:8.0.1} pero con un sleep de 5 dias ya que las pruebas de este bloque pueden demorar varias horas en dar resultados. El resto de parametros de la declaración del contenedor son identicos en cada subfase, a diferencia de el nombre y del numero de CPU disponibles, ya que al contrario que en la fase 1 en la fase 2 si que se limitan el numero de contenedores de la misma forma que en la seccion \ref{exp1-desarrollo}.
 
@@ -52,21 +38,7 @@ En ambas fases se ejecutara unicamente un contenedor por prueba, sin concurrenci
   docker run -d --name ffmpeg-encoder --network global_monitoring_default --cpus="X" --cpuset-cpus="Y-Z" -v "$(pwd)/VIDEOS":/config --runtime=nvidia --entrypoint sleep linuxserver/ffmpeg:8.0.1 18000
 \end{lstlisting}
 
-% SELECCION DE VIDEOS
- % - Basamos en lista \red{LISTA Videos} para seleccionarlos
- %  - Cada uno de los videos cumple con las siguientes expectativas
- %    - SDR --> color_space = bt709 y fullrange
- %    - CRF 0
- %    - Duracion 10 segundos
- %    - 30 fps
- %    - 4k calida
- %    - Codificados con libx264
- %    - Perfil de color 4:4:4 - yuv420p
- %    - Numero de frams por chunck --> 120 (ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4)
- %       - Profundidad de bit de color --> 8 bits(ffprobe -loglevel panic show_entries stream=bits_per_raw_sample select_streams v VIDEO.mp4)
- %    - La seleccion se ara en base a la ubicacion de los videos en 4 zonas del siti
- %    - 4 zonas del siti \ref{list-siti} se seleccionan 5 videos por zona
-En cuanto a los video seleccionados para llevar a cabo los distinto experimentos, nuevamente, se ha empleado la base de video ya existente del proyecto ecostream. Se han utilizado video compuestos por los chuncks de los videos de la tabla  \ref{tab:lista-videos-test}. En concreto, para los experimentos de esta sección, han sido codificados utilizando el encoder libx264 con una resolución 4k(3840 x 2160) SDR, un CRF 0 y 30 fps. Destacar tienen un perfil de color yuv420p(4:4:4) con una profundidad de 8 bits  \footnote{Profundidad de color obtenida con la orden de ffmpeg: \lstinline[language=sh]{ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4}} \ref{ffmpeg-achive-colordeep} y 48 frams por chunk \footnote{Numero de frames del segmento de video obtenidos con la orden de ffmpeg: \lstinline[language=sh]{ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4}}
+En cuanto a los video seleccionados para llevar a cabo los distinto experimentos, nuevamente, se ha empleado la base de video ya existente del proyecto ecostream. Se han utilizado video compuestos por los chuncks de los videos de la tabla  \ref{tab:lista-videos-test}. En concreto, para los experimentos de esta sección, han sido codificados utilizando el encoder libx264 con una resolución 4k(3840 x 2160) SDR, un CRF 0 y 30 fps. Destacar tienen un perfil de color yuv420p(4:4:4) con una profundidad de 8 bits  \footnote{Profundidad de color obtenida con la orden de ffmpeg: \lstinline[language=sh, label={ffmpeg-achive-colordeep}]{ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4}} y 48 frams por chunk \footnote{Numero de frames del segmento de video obtenidos con la orden de ffmpeg: \lstinline[language=sh]{ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of csv=p=0 VIDEO.mp4}}
 
 
 \subsection{Experimento 2.1: Clasificacion de chunks en base a los valores SI y TI}
@@ -75,11 +47,11 @@ Con el objetivo de establecer una correlación entre el consumo energético asoc
 
 Cabe destacar que, aunque el conjunto de datos proporcionado en la tesis del Doctor Francisco Miguel Mico Enguidanos contiene los valores de SI y TI calculados para todos los chunks del conjunto de vídeos utilizado en los experimentos, dichos valores no pudieron emplearse directamente, ya que fueron obtenidos utilizando una versión anterior\footnote{https://www.itu.int/rec/T-REC-P.910-202310-I/en} del estándar SITI. Para este trabajo, los valores de SI y TI se calcularon siguiendo el nuevo estándar \textbf{P.910 (07/26)}\footnote{https://www.itu.int/rec/T-REC-P.910-202607-P/en}.
 
-Por este motivo, se desarrolló el script \textbf{exp2.1-siticalculator} \ref{code:script-siti-calculation} \ref{code:script-siti-calculation-ob} en Python, que hace uso de la libreria \textit{SITI Tool} \cite{siti-tool-pypip} para calcular los valores de SI y TI de cada \textit{chunk}. Posteriormente, el script procesó los resultados obtenidos y los almacenó en un archivo CSV con la estructura mostrada en \ref{fig.1-sititool-header-csv}.
+Por este motivo, se desarrolló el script \textbf{exp2.1-siticalculator} \ref{code:script-siti-calculation} \ref{code:script-siti-calculation-obj} en Python, que hace uso de la libreria \textit{SITI Tool} \cite{siti-tool-pypip} para calcular los valores de SI y TI de cada \textit{chunk}. Posteriormente, el script procesó los resultados obtenidos y los almacenó en un archivo CSV con la estructura mostrada en \ref{fig:exp2.1-sititool-header-csv}.
 
 \dosubfigs
      {figs/exp2.1-siti-pacomico.png}{Ubicación de chunks de video en base a los datos del doctor Paco Mico}{fig:exp2.1-chunks-data-pacomico}
-     {figs/exp2.1-ChucnkSITI-01.png}{Graficas que ubican la posicion de los chuncks en base a las metricas SI y TI}{fig:exp2.1-chunks-combined}
+     {figs/exp2.1-ChucnkSITI-01.png}{Graficas que ubican la posicion de los chuncks en base a las caracteristicas SI y TI}{fig:exp2.1-chunks-combined}
 
 Una vez determinada la posición de cada \textit{chunk} en función de sus valores de SI y TI, se definieron las cuatro zonas utilizadas para su clasificación, estableciendo para cada una de ellas los correspondientes rangos de SI y TI. El resultado de esta clasificación se recoge en la tabla \ref{tab:siti-zones-definition}.
 
@@ -102,21 +74,6 @@ Cabe destacar que la definición de los límites de cada zona presentó cierta d
 \end{table}
 
 \subsection{Experimento 2.2: Consumo energético en relación al SITI}\label{section:exp2.2-sitixconsumo}
-% FASE 2.2 
- % - Videos para pruebas:
- %  - Seleccion de chuncks + necesidades de duracion de cada video
- %  - Creacion video continuo para descartar eficiencia intrinseca de los encoders
- %  - Figura de los chunks seleccionados
- % - Ejecucion de pruebas
- %    - Como se ejecutaran las pruebas
- %    - Script que lo ejecutara
- %    - Como y donde almacena los datos
- % - Pos procesameinto de los datos
- %    - Script de python que procesa datos
- %    - Como procesa y almacena datos en CSV
- %    - Grafica que genera
- % - Analisis de resultados
-% SELECCION VIDEOS
 En este primer subapartado se ha definido el conjunto de vídeos que se utilizará para analizar la relación entre el consumo energético asociado al proceso de codificación y los valores de las métricas \textbf{SI} y \textbf{TI}. Para ello, se requirieron vídeos de \textbf{10 segundos de duración} que no presentaran cambios de escena significativos ni cortes bruscos que pudieran alterar los valores medios de las métricas \textbf{SI} y \textbf{TI}. 
 
 Para generar los vídeos utilizados en los experimentos se siguieron dos estrategias diferentes. La primera estrategia consistió en seleccionar un único \textit{chunk} y reproducirlo de forma continua hasta alcanzar una duración de 10 segundos, utilizando ffmpeg de la siguiente forma \lstinline[language=sh,label={code:ffmpeg-loopvideo},caption={}]{ffmpeg -y -stream_loop 5 -i CHUNCKXXX.mp4 -t 30 -b:v 30000k -r 30 -c:v copy -an VIDEO_10S_CHUNCKXXX.mp4}. De esta forma, se evitó introducir cambios bruscos de escena y se mantuvieron las características espaciales y temporales del \textit{chunk} original. Cada vídeo generado se identificó mediante el nombre del vídeo de procedencia y el número del \textit{chunk} seleccionado.
@@ -142,14 +99,14 @@ En total, se seleccionaron \textit{cinco vídeos por zona}, a excepcion de las z
  \textbf{-}                          & TearsOfSteel\_0234                   & \textbf{-}                    & Skateboarding\_0000 {[} 20 - 25 {]} \\ \hline
  \textbf{-}                          & TearsOfSteel\_0000 {[} 231 - 235 {]} & \textbf{-}                    & \textbf{-}                          \\ \hline
  \end{tabularx}
- \caption{Videos creados para la experimentación de consumo energético en relación con las métricas SITI}
+ \caption{Videos creados para la experimentación de consumo energético en relación con las características SITI}
  \label{tab:exp2.2-videos}
 \end{table}
 
 % SELECCION DE EXPERIMENTOS
-La fase de experimentacion se ha llevado a cabo empleando el script \textbf{exp2.2-sisti-energy.sh} \ref{code:exp2.2-sitienergy}, desarrollado en bash. Este lleva a cabo la transcodificcion de cada uno de los videos \ref{tab:exp2.2-videos} empleando con cada uno de los codficadores especificados en \ref{tab:exp2-codecs-selection}, junto con los correspondientes bitrates definidos para cada generacion de codificadores. Adicionalmente, el script permite realizar todo el proceso de transcodificacion y toma de metricas son muliples contenedores simultaneamente. No obstante, en los experimentos realizados en esta fase se utilizó un único contenedor, sin establecer restricciones sobre el número de CPU y\/o núcleos disponibles.
+La fase de experimentacion se ha llevado a cabo empleando el script \textbf{exp2.2-sisti-energy.sh} \ref{code:exp2.2-sitienergy}, desarrollado en bash. Este lleva a cabo la transcodificcion de cada uno de los videos \ref{tab:exp2.2-videos} empleando con cada uno de los codficadores especificados en \ref{tab:exp2-codecs-selection}, junto con los correspondientes bitrates definidos para cada generacion de codificadores. Adicionalmente, el script permite realizar todo el proceso de transcodificacion y toma de métricas son muliples contenedores simultaneamente. No obstante, en los experimentos realizados en esta fase se utilizó un único contenedor, sin establecer restricciones sobre el número de CPU y\/o núcleos disponibles.
 
-El resultado de la toma de metricas de cada uno de los proceso de transcodificacion es almacenado en la estructura de directorios \ref{fig:exp2.2-datapath}, siendo el primero de todos el nombre del experimento. Esta estructura se diseñó con el objetivo de facilitar la automatización del procesamiento posterior de los datos mediante un script de Python.
+El resultado de la toma de métricas de cada uno de los proceso de transcodificacion es almacenado en la estructura de directorios \ref{fig:exp2.2-datapath}, siendo el primero de todos el nombre del experimento. Esta estructura se diseñó con el objetivo de facilitar la automatización del procesamiento posterior de los datos mediante un script de Python.
 
 \begin{figure}[h!]
     \centering
@@ -159,97 +116,21 @@ El resultado de la toma de metricas de cada uno de los proceso de transcodificac
 \end{figure}
 
 %POST-PROCESAMIENTO DATOS
-El postprocesamiento de las métricas recopiladas se realizó mediante el script de Python \textbf{ploter-exp2.2.py} \ref{code.2-ploter} \ref{code.2-ploter-obj}. Este script permite procesar y estructurar los datos obtenidos, almacenándolos en un archivo CSV con la estructura mostrada en \ref{fig.2-csvheader-dataprocess}. Asimismo, permite generar diferentes representaciones gráficas a partir de los datos procesados.
+El postprocesamiento de las métricas recopiladas se realizó mediante el script de Python \textbf{ploter-exp2.2.py} \ref{code:exp2.2-ploter} \ref{code:exp2.2-ploter-obj}. Este script permite procesar y estructurar los datos obtenidos, almacenándolos en un archivo CSV con la estructura mostrada en \ref{fig:exp2.2-csvheader-dataprocesss}. Asimismo, permite generar diferentes representaciones gráficas a partir de los datos procesados.
 
-El script está diseñado para ejecutarse desde la interfaz de línea de comandos (\textit{CLI}), mediante diferentes \textit{flags} que permiten especificar tanto el tipo de procesamiento que se desea realizar como la ubicación de los datos de entrada \footnote{Ejecución básica del script \textbf{ploter-exp2.2.py} \lstinline[language=sh]{python3 ploter-exp2.2.py NOMBRE-EXPERIMENTO [FLAGS]}}. Las principales opciones disponibles son las siguientes:
+El script está diseñado para ejecutarse desde la interfaz de línea de comandos (\textit{CLI}), mediante diferentes \textit{flags} que permiten especificar tanto el tipo de procesamiento que se desea realizar como la ubicación de los datos de entrada \footnote{Ejecución básica del script \textbf{ploter-exp2.2.py} \lstinline[language=sh]{python3 ploter-exp2.2.py NOMBRE-EXPERIMENTO [FLAGS]}}. Las opciones que accepta el script(tanto opcionales como abligatorias) pueden apreciarse a continuacion: 
 
 \begin{itemize}
-     \item \textbf{process}: permite procesar las métricas de consumo obtenidas durante el experimento \textit{exp2.2}. Por defecto, el script accede al directorio \textit{AllMetrics}, aunque es posible especificar una ruta alternativa.
+     \item \textbf{process}: Permite procesar las métricas de consumo obtenidas durante el experimento \textit{exp2.2}. Por defecto, el script accede al directorio \textit{AllMetrics}, aunque es posible especificar una ruta alternativa.
      \item \textbf{plot3d}: permite representar la posición de cada vídeo en un gráfico tridimensional, en el que el eje X representa el valor de TI, el eje Y el valor de SI y el eje Z el consumo energético del contenedor. Se genera una gráfica para cada combinación de codificador y \textit{bitrate}.
-     \item \textbf{plot-consumo-ti}: permite generar una gráfica bidimensional de tipo \textit{stream} para cada combinación de codificador y \textit{bitrate}. En este caso, el eje X representa el valor de TI y el eje Y el consumo energético, expresado en julios, del proceso de transcodificación.
-     \item \textbf{plot-consumo-si}: permite generar una gráfica bidimensional de tipo \textit{stream} para cada combinación de codificador y \textit{bitrate}. En este caso, el eje X representa el valor de SI y el eje Y el consumo energético, expresado en julios, del proceso de transcodificación.
-\end{itemize}
+     
+     \item \textbf{plot-consumo-ti}: Permite generar una gráfica bidimensional de tipo \textit{stream} para cada combinación de codificador y \textit{bitrate}. En este caso, el eje X representa el valor de TI y el eje Y el consumo energético, expresado en julios, del proceso de transcodificación.
+     
+     \item \textbf{plot-consumo-si}: Permite generar una gráfica bidimensional de tipo \textit{stream} para cada combinación de codificador y \textit{bitrate}. En este caso, el eje X representa el valor de SI y el eje Y el consumo energético, expresado en julios, del proceso de transcodificación.
+     
+     \item \textbf{plot_consumoxtiempo_grupal}: Permite generar una gráfica de dispersión de puntos, las cuales se agrupan por codec y bitrate utilizado. En este caso lleva a cabo una comparativa entre consumo energético y tiempo de codificación, permitiendo discernir cómo afectan las características de los videos.
 
-Por defecto, el script \textbf{ploter-exp2.2} determina el directorio en el que se almacenarán los datos resultantes del procesamiento, así como el directorio destinado al almacenamiento de las gráficas generadas. Asimismo, muestra los datos correspondientes al consumo energético de un único contenedor. No obstante, estos parámetros pueden modificarse mediante las siguientes opciones:
-
-\begin{itemize}
-     \item \textbf{--data-final-dir=PATH\_ARCHIVO}: permite definir una ruta alternativa para almacenar el archivo CSV resultante del procesamiento de los datos. Por defecto, se utiliza la ruta \textit{./data/ex2.2\_process\_data.csv}.
-     \item \textbf{--container=consumo\_container0\_j}: permite seleccionar el contenedor cuyos datos de consumo se utilizarán para generar las gráficas, en caso de que se hayan ejecutado varios contenedores. Por defecto, se utilizan los datos correspondientes a la columna \textit{consumo\_container0\_j}.
-\end{itemize}
-
-
-
-\subsection{Experimento 2.3: Consumo energético en relación al numero de cores y threads}\label{section:exp2.3-coresxconsumo}
-    
-
-En esta segunda subfase de experimentación, perteneciente a la sección \textbf{Experimento 2: Consumo energético en relacion al SITI y el Numero de Threads} \ref{exp2-desarrollo}, se ha analizado el consumo energético de procesos de transcodificación ejecutados sobre contenedores de Docker con limitaciones en el acceso a los cores de la CPU y en el número de threads utilizados por los codificadores. Bajo esta premisa, se han desarrollado los experimentos descritos a continuación, con el objetivo de estudiar la relación existente entre el consumo energético, el tiempo de codificación y el número de cores y threads disponibles durante el proceso.
-
-Para esta subfase experimental se ha utilizado el conjunto de \textit{vídeos} descrito en \ref{tab:exp2.2-videos}, creado y clasificado en el experimento \textbf{Experimento 2.2: Consumo energético en relación al SITI} \ref{section:exp2.2-sitixconsumo}. Del conjunto de vídeos compuesto por un único \textit{chunk}, se han seleccionado dos vídeos correspondientes a cada una de las cuatro zonas definidas en \ref{tab:siti-zones-definition}, obteniendo un total de \textbf{ocho vídeos}, que se muestran en la Tabla \ref{tab:exp2.3-videos-30s}.
-
-En este caso, se requiere utilizar vídeos de mayor duración que permitan prolongar los procesos de transcodificación, aumentando el tiempo de trabajo de los codificadores y permitiendo recopilar un mayor número de métricas de consumo. Por este motivo, se han generado nuevos vídeos con una duración de \textbf{30 segundos}. Al igual que en la subfase anterior, estos vídeos presentan una resolución de 4K (3840x2160), una tasa de 30 fps y un \textit{bitrate} de 30 Mbps. Para su creación se ha utilizado el \textit{chunk} original, que se ha reproducido en bucle un total de \textit{quince veces}, obteniendo así vídeos con la duración requerida mediante el procedimiento mostrado en \ref{code:ffmpeg-loopvideo}.
-
-\begin{table}[!ht]
- \centering
- \begin{tabularx}{\textwidth}{|X|X|X|X|}
- \hline
- \rowcolor[HTML]{C0C0C0} 
- LSI\_LTI & HSI\_LTI & LSI\_HTI & HSI\_HTI \\ \hline
- LifeUntouched\_0053 & Sintel\_0027 & Eldorado\_0015 & Skateboarding\_0020 \\ \hline
- LifeUntouched\_0056 & TearsOfSteel\_0235 & IndoorSoccer\_0004 & Eldorado\_0010 \\ \hline
- \end{tabularx}
- \caption{Vídeos con una duración de 30 segundos creados para experimentar con el número de threads en relación con el consumo energético}
- \label{tab:exp2.3-videos-30s}
-\end{table}
-
-Para llevar a cabo el lanzamiento de los procesos y la recopilación de métricas mediante \textit{Container Energy Monitoring}, se ha desarrollado el script \textbf{exp2.3-threadsxenergy.sh} \ref{code:exp2.3-threadsxenergy}, escrito en Bash. Este script parte de la misma base que el utilizado en la subfase anterior, \textbf{exp2.2-sisti-energy.sh}, pero incorpora determinadas modificaciones para adaptarlo a los nuevos requisitos experimentales. La codificación de los vídeos mostrados en la Tabla \ref{tab:exp2.3-videos-30s} se ha realizado únicamente con los \textit{bitrates} de \textit{10 Mbps} y \textit{30 Mbps}, definiendo de esta forma dos escenarios con diferente carga de trabajo y demanda de recursos.
-
-Además, se ha añadido un nuevo nivel de iteración relacionado con el número de cores que el contenedor puede utilizar y con el número de threads que emplea \textit{FFmpeg} durante cada proceso de transcodificación. Para ello, se ha establecido una relación aproximada entre el número de cores disponibles para el contenedor y el número de threads utilizados por \textit{FFmpeg}, expresada como:
-
-\[C_{\text{numero\_cores\_sistema}} \approx T_{\text{threads\_FFmpeg}}\]
-
-Dado que el sistema utilizado dispone de 8 cores, se ha iterado sobre los valores de \textbf{0, 1, 3, 6 y 7}. Cabe destacar que el valor \textbf{0} representa el escenario sin ninguna restricción en el número de cores ni de threads, utilizándose como referencia para comparar el resto de configuraciones.
-
-Para aplicar estas restricciones, se ha modificado la orden estándar utilizada para ejecutar el proceso de codificación, adaptándola a las características de cada codificador. Utilizando como referencia la información proporcionada en el artículo \cite{threads-number-encoding} y la documentación oficial de los diferentes codificadores \cite{ffmpeg-oficial-documentation} \cite{x265-documentation-threading} se ha llevado a cabo la busqueda y seleccion de los parametros adecuados. Asimismo, mediante el comando \lstinline[language=sh]{ffmpeg -h long encoder=ENCODER} se ha comprobado que las opciones empleadas se encuentran disponibles y son compatibles con la versión de \textit{FFmpeg} instalada. Como resultado, se obtiene la tabla \ref{tab:exp2.3-codecxffpeg-orden-threadlimits}, que recoge las instrucciones utilizadas para limitar el número de threads empleados por cada codificador.
-
-Cabe destacar que, al limitar el número de threads de los codificadores, esta restricción no siempre resulta directamente observable al utilizar herramientas de monitorización como \textit{top} o \textit{htop}. Esto se debe a que la gestión de los threads y de los recursos utilizados durante el proceso de codificación depende del funcionamiento interno de cada codificador, que puede crear y gestionar sus propios threads de manera independiente. Esta característica ha dificultado el proceso de experimentación, ya que la información disponible sobre los mecanismos de control de threads no siempre era suficientemente clara, adecuada para la versión utilizada o se encontraba desactualizada.
-
-Por este motivo, para comprobar que la configuración aplicada producía efectivamente una limitación en el número de threads, se han realizado pruebas individuales con cada codificador, comparando una ejecución con limitación de threads frente a otra sin limitación. Para validar el comportamiento de la configuración se han utilizado como referencia el tiempo de ejecución y el porcentaje de utilización de CPU obtenidos durante ambas ejecuciones, tal y como se muestra en las Figuras \ref{fig:exp2.3-test-x264-limit-threads} y \ref{fig:exp2.3-test-x265-limit-threads}.
-
-Adicionalmente, en el caso de los codificadores que hacen uso de la GPU, \textit{H.264} y \textit{HEVC}, no se ha podido establecer una limitación directa sobre el número de threads empleados por el codificador. Únicamente se limitan el número de cores de la CPU disponibles para el proceso mediante el parámetro correspondiente, mientras que el propio codificador determina internamente el número de threads adecuado para llevar a cabo la codificación.
-
-
-\begin{table}[!ht]
-     \centering
-     \begin{tabularx}{\textwidth}{|l|X|}
-     \hline
-     \rowcolor[HTML]{C0C0C0} 
-     \textbf{Codificador} & \textbf{Orden de FFmpeg} \\ \hline
-     libx264 & \texttt{ffmpeg -y -i VIDEO-30s.mp4 -c:v libx264 -threads X -b:v [10\textbar 30]M -c:a copy VIDEO-transcoded.mp4} \\ \hline
-     libx265 & \texttt{ffmpeg -y -i VIDEO-30s.mp4 -c:v libx265 -x265-params pools=X -b:v [10\textbar 30]M -c:a copy VIDEO-transcoded.mp4} \\ \hline
-     H264\_NVENC y HEVC\_NVENC & \texttt{ffmpeg -y -i VIDEO-30s.mp4 -c:v [h264\_nvenc \textbar hevc\_nvenc] -cpucount X -b:v [10\textbar 30]M -c:a copy VIDEO-transcoded.mp4} \\ \hline
-     \end{tabularx}
-     \caption{Instrucciones de codificación aplicando límites en el número de threads que puede utilizar cada encoder}
-     \label{tab:exp2.3-codecxffpeg-orden-threadlimits}
-\end{table}
-
-Dado que el script está diseñado para poder ejecutarse también en nodos con una mayor capacidad de procesamiento, se ha desarrollado una función denominada \textbf{wake\_up\_containers},la cual permite crear y arrancar los contenedores aplicando las limitaciones correspondientes en el número de cores. Para ello, tiene en cuenta el número de cores disponibles en el sistema, evitando asignaciones superiores a los recursos existentes que puedan provocar errores de ejecución o un uso inadecuado de los recursos del nodo.\\
-
-Para llevar a cabo el procesamiento de los datos obtenidos durante los experimentos se ha desarrollado el script \textbf{ploter-exp2.3.py} \ref{code:exp2.3-ploter} \ref{code:exp2.3-ploter-obj}. Este script parte de \textbf{ploter-exp2.2.py} como base, pero incorpora modificaciones tanto en el procesamiento de los datos como en las gráficas generadas. Al igual que en la subfase anterior, los resultados se procesan a partir de archivos CSV. Sin embargo, en esta ocasión se incorpora el tiempo necesario para completar cada proceso de transcodificación y se descartan las métricas SI, TI y la zona a la que pertenece cada vídeo, ya que el objetivo principal de esta subfase es analizar la relación entre el consumo energético, el tiempo de codificación y la disponibilidad de recursos computacionales. La estructura de la cabecera del archivo CSV resultante puede observarse en la Figura \ref{img:exp2.3-csvheader-process-data}.
-
-El funcionamiento del script es similar al empleado en la subfase anterior. Su ejecución se realiza mediante línea de comandos, indicando el nombre del experimento y, mediante diferentes \textit{flags}, las operaciones que se desean realizar. La ejecución básica del script \textbf{ploter-exp2.3.py} es \lstinline[language=sh]{python3 ploter-exp2.3.py NOMBRE-EXPERIMENTO [FLAGS]}. A continuación, se describen las principales opciones disponibles y el conjunto de graficas que es capaz de generara:
-
-\begin{itemize}
- \item \textbf{process:} Procesa los datos de las métricas ubicadas en \lstinline[language=sh]{exp2.3-limited_cores_threads/metricas/nombre-experimento} y genera un archivo CSV con los resultados procesados, que se almacena por defecto en \textit{\$(pwd)/data/exp2.3\_process\_data.csv}.
- 
- \item \textbf{plot-consumoxcores:} Genera gráficas que representan el consumo energético (Eje Y) en función del número de cores (Eje X). Se genera una gráfica para cada proceso de codificación, considerando un codificador y un \textit{bitrate} determinado. Estas gráficas permiten analizar, por una parte, el comportamiento de cada codificador frente a las diferentes restricciones de recursos y, por otra, las diferencias existentes entre los vídeos con distintas características de SI y TI.
- 
- \item \textbf{plot-consumoxcores-gpuvscpu:} Genera grupos de gráficas en los que se representa el consumo energético (Eje Y) en función del número de cores (Eje X). Cada gráfica muestra el consumo energético de un vídeo codificado con una generación determinada mediante CPU y su equivalente mediante GPU (\textit{libx264} frente a \textit{h264\_nvenc} y \textit{libx265} frente a \textit{hevc\_nvenc}), agrupando los resultados según el \textit{bitrate} utilizado durante la codificación. El objetivo es analizar la eficiencia energética de la utilización combinada de CPU y GPU frente al uso exclusivo de CPU durante el proceso de transcodificación.
-
- \item \textbf{plot-tiempoxcores:} genera gráficas lineales agrupadas por nombre del vídeo, \textit{bitrate} y generación del codificador (\textit{x264} frente a \textit{H.264} o \textit{x265} frente a \textit{HEVC}). En estas gráficas se representa el tiempo de codificación en el eje Y frente al número de cores empleados durante el proceso en el eje X. El objetivo es analizar cómo varía el tiempo necesario para completar el proceso de codificación en función de los recursos computacionales disponibles, permitiendo comparar el comportamiento de los diferentes codificadores al modificar el número de cores y threads utilizados.
- 
- \item \textbf{plot-consumoxtiempo:} genera un conjunto de gráficas de puntos agrupadas por nombre del vídeo, generación del codificador (\textit{x264} frente a \textit{H.264} o \textit{x265} frente a \textit{HEVC}) y \textit{bitrate}. En estas gráficas se representa el consumo energético en el eje X frente al tiempo necesario para completar la codificación en el eje Y. Cada gráfica contiene dos grupos de puntos, correspondientes respectivamente al codificador basado en CPU y a su equivalente basado en GPU. Además, cada punto se identifica mediante el número de cores empleados durante la codificación. El objetivo es comparar la eficiencia de los diferentes codificadores en términos de tiempo de ejecución y consumo energético, teniendo en cuenta la cantidad de recursos computacionales utilizados.
- 
- \item \textbf{--data-results:} Permite definir el directorio en el que se almacenan los resultados del procesamiento. Por defecto, su valor es \textit{\$(pwd)/data/exp2.3\_process\_data.csv}.
- 
- \item \textbf{--data-path:} Permite definir la ruta en la que se encuentran las métricas que se desean procesar. Por defecto, tiene el valor \textit{/exp2.3-limited\_cores\_threads/metricas/name-experiment}.
+     \item \textbf{--data-final-dir=PATH\_ARCHIVO}: Permite definir una ruta alternativa para almacenar el archivo CSV resultante del procesamiento de los datos. Por defecto, se utiliza la ruta \textit{./data/ex2.2\_process\_data.csv}.
+     
+     \item \textbf{--container=consumo\_container0\_j}: Permite seleccionar el contenedor cuyos datos de consumo se utilizarán para generar las gráficas, en caso de que se hayan ejecutado varios contenedores. Por defecto, se utilizan los datos correspondientes a la columna \textit{consumo\_container0\_j}.
 \end{itemize}

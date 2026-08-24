@@ -10,15 +10,15 @@
  \subsection{Experimentación Fase 1}
      
 
-  \subsubsection*{Arranque y toma de metricas con Kepler}
-     \lstinputlisting[language=sh,label={exp1:kepler-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico con la herramienta Kepler}]{src/scripts/ffmpeg_kepler_probe.sh}
-  \subsubsection*{Arranque y toma de metricas con Scaphandre}
-    \lstinputlisting[language=sh,label={exp1:scp-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico con la herramienta Scaphandre}]{src/scripts/ffmpeg_scaphandre_probe.sh}
- \subsubsection*{Arranque y toma de metricas con Container Energy Monitoring}
+  \subsubsection*{Arranque y toma de métricas con Kepler}
+     \lstinputlisting[language=sh,label={exp1:kepler-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energetico con la herramienta Kepler}]{src/scripts/ffmpeg_kepler_probe.sh}
+  \subsubsection*{Arranque y toma de métricas con Scaphandre}
+    \lstinputlisting[language=sh,label={exp1:scp-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energetico con la herramienta Scaphandre}]{src/scripts/ffmpeg_scaphandre_probe.sh}
+ \subsubsection*{Arranque y toma de métricas con Container Energy Monitoring}
     \lstinputlisting[language=sh,label={exp1:monitor-script-probes-1container},caption={Script en bash empleado para llevar}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
     
-    \lstinputlisting[language=sh,label={exp1:monitor-script-probes-2containers}, caption={Script en bash empleado para llevar a cabo la toma de metricas de consumo energetico sobre dos contenedor simultaneamente con la herramienta Container Energy Monitoring}]{src/scripts/monitor-experiment-ffmpeg-gpu-2-container.sh}
- \subsubsection*{Procesamiento de Metricas del Experimento 1}
+    \lstinputlisting[language=sh,label={exp1:monitor-script-probes-2containers}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energetico sobre dos contenedor simultaneamente con la herramienta Container Energy Monitoring}]{src/scripts/monitor-experiment-ffmpeg-gpu-2-container.sh}
+ \subsubsection*{Procesamiento de Métricas del Experimento 1}
      \lstinputlisting[language=sh,label={exp1:kepler-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Kepler y los alamcena en CSV}]{src/scripts/kepler_process_data.sh}
      
      \lstinputlisting[language=sh,label={exp1:scp-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Scaphandre y los alamcena en CSV}]{src/scripts/scaphandre_process_data.sh}
@@ -46,20 +46,20 @@
 
  \subsubsection{Codigo de Experimentos en Bash}
 
-     \lstinputlisting[language=sh,label={code:exp2.2-sitienergy},caption={Script exp2.2-sisti-energy script en bash que lleva a cabo el experimento y alamacenamiento de metricas de consumo energetico en realcion con el SI y el TI}]{src/scripts/exp2.2_siti_energy_encodig.sh}
+     \lstinputlisting[language=sh,label={code:exp2.2-sitienergy},caption={Script exp2.2-sisti-energy script en bash que lleva a cabo el experimento y alamacenamiento de métricas de consumo energetico en realcion con el SI y el TI}]{src/scripts/exp2.2_siti_energy_encodig.sh}
 
      \lstinputlisting[language=sh,label={code:exp2.3-threadsxenergy},caption={Script exp2.3-threadsxenergy.sh encargado de llevara el experimento en realcion con el nuemro de cores y el consumo energetico}]{src/scripts/exp2.3-threadsxenergy.sh}
 
- \subsubsection{Codigo Python para Calculo y Visualizacio de metricas SITI}
+ \subsubsection{Codigo Python para Calculo y Visualizacio de características SITI}
      \begin{figure}[h!]
      \centering
      \includegraphics[width=\linewidth]{figs/exp2.1-header-sititool.png}
-     \caption{Header de la estructura de datos de las metricas SI y TI de cada chunk}
+     \caption{Header de la estructura de datos de las características SI y TI de cada chunk}
      \label{fig:exp2.1-sititool-header-csv}
      \end{figure}
      
      %PLOT UBICACION CHUNKS
-     \lstinputlisting[language=python,label={code:script-siti-calculation},caption={Codigo en python calcular y obtener las metricas SI y TI de cada chunk de video}]{src/scripts/exp2.1-siti-calculator.py}
+     \lstinputlisting[language=python,label={code:script-siti-calculation},caption={Codigo en python calcular y obtener las características SI y TI de cada chunk de video}]{src/scripts/exp2.1-siti-calculator.py}
      
      \lstinputlisting[language=python,label={code:script-siti-calculation-obj},caption={Objeto empleado para facilitar el almacenamiento de los datos en el codigo anterior}]{src/scripts/exp2.1-siticalculator-object.py}
      
@@ -91,7 +91,7 @@
      
 \chapter{Apéndice: Graficas y Resultados}\label{apendice:graficas}
  % Primera parte (h264_nvenc)
- \section{Experimento 2.3: Consumo Energetico en relacion con el SITI}\label{apendice:exp2.2-graficas}
+ \section{Experimento 2.2: Consumo Energetico en relacion con el SITI}\label{apendice:exp2.2-graficas}
 
      \begin{figure}[!ht]
           \centering
@@ -384,7 +384,7 @@
      \end{figure}
 
 \clearpage
-\section{Experimento 2.3: Consumo Energetico en relacion del numero de threads y cores} \label{apendice:exp2.3-graficas}
+\section{Experimento 3: Consumo Energetico en relacion del numero de threads y cores} \label{apendice:exp2.3-graficas}
 % Consumoxcores
 % Consumoxcores
      \begin{figure}[htbp]
@@ -396,7 +396,7 @@
       \dosubfigs
       {figs/exp2.3/ploter2.3/consumoxcores/libx264-10Mbps_ConsumoxCores.png}{libx264 - Bitrate: 10 Mbps }{fig:consumoxcores-libx264-10}
       {figs/exp2.3/ploter2.3/consumoxcores/libx265-10Mbps_ConsumoxCores.png}{libx265 - Bitrate: 10 Mbps}{fig:consumoxcores-libx265-10}
-      \caption{Graficas resultantes de las metricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 10 Mbps}
+      \caption{Graficas resultantes de las métricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 10 Mbps}
       \label{fig-group:consumoxcores-10mps}
      \end{figure}
 
@@ -409,7 +409,7 @@
       \dosubfigs
       {figs/exp2.3/ploter2.3/consumoxcores/libx264-30Mbps_ConsumoxCores.png}{libx264 - Bitrate: 30 Mbps }{fig:consumoxcores-libx264-30}
       {figs/exp2.3/ploter2.3/consumoxcores/libx265-30Mbps_ConsumoxCores.png}{libx265 - Bitrate: 30 Mbps}{fig:consumoxcores-libx265-30}
-      \caption{Graficas resultantes de las metricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 30 Mbps}
+      \caption{Graficas resultantes de las métricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 30 Mbps}
       \label{fig-group:consumoxcores-30mps}
      \end{figure}
 
@@ -423,7 +423,7 @@
    \dosubfigs
    {figs/exp2.3/ploter2.3/gpusvscpu/H265-10Mbps_GPUvsCPU.png}{hevc\_nvenc  - Bitrate: 10 Mbps }{fig:consumoxcores-libx264-30}
    {figs/exp2.3/ploter2.3/gpusvscpu/H265-30Mbps_GPUvsCPU.png}{hevc\_nvenc  - Bitrate: 30 Mbps}{fig:consumoxcores-libx265-30}
-   \caption{Graficas resultantes de las metricas del experimente 2.3, comparativa entre codificadores de la misma generacionl(CPU vs GPU)}
+   \caption{Graficas resultantes de las métricas del experimente 2.3, comparativa entre codificadores de la misma generacionl(CPU vs GPU)}
    \label{fig-group:gpusvscpu-}
   \end{figure}
 

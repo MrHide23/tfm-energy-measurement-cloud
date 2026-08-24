@@ -19,7 +19,7 @@
 
 % Continuar
 \subsection{Configuración e Instalación de Herramientas}
- A continuacio se exponen los procesos de instalacion, configuracion y modificaciones que se han llevado a cabo sobre las herramientas de toma de metricas. Todas esta herramientas monitorizan el consumo energetico del sistema y delas cargas de trabajo que desplegaran sobre contenedores basados en la imagen de ffmpeg gestioanada por el grupo linux-server \cite{ffmpeg-linuxserver-image} \cite{linux-server-group}.
+ A continuacio se exponen los procesos de instalacion, configuracion y modificaciones que se han llevado a cabo sobre las herramientas de toma de métricas. Todas esta herramientas monitorizan el consumo energetico del sistema y delas cargas de trabajo que desplegaran sobre contenedores basados en la imagen de ffmpeg gestioanada por el grupo linux-server \cite{ffmpeg-linuxserver-image} \cite{linux-server-group}.
   
  \subsubsection{Kepler}
  La instalación de Kepler en sistemas operativos Linux es relativamente sencilla, ya que la herramienta se distribuye en forma de ejecutable. Una vez descargado, dicho ejecutable debe añadirse a la variable de entorno \textit{PATH} del sistema, permitiendo invocar la herramienta desde cualquier ubicación sin necesidad de indicar su ruta completa.
@@ -43,9 +43,9 @@
   
   Para comprobar que el hotfix funcionaba adecuadamente, se lanzó un tarea de codificacion y se monitorizo el consumo energetico, tanto con kepler como con nvidia-smi. Tras analizar y procesar  dando como resultado unos resultados muy cercanos, los cuales tenian una desviacion entre si del 1,07\%. Es necesario remarcar, que kepler esta devolviendo la potencia de la GPU durante el proceso de codificacion, lo que implica que para obtener el consumo en Julios es necesario multiplicarlo por la duracion del proceso de codificacion.
 
-  \begin{lstlisting}[language=sh,caption={Ejemplo de Ejecucion y Recoleccion de metricas de la herramiento Kepler},label={exp0:kepler-recoleccion-datos}]
+  \begin{lstlisting}[language=sh,caption={Ejemplo de Ejecucion y Recoleccion de métricas de la herramiento Kepler},label={exp0:kepler-recoleccion-datos}]
   
-   #Toma de Metricas con Kepler
+   #Toma de metricas con Kepler
    sudo ./kepler --metrics=container --monitor.interval=1s --metrics=node --experimental.gpu.enabled > /dev/null &)
    whait_finish_container() #ESPERA FINALIZACION PROCESO DE CODIFICACION
    
@@ -65,7 +65,7 @@
 
   Al desplegar escaphandre de esta forma, tenemos control sobre el momento exacto del inicio de la recolección de toma de métricas y cuándo finaliza dicho proceso, eliminando posible ruido derivado del arranque del contenedor y los subprocesos asociados, logrando una replicabilidad en cada iteración para la fase experimental.   
 
-  \begin{lstlisting}[language=bash, label={exp0:scp-execution}, caption={Ejemplo de Incio y Recoleccion de Metricas con Scaphandre}] 
+  \begin{lstlisting}[language=bash, label={exp0:scp-execution}, caption={Ejemplo de Incio y Recoleccion de Métricas con Scaphandre}] 
     delta_t=1 # Tiempo de toma de metricas
     t_metrics=60 #Tiempo de 
     # Start monitoring with scaphandre
@@ -88,7 +88,7 @@
  \subsubsection{Global Energy Meter}
  Para instalar Global Energy Meter unicamente es necesario desplegar el docker compose creado por Juan Guatierrez \ref{exp0:em-docker-compose}, el cual se descarga del repositorio del proyecto la imagen \textit{energy-monitoring:1.0} y escucha peticiones en el puesto 6000.
 
- Para tomar metricas del sistema con la herramienta una vez docker compose esta arrancado, unicamente es necesario realizar una peticion curl de la siguiente forma \lstinline[language=bash]|curl -s http://localhost:6000/api/start|. Y para recoger los datos de consumo, se debe realizar una nueva peticion curl \lstinline[language=bash]|curl -s http://localhost:6000/api/stop > "output.json"| pero esta vez redirigiendo la salida a un fichero, ya que al detener la toma de una métrica esta nos devuelve los datos de consumo del sistema en formato json.
+ Para tomar métricas del sistema con la herramienta una vez docker compose esta arrancado, unicamente es necesario realizar una peticion curl de la siguiente forma \lstinline[language=bash]|curl -s http://localhost:6000/api/start|. Y para recoger los datos de consumo, se debe realizar una nueva peticion curl \lstinline[language=bash]|curl -s http://localhost:6000/api/stop > "output.json"| pero esta vez redirigiendo la salida a un fichero, ya que al detener la toma de una métrica esta nos devuelve los datos de consumo del sistema en formato json.
  
  \lstinputlisting[label={exp0:em-docker-compose}, caption={Docker Compose que permite desplegar la herramienta Global Energy Meter}]{src/docker/docker-compose-em.yaml}
  
@@ -106,12 +106,12 @@
  
  Finalmente, el atributo \texttt{persist\_data} permite indicar si las métricas recopiladas deben almacenarse de forma persistente en la base de datos MongoDB. Este parámetro admite dos valores: \texttt{0}, para deshabilitar el almacenamiento persistente, y \texttt{1}, para guardar los datos una vez finalizada la monitorización.
 
- La recoleccion de las metricas puede hacerse de dos formas diferentes; La primera es a traves de la respuesta que devuelve el comando que detiene la monitorizacion, el cual consisten en un json con el consumo energetico de varias partes del sistema asi como de la tarjeta grafica; Y a traves de una peticion al endpoint \texttt{id\_contenedor/samples}, la cual devuelve cada una de las metricas obtenida enla primera opcion pero enformato csv en el que cada linea corresponde a un instante de medicion. \\ 
+ La recoleccion de las métricas puede hacerse de dos formas diferentes; La primera es a traves de la respuesta que devuelve el comando que detiene la monitorizacion, el cual consisten en un json con el consumo energetico de varias partes del sistema asi como de la tarjeta grafica; Y a traves de una peticion al endpoint \texttt{id\_contenedor/samples}, la cual devuelve cada una de las métricas obtenida enla primera opcion pero enformato csv en el que cada linea corresponde a un instante de medicion. \\ 
 
  Cabe destacar que, con el objetivo de garantizar la obtención de al menos diez muestras durante los procesos de transcodificación tanto en CPU como en GPU, fue necesario modificar el parámetro *SAMPLES\_PER\_SECOND* definido en el archivo Docker Compose de la herramienta, incrementando su valor de 1 a 3. De este modo, la herramienta pasa a realizar tres muestreos por segundo de monitorización, lo que permite obtener un número suficiente de muestras incluso en aquellos procesos de transcodificación cuya duración es reducida
  
 
- \begin{lstlisting}[language=bash, caption={Codigo que ejemplifica el proceso de incio y recoleccion final de metricas de consumo con la herramientas Container Energy Monitoring},label={exp0:monitor-tooluse}]
+ \begin{lstlisting}[language=bash, caption={Codigo que ejemplifica el proceso de incio y recoleccion final de métricas de consumo con la herramientas Container Energy Monitoring},label={exp0:monitor-tooluse}]
     uid=$(uuid)
     payload='{"workload_id": "'$uid'",
     "container": "'$container'",
