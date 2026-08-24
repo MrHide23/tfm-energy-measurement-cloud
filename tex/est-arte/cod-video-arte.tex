@@ -1,0 +1,60 @@
+% - Antes de esta sección pondría una sección sobre codificación de vídeo donde se hable de H264 y de H265 así como de qué implementaciones se han elegido para codificar sobre CPU y sobre GPU.
+\subsection{Codificacion de Video y Codecs}
+ La Unión Internacional de Telecomunicaciones (UIT) \cite{video-encoding-definition} define el proceso de codificación de vídeo como el proceso de transformar una secuencia de imágenes de vídeo de entrada en una representación digital codificada conforme a un estándar, para facilitar su almacenamiento, transmisión y posterior decodificación o reproducción. En este conjunto de bits, también se encuentra codificado el audio e información de interés para los codificadores, lo cual es necesario para llevar a cabo diversos procesos como la transcodificación o la decodificación. 
+
+ El conjunto de pasos y técnicas empleado para llevar a cabo la codificación y decodificación de video se encuentra definido en estándares, los cuales son definidos por las organizaciones Moving Picture Expert Group (MPEG) y la Unión Internacional de Telecomunicaciones (ITU). Destacar que empresas privadas como Google o Adobe han contribuido a la estandarización, contribuyendo en el desarrollo e incluso desarrollando los suyos propios.
+
+ Empleando como base el estándar definido, se llevan a cabo múltiples implementaciones conocidas como codificadores o códecs, los cuales llevan a cabo el proceso de codificación/decodificación de video. Cada uno de estos códecs se diferencia del resto de códecs de una misma generación en base a múltiples atributos y cuestiones técnicas, como el hardware que lleva a cabo la codificación (CPU o CPU + GPU) hasta el bit de color empleado. No obstante, todos ellos mantienen una serie de características comunes e invariables, debido a que la estandarización de procesos fue ideada para lograr un marco común de trabajo a través del cual la industria pudiera adaptarse y atender la demanda de consumo de contenido de la forma correspondiente. 
+
+ Del conjunto de estándares que existen, a fecha de redacción de este TFM, los más empleados en la industria son los estándares \textit{H.264/AVC}, con un \textit{$65\%$}, y \textit{H.265/HEVC}, con una cuota de uso del $41\%$, según el noveno reporte de la empresa Bitmovin \cite{bitmovin-9-report}. Ambos están enfocados en el consumo de contenido a través de internet, en formatos como el video web o el streaming, siendo \textit{H.265} una mayor eficiencia respecto a \textit{H.264}, razón por la cual gradualmente se está transicionando a estándares como el \textbf{AV1}.
+
+ Es por ello que, para llevar a cabo las distintas tareas de codificación, se han seleccionado dos implementaciones por cada uno de los estándares \textit{H.264} y \TEXTIT{H.265}. Dos de las implementaciones de código basadas en CPU (\textit{libx264} y \textit{libx265}) y las otras dos restantes basadas en aceleración mediante GPU (\textit{h264\_nvenc} y \textit{hevc\_nvenc}). Para llevar a cabo los procesos de codificación, se empleará la herramienta FFMPEG, ampliamente utilizada en la industria y que además cuenta con las cuatro implementaciones. 
+
+ \begin{figure}[h!]
+     \centering
+     \includegraphics[width=\linewidth]{figs/arte/codec-survery-indutry.png}
+     \caption{Estandares de codificacion empleados en produccion frente a futura tasa de implementacion(linea roja), encuenta llevada a cabo por Bitmovin \cite{bitmovin-9-report}}
+     \label{fig:codec-implementation-bitmovin}
+ \end{figure}
+ 
+
+\subsection{Proceso de Codificación}
+
+ Este proceso esta compueto por las siguientes fases:
+
+ \begin{enumerate} 
+  \item \texttt{Acondicionamiento y Particionado Espacial:} El espacio de color del video se convierte de RGB a modelo YUV empleando el submuestreo con corma. Seguido por la segmentacionde cada fotograma en bloques de procesamiento matriciales con un determinado numero de pixeles cuadrados(depende dle codificador)
+  \end{enumerate}
+
+ El proceso estandar de codificación de vídeo está compuesto por diferentes etapas. En primer lugar, se realiza el procesamiento del color, mediante la conversión de la representación RGB a un espacio de color como YUV, que permite representar la información de luminancia y crominancia de forma independiente TABLA-YUV. A continuación, cada fotograma se divide en diferentes bloques o particiones que son analizados de forma individual.
+
+ Posteriormente, se lleva a cabo el proce de reconstruccion de bloque, mediante predicio intra-frame(Espacial) o prediccion inter-frame(temporal). En el caso de la prediccion espacial, la reconstruccion se lleva a cabo empleando informacio de los pixeles cercanos de otro bloque dentro de un mismo frame. Mientras que la prediccion temporal, se lleva a cabo aplicando compresion en base a la cantidad de moviemiento entre fotogramas, almacenando un vector de movimiento para cada pixel de un conjunto de frames en un determinado tiempo. 
+
+ 
+
+ 
+ se reconstruye el bloque empleando pixeles vecinos de un mismo fotograma
+ se aplica un proceso de compresión destinado a eliminar información redundante, tanto espacial como temporal.
+
+ La redundancia espacial está relacionada con la existencia de regiones similares dentro de un mismo fotograma, mientras que la redundancia temporal se relaciona con la similitud existente entre diferentes fotogramas consecutivos. En función de estas características, se c
+ los bloques pueden recibir diferentes tipos de codificación, lo que permite determinar la cantidad de información que puede eliminarse sin producir una pérdida significativa de calidad.
+
+ Finalmente, la información resultante puede transformarse al dominio de la frecuencia mediante diferentes técnicas de transformación, lo que permite identificar y eliminar componentes que presentan una menor relevancia para la percepción visual. Posteriormente, los datos son cuantificados y codificados para obtener la representación binaria final del vídeo.
+
+ A lo largo de los años, estos procesos han ido evolucionando para adaptarse a las necesidades de consumo y distribución de contenido, buscando mejorar la relación entre calidad, tamaño de los archivos, bitrate y coste computacional. Esta evolución ha permitido establecer una serie de estándares ampliamente utilizados por la industria. Entre las principales organizaciones responsables de su definición y desarrollo se encuentran la Unión Internacional de Telecomunicaciones (ITU-T) y el Moving Picture Experts Group (MPEG), perteneciente a la International Organization for Standardization (ISO) y a la International Electrotechnical Commission (IEC).
+
+ % TABLA YUV
+ 
+ % Tabla Fotogramas
+
+
+\subsection{Características del Vídeo: Spatial Information y Temporal Information}
+ % - Hablar de la metrica de salidad SITI
+ % - Formula matematica de cada uno
+ % - Estandar actual
+ Para la selección del conjunto de videos que serán utilizados durante la fase de experimentación 2 \ref{exp2-desarrollo}, se espera poder comprobar si el contenido del video, y más concretamente, la cantidad de información que contiene, afecta a la cantidad de energía que consume el contenedor durante el proceso de codificación. Es por este motivo que se han empleado los parámetros Spatial Information (SI) y Temporal Information (TI) para la selección de chunks que compondrán los videos.\
+
+ Estas caracteristicas de video se encuentran definidos por el International Telecommunication Union Telecommunication Standardization Sector (ITU) \cite{itu-quality-metrics}, y se emplean de forma conjunta como métricas de calidad comprendida entre 0 y 100, donde Spatial Information (SI) representa la cantidad de detalles y objetos que aparecen en una escena, y el Temporal Information (TI) define la cantidad de cambios que suceden en una escena a lo largo del tiempo.\
+
+
+
