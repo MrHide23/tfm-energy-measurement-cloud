@@ -1,4 +1,3 @@
-% - Antes de esta sección pondría una sección sobre codificación de vídeo donde se hable de H264 y de H265 así como de qué implementaciones se han elegido para codificar sobre CPU y sobre GPU.
 \subsection{Codificacion de Video y Codecs}
  La Unión Internacional de Telecomunicaciones (UIT) \cite{video-encoding-definition} define el proceso de codificación de vídeo como el proceso de transformar una secuencia de imágenes de vídeo de entrada en una representación digital codificada conforme a un estándar, para facilitar su almacenamiento, transmisión y posterior decodificación o reproducción. En este conjunto de bits, también se encuentra codificado el audio e información de interés para los codificadores, lo cual es necesario para llevar a cabo diversos procesos como la transcodificación o la decodificación. 
 
@@ -6,11 +5,11 @@
 
  Empleando como base el estándar definido, se llevan a cabo múltiples implementaciones conocidas como codificadores o códecs, los cuales llevan a cabo el proceso de codificación/decodificación de video. Cada uno de estos códecs se diferencia del resto de códecs de una misma generación en base a múltiples atributos y cuestiones técnicas, como el hardware que lleva a cabo la codificación (CPU o CPU + GPU) hasta el bit de color empleado. No obstante, todos ellos mantienen una serie de características comunes e invariables, debido a que la estandarización de procesos fue ideada para lograr un marco común de trabajo a través del cual la industria pudiera adaptarse y atender la demanda de consumo de contenido de la forma correspondiente. 
 
- Del conjunto de estándares que existen, a fecha de redacción de este TFM, los más empleados en la industria son los estándares \textit{H.264/AVC}, con un \textit{$65\%$}, y \textit{H.265/HEVC}, con una cuota de uso del $41\%$, según el noveno reporte de la empresa Bitmovin \cite{bitmovin-9-report}. Ambos están enfocados en el consumo de contenido a través de internet, en formatos como el video web o el streaming, siendo \textit{H.265} una mayor eficiencia respecto a \textit{H.264}, razón por la cual gradualmente se está transicionando a estándares como el \textbf{AV1}.
+ Del conjunto de estándares que existen, a fecha de redacción de este TFM, los más empleados en la industria son los estándares \textbf{H.264/AVC}, con un \textit{$65\%$}, y \textbf{H.265/HEVC}, con una cuota de uso del \textit{$41\%$}, según el noveno reporte de la empresa Bitmovin \cite{bitmovin-9-report}. Ambos están enfocados en el consumo de contenido a través de internet, en formatos como el video web o el streaming, siendo \textit{H.265} una mayor eficiencia respecto a \textit{H.264}, razón por la cual gradualmente se está transicionando a estándares como el \textbf{AV1}.
 
- Es por ello que, para llevar a cabo las distintas tareas de codificación, se han seleccionado dos implementaciones por cada uno de los estándares \textit{H.264} y \TEXTIT{H.265}. Dos de las implementaciones de código basadas en CPU (\textit{libx264} y \textit{libx265}) y las otras dos restantes basadas en aceleración mediante GPU (\textit{h264\_nvenc} y \textit{hevc\_nvenc}). Para llevar a cabo los procesos de codificación, se empleará la herramienta FFMPEG, ampliamente utilizada en la industria y que además cuenta con las cuatro implementaciones. 
+ Es por ello que, para llevar a cabo las distintas tareas de codificación, se han seleccionado dos implementaciones por cada uno de los estándares \textit{H.264} y \textit{H.265}. Dos de las implementaciones de código basadas en CPU (\textit{libx264} y \textit{libx265}) y las otras dos restantes basadas en aceleración mediante GPU (\textit{h264\_nvenc} y \textit{hevc\_nvenc}). Para llevar a cabo los procesos de codificación, se empleará la herramienta FFMPEG, ampliamente utilizada en la industria y que además cuenta con las cuatro implementaciones. 
 
- \begin{figure}[h!]
+ \begin{figure}[H]
      \centering
      \includegraphics[width=\linewidth]{figs/arte/codec-survery-indutry.png}
      \caption{Estandares de codificacion empleados en produccion frente a futura tasa de implementacion(linea roja), encuenta llevada a cabo por Bitmovin \cite{bitmovin-9-report}}
@@ -19,42 +18,184 @@
  
 
 \subsection{Proceso de Codificación}
+La arquitectura general del proceso de codificación es similar tanto en \textit{H.264} como en \textit{H.265}, ya que ambos estándares se basan en mecanismos de predicción, transformación, cuantización y codificación entrópica. No obstante, \textit{H.265} introduce diferentes modificaciones y nuevas técnicas destinadas a mejorar la eficiencia de compresión respecto a \textit{H.264}. Este último fue desarrollado durante los años 2000-2003, mientras que \textit{H.265} fue presentado posteriormente como su sucesor, con el objetivo de obtener una calidad visual equivalente utilizando una menor tasa de bits. Esta mejora en la eficiencia de compresión se consigue, entre otros factores, mediante una estructura de particionado más flexible y la incorporación de nuevas herramientas de predicción y procesamiento.
 
- Este proceso esta compueto por las siguientes fases:
-
+A continuación, se describen las principales etapas que intervienen en el proceso de codificación de vídeo, tomando como referencia el trabajo \textbf{Engineering and Technology Quarterly Reviews} \cite{h264-vs-h265}, junto con la documentación oficial de la \textit{International Telecommunication Union (ITU)} correspondiente a los estándares \textit{H.264} \cite{itu-official-h264} y \textit{H.265} \cite{itu-official-h265}.
+ 
  \begin{enumerate} 
-  \item \texttt{Acondicionamiento y Particionado Espacial:} El espacio de color del video se convierte de RGB a modelo YUV empleando el submuestreo con corma. Seguido por la segmentacionde cada fotograma en bloques de procesamiento matriciales con un determinado numero de pixeles cuadrados(depende dle codificador)
-  \end{enumerate}
-
- El proceso estandar de codificación de vídeo está compuesto por diferentes etapas. En primer lugar, se realiza el procesamiento del color, mediante la conversión de la representación RGB a un espacio de color como YUV, que permite representar la información de luminancia y crominancia de forma independiente TABLA-YUV. A continuación, cada fotograma se divide en diferentes bloques o particiones que son analizados de forma individual.
-
- Posteriormente, se lleva a cabo el proce de reconstruccion de bloque, mediante predicio intra-frame(Espacial) o prediccion inter-frame(temporal). En el caso de la prediccion espacial, la reconstruccion se lleva a cabo empleando informacio de los pixeles cercanos de otro bloque dentro de un mismo frame. Mientras que la prediccion temporal, se lleva a cabo aplicando compresion en base a la cantidad de moviemiento entre fotogramas, almacenando un vector de movimiento para cada pixel de un conjunto de frames en un determinado tiempo. 
-
+  \item \texttt{Acondicionamiento y submuestreo de color:} 
+  En primer lugar, la información de color del vídeo puede convertirse desde el modelo RGB a un espacio de color como YUV, en el que se separan las componentes de luminancia y crominancia. Esta separación permite aplicar diferentes niveles de resolución a cada componente mediante técnicas de submuestreo de crominancia, reduciendo la cantidad de información necesaria para representar el vídeo sin producir una pérdida visual significativa. Los principales esquemas de submuestreo utilizados se recogen en la tabla \ref{tab:croma-yub-esquema}.
  
+  \item \texttt{Particionado de los fotogramas:} 
+  Una vez realizado el acondicionamiento de la información, cada fotograma se divide en diferentes unidades que serán procesadas de forma independiente. En \textit{H.264}, la unidad básica de procesamiento es el \textit{macroblock}, que presenta un tamaño máximo de 16$\times$16 muestras de luminancia y puede dividirse en particiones de menor tamaño para realizar las operaciones de predicción y transformación.
 
+  Por su parte, \textit{H.265} sustituye este mecanismo por una estructura jerárquica basada en las \textit{Coding Tree Units} (CTU), que pueden alcanzar tamaños de hasta 64$\times$64 muestras y dividirse posteriormente en diferentes \textit{Coding Units} (CU), \textit{Prediction Units} (PU) y \textit{Transform Units} (TU). Esta estructura proporciona una mayor flexibilidad a la hora de adaptar el tamaño de las unidades a las características del contenido.
  
- se reconstruye el bloque empleando pixeles vecinos de un mismo fotograma
- se aplica un proceso de compresión destinado a eliminar información redundante, tanto espacial como temporal.
-
- La redundancia espacial está relacionada con la existencia de regiones similares dentro de un mismo fotograma, mientras que la redundancia temporal se relaciona con la similitud existente entre diferentes fotogramas consecutivos. En función de estas características, se c
- los bloques pueden recibir diferentes tipos de codificación, lo que permite determinar la cantidad de información que puede eliminarse sin producir una pérdida significativa de calidad.
-
- Finalmente, la información resultante puede transformarse al dominio de la frecuencia mediante diferentes técnicas de transformación, lo que permite identificar y eliminar componentes que presentan una menor relevancia para la percepción visual. Posteriormente, los datos son cuantificados y codificados para obtener la representación binaria final del vídeo.
-
- A lo largo de los años, estos procesos han ido evolucionando para adaptarse a las necesidades de consumo y distribución de contenido, buscando mejorar la relación entre calidad, tamaño de los archivos, bitrate y coste computacional. Esta evolución ha permitido establecer una serie de estándares ampliamente utilizados por la industria. Entre las principales organizaciones responsables de su definición y desarrollo se encuentran la Unión Internacional de Telecomunicaciones (ITU-T) y el Moving Picture Experts Group (MPEG), perteneciente a la International Organization for Standardization (ISO) y a la International Electrotechnical Commission (IEC).
-
- % TABLA YUV
+  \item \texttt{Predicción espacial y temporal:} 
+  Sobre las unidades obtenidas se lleva a cabo un proceso de predicción destinado a reducir la redundancia presente en el vídeo. En la predicción \textit{intra-frame}, también denominada predicción espacial, se utiliza información procedente de bloques vecinos pertenecientes al mismo fotograma para estimar el contenido del bloque actual. Por otro lado, la predicción \textit{inter-frame}, o predicción temporal, utiliza información procedente de otros fotogramas de referencia. Para ello se calculan vectores de movimiento que permiten identificar las diferencias entre el bloque actual y su correspondiente región en los fotogramas de referencia.
  
- % Tabla Fotogramas
+  En función del mecanismo de predicción empleado, los fotogramas de una secuencia pueden clasificarse principalmente como \textit{I}, \textit{P} o \textit{B}. Los fotogramas \textit{I} se codifican utilizando únicamente información del propio fotograma, mientras que los fotogramas \textit{P} y \textit{B} utilizan información de otros fotogramas de referencia. Los fotogramas \textit{B} pueden utilizar referencias tanto anteriores como posteriores dentro de la secuencia.
+ 
+  Durante la selección de determinadas decisiones de codificación pueden emplearse técnicas de optimización tasa-distorsión. Una formulación habitual es la función:
+ 
+  \begin{equation}
+   J = D + \lambda R
+  \end{equation}
+ 
+  donde $D$ representa la distorsión introducida, $R$ la tasa de bits necesaria para representar la información y $\lambda$ el multiplicador de Lagrange utilizado para establecer el equilibrio entre ambos factores.
+ 
+  \item \texttt{Transformación y cuantización:} Una vez realizada la predicción, la información residual resultante se transforma al dominio de la frecuencia mediante transformaciones matemáticas basadas principalmente en la \textit{Discrete Cosine Transform} (DCT). Esta transformación permite representar la información mediante diferentes componentes frecuenciales, facilitando la posterior eliminación de aquellas que presentan una menor relevancia. 
+
+  En \textit{H.264} se utilizan principalmente transformaciones con tamaños de 4$\times$4 y 8$\times$8, mientras que \textit{H.265} amplía los tamaños disponibles hasta 32$\times$32. Además, \textit{H.265} incorpora una transformación basada en la \textit{Discrete Sine Transform} (DST) para determinados bloques intra de luminancia. Posteriormente, los coeficientes obtenidos son cuantizados, reduciendo la precisión de determinados componentes y permitiendo disminuir la cantidad de información necesaria para representar el vídeo.
+ 
+  \item \texttt{Filtrado:} Como consecuencia de la codificación por bloques pueden aparecer determinados artefactos visuales en las zonas de transición entre bloques. Para reducir estos efectos, \textit{H.264} incorpora un filtro de desbloqueo (\textit{Deblocking Filter}). \textit{H.265} mantiene este mecanismo e incorpora además el \textit{Sample Adaptive Offset} (SAO), que permite realizar un procesamiento adicional de los valores reconstruidos con el objetivo de mejorar la calidad de la imagen.
+ 
+  \item \texttt{Codificación entrópica:} Finalmente, los datos resultantes del proceso de transformación, cuantización y predicción son sometidos a una codificación entrópica con el objetivo de reducir aún más la cantidad de bits necesarios para representar la información. \textit{H.264} permite utilizar técnicas como \textit{CAVLC} (\textit{Context-Adaptive Variable-Length Coding}) y \textit{CABAC} (\textit{Context-Adaptive Binary Arithmetic Coding}), mientras que \textit{H.265} utiliza \textit{CABAC} como mecanismo de codificación entrópica.
+ \end{enumerate}
+
+ El conjunto de estas etapas permite obtener un flujo de vídeo codificado que contiene la información necesaria para reconstruir la secuencia original durante el proceso de decodificación. Este flujo puede posteriormente encapsularse junto con otros tipos de información, como el audio, dentro de un formato contenedor como \textit{MP4}, \textit{MKV} o \textit{MPEG-TS}. El proceso de encapsulado no forma parte directamente del estándar de codificación de vídeo, sino que permite organizar y transportar los diferentes flujos que componen el contenido multimedia.
+ 
+ Las diferencias existentes entre \textit{H.264} y \textit{H.265} tienen una repercusión directa sobre los recursos computacionales necesarios para realizar la codificación. En particular, la mayor flexibilidad en el particionado, los mecanismos adicionales de predicción y las nuevas herramientas de procesamiento introducidas por \textit{H.265} permiten mejorar la eficiencia de compresión, pero pueden incrementar la complejidad computacional del proceso respecto a \textit{H.264}. Esta diferencia resulta especialmente relevante en el contexto de este trabajo, donde se analiza cómo el estándar utilizado, las características del contenido y los recursos asignados al proceso de codificación afectan tanto al consumo energético como al tiempo de ejecución.
+
+ \begin{table}[htbp]
+ \centering
+ \begin{minipage}{0.45\textwidth}
+   \centering
+   \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+     \hline
+     \rowcolor[HTML]{C0C0C0} 
+     \textbf{Formato} & \textbf{Información de Color Retenida} \\ \hline
+     4:4:4 & 100\% \\ \hline
+     4:2:2 & 50\%  \\ \hline
+     4:2:0 & 25\%  \\ \hline
+     4:1:1 & 25\%  \\ \hline
+     4:0:0 & 0\%   \\ \hline
+   \end{tabularx}
+   \caption{Tabla de tipos de submuestreo mediante croma y porcentaje de información de color que retiene.}
+   \label{tab:croma-yub-esquema}
+ \end{minipage}
+ \hfill  
+ \begin{minipage}{0.45\textwidth}
+   \centering
+   \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+     \hline
+     \rowcolor[HTML]{C0C0C0} 
+     \textbf{Tipo de Frame} & \textbf{Compresión} \\ \hline  
+     I-Frame (Intra) & Baja \\ \hline
+     P-Frame (Predicción) & Media \\ \hline
+     B-Frame (Bi-directional) & Alta \\ \hline
+   \end{tabularx}
+ \caption{Tablas comparativas: (izquierda) submuestreo de croma, (derecha) compresión espaciotemporal.}
+ \label{tab:compresion-sp}
+ \end{minipage}
+ \end{table}
+ 
+ 
+\subsection{Codificación sobre Hardware}
+
+ Tradicionalmente, los procesos de codificación de vídeo se han ejecutado principalmente sobre la CPU mediante implementaciones software de los distintos estándares de compresión. Sin embargo, el incremento progresivo de la demanda de contenido multimedia de alta resolución y elevada frecuencia de imagen, junto con la generalización de los servicios de vídeo bajo demanda y streaming, ha incrementado considerablemente la carga computacional asociada a estos procesos. Esta evolución ha favorecido la incorporación de mecanismos de aceleración hardware capaces de trasladar parte de las operaciones de codificación desde la CPU hacia unidades de procesamiento especializadas, entre las que destacan las GPU.
+
+ Este incremento de la demanda está relacionado tanto con la evolución de la calidad del contenido, con resoluciones como 4K UHD y frecuencias de hasta 60 o 120 fps, como con el cambio en los patrones de consumo. El contenido multimedia se distribuye actualmente a través de un amplio conjunto de dispositivos, desde ordenadores personales hasta teléfonos móviles, tabletas y Smart TV, y se entrega principalmente mediante plataformas de streaming. Como consecuencia, una parte significativa de la carga computacional asociada al procesamiento y distribución del contenido se concentra en centros de procesamiento de datos (CPD) y redes de distribución de contenido (Content Delivery Networks, CDN), donde el volumen de contenido procesado puede ser considerablemente elevado.
+ 
+ Este aumento de la carga de trabajo asociada a la codificación puede provocar un incremento de los tiempos de procesamiento y de los recursos computacionales necesarios, especialmente cuando se requiere generar diferentes representaciones de un mismo contenido para adaptarlo a distintas resoluciones, tasas de bits y dispositivos de consumo. En estos escenarios, una ejecución basada exclusivamente en CPU puede llegar a convertirse en un factor limitante, generando cuellos de botella y un incremento del consumo de recursos y energía. No obstante, el comportamiento de la CPU no es necesariamente desfavorable en todos los escenarios, ya que su rendimiento puede resultar competitivo cuando se trabaja con contenidos de menor resolución y frecuencia de imagen, donde la carga computacional asociada a la codificación es inferior \cite{gpuvscpu-videoencoding}.
+ 
+ Los resultados obtenidos en el trabajo \cite{tokyo-livestreming-acceleration-gpu} muestran que, en escenarios de streaming UHD, las implementaciones de codificación basadas exclusivamente en CPU pueden presentar un elevado coste computacional y energético, especialmente a medida que aumenta la resolución y la complejidad del contenido. Estos resultados ponen de manifiesto que, en escenarios de elevada carga de trabajo, la utilización de mecanismos de aceleración hardware puede constituir una alternativa para reducir el tiempo necesario para completar la codificación y mejorar la eficiencia del procesamiento.
+ 
+ Por su parte, la utilización de mecanismos de aceleración hardware permite descargar parte de la carga computacional asociada a la codificación de la CPU hacia unidades especializadas de la GPU. En base a los resultados obtenidos en el trabajo \textit{Evaluation of Hardware-based Video Encoders on Modern GPUs for UHD Live-Streaming} \cite{tokyo-livestreming-acceleration-gpu}, se observaron diferencias significativas en el tiempo de codificación y en el consumo energético entre implementaciones software y hardware de determinados estándares. En particular, se identificaron diferencias entre implementaciones de H.265/HEVC como \textit{x265} y \textit{hevc\_nvenc}, mostrando el potencial de la aceleración hardware para reducir el coste computacional asociado a la codificación de vídeo en escenarios de alta resolución y streaming.
+ 
+ No obstante, la utilización de aceleración hardware no implica necesariamente una mejora uniforme para cualquier tipo de contenido o configuración. Los resultados obtenidos en \cite{gpuvscpu-videoencoding} muestran que, para determinadas condiciones de resolución y frecuencia de imagen, las implementaciones basadas en CPU pueden proporcionar resultados competitivos en términos de calidad y tiempo de codificación, sin que la utilización de una implementación acelerada mediante GPU suponga necesariamente una ventaja significativa. Por tanto, la elección entre una implementación basada en CPU o en GPU debe considerar las características del contenido, la resolución, la frecuencia de imagen y las necesidades concretas del escenario de distribución.
+ 
+ También es necesario tener en cuenta la plataforma sobre la que se llevará a cabo el consumo y distribución del contenido, ya que la configuración del bitrate y de los parámetros de codificación puede afectar de diferente forma a la calidad final percibida por el consumidor. Este aspecto resulta especialmente relevante al establecer una relación entre calidad de vídeo, tasa de bits, tiempo de codificación y consumo energético. No obstante, el análisis de la calidad subjetiva de los usuarios y de la adaptación del contenido a las diferentes plataformas queda fuera del alcance de este TFM.
+ 
+ \begin{figure}[H]
+     \centering
+     \includegraphics[width=0.4\linewidth]{figs/arte/tokyo-encodign-throughput.png}
+     \caption{Frames por segundo de un proceso de codificacion a 2016p/4k que alcanzan a codificar cada una de las arquitecturas del Hardware comparado en el estudio \cite{tokyo-livestreming-acceleration-gpu}}
+     \label{fig:tokyo-encoding-throughtput}
+ \end{figure}
+
 
 
 \subsection{Características del Vídeo: Spatial Information y Temporal Information}
- % - Hablar de la metrica de salidad SITI
- % - Formula matematica de cada uno
- % - Estandar actual
- Para la selección del conjunto de videos que serán utilizados durante la fase de experimentación 2 \ref{exp2-desarrollo}, se espera poder comprobar si el contenido del video, y más concretamente, la cantidad de información que contiene, afecta a la cantidad de energía que consume el contenedor durante el proceso de codificación. Es por este motivo que se han empleado los parámetros Spatial Information (SI) y Temporal Information (TI) para la selección de chunks que compondrán los videos.\
 
- Estas caracteristicas de video se encuentran definidos por el International Telecommunication Union Telecommunication Standardization Sector (ITU) \cite{itu-quality-metrics}, y se emplean de forma conjunta como métricas de calidad comprendida entre 0 y 100, donde Spatial Information (SI) representa la cantidad de detalles y objetos que aparecen en una escena, y el Temporal Information (TI) define la cantidad de cambios que suceden en una escena a lo largo del tiempo.\
+ Un vídeo digital se define por un conjunto de propiedades objetivas que determinan tanto su representación técnica como la naturaleza de su contenido. Estas propiedades, denominadas habitualmente características del vídeo, permiten describir, comparar y procesar cualquier secuencia de manera cuantitativa, con independencia del codificador o de la plataforma de reproducción empleada.
+
+ Del conjunto de características que componen el vídeo, pueden diferenciarse dos grupos. El primero agrupa los parámetros de formato, que definen cómo se muestrea y se representa la señal, siendo los más relevantes la resolución (medida en píxeles), la frecuencia de fotogramas, la tasa de bits, la profundidad de color (número de bits por muestra), el rango dinámico (SDR o HDR) y la relación de aspecto. Estos parámetros son configurables y determinan el volumen de datos, los requisitos de cómputo y el ancho de banda necesarios para la transmisión.
+
+ En el segundo grupo se encuentran las características de contenido, que describen la complejidad intrínseca de la escena y no dependen directamente de los parámetros de formato, sino de lo que aparece en cada imagen y de cómo evoluciona a lo largo del tiempo. Dentro de este grupo destacan dos dimensiones complementarias: la complejidad espacial (SI), asociada a la cantidad de detalle, textura y bordes presentes en cada fotograma; y la complejidad temporal (TI), asociada a la magnitud del movimiento y a los cambios entre fotogramas consecutivos. Estas características son las que condicionan el esfuerzo real del codificador, ya que determinan el número de candidatos de predicción, la dificultad de la estimación de movimiento y el volumen de residuos a procesar.
+
+ En la actualidad, las métricas SI y TI representan el estado del arte en la caracterización del vídeo y se emplean para determinar su complejidad. Ambos parámetros se encuentran estandarizados por la UIT-T bajo la Recomendación \textbf{P.910: Subjective video quality assessment methods for multimedia applications} \cite{itu-quality-metrics}, cuya versión vigente data de 10/2023, a la espera de la publicación oficial de la nueva versión fechada en 07/2026. Cabe destacar que, a diferencia de las versiones previas(que empleaban el valor máximo como medida de agregación), la versión actual recomienda utilizar la media.
+
+ Para calcular el valor de \textit{SI}, se debe aplicar a cada uno de los frames del vídeo el filtro de Sobel, definido como ($F_{\text{Sobel}}(F_{n},\text{range})$), y posteriormente calcular la función de transferencia electro-óptica (EOTF), obteniendo ($F_{n}^{\text{nits}}$) a partir de la señal de entrada. Con ello, se calcula el valor de \textit{SI} para cada fotograma mediante:
+ 
+ \begin{equation}
+     SI_{n} = \sigma_{\text{space}}\left[
+     \operatorname{Sobel}\left(F_{n}^{PQ}\right)
+     \right]
+     \label{siti-si-frame}
+ \end{equation}
+ 
+ Posteriormente, se aplica un proceso de \textit{desnormalización} mediante la siguiente función:
+ 
+ \begin{equation}
+     \operatorname{Denormalize}(x,b) = x \cdot \left(2^{b}-1\right)
+     \label{siti-desnormalizacion}
+ \end{equation}
+ 
+ De esta forma, el valor de \textit{SI} correspondiente a cada fotograma se obtiene como:
+ 
+ \begin{equation}
+     SI_{n} = \operatorname{Denormalize}(SI_{n},b)
+     \label{siti-si-denormalizado}
+ \end{equation}
+ 
+ Finalmente, se realiza la agregación de los valores de \textit{SI} obtenidos para cada uno de los fotogramas, obteniendo el valor global de \textit{SI}:
+ 
+ \begin{equation}
+     SI = SI_{\text{aggregated}} =
+     \frac{1}{N}\sum_{n=1}^{N} SI_{n}
+     \label{siti-si-aggregated}
+ \end{equation}
+ 
+ En el caso de querer calcular el \textit{TI}, se debe calcular en primer lugar la característica de referencia ($M_{n}(i,j)$), que representa la diferencia entre dos fotogramas consecutivos:
+ 
+ \begin{equation}
+     M_{n}(i,j) =
+     F_{n}^{PQ}(i,j) -
+     F_{n-1}^{PQ}(i,j)
+     \label{siti-ti-reference}
+ \end{equation}
+ 
+ Posteriormente, se calcula la desviación estándar sobre el espacio (($\sigma_{\text{space}})$):
+ 
+ \begin{equation}
+     TI_{n} =
+     \sigma_{\text{space}}
+     \left[
+     M_{n}(i,j)
+     \right]
+     \label{siti-ti-frame}
+ \end{equation}
+ 
+ Como resultado, se obtiene el valor correspondiente a cada fotograma ($(TI_{n})$), al cual se le aplica posteriormente el proceso de \textit{desnormalización} definido en la Ecuación~\ref{siti-desnormalizacion}:
+ 
+ \begin{equation}
+     TI_{n} =
+     \operatorname{Denormalize}(TI_{n},b)
+     \label{siti-ti-denormalizado}
+ \end{equation}
+ 
+ Finalmente, se realiza la agregación de los valores de \textit{TI} obtenidos para los fotogramas considerados, obteniendo el valor global:
+ 
+ \begin{equation}
+     TI = TI_{\text{aggregated}} =
+     \frac{1}{N-1}\sum_{n=2}^{N} TI_{n}
+     \label{siti-ti-aggregated}
+ \end{equation}
+
+ Para finalizar, es necesario destacar que el cálculo de las métricas SI y TI resulta costoso a nivel temporal y energético, según los resultados hallados y expuestos en el artículo \textbf{Green Video Complexity Analysis for Efficient Encoding in Adaptive Video Streaming} \cite{video-complexity}. En dicho artículo se propone un marco alternativo que permite calcular el valor de las métricas Spatial Information y Temporal Information con un consumo energético y un coste temporal sustancialmente menores, lo cual resulta relevante porque, en el streaming de vídeo, el valor de SI/TI se calcula para cada uno de los segmentos que se transmiten. Con ello se optimiza el proceso de transcodificación y se reduce la carga de trabajo del hardware, además de los tiempos de entrega del contenido.
+ 
+ En relación con este trabajo de investigación, se pretende demostrar la correlación entre el SI/TI de cada vídeo del dataset y el consumo energético. Además, se analizarán los resultados de consumo de cada proceso de codificación con cada uno de los códecs empleados, con el fin de detectar la influencia del SI y/o del TI sobre los códecs en caso de que dicha influencia exista. 
 
 
 

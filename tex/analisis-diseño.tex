@@ -13,7 +13,7 @@
  
  Cada ejecución del script corresponde a un único proceso de codificación asociado a un determinado vídeo. Antes de iniciar la ejecución, es necesario establecer los parámetros correspondientes a la ubicación de los archivos en los que se almacenarán las métricas, el nombre o identificador del experimento y el tipo de configuración de codificación empleada, indicando si la carga se ejecutará exclusivamente sobre la CPU o mediante una configuración combinada de CPU y GPU.
  
- \begin{figure}[h!]
+ \begin{figure}[H]
  \centering
  \includegraphics[width=\linewidth]{figs/kepler-caso-uso.png}
  \caption{Diagram de funcionamiento interno del experimento 1.1 recoleccion de métricas con Kepler y Global Energy Meter}
@@ -25,7 +25,7 @@
  
  El funcionamiento de este script se basa en el desarrollado para \textit{Kepler}, por lo que ambos presentan una estructura de ejecución prácticamente idéntica. El script se ejecuta una vez por cada proceso de codificación cuyo consumo se desee monitorizar. Antes de iniciar cada ejecución, es necesario definir los parámetros correspondientes al tipo de codificación realizada, así como el directorio de destino en el que se almacenarán las métricas recopiladas. De este modo, cada ejecución genera un conjunto de datos asociado a una configuración concreta de codificación, facilitando posteriormente su identificación y análisis.
  
- \begin{figure}[h!]
+ \begin{figure}[H]
  \centering
  \includegraphics[width=\linewidth]{figs/kepler-caso-uso.png}
  \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de métricas con Scaphandre y Global Energy Meter}
@@ -37,7 +37,7 @@
  
  De este modo, el script ejecuta el proceso de monitorización y almacenamiento de las métricas un total de $n$ veces, donde $n$ corresponde al número de iteraciones definido previamente a la ejecución. Esto permite automatizar la repetición de las mediciones y mantener organizados los datos correspondientes a cada conjunto de pruebas.
  
- \begin{figure}[h!]
+ \begin{figure}[H]
  \centering
  \includegraphics[width=\linewidth]{figs/cem-caso-uso.png}
  \caption{Diagram de funcionamiento interno del experimento 1.2 recoleccion de métricas con Container Eneregy Monitoring y Global Energy Meter}
@@ -48,7 +48,7 @@
  \subsubsection*{Seleccionar segmentos de 10 segundos que tengan un SITI similar}
  En el siguiente caso de uso se muestra el diagrama básico de funcionamiento del script de Python \textit{exp2.1-siti-calculator.py} encargado de calcular las características SI y TI de los chunks de video. Una vez obtenidos estos valores, se empleará el script \textit{exp2.1-siti-ploter.py} para generar una gráfica de dispersión que represente la distribución de los chunks en función de sus características espaciales y temporales. Sobre esta representación se definirán las diferentes zonas de interés y se realizará la selección de los chunks que posteriormente se utilizarán para construir los vídeos con las características requeridas en cada uno de los experimentos.
  
- \begin{figure}[h!]
+ \begin{figure}[H]
  \centering
  \includegraphics[width=\linewidth]{figs/sitichuncks.png}
  \caption{Caso de uso para calcular el SITI de los fragmentos de videos disponibles para experimentar}
@@ -62,7 +62,7 @@ En cada experimento se iterará sobre un conjunto de variables independientes, c
 \begin{itemize}
     \item \texttt{Herramienta de toma de métricas:} Variable exclusiva del \textit{Experimento 1 (Selección de Herramienta)}. Se evalúan las soluciones \textit{Kepler}, \textit{Scaphandre} y \textit{Container Energy Monitor} para determinar cuál ofrece mayor precisión al monitorizar procesos en contenedores.
 
-    \item \texttt{Tasa de bits (Bitrate):} Variable clave en los Experimentos 2 y 3. Rango de valores en Mbps según la generación del códec (H.264 o H.265), detallado en la Tabla \ref{tab:ana-bitrate-values}.
+    \item \texttt{Tasa de bits (Bitrate):} Variable clave en los Experimentos 2 y 3. Rango de valores en Mbps según el estandar del códec (H.264 o H.265), detallado en la Tabla \ref{tab:ana-bitrate-values}.
 
     \item \texttt{Codificadores y base hardware:} Configuración evaluada en los Experimentos 2 y 3, abarcando ejecuciones sobre CPU pura y aceleración por GPU física (Tabla \ref{tab:exp2-codecs-selection}).
 
@@ -80,7 +80,7 @@ En cada experimento se iterará sobre un conjunto de variables independientes, c
     \cellcolor[HTML]{EFEFEF}libx264 / h264\_nvenc & 10, 20, 25, 30, 35, 40, 50 & 10, 30 \\ \hline
     \cellcolor[HTML]{EFEFEF}libx265 / hevc\_nvenc & 10, 15, 20, 25, 30, 35, 40 & 10, 30 \\ \hline
   \end{tabular}
-  \caption{Valores de bitrate (Mbps) configurados por experimento y generación de códec.}
+  \caption{Valores de bitrate (Mbps) configurados por experimento y estandar de códec.}
   \label{tab:ana-bitrate-values}
 \end{table}
 

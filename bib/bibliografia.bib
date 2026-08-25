@@ -130,6 +130,58 @@
 }
 
 
+
+@article{tokyo-livestreming-acceleration-gpu,
+	title = {Evaluation of {Hardware}-based {Video} {Encoders} on {Modern} {GPUs} for {UHD} {Live}-{Streaming}},
+	issn = {2637-9430},
+	url = {https://ieeexplore.ieee.org/abstract/document/10637525},
+	doi = {10.1109/ICCCN61486.2024.10637525},
+	abstract = {Many GPUs have incorporated hardware-accelerated video encoders, which allow video encoding tasks to be offloaded from the main CPU and provide higher power efficiency. Over the years, many new video codecs such as H.265/HEVC, VP9, and AV1 were added to the latest GPU boards. Recently, the rise of live video content such as VTuber, game live-streaming, and live event broadcasts, drives the demand for high-efficiency hardware encoders in the GPUs to tackle these real-time video encoding tasks, especially at higher resolutions such as 4K/8K UHD. In this paper, RD performance, encoding speed, as well as power consumption of hardware encoders in several generations of NVIDIA, Intel GPUs as well as Qualcomm Snapdragon Mobile SoCs were evaluated and compared to the software counterparts, including the latest H.266/VVC codec, using several metrics including PSNR, SSIM, and machine-learning based VMAF. The results show that modern GPU hardware encoders can match the RD performance of software encoders in real-time encoding scenarios, and while encoding speed increased in newer hardware, there is mostly negligible RD performance improvement between hardware generations. Finally, the bitrate required for each hardware encoder to match YouTube transcoding quality was also calculated.},
+	urldate = {2026-08-25},
+	booktitle = {2024 33rd {International} {Conference} on {Computer} {Communications} and {Networks} ({ICCCN})},
+	author = {Arunruangsirilert, Kasidis and Katto, Jiro},
+	month = jul,
+	year = {2024},
+	note = {ISSN: 2637-9430},
+	keywords = {Bit rate, Encoding, Graphic Processing Unit (GPU), Hardware, Hardware Acceleration, Live-Streaming, PENDIENTE, Software, Throughput, Transcoding, Ultra High-Definition (UHD), Video Encoders, Video on demand},
+	pages = {1--9},
+}
+
+
+@article{video-complexity,
+	address = {Vancouver BC Canada},
+	title = {Green video complexity analysis for efficient encoding in {Adaptive} {Video} {Streaming}},
+	isbn = {979-8-4007-0196-2},
+	url = {https://dl.acm.org/doi/10.1145/3593908.3593942},
+	doi = {10.1145/3593908.3593942},
+	abstract = {For adaptive streaming applications, low-complexity and accurate video complexity features are necessary to analyze the video content in real time, which ensures fast and compression-efficient video streaming without disruptions. State-of-the-art video complexity features are Spatial Information (SI) and Temporal Information (TI) features which do not correlate well with the encoding parameters in adaptive streaming applications. To this light, Video Complexity Analyzer (VCA) was introduced, determining the features based on Discrete Cosine Transform (DCT)-energy. This paper presents optimizations on VCA for faster and energy-efficient video complexity analysis. Experimental results show that VCA v2.0, using eight CPU threads, Single Instruction Multiple Data (SIMD), and low-pass DCT optimization, determines seven complexity features of Ultra High Definition 8-bit videos with better accuracy at a speed of up to 292.68 fps and an energy consumption of 97.06\% lower than the reference SITI implementation.},
+	language = {en},
+	urldate = {2026-08-25},
+	booktitle = {Proceedings of the {First} {International} {Workshop} on {Green} {Multimedia} {Systems}},
+	publisher = {ACM},
+	author = {Menon, Vignesh V and Feldmann, Christian and Schoeffmann, Klaus and Ghanbari, Mohammed and Timmerer, Christian},
+	month = jun,
+	year = {2023},
+	pages = {16--18},
+}
+
+
+@article{gpuvscpu-videoencoding,
+	title = {Hardware and software video encoding comparison},
+	url = {https://ieeexplore.ieee.org/abstract/document/9240439},
+	doi = {10.23919/SICE48898.2020.9240439},
+	abstract = {Long time of data encoding with software encoding mechanisms might become a significant problem when transferring digital data from cameras of mobile robots. At the same time, processor manufacturers claim that an encoding process is significantly accelerated by using a hardware encoding. This work is dedicated to a hardware and a software video encoding comparison of two state-of-the-art codecs, which were selected due to their high popularity in computer vision and robotics fields - a hardware encoding with h264 vaapi and a software encoding with FFmpeg API libx265 codec. We encoded six video sequences of different resolutions and sizes with the two codecs and evaluated obtained video quality using the Structural Similarity Index, the Peak Signal-to-Noise ratio, and the Video Multimethod Assessment Fusion metrics. Software and hardware encoding processes were also compared by CPU and memory usage, and time that was taken by the encoding process. Our results demonstrated that the hardware encoding with h264 vaapi was 5 times more memory efficient and 6 times more time-efficient relatively to the software encoding with libx265, with an insignificant difference of an output video quality.},
+	urldate = {2026-08-25},
+	booktitle = {2020 59th {Annual} {Conference} of the {Society} of {Instrument} and {Control} {Engineers} of {Japan} ({SICE})},
+	author = {Safin, Ramil and Garipova, Emilia and Lavrenov, Roman and Li, Hongbing and Svinin, Mikhail and Magid, Evgeni},
+	month = sep,
+	year = {2020},
+	keywords = {Codecs, Computer vision, Encoding, FFmpeg, Hardware, Hardware encoding, Intel QuickSync, PENDIENTE, Quality assessment, Robot vision, Software, Software encoding, Video recording, Video sequences, Video stream},
+	pages = {924--929},
+	file = {Full Text PDF:/Users/guillebo/Zotero/storage/G5FAF6P2/Safin et al. - 2020 - Hardware and software video encoding comparison.pdf:application/pdf},
+}
+
+
 @misc{h264-vs-h265,
 	title = {({PDF}) {Comparison} of {H}.264 and {H}.265},
 	url = {https://www.researchgate.net/publication/360485519_Comparison_of_H264_and_H265},
@@ -141,6 +193,20 @@
 	doi = {10.5281/zenodo.6531466},
 	keywords = {PENDIENTE},
 	file = {PDF:/Users/guillebo/Zotero/storage/BS6C9BFE/(PDF) Comparison of H.264 and H.265.pdf:application/pdf},
+}
+
+@misc{itu-official-h264,
+	title = {{ITU}-{H}.264},
+	url = {https://www.itu.int/rec/T-REC-H.264-202606-I/en},
+	file = {H.264\:https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-H.264-202606-I!!PDF-E&type=items},
+	urldate = {2026-08-24},
+}
+
+@misc{itu-official-h265,
+	title = {H.265:{High} efficiency video coding},
+	url = {https://www.itu.int/rec/T-REC-H.265-202601-I/en},
+	urldate = {2026-08-24},
+	file = {H.265\:https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-H.265-202601-I!!PDF-E&type=items},
 }
 
 @misc{bitmovin-9-report,
