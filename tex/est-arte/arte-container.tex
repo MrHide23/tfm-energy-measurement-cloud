@@ -18,12 +18,21 @@
 
  Debido a las limitaciones que presentan actualmente los \textit{unikernels}, se selecciona el sistema de virtualización \textit{containers} de Docker para llevar a cabo el proceso de codificación/transcodificación de cada experimento de este proyecto de investigación.
 
+
 \subsection{Codificación de Video sobre Contenedores}
 
+Dada la arquitecura de los \textit{containers}, al hacer uso del mismo kernel que el sistema operativo estos pueden acceder a la capacidad de computo de los componentes del sistema, como la CPU o la GPU. Esta capacidad es esencial para llevar a acabo tareas exigentes en capacidad de computo que pueden extenderse a lo largo del tiempo, como la codificacion de video.
 
-% ----
-incluso acceso a la capacidad de computo de la CPU o GPU a traves del uso de \textit{runtimes} especificos. Estos determiar como es la ejeccucion del conjunto de procesos que hace posible la existencia del contenedor y su comunicacion con el hardware.
+Para abilitar la acceleracion mediante hardware es necesario configurar el \textit{pass-through}, el cual esta compusto por dos elementos; el archivo de configuracion del sistema que contiene diversas funciones/ordenes que puede ejecutar sobre el sistema(a excepcion de algunas como read, open, etc...); Y descargar el descargar el \textit{runtime}, el cual consiste en una serie de librerias  que se comunican con los drivers del sistema para construir los contenedores, definiendo las propiedades del namespace y el cgroup al ejecutar el container \cite{hw-acceleration-container}. 
+
+Cada uno de estos runtimes es gestionado por el proveedor del componente hardware al que se quiere acceder. Por defecto, docker utiliza Open Container Initiative (OCI)(empleando el runtiem \textit{RunC}) \cite{runtime-comparation}, por tanto es neceario descargar y configurar el runtime correspondiente al componente hardware sobre el cual se desea acceder. En el caso de necesitar acceso a la capacidad de computo de una GPU NIDIA, se debe de instalar el runtime de NVIDIA, e idicar que se emplee dicho runtime al crear el contenedor.
 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figs/arte/image-unikernle-vm-containers.png}
+    \caption{Arquitectura comparativa de las tecnologias de virtualizacion comparadas obtenida de articulo \cite{vm-unikernels-container-comparative}}
+    \label{fig:arte-vm-container-unikernels}
+\end{figure}
 
 

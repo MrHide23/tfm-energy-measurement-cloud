@@ -183,6 +183,24 @@
 }
 
 
+@article{vm-unikernels-container-comparative,
+	address = {Cham},
+	title = {A {Performance} {Survey} of {Lightweight} {Virtualization} {Techniques}},
+	isbn = {978-3-319-67262-5},
+	doi = {10.1007/978-3-319-67262-5_3},
+	abstract = {The increasing prevalence of the microservice paradigm creates a new demand for low-overhead virtualization techniques. Complementing containerization, unikernels are emerging as alternative approaches. With both techniques undergoing rapid improvements, the current landscape of lightweight virtualization approaches presents a confusing scenery, complicating the task of choosing a suited technology for an intended purpose. This work provides a comprehensive performance comparison covering containers, unikernels, whole-system virtualization, native hardware, and combinations thereof. Representing common workloads in microservice-based applications, we assess application performance using HTTP servers and a key-value store. With the microservice deployment paradigm in mind, we evaluate further characteristics such as startup time, image size, network latency, and memory footprint.},
+	language = {en},
+	booktitle = {Service-{Oriented} and {Cloud} {Computing}},
+	publisher = {Springer International Publishing},
+	author = {Plauth, Max and Feinbube, Lena and Polze, Andreas},
+	editor = {De Paoli, Flavio and Schulte, Stefan and Broch Johnsen, Einar},
+	year = {2017},
+	keywords = {PENDIENTE, HTTP Server, Microservices, Native Hardware, Startup Time, Virtualization Approaches},
+	pages = {34--48},
+	file = {Full Text PDF:/Users/guillebo/Zotero/storage/ZWKFBWJD/Plauth et al. - 2017 - A Performance Survey of Lightweight Virtualization Techniques.pdf:application/pdf},
+}
+
+
 @article{gpuvscpu-videoencoding,
 	title = {Hardware and software video encoding comparison},
 	url = {https://ieeexplore.ieee.org/abstract/document/9240439},
@@ -244,6 +262,43 @@
 	urldate = {2026-08-24}
 }
 
+
+
+@article{runtime-comparation,
+	title = {Performance and isolation analysis of {RunC}, {gVisor} and {Kata} {Containers} runtimes},
+	volume = {25},
+	issn = {1573-7543},
+	url = {https://doi.org/10.1007/s10586-021-03517-8},
+	doi = {10.1007/s10586-021-03517-8},
+	abstract = {Containers are resource-efficient and most IT industries are adopting container-based infrastructure. However, the security and isolation of the container is rather weak. In this work, we aim to conduct an in-depth quantitative analysis of the performance characteristics of containerization technologies that strengthen container isolation and security, and discuss the applicable scenarios of various containerization technologies. We evaluate multiple cloud resource management dimensions of RunC, gVisor, and Kata Containers runtimes, including performance, system call, startup time, density, and isolation. Experimental results show that RunC and Kata Containers have less performance overhead, while gVisor suffers significant performance degradation in I/O and system call, although its isolation is the best. Our work deepens the understanding of the container performance characteristics and may help cloud computing practitioners in making proper decisions on platform selection, system maintenance and/or design.},
+	language = {en},
+	number = {2},
+	urldate = {2026-08-26},
+	journal = {Cluster Computing},
+	author = {Wang, Xingyu and Du, Junzhao and Liu, Hui},
+	month = apr,
+	year = {2022},
+	keywords = {gVisor, Isolation, Kata Containers, Performance evaluation, RunC},
+	pages = {1497--1513},
+	file = {Full Text PDF:/Users/guillebo/Zotero/storage/GQDY8DCM/Wang et al. - 2022 - Performance and isolation analysis of RunC, gVisor and Kata Containers runtimes.pdf:application/pdf},
+}
+
+@inproceedings{hw-acceleration-container,
+	title = {An {Accelerated} {Edge} {Computing} with a {Container} and {Its} {Orchestration}},
+	issn = {2162-1233},
+	url = {https://ieeexplore.ieee.org/document/8939853},
+	doi = {10.1109/ICTC46691.2019.8939853},
+	abstract = {Current mobile applications are becoming more compute-intensive so that they should be offloaded to central, fog, or multi-access edge cloud (MEC). Even if the application is offloaded to a cloud and there exists more computation power compared to mobile devices, only using CPU might not be sufficient to serve a service in real-time. This makes adopting hardware accelerator such as GPU and FPGA more attractive. However, there is no cloud framework supporting heterogeneous hardware accelerators. In this paper, we propose a container-based cloud framework that makes a container possible to use heterogeneous accelerators by automatically providing pass-through between the container and accelerators. Our framework, which is based on Docker and Kubernetes, reduces container size compared to the container with manually configured pass-through and makes the container to be allocated to a proper node where the accelerator is installed. In the evaluation section, we demonstrate the efficiency of our framework in terms of the container size and the container allocation overhead.},
+	urldate = {2026-08-26},
+	booktitle = {2019 {International} {Conference} on {Information} and {Communication} {Technology} {Convergence} ({ICTC})},
+	author = {Kim, Sunghyun and Yang, Eunju and Youn, Chan-Hyun},
+	month = oct,
+	year = {2019},
+	note = {ISSN: 2162-1233},
+	keywords = {Acceleration, Accelerator, Cloud computing, Container, Containers, Device drivers, Docker, Hardware, Kubernetes, Monitoring, Multi-access Edge Computing (MEC), Servers},
+	pages = {1283--1288},
+	file = {PDF:/Users/guillebo/Zotero/storage/KWFUYB8J/Kim et al. - 2019 - An Accelerated Edge Computing with a Container and Its Orchestration.pdf:application/pdf;Snapshot:/Users/guillebo/Zotero/storage/R3WP5ZHZ/8939853.html:text/html},
+}
 
 
 @misc{iae-report-generation,
