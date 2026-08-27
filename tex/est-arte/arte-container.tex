@@ -19,19 +19,21 @@
  Debido a las limitaciones que presentan actualmente los \textit{unikernels}, se selecciona el sistema de virtualización \textit{containers} de Docker para llevar a cabo el proceso de codificación/transcodificación de cada experimento de este proyecto de investigación.
 
 
-\subsection{Codificación de Video sobre Contenedores}
+\subsection{Acceso al hardware desde contenedores}
 
-Dada la arquitecura de los \textit{containers}, al hacer uso del mismo kernel que el sistema operativo estos pueden acceder a la capacidad de computo de los componentes del sistema, como la CPU o la GPU. Esta capacidad es esencial para llevar a acabo tareas exigentes en capacidad de computo que pueden extenderse a lo largo del tiempo, como la codificacion de video.
+Dada la arquitectura de los \textit{containers}, al hacer uso del mismo kernel que el sistema operativo, estos pueden acceder a la capacidad de cómputo de los componentes del sistema, como la CPU o la GPU. Esta capacidad es esencial para llevar a cabo tareas exigentes en capacidad de cómputo que pueden extenderse a lo largo del tiempo, como la codificación de video.
 
-Para abilitar la acceleracion mediante hardware es necesario configurar el \textit{pass-through}, el cual esta compusto por dos elementos; el archivo de configuracion del sistema que contiene diversas funciones/ordenes que puede ejecutar sobre el sistema(a excepcion de algunas como read, open, etc...); Y descargar el descargar el \textit{runtime}, el cual consiste en una serie de librerias  que se comunican con los drivers del sistema para construir los contenedores, definiendo las propiedades del namespace y el cgroup al ejecutar el container \cite{hw-acceleration-container}. 
+Para habilitar la aceleración mediante hardware, es necesario configurar el \textit{pass-through}, el cual está compuesto por dos elementos: el archivo de configuración del sistema, que contiene diversas funciones/órdenes que puede ejecutar sobre el sistema (a excepción de algunas como read, open, etc.); y descargar el \textit{runtime}, el cual consiste en una serie de librerías que se comunican con los drivers del sistema para construir los contenedores, definiendo las propiedades del namespace y el cgroup al ejecutar el container \cite{hw-acceleration-container}. 
 
-Cada uno de estos runtimes es gestionado por el proveedor del componente hardware al que se quiere acceder. Por defecto, docker utiliza Open Container Initiative (OCI)(empleando el runtiem \textit{RunC}) \cite{runtime-comparation}, por tanto es neceario descargar y configurar el runtime correspondiente al componente hardware sobre el cual se desea acceder. En el caso de necesitar acceso a la capacidad de computo de una GPU NIDIA, se debe de instalar el runtime de NVIDIA, e idicar que se emplee dicho runtime al crear el contenedor.
+Cada uno de estos runtimes es gestionado por el proveedor del componente hardware al que se quiere acceder. Por defecto, Docker utiliza Open Container Initiative (OCI) (empleando el runtime \textit{RunC}) \cite{runtime-comparation}; por tanto, es necesario descargar y configurar el runtime correspondiente al componente hardware sobre el cual se desea acceder. En el caso de necesitar acceso a la capacidad de cómputo de una GPU NVIDIA, se debe instalar el runtime de NVIDIA e indicar que se emplee dicho runtime al crear el contenedor.
+
+En el caso de la codificación de video, es necesario utilizar un codificador compatible con aceleración de hardware. Dado que en este proyecto de investigación se hará uso de \textit{ffmpeg} para llevar a cabo el proceso de codificación de los videos, se debe seleccionar una imagen que contenga la última versión de \textit{ffmpeg} y que contenga los codecs \textit{h264\_nvenc} y \textit{hevc\_nvenc}, los cuales se utilizarán en los diferentes experimentos de este TFM. 
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{figs/arte/image-unikernle-vm-containers.png}
-    \caption{Arquitectura comparativa de las tecnologias de virtualizacion comparadas obtenida de articulo \cite{vm-unikernels-container-comparative}}
+    \caption{Arquitectura comparativa de las tecnologias de virtualización comparadas, obtenida del artículo \cite{vm-unikernels-container-comparative}}
     \label{fig:arte-vm-container-unikernels}
 \end{figure}
 

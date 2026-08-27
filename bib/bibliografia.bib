@@ -34,6 +34,144 @@
   url={https://doi.org/10.1038/s41597-024-03507-6}
 }
 
+@article{power-consumption-estimation-models,
+	title = {Power {Consumption} {Estimation} {Models} for {Processors}, {Virtual} {Machines}, and {Servers}},
+	volume = {25},
+	issn = {1558-2183},
+	url = {https://ieeexplore.ieee.org/document/6570721},
+	doi = {10.1109/TPDS.2013.183},
+	abstract = {The power consumption of presently available Internet servers and data centers is not proportional to the work they accomplish. The scientific community is attempting to address this problem in a number of ways, for example, by employing dynamic voltage and frequency scaling, selectively switching off idle or underutilized servers, and employing energy-aware task scheduling. Central to these approaches is the accurate estimation of the power consumption of the various subsystems of a server, particularly, the processor. We distinguish between power consumption measurement techniques and power consumption estimation models. The techniques refer to the art of instrumenting a system to measure its actual power consumption whereas the estimation models deal with indirect evidences (such as information pertaining to CPU utilization or events captured by hardware performance counters) to reason about the power consumption of a system under consideration. The paper provides a comprehensive survey of existing or proposed approaches to estimate the power consumption of single-core as well as multicore processors, virtual machines, and an entire server.},
+	number = {6},
+	urldate = {2026-08-26},
+	journal = {IEEE Transactions on Parallel and Distributed Systems},
+	author = {Möbius, Christoph and Dargie, Waltenegus and Schill, Alexander},
+	month = jun,
+	year = {2014},
+	keywords = {Benchmark testing, energy-efficiency, Estimation, power consumption estimation, Power consumption models, Power demand, Power measurement, processor's power consumption, Program processors, Radiation detectors, server's power consumption, Servers, virtual machine's power consumption},
+	pages = {1600--1614},
+}
+
+@inproceedings{rapel-due-amd,
+	title = {Energy {Efficiency} {Aspects} of the {AMD} {Zen} 2 {Architecture}},
+	issn = {2168-9253},
+	url = {https://ieeexplore.ieee.org/abstract/document/9556102},
+	doi = {10.1109/Cluster48925.2021.00087},
+	abstract = {In High Performance Computing, systems are evaluated based on their computational throughput. However, performance in contemporary server processors is primarily limited by power and thermal constraints. Ensuring operation within a given power envelope requires a wide range of sophisticated control mechanisms. While some of these are handled transparently by hardware control loops, others are controlled by the operating system. A lack of publicly disclosed implementation details further complicates this topic. However, understanding these mechanisms is a prerequisite for any effort to exploit the full computing capability and to minimize the energy consumption of today’s server systems. This paper highlights the various energy efficiency aspects of the AMD Zen 2 microarchitecture to facilitate system understanding and optimization. Key findings include qualitative and quantitative descriptions regarding core frequency transition delays, workload-based frequency limitations, effects of I/O die P-states on memory performance as well as discussion on the built-in power monitoring capabilities and its limitations. Moreover, we present specifics and caveats of idle states, wakeup times as well as the impact of idling and inactive hardware threads and cores on the performance of active resources such as other cores.},
+	urldate = {2026-08-27},
+	booktitle = {2021 {IEEE} {International} {Conference} on {Cluster} {Computing} ({CLUSTER})},
+	author = {Schöne, Robert and Ilsche, Thomas and Bielert, Mario and Velten, Markus and Schmidl, Markus and Hackenberg, Daniel},
+	month = sep,
+	year = {2021},
+	note = {ISSN: 2168-9253},
+	keywords = {AMD, C-State, DVFS, energy efficiency, Energy efficiency, Epyc Rome, Hardware, High performance computing, Instruction sets, Microarchitecture, Operating systems, performance, power saving, RAPL, Throughput, Zen 2},
+	pages = {562--571},
+}
+
+
+@article{coparative-rapl-amp,
+	title = {Power measurement techniques on standard compute nodes: {A} quantitative comparison},
+	shorttitle = {Power measurement techniques on standard compute nodes},
+	url = {https://ieeexplore.ieee.org/document/6557170},
+	doi = {10.1109/ISPASS.2013.6557170},
+	abstract = {Energy efficiency is of steadily growing importance in virtually all areas from mobile to high performance computing. Therefore, lots of research projects focus on this topic and strongly rely on power measurements from their test platforms. The need for finer grained measurement data-both in terms of temporal and spatial resolution (component breakdown)-often collides with very rudimentary measurement setups that rely e.g., on non-professional power meters, IMPI based platform data or model-based interfaces such as RAPL or APM. This paper presents an in-depth study of several different AC and DC measurement methodologies as well as model approaches on test systems with the latest processor generations from both Intel and AMD. We analyze most important aspects such as signal quality, time resolution, accuracy, and measurement overhead and use a calibrated, professional power analyzer as our reference.},
+	urldate = {2026-08-27},
+	booktitle = {2013 {IEEE} {International} {Symposium} on {Performance} {Analysis} of {Systems} and {Software} ({ISPASS})},
+	author = {Hackenberg, Daniel and Ilsche, Thomas and Schöne, Robert and Molka, Daniel and Schmidt, Maik and Nagel, Wolfgang E.},
+	month = apr,
+	year = {2013},
+	keywords = {Accuracy, Energy measurement, Instruments, Power demand, Power measurement, Sockets, Temperature measurement},
+	pages = {194--204}
+}
+
+@article{survery-amd-research,
+	title = {{AMD} {SOC} power management: {Improving} performance/watt using run-time feedback},
+	issn = {2152-3630},
+	shorttitle = {{AMD} {SOC} power management},
+	url = {https://ieeexplore.ieee.org/document/6946043/},
+	doi = {10.1109/CICC.2014.6946043},
+	abstract = {This paper presents an analysis of four runtime power management features implemented in AMD's recent 28nM APU. These features optimize SOC performance by shifting power and frequency resources in response to workload characteristics. The Global Efficient APM (GEAPM), Core-Bound Boost (CBB) and Memory-Bound Boost (MBB) features are shown to provide a performance improvement of up to 76\%, 4.3\% and 12.5\% respectively. The Local Efficient APM (LEAPM) feature is shown to reduce average CPU power consumption by 34\% while reducing performance by less than 1\%.},
+	urldate = {2026-08-27},
+	booktitle = {Proceedings of the {IEEE} 2014 {Custom} {Integrated} {Circuits} {Conference}},
+	author = {Bircher, W. Lloyd and Naffziger, Sam},
+	month = sep,
+	year = {2014},
+	note = {ISSN: 2152-3630},
+	keywords = {Clocks, Graphics processing units, IP networks, Monitoring, Power demand, Power management, SOC, System-on-chip, Temperature, workload analysis},
+	pages = {1--4},
+}
+
+@article{cpu-measurement-intel-amd,
+	title = {Dissecting the software-based measurement of {CPU} energy consumption: a comparative analysis},
+	shorttitle = {Dissecting the software-based measurement of {CPU} energy consumption},
+	url = {http://arxiv.org/abs/2401.15985},
+	doi = {10.48550/arXiv.2401.15985},
+	abstract = {Every day, we experience the effects of the global warming: extreme weather events, major forest fires, storms, global warming, etc. The scientific community acknowledges that this crisis is a consequence of human activities where Information and Communications Technologies (ICT) are an increasingly important contributor.},
+	language = {en},
+	urldate = {2026-08-27},
+	publisher = {arXiv},
+	author = {Raffin, Guillaume and Trystram, Denis},
+	month = jul,
+	year = {2024},
+	note = {arXiv:2401.15985 [cs.DC]},
+	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Performance},
+}
+
+
+@misc{nvml-api-officialdoc,
+	title = {{NVML} {API}},
+	shorttitle = {{NVML} {API} {Reference} {Guide}},
+	url = {http://docs.nvidia.com/deploy/nvml-api/index.html},
+	language = {en-us},
+	urldate = {2026-08-27},
+	file = {Snapshot:/Users/guillebo/Zotero/storage/HN9TIWAM/index.html:text/html},
+}
+
+
+@misc{nvidia-smi-documentation,
+	title = {nvidia-smi documentation},
+	url = {https://docs.nvidia.com/deploy/nvidia-smi/index.html},
+	urldate = {2026-08-27},
+	file = {docs.nvidia.com/deploy/nvidia-smi/index.html:/Users/guillebo/Zotero/storage/IKV8XQ3W/index.html:text/html},
+}
+
+
+
+@inproceedings{gpu-measument-survery,
+	title = {Part-time {Power} {Measurements}: nvidia-smi's {Lack} of {Attention}},
+	shorttitle = {Part-time {Power} {Measurements}},
+	url = {http://arxiv.org/abs/2312.02741},
+	doi = {10.1109/SC41406.2024.00028},
+	abstract = {The GPU has emerged as the go-to accelerator for high throughput and parallel workloads, spanning scientific simulations to AI, thanks to its performance and power efficiency. Given that 6 out of the top 10 fastest supercomputers in the world use NVIDIA GPUs and many AI companies each employ 10,000's of NVIDIA GPUs, an accurate understanding of GPU power consumption is essential for making progress to further improve its efficiency. Despite the limited documentation and the lack of understanding of its mechanisms, NVIDIA GPUs' built-in power sensor, providing easily accessible power readings via the nvidia-smi interface, is widely used in energy efficient computing research on GPUs. Our study seeks to elucidate the internal mechanisms of the power readings provided by nvidia-smi and assess the accuracy of the power and energy consumption data. We have developed a suite of micro-benchmarks to profile the behaviour of nvidia-smi power readings and have evaluated them on over 70 different GPUs from all architectural generations since power measurement was first introduced in the 'Fermi' generation. We have identified several unforeseen problems in terms of power/energy measurement using nvidia-smi, for example on the A100 and H100 GPUs only 25\% of the runtime is sampled for power consumption, during the other 75\% of the time, the GPU can be using drastically different power and nvidia-smi and results presented by it are unaware of this. This along with other findings can lead to a drastic under/overestimation of energy consumed, especially when considering data centres housing tens of thousands of GPUs. We proposed several good practices that help to mitigate these problems. By comparing our results to those measured from an external power-meter, we have reduced the error in the energy measurement by an average of 35\% and in some cases by as much as 65\% in the test cases we present.},
+	urldate = {2026-08-27},
+	booktitle = {{SC24}: {International} {Conference} for {High} {Performance} {Computing}, {Networking}, {Storage} and {Analysis}},
+	author = {Yang, Zeyu and Adamek, Karel and Armour, Wesley},
+	month = nov,
+	year = {2024},
+	note = {arXiv:2312.02741 [cs.DC]},
+	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Hardware Architecture},
+	pages = {1--17},
+}
+
+
+
+@article{gpu-hcp-use,
+	title = {A survey and measurement study of {GPU} {DVFS} on energy conservation},
+	volume = {3},
+	issn = {2352-8648},
+	url = {https://www.sciencedirect.com/science/article/pii/S2352864816300736},
+	doi = {10.1016/j.dcan.2016.10.001},
+	abstract = {Energy efficiency has become one of the top design criteria for current computing systems. The dynamic voltage and frequency scaling (DVFS) has been widely adopted by laptop computers, servers, and mobile devices to conserve energy, while the GPU DVFS is still at a certain early age. This paper aims at exploring the impact of GPU DVFS on the application performance and power consumption, and furthermore, on energy conservation. We survey the state-of-the-art GPU DVFS characterizations, and then summarize recent research works on GPU power and performance models. We also conduct real GPU DVFS experiments on NVIDIA Fermi and Maxwell GPUs. According to our experimental results, GPU DVFS has significant potential for energy saving. The effect of scaling core voltage/frequency and memory voltage/frequency depends on not only the GPU architectures, but also the characteristic of GPU applications.},
+	number = {2},
+	urldate = {2026-08-27},
+	journal = {Digital Communications and Networks},
+	author = {Mei, Xinxin and Wang, Qiang and Chu, Xiaowen},
+	month = may,
+	year = {2017},
+	keywords = {Dynamic voltage and frequency scaling, Energy efficiency, Graphics processing unit},
+	pages = {89--100},
+	file = {ScienceDirect Full Text PDF:/Users/guillebo/Zotero/storage/XHVNUISL/Mei et al. - 2017 - A survey and measurement study of GPU DVFS on energy conservation.pdf:application/pdf;ScienceDirect Snapshot:/Users/guillebo/Zotero/storage/69IAQRCV/S2352864816300736.html:text/html},
+}
+
 @misc{energy-rapl-mesurement,
 	title = {Strategies to Measure Energy Consumption Using RAPL During Workflow Execution on Commodity Clusters},
 	url = {http://arxiv.org/abs/2505.09375},
@@ -84,8 +222,7 @@
 	Elasticidad.
 	Pago por uso.
 	Consolidación de recursos en grandes CPDs.
-},
-	file = {Full Text PDF:/Users/guillebo/Zotero/storage/KVYJVTAP/Armbrust et al. - 2010 - A view of cloud computing.pdf:application/pdf},
+	},
 }
 
 @article{cpds-consumption-energy,

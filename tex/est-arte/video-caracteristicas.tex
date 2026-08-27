@@ -1,0 +1,82 @@
+\subsection{Conceptos Básicos de las Características de Vídeo}
+
+ Un vídeo digital se define por un conjunto de propiedades objetivas que determinan tanto su representación técnica como la naturaleza de su contenido. Estas propiedades, denominadas habitualmente características del vídeo, permiten describir, comparar y procesar cualquier secuencia de manera cuantitativa, con independencia del codificador o de la plataforma de reproducción empleada.
+
+ Del conjunto de características que componen el vídeo, pueden diferenciarse dos grupos. El primero agrupa los parámetros de formato, que definen cómo se muestrea y se representa la señal, siendo los más relevantes la resolución (medida en píxeles), la frecuencia de fotogramas, la tasa de bits, la profundidad de color (número de bits por muestra), el rango dinámico (SDR o HDR) y la relación de aspecto. Estos parámetros son configurables y determinan el volumen de datos, los requisitos de cómputo y el ancho de banda necesarios para la transmisión.
+
+ En el segundo grupo se encuentran las características de contenido, que describen la complejidad intrínseca de la escena y no dependen directamente de los parámetros de formato, sino de lo que aparece en cada imagen y de cómo evoluciona a lo largo del tiempo. Dentro de este grupo destacan dos dimensiones complementarias: la complejidad espacial (SI), asociada a la cantidad de detalle, textura y bordes presentes en cada fotograma; y la complejidad temporal (TI), asociada a la magnitud del movimiento y a los cambios entre fotogramas consecutivos. Estas características son las que condicionan el esfuerzo real del codificador, ya que determinan el número de candidatos de predicción, la dificultad de la estimación de movimiento y el volumen de residuos a procesar.
+
+ \subsection{Spatial Information y Temporal Information}
+
+ En la actualidad, las métricas SI y TI representan el estado del arte en la caracterización del vídeo y se emplean para determinar su complejidad. Ambos parámetros se encuentran estandarizados por la UIT-T bajo la Recomendación \textbf{P.910: Subjective video quality assessment methods for multimedia applications} \cite{itu-quality-metrics}, cuya versión vigente data de 10/2023, a la espera de la publicación oficial de la nueva versión fechada en 07/2026. Cabe destacar que, a diferencia de las versiones previas(que empleaban el valor máximo como medida de agregación), la versión actual recomienda utilizar la media.
+
+ Para calcular el valor de \textit{SI}, se debe aplicar a cada uno de los frames del vídeo el filtro de Sobel, definido como ($F_{\text{Sobel}}(F_{n},\text{range})$), y posteriormente calcular la función de transferencia electro-óptica (EOTF), obteniendo ($F_{n}^{\text{nits}}$) a partir de la señal de entrada. Con ello, se calcula el valor de \textit{SI} para cada fotograma mediante:
+
+ \begin{equation}
+     SI_{n} = \sigma_{\text{space}}\left[
+     \operatorname{Sobel}\left(F_{n}^{PQ}\right)
+     \right]
+     \label{siti-si-frame}
+ \end{equation}
+
+ Posteriormente, se aplica un proceso de \textit{desnormalización} mediante la siguiente función:
+
+ \begin{equation}
+     \operatorname{Denormalize}(x,b) = x \cdot \left(2^{b}-1\right)
+     \label{siti-desnormalizacion}
+ \end{equation}
+
+ De esta forma, el valor de \textit{SI} correspondiente a cada fotograma se obtiene como:
+
+ \begin{equation}
+     SI_{n} = \operatorname{Denormalize}(SI_{n},b)
+     \label{siti-si-denormalizado}
+ \end{equation}
+
+ Finalmente, se realiza la agregación de los valores de \textit{SI} obtenidos para cada uno de los fotogramas, obteniendo el valor global de \textit{SI}:
+
+ \begin{equation}
+     SI = SI_{\text{aggregated}} =
+     \frac{1}{N}\sum_{n=1}^{N} SI_{n}
+     \label{siti-si-aggregated}
+ \end{equation}
+
+ En el caso de querer calcular el \textit{TI}, se debe calcular en primer lugar la característica de referencia ($M_{n}(i,j)$), que representa la diferencia entre dos fotogramas consecutivos:
+
+ \begin{equation}
+     M_{n}(i,j) =
+     F_{n}^{PQ}(i,j) -
+     F_{n-1}^{PQ}(i,j)
+     \label{siti-ti-reference}
+ \end{equation}
+
+ Posteriormente, se calcula la desviación estándar sobre el espacio (($\sigma_{\text{space}})$):
+
+ \begin{equation}
+     TI_{n} =
+     \sigma_{\text{space}}
+     \left[
+     M_{n}(i,j)
+     \right]
+     \label{siti-ti-frame}
+ \end{equation}
+
+ Como resultado, se obtiene el valor correspondiente a cada fotograma ($(TI_{n})$), al cual se le aplica posteriormente el proceso de \textit{desnormalización} definido en la Ecuación~\ref{siti-desnormalizacion}:
+
+ \begin{equation}
+     TI_{n} =
+     \operatorname{Denormalize}(TI_{n},b)
+     \label{siti-ti-denormalizado}
+ \end{equation}
+
+ Finalmente, se realiza la agregación de los valores de \textit{TI} obtenidos para los fotogramas considerados, obteniendo el valor global:
+
+ \begin{equation}
+     TI = TI_{\text{aggregated}} =
+     \frac{1}{N-1}\sum_{n=2}^{N} TI_{n}
+     \label{siti-ti-aggregated}
+ \end{equation}
+
+ Para finalizar, es necesario destacar que el cálculo de las métricas SI y TI resulta costoso a nivel temporal y energético, según los resultados hallados y expuestos en el artículo \textbf{Green Video Complexity Analysis for Efficient Encoding in Adaptive Video Streaming} \cite{video-complexity}. En dicho artículo se propone un marco alternativo que permite calcular el valor de las métricas Spatial Information y Temporal Information con un consumo energético y un coste temporal sustancialmente menores, lo cual resulta relevante porque, en el streaming de vídeo, el valor de SI/TI se calcula para cada uno de los segmentos que se transmiten. Con ello se optimiza el proceso de transcodificación y se reduce la carga de trabajo del hardware, además de los tiempos de entrega del contenido.
+
+ En relación con este trabajo de investigación, se pretende demostrar la correlación entre el SI/TI de cada vídeo del dataset y el consumo energético. Además, se analizarán los resultados de consumo de cada proceso de codificación con cada uno de los códecs empleados, con el fin de detectar la influencia del SI y/o del TI sobre los códecs en caso de que dicha influencia exista.
