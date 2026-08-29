@@ -401,21 +401,50 @@
 	year = {2020},
 }
 
-@inproceedings{h265-survery,
-	title = {Towards {H}.265 video coding standard},
-	volume = {8008},
-	url = {https://www.spiedigitallibrary.org/conference-proceedings-of-spie/8008/800819/Towards-H265-video-coding-standard/10.1117/12.905583},
-	doi = {10.1117/12.905583},
-	abstract = {This document presents a short description of the current stage of works on H.265/HEVC video coding standard, which is being prepared by the JCT-VC group in order to achieve a 50\% reduction of the dat},
-	language = {en},
-	urldate = {2026-08-28},
-	booktitle = {Photonics {Applications} in {Astronomy}, {Communications}, {Industry}, and {High}-{Energy} {Physics} {Experiments} 2011},
-	publisher = {SPIE},
-	author = {Abramowski, Andrzej},
-	month = oct,
-	year = {2011},
-	pages = {387},
+@article{multithread-energy-consumption-videoencoding,
+	address = {Bruges, Belgium},
+	title = {Experimental study of the impact of multi-threading on video encoding energy consumption},
+	url = {https://hal.science/hal-05648352},
+	abstract = {Modern CPUs are equipped with more and more cores, raising the question of how parallelism leads to better energy efficiency, especially in intensive tasks like video encoding. This work investigates how video encoding using multiple threads leads to better usage of available cores, and if it actually improves energy efficiency. Based on real video transcoding energy measurements on a server, we test classical energy models in a multi-threaded context. On the one hand, we observe that the energy consumed during encoding is indeed decreasing with the number of cores used during the task. On the other hand, we also observe that this number of used cores is not always linked to the number of threads that are given in parameter to the encoder when encoding a single video. Hence, this study enables to state that the energy savings due to multi-threading is likely for small number of threads, but less achievable when the number of threads becomes high. This gain can be even greater when encoding multiple videos simultaneously.},
+	urldate = {2026-07-31},
+	booktitle = {{EUSIPCO} - {European} {Signal} {Processing} {Conference}},
+	author = {Richard, Robin and Orgerie, Anne-Cécile and Maugey, Thomas},
+	month = aug,
+	year = {2026},
 }
+
+
+@inproceedings{radicke2014multithreaded,
+	title = {A multi-threaded full-feature {HEVC} encoder based on {Wavefront} {Parallel} {Processing}},
+	url = {https://ieeexplore.ieee.org/document/7514486/},
+	abstract = {The High Efficiency Video Coding (HEVC) standard was finalized in early 2013. It provides a far better coding efficiency than any preceding standard but it also bears a significantly higher complexity. In order to cope with the high processing demands, the standard includes several parallelization schemes, that make multi-core encoding and decoding possible. However, the effective realization of these methods is up to the respective codec developers. We propose a multi-threaded encoder implementation, based on HEVC's reference test model HM11, that makes full use of the Wavefront Parallel Processing (WPP) mechanism and runs on regular consumer hardware. Furthermore, our software produces identical output bitstreams as HM11 and supports all of its features that are allowable in combination with WPP. Experimental results show that our prototype is up to 5.5 times faster than HM11 running on a machine with 6 physical processing cores.},
+	urldate = {2026-08-29},
+	booktitle = {2014 {International} {Conference} on {Signal} {Processing} and {Multimedia} {Applications} ({SIGMAP})},
+	author = {Radicke, Stefan and Hahn, Jens-Uwe and Grecos, Christos and Wang, Qi},
+	month = aug,
+	year = {2014},
+	keywords = {Decoding, Encoding, High Efficiency Video Coding (HEVC), Multi-threading, Parallel processing, Software, Standards, Wavefront Parallel Processing (WPP)},
+	pages = {90--98},
+	file = {PDF:/Users/guillebo/Zotero/storage/LD7XSDWY/Radicke et al. - 2014 - A multi-threaded full-feature HEVC encoder based on Wavefront Parallel Processing.pdf:application/pdf},
+}
+
+
+
+@inproceedings{chen2004multilevel,
+	title = {Towards efficient multi-level threading of {H}.264 encoder on {Intel} hyper-threading architectures},
+	url = {https://ieeexplore.ieee.org/document/1302990/},
+	doi = {10.1109/IPDPS.2004.1302990},
+	abstract = {Summary form only given. Exploiting thread-level parallelism is a promising way to improve the performance of multimedia applications that are running on multithreading general-purpose processors. We describe the work in developing our threaded H.264 encoder. We parallelize the H.264 encoder using the OpenMP programming model, which allows us to leverage the advanced compiler technologies in the Intel/spl reg/ C++ compiler for Intel hyper-threading architectures. After we present our design considerations in the parallelization process, we describe two efficient methods for multilevel data partitioning, which can improve the performance of our multithreaded H.264 encoder. Furthermore, we exploit different options in the OpenMP programming. While one implementation that uses the task queuing model is slightly slower than the other implementation, it is easier to be read than the other one. The results have shown good speedups ranging from 3.74x to 4.53x over the well-optimized sequential code performance on a system of 4 Intel Xeon/spl trade/processors with hyper-threading technology.},
+	urldate = {2026-08-29},
+	booktitle = {18th {International} {Parallel} and {Distributed} {Processing} {Symposium}, 2004. {Proceedings}.},
+	author = {Chen, Yen-Kuang and Tian, X. and Ge, Steven and Girkar, M.},
+	month = apr,
+	year = {2004},
+	keywords = {Application software, Computer architecture, Laboratories, Motion compensation, Multithreading, Parallel processing, Parallel programming, Program processors, Transform coding, Video coding},
+	pages = {63--},
+	file = {PDF:/Users/guillebo/Zotero/storage/2JFUIQ53/Chen et al. - 2004 - Towards efficient multi-level threading of H.264 encoder on Intel hyper-threading architectures.pdf:application/pdf},
+}
+
 
 @article{h264-survery,
 	title = {The {H}.264 {Video} {Coding} {Standard}},
@@ -441,6 +470,57 @@
 	urldate = {2026-08-24}
 }
 
+
+@inproceedings{richard_experimental_2026,
+	address = {Bruges, Belgium},
+	title = {Experimental study of the impact of multi-threading on video encoding energy consumption},
+	url = {https://hal.science/hal-05648352},
+	abstract = {Modern CPUs are equipped with more and more cores, raising the question of how parallelism leads to better energy efficiency, especially in intensive tasks like video encoding. This work investigates how video encoding using multiple threads leads to better usage of available cores, and if it actually improves energy efficiency. Based on real video transcoding energy measurements on a server, we test classical energy models in a multi-threaded context. On the one hand, we observe that the energy consumed during encoding is indeed decreasing with the number of cores used during the task. On the other hand, we also observe that this number of used cores is not always linked to the number of threads that are given in parameter to the encoder when encoding a single video. Hence, this study enables to state that the energy savings due to multi-threading is likely for small number of threads, but less achievable when the number of threads becomes high. This gain can be even greater when encoding multiple videos simultaneously.},
+	urldate = {2026-07-31},
+	booktitle = {{EUSIPCO} - {European} {Signal} {Processing} {Conference}},
+	author = {Richard, Robin and Orgerie, Anne-Cécile and Maugey, Thomas},
+	month = aug,
+	year = {2026},
+	keywords = {ADDED, energy efficiency, experimental evaluation, multi-threading, video encoding},
+	annote = {NOTAS DEL PAPER:
+Resultado de Experimentación:
+Codificacion de video de forma aislada:
+
+
+Dependiendo del codificador se logra un mejor aprovechamiento de los threads y los cores establecidos, aunque se observa que en algunos codecs un mayor numero de cores no mejor la eficiencia sino que la perjudica.
+
+
+Esto se debe a que la codificacion es un proceso secuencial complejo altamente dificil de dividir en subprocesos independientes lo que implica que en la mayoria de los casos al lanzar un thread se copia informacion y posteriormente se destruye, lo que implica un gato de energia que puede ser considerable con multiples threads
+
+
+
+
+Se comprueba que el modelo c = n es asequible para la mayoria de codificadores pero el como se comportan es diferente, alguno se ajustan a esta formula y otros saturan y no logran mejorar. Se destaca que a mas compleja, intensa y larga sea la tarea mejor paralelismo tiene
+
+
+Destacar que los presents de cada encoder en relacion con el coste computacional dela codificacion afectan a la decision del encoder para emplear mas threads o simplemente descartar la idea:
+
+
+Esto se debe a que el esfuerzo de correr en paralelo frente a mono es muy sacrificado
+
+
+Se pierde granularidad en el proceso multi-thread
+
+
+
+
+Codificacion de multiples videos secuenciales:En este caso unicmente se emplea un thread del sistema por proceso de codificacion
+
+
+Se aprobecha mejor la eficiencia de los cores y los codificacodres cuando se lanzan multiples videos en 1 unico threads del sistema sin especificar limitacion en cuanto a CPU y/o threads. Se observa mejoras en la eficiencia, un mejor uso de los cores logicos asi como un menor tiempo de codificacion.
+
+
+Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto a numero de threads del sistema que pueden ser lanzados, siendo en este caso en torno a los 52 threads por core
+
+
+},
+	file = {PDF:/Users/guillebo/Zotero/storage/SSPZSX9H/Richard et al. - 2026 - Experimental study of the impact of multi-threading on video encoding energy consumption.pdf:application/pdf},
+}
 
 
 @article{runtime-comparation,
