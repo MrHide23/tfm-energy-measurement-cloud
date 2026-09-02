@@ -1,0 +1,13 @@
+
+# MONITOR
+graph LR
+    Start([Inicio]) --> t0
+    t0("Definición del Iniciales")--> t1("Start Contenedor: FFMPEG \n [sleep 3600]") --> t4
+    t0("Definición del Iniciales")-->|Docker Compose Up| t2("Start Contenedor: Container Energy Monitoring") --> t4
+    t0("Definición del Iniciales") -->|Docker Compose Up| t3("Start Container: Global Energy Meter")--> t4
+    t4("Iniciar Recolección de Métricas con GEM") --> t5("Iniciar Toma de métricas con CEM") -->t6("Iniciar proceos de codificacion en contenedore FFMPEG") -->|Esperar Finalizacion proceso de codificación| t7("Detener toma  métricas de CEM y extracción de datos") 
+    t6 -->|Esperar Finalizacion proceso de codificación| t8("Detener toma  métricas de GEM y extracción de datos") 
+    t7 -->t9
+    t8 --> t9("Guardar Datos") --> FIN["fin"]
+
+    

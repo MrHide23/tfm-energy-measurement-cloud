@@ -194,8 +194,8 @@
 	author = {Richard, Robin and Cecile, Anne and Maugey, Thomas},
 	pages = {5},
 	annote = {En el siguiente articulo se experimenta el uso de diferentes threads junto con diferente numero de CPU en el contexto de la codification de video. Resultados:
-            Se muestra claramente que a mayor numero de threads en conjunto con mayor numero de cpus el tiempo de codificacion y el consumo energetico baja.
-            Ademas el consumo energetico es mucho mas eficiente si se lanza un gran numero de threads para segmentar el video en tareas atomicas},
+            Se muestra claramente que a mayor numero de threads en conjunto con mayor numero de cpus el tiempo de codificación y el consumo energético baja.
+            Ademas el consumo energético es mucho mas eficiente si se lanza un gran numero de threads para segmentar el video en tareas atomicas},
 }
 
 
@@ -241,7 +241,7 @@
 	year = {2025},
 	keywords = {NO ADD, PENDIENTE},
 	pages = {2214},
-	annote = {Paper que habla del consumo energetico de los centros de super computacion:
+	annote = {Paper que habla del consumo energético de los centros de super computacion:
 
 
 	Define 250 herramientas fisicas y de software
@@ -464,6 +464,24 @@
 }
 
 
+@inproceedings{h265-survery,
+	title = {Towards {H}.265 video coding standard},
+	volume = {8008},
+	url = {https://www.spiedigitallibrary.org/conference-proceedings-of-spie/8008/800819/Towards-H265-video-coding-standard/10.1117/12.905583},
+	doi = {10.1117/12.905583},
+	abstract = {This document presents a short description of the current stage of works on H.265/HEVC video coding standard, which is being prepared by the JCT-VC group in order to achieve a 50\% reduction of the dat},
+	language = {en},
+	urldate = {2026-08-28},
+	booktitle = {Photonics {Applications} in {Astronomy}, {Communications}, {Industry}, and {High}-{Energy} {Physics} {Experiments} 2011},
+	publisher = {SPIE},
+	author = {Abramowski, Andrzej},
+	month = oct,
+	year = {2011},
+	pages = {387},
+	file = {PDF:/Users/guillebo/Zotero/storage/YPLLFC2I/Abramowski - 2011 - Towards H.265 video coding standard.pdf:application/pdf},
+}
+
+
 @misc{video-encoding-definition,
 	title = {H.262:{Information} technology - {Generic} coding of moving pictures and associated audio information: {Video}},
 	url = {https://www.itu.int/rec/T-REC-H.262},
@@ -490,7 +508,7 @@ Codificacion de video de forma aislada:
 Dependiendo del codificador se logra un mejor aprovechamiento de los threads y los cores establecidos, aunque se observa que en algunos codecs un mayor numero de cores no mejor la eficiencia sino que la perjudica.
 
 
-Esto se debe a que la codificacion es un proceso secuencial complejo altamente dificil de dividir en subprocesos independientes lo que implica que en la mayoria de los casos al lanzar un thread se copia informacion y posteriormente se destruye, lo que implica un gato de energia que puede ser considerable con multiples threads
+Esto se debe a que la codificación es un proceso secuencial complejo altamente dificil de dividir en subprocesos independientes lo que implica que en la mayoria de los casos al lanzar un thread se copia informacion y posteriormente se destruye, lo que implica un gato de energía que puede ser considerable con multiples threads
 
 
 
@@ -498,7 +516,7 @@ Esto se debe a que la codificacion es un proceso secuencial complejo altamente d
 Se comprueba que el modelo c = n es asequible para la mayoria de codificadores pero el como se comportan es diferente, alguno se ajustan a esta formula y otros saturan y no logran mejorar. Se destaca que a mas compleja, intensa y larga sea la tarea mejor paralelismo tiene
 
 
-Destacar que los presents de cada encoder en relacion con el coste computacional dela codificacion afectan a la decision del encoder para emplear mas threads o simplemente descartar la idea:
+Destacar que los presents de cada encoder en relacion con el coste computacional dela codificación afectan a la decision del encoder para emplear mas threads o simplemente descartar la idea:
 
 
 Esto se debe a que el esfuerzo de correr en paralelo frente a mono es muy sacrificado
@@ -509,10 +527,10 @@ Se pierde granularidad en el proceso multi-thread
 
 
 
-Codificacion de multiples videos secuenciales:En este caso unicmente se emplea un thread del sistema por proceso de codificacion
+Codificacion de multiples videos secuenciales:En este caso unicmente se emplea un thread del sistema por proceso de codificación
 
 
-Se aprobecha mejor la eficiencia de los cores y los codificacodres cuando se lanzan multiples videos en 1 unico threads del sistema sin especificar limitacion en cuanto a CPU y/o threads. Se observa mejoras en la eficiencia, un mejor uso de los cores logicos asi como un menor tiempo de codificacion.
+Se aprobecha mejor la eficiencia de los cores y los codificacodres cuando se lanzan multiples videos en 1 unico threads del sistema sin especificar limitacion en cuanto a CPU y/o threads. Se observa mejoras en la eficiencia, un mejor uso de los cores logicos asi como un menor tiempo de codificación.
 
 
 Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto a numero de threads del sistema que pueden ser lanzados, siendo en este caso en torno a los 52 threads por core
@@ -628,9 +646,9 @@ Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto 
 	year = {2024},
 	note = {arXiv:2401.09854 [cs.MM]},
 	keywords = {Computer Science - Multimedia},
-	annote = {Encuenta consumo energetico basado en video y streaming.
+	annote = {Encuenta consumo energético basado en video y streaming.
     Remarca errore en protocolo http que lo hacen ineficiente para steaming de video
-    Metrias de consumo energetico
+    Metrias de consumo energético
     },
     	file = {Preprint PDF:/Users/guillebo/Zotero/storage/DWP7HIXK/Afzal et al. - 2024 - A Survey on Energy Consumption and Environmental Impact of Video Streaming.pdf:application/pdf;Snapshot:/Users/guillebo/Zotero/storage/8IAD3M68/2401.html:text/html},
     }

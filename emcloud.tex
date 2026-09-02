@@ -71,7 +71,7 @@
 \begin{resum}
  Conéixer el consum energètic que una càrrega de treball necessita és un aspecte essencial en el context actual, on la majoria de la càrrega de computació es duu a terme en grans *CPDs emprant arquitectura de contenidors. Una presa de mètriques de consum energètic mentres s'executen les càrregues de treball a caracteritzar permet realitzar estimacions precises, aportant molta informació rellevant a l'hora de definir diferents aspectes tècnics. 
  
- El següent Treball fi de màster gira entorn d'esta premissa i a les problemàtiques que això implica, estant enfocat en la codificació de vídeo d'alta resolució sobre contenidors que empren CPU i GPU física per a accelerar el procés. L'objectiu és provar diferents configuracions (de codificadors, amb i sense GPU, variant el número de CPUs i de fils, etc) de codificació de vídeo per a FFmpeg que consumisca la menor quantitat d'energia per a una determinada taxa de bits. Per a poder aconseguir-ho, s'ha requerit una ferramenta que permeta mesurar el consum de processos individuals, tant sobre la CPU com en la GPU, i per a això s'ha realitzat una comparativa entre ferramentes, les quals estan pensades per a mesurar el consum de treball de tasques desplegades sobre contenidors.
+ El següent Treball fi de màster gira entorn d'esta premissa i a les problemàtiques que això implica, estant enfocat en la codificació de vídeo d'alta resolució sobre contenidors que empren CPU i GPU física per a accelerar el procés. L'objectiu és provar diferents configuracions (de codificadors, amb i sense GPU, variant el número de CPUs i de fils, etc) de codificació de vídeo per a FFmpeg que consumisca la menor quantitat d'energia per a una determinada taxa de bits. Per a poder aconseguir-ho, s'ha requerit una ferramenta que permeta mesurar el consum de processos individuals, tant sobre la CPU com en la GPU, i per a això s'ha realitzat una comparativa entre ferramentes, les quals están pensades per a mesurar el consum de treball de tasques desplegades sobre contenidors.
  
  Per a aconseguir-ho, es va realitzar una avaluació comparativa de ferramentes de monitoratge de consum energètic a nivell de procés i contenidor. Posteriorment, es va dissenyar un entorn experimental automatitzat que correlaciona el gasto energètic i el temps d'execució amb la complexitat del vídeo (mètriques Spatial Information i Temporal Information) i els paràmetres de configuració del sistema (bitrate, subprocesos i límits de nuclis).
  
@@ -81,7 +81,7 @@
 \clearpage
 % Editar: Agradecimientos (opcional)
 \begin{agradecimientos}
-  Me gustaria agrader el apollo de mi tutor Juan Gutierrez Aguado, quien me ha acompañado en todo el proceso de elaboracion y redaccion del siguiente trabajo fin de master. Gracias a Juan, he podido emplear referencias de valor y definir pruebas que demuestren la relevancia de mi trabajo. 
+ Me gustaría agradecer a Juan Gutiérrez Aguado y Miguel García-Pineda por haber confiado en mí para formar parte del grupo de investigación ECO-STREAM. En especial, me gustaría agradecerle a Juan que haya sido mi tutor para este Trabajo Fin de Máster, pudiendo hacer uso de su experiencia y conocimiento en el campo de investigación en el cual se basa este trabajo
 \end{agradecimientos}
 \clearpage
 \tableofcontents
@@ -92,11 +92,11 @@
 \chapter{Introducción}\label{chapt:intro}
 \input{tex/introduccion.tex}
     
-\chapter{Estado del Arte} \label{chapt:estado-del-arte}
+\chapter{Estado del Arte}\label{chapt:estado-del-arte}
 \input{tex/estado_del_arte.tex}
 
-\chapter{Especificación y Costes}
-\input{tex/especificacion.tex}\label{chapt:especificacion}
+\chapter{Especificación y Costes}\label{chapt:especificacion}
+\input{tex/especificacion.tex}
 
 \chapter{Análisis y diseño del proyecto}\label{chapt:anali-diseño}
 \input{tex/analisis-diseño.tex}

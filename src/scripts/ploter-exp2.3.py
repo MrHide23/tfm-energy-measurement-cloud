@@ -383,7 +383,7 @@ def plot_consumoxtiempo(data_csv_file, grafics_save='./grafics/consumoxtiempo'):
 
                 # Etiquetas y título
                 ax.set_xlabel("Tiempo (s)", fontsize=20, weight='bold')
-                ax.set_ylabel("Consumo Energetico (j)", fontsize=20, weight='bold')
+                ax.set_ylabel("Consumo Energético (j)", fontsize=20, weight='bold')
                 ax.set_title(f'{nombre} - {bitrate} - {group_name.replace("_", " vs ")}')
                 ax.grid(True)
 
@@ -446,7 +446,7 @@ def plot_consumoxtiempo_grupal(data_csv_file, grafics_save='./grafics/consumoxti
       
               # Etiquetas y título
               ax.set_xlabel("Tiempo (s)", fontsize=20, weight='bold')
-              ax.set_ylabel("Consumo Energetico (j)", fontsize=20, weight='bold')
+              ax.set_ylabel("Consumo Energético (j)", fontsize=20, weight='bold')
               ax.set_title(f'Cores: {n} - {bitrate} - Codec: {codecs}')
               ax.grid(True)
               

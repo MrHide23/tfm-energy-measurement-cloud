@@ -74,35 +74,33 @@
     \captionof{subfigure}{#5}
     \label{#6}
   \end{minipage}%
-  \par\vspace{1ex}%
+  %\par\vspace{1ex}%
 }
 
 
 \newcommand{\tresubfigs}[9]{%
-  \begin{minipage}[b]{0.30\textwidth}
+  \begin{minipage}[b]{0.25\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#1}
     \captionof{subfigure}{#2}
     \label{#3}
   \end{minipage}%
   \hfill
-  \begin{minipage}[b]{0.30\textwidth}
+  \begin{minipage}[b]{0.25\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#4}
     \captionof{subfigure}{#5}
     \label{#6}
   \end{minipage}%
   \hfill
-  \begin{minipage}[b]{0.30\textwidth}
+  \begin{minipage}[b]{0.25\textwidth}
     \centering
     \includegraphics[width=\textwidth]{#7}
     \captionof{subfigure}{#8}
     \label{#9}
   \end{minipage}%
-  \par\vspace{1ex}%
+  %\par\vspace{1ex}%
 }
-
-
 
 % Configuración para el código usando minted
 

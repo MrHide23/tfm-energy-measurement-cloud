@@ -1,11 +1,11 @@
 \section{Requisitos experimentales}\label{sect:requisitos-alcance-experimental}
 Entre los requisitos técnicos de este trabajo de fin de máster se necesita poder medir el consumo energético de un nodo y de los procesos que se estén ejecutando sobre contenedores. Para ellos, se ha seleccionado a \textit{Docker} como el gestor encargado del ciclo de vida de dichos contenedores, en base a la experiencia de uso y a su compatibilidad con el \textit{NVIDIA Container Toolkit}. Este nos proporciona un \textit{runtime}, el cual permite acceder a la GPU y hacer uso de su capacidad de cómputo desde aplicaciones que se ejecutan en los contenedores.
 
-Las cargas de trabajo sobre las que se desea poder tomar métricas de consumo consisten en procesos de codificación de video, empleando exclusivamente CPU y CPU combinada con GPU. En concreto, los codificadores que hacen uso de la GPU deben pertenecer a la implementación de codigo NVENC, compatible con el \textit{NVIDIA Container Toolkit} y con las tarjetas gráficas de la marca NVIDIA.
+Las cargas de trabajo sobre las que se desea poder tomar métricas de consumo consisten en procesos de codificación de video, empleando exclusivamente CPU y CPU combinada con GPU. En concreto, los codificadores que hacen uso de la GPU deben pertenecer a la implementación de código NVENC, compatible con el \textit{NVIDIA Container Toolkit} y con las tarjetas gráficas de la marca NVIDIA.
 
-En consecuencia, la herramienta encargada de recabar las métricas de consumo tiene que poder tomar métricas de consumo energetico del hardware del nodo y poder distinguir que porcentaje de energia pertenece al proceso que se esta intentado monitorizar. Dado que la selección de la herramienta está pensada para un posterior uso en el proyecto de investigación \textit{ECO-STREAM}, esta debe ser capaz de desplegarse y tomar métricas sobre múltiples nodos y procesos de forma simultánea. Las métricas recolectadas deben tener un alto grado de precisión, así como de granularidad, permitiendo discernir con suficiente precisión el consumo energético del proceso respecto al consumo energético del nodo. 
+En consecuencia, la herramienta encargada de recabar las métricas de consumo tiene que poder tomar métricas de consumo energético del hardware del nodo y poder distinguir qué porcentaje de energía pertenece al proceso que se está intentando monitorizar. Dado que la selección de la herramienta está pensada para un posterior uso en el proyecto de investigación \textit{ECO-STREAM}, esta debe ser capaz de desplegarse y tomar métricas sobre múltiples nodos y procesos de forma simultánea. Las métricas recolectadas deben tener un alto grado de precisión, así como de granularidad, permitiendo discernir con suficiente precisión el consumo energético del proceso respecto al consumo energético del nodo. 
 
-\subsection{Hipotesis Iniciales}\label{subsec:hipotesis}
+\subsection{Hipótesis iniciales} \label{subsec:hipotesis}
  Tras realizar una primera revisión de la literatura científica, en particular de los trabajos relacionados con las métricas de consumo energético en cargas de codificación de vídeo \cite{survery-videoencoding} \cite{rapl-tool} \cite{energy-rapl-mesurement}, se plantean dos hipótesis iniciales sobre los resultados esperados durante la fase de experimentación. 
 
  La primera hipótesis afirma que los vídeos con valores elevados de SI y TI, tendrán un mayor consumo energético durante el proceso de codificación, siendo el TI la métrica con una mayor influencia sobre dicho consumo.
@@ -17,7 +17,7 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
 
 \section{Especificación del entorno experimental}
 \subsection{Arquitectura Hardware}
- Respecto al hardware sobre el que se ejecutan los experimentos, el equipo dispone de cuatro tarjetas de 8 GB de memoria RAM con conexion PCI-E DDR3 y una velocidad de 1600 MT/s, que cuenta con velocidades de transferencia de 600 MB/s. Tambien cuenta con una CPU modelo Intel i7-4790K de 8 cores con una velocidad maxima de 4,5 GHz, la cual permite tomar métricas de consumo energético de prácticamente cualquier componente del sistema mediante RAPL \cite{intel-processor-sepcts}.
+ Respecto al hardware sobre el que se ejecutan los experimentos, el equipo dispone de cuatro tarjetas de 8 GB de memoria RAM con conexión PCI-E DDR3 y una velocidad de 1600 MT/s, que cuenta con velocidades de transferencia de 600 MB/s. También cuenta con una CPU modelo Intel i7-4790K de 8 cores con una velocidad máxima de 4,5 GHz, la cual permite tomar métricas de consumo energético de prácticamente cualquier componente del sistema mediante RAPL \cite{intel-processor-sepcts}.
 
  La tarjeta gráfica seleccionada para la realización de los experimentos es una NVIDIA Quadro M4000 \cite{nvidia-quadro-m4000}, equipada con 8 GB de memoria de vídeo GDDR5 y una interfaz PCI Express. Esta GPU fue seleccionada entre las tarjetas gráficas disponibles en el laboratorio debido a que cumple con los requisitos necesarios para la ejecución de las cargas de codificación de vídeo mediante aceleración hardware. Asimismo, proporciona compatibilidad con la interfaz NVIDIA System Management Interface (NVIDIA-SMI) \cite{nvidia-smi}, utilizada para la monitorización del estado de la GPU y la obtención de métricas relacionadas con su utilización y consumo energético.
  
@@ -27,7 +27,7 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
  
  El resto de componentes hardware que conforman el nodo experimental se encuentran montados sobre una placa base ASUS SABERTOOTH Z97 MARK. Estos componentes conforman el nodo físico sobre el que se ejecutan los contenedores y las diferentes cargas de trabajo utilizadas durante la fase experimental. 
 
- \begin{table}[h!]
+ \begin{table}[H]
   \center
   \begin{tabular}{cccc}
   \hline
@@ -37,8 +37,9 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
   H.264                & Lossless         & X            & X*           \\
   H.265                & 4K YUV 4:2:0     & X            & X            \\ \hline
   \end{tabular}
+  
+  \caption{Matriz de Capacidad de Codificación de Vídeo de NVIDIA Quadro M4000}
   \label{tab:nvidia-matrix-capacity}
-  \caption{Matriz de Capacidad de Codificación de Video de NVIDIA Quadro M4000}
  \end{table}
 
 % - Herraminetas Sofware a utilizas
@@ -51,22 +52,22 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
   
   Para llevar a cabo los diferentes experimentos, serán necesarias diferentes aplicaciones: \textit{FFmpeg}, encargada de la transcodificación de vídeo; \textit{Docker}, encargado de la creación, despliegue y gestión de contenedores sobre los que se ejecutarán múltiples procesos; \textit{Bash}, como intérprete de comandos para automatizar la ejecución y el procesamiento de resultados de los \textit{scripts} y procesos asociados.
   
-  En cuanto a las herramientas con las que se llevará a cabo la monitorización y toma de métricas de consumo energético, se utilizaran las herramientas presentadas en el apartado \textit{Selección de Herramientas de Consumo Energetico} \ref{sec:arte-herramientas} del Estado del Arte, cuya tabal comparativa de capacidades se encuentra disponible en \ref{tab:especi-herramientas-capacidad-metricas}.
+  En cuanto a las herramientas con las que se llevará a cabo la monitorización y toma de métricas de consumo energético, se utilizarán las herramientas presentadas en el apartado \textit{Selección de Herramientas de Consumo Energético} \ref{sec:arte-herramientas} del Estado del Arte, cuya tabla comparativa de capacidades se encuentra disponible en \ref{tab:especi-herramientas-capacidad-metricas}.
   
   Para el procesamiento e interpretación de los datos se utilizará principalmente \textit{Python}, haciendo uso de la librería \textit{Pandas} para la manipulación y almacenamiento de datos en formato CSV. Asimismo, la generación de gráficos comparativos se basará en las librerías \textit{Matplotlib} y \textit{Seaborn}. En particular, \textit{Seaborn} simplifica la representación de estructuras de datos complejas y permite obtener visualizaciones más refinadas e intuitivas.
 
 
 % SELECCION DE VIDEO
- \subsection{Seleccion de Muestras de Video}
+ \subsection{Selección de Muestras de Vídeo}
  Los vídeos empleados durante la fase de experimentación se construirán a partir de segmentos de vídeo de \textit{2 segundos} de duración, denominados \textit{chunks}, disponibles en el servidor de contenido perteneciente al proyecto ECO-STREAM. Estos segmentos proceden de los conjuntos de vídeos obtenidos de CableLabs \cite{cable-labs} y Blender \cite{blender-videos}, y constituyen la unidad básica utilizada para la selección y construcción de los vídeos empleados en los diferentes experimentos.
  
  Los chunks conservan las características de calidad de los vídeos de origen. En concreto, se trata de segmentos con una resolución de 4K (3840 x 2160), codificados mediante el codificador \textit{libx264}, codificados sin pérdida de calidad (con CRF igual a 0) y con una tasa de 30 fotogramas por segundo. Como consecuencia, los segmentos contienen una elevada cantidad de información y presentan un tamaño cuya media ronda los \textit{250 MB}.
  
  El conjunto de vídeos considerados como fuente de origen para los experimentos se muestra en la tabla \ref{tab:lista-videos-test}. A partir de estos vídeos se realizó un proceso de filtrado de los chunks disponibles con el objetivo de excluir aquellos segmentos que pudieran introducir variabilidad no relacionada con las características de contenido objeto de estudio. En particular, se descartaron los segmentos que contienen secuencias de créditos, así como aquellos que presentan fundidos a negro, tanto al inicio como al final del segmento.
 
- Los \textit{chunks} restantes constituyen el conjunto de candidatos a partir del cual se realizará posteriormente la creacion de los correspondientes videos empleados en cada una de las fases experimentales.
+ Los \textit{chunks} restantes constituyen el conjunto de candidatos a partir del cual se realizará posteriormente la creación de los correspondientes videos empleados en cada una de las fases experimentales
  
- \begin{table}[h!]
+ \begin{table}[H]
   \centering
    \begin{tabular}{|
     >{\columncolor[HTML]{EFEFEF}}l |c|c|}
@@ -84,37 +85,37 @@ En consecuencia, la herramienta encargada de recabar las métricas de consumo ti
     TearsOfSteel\_Bender                                           & 12' 20"                          & $\{4,290\}$                                \\ \hline
     UnspokenFriend\_CableLabs                                      & 4' 20"                           & $\{0,113\}$                                \\ \hline
     \end{tabular}
-   \label{tab:lista-videos-test}
    \caption{Lista de video de los cuales se han realizado la seleccion de chunks para el conjunto de pruebas experimentales}
+   \label{tab:lista-videos-test}
  \end{table}
  
 \section{Planificación y Estimación de costes}
 \subsection{Planificación del Desarrollo del Proyecto}
 
-Estimacion de costes de tiempo de las tareas a realizar para llevar a acabo el desarrollo del proyecto. Se ha empleado al formula del \textit{Tiempo Esperado de PERT} \ref{form:formula-te-pert} para llevar a cabo la estimacion de tiempo y se ha redodeado al entero superior para hacerlo mas realista y añadir un poco mas de olgura.
+Estimacion de costes de tiempo de las tareas a realizar para llevar a cabo el desarrollo del proyecto. Se ha empleado la fórmula del \textit{Tiempo Esperado de PERT} \ref{form:formula-te-pert} para llevar a cabo la estimación de tiempo y se ha redondeado al entero superior para hacerlo más realista y añadir un poco más de holgura.
 
 \[TE = \frac{\text{Optimista} + 4 \times \text{Probable} + \text{Pesimista}}{6}\label{form:formula-te-pert}\]
 
-En base a los tiempos esperados \ref{tab:tiempoesperado-pert} se ha cerado el siguiente diagrama de PERT \ref{fig:espec-diagrampert}. 
+En base a los tiempos esperados \ref{tab:tiempoesperado-pert} se ha cerrado el siguiente diagrama de PERT \ref{fig:espec-diagrampert}.  
 
 % Realoja contendio a desarrollo
-Tambien se ha creado un diagrama de Gantt \ref{fig:expect-ganttinicial} que incluye mayor detalle en cuanto a las tareas a realizar y el conjunto de subtareas que las componen. Destacar que se ha añadido olgura temporal en el desarollo de scripts de bash y python, debido a la fatla de familiarizacion de estos lenguajes.
-\begin{figure}[h!]
+También se ha creado un diagrama de Gantt \ref{fig:expect-ganttinicial} que incluye mayor detalle en cuanto a las tareas a realizar y el conjunto de subtareas que las componen. Destacar que se ha añadido holgura temporal en el desarrollo de scripts de Bash y Python, debido a la falta de familiarización con estos lenguajes.
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{figs/diagram-pert.png}
-    \caption{Diagrama PERT de las fases del proyecto}
+    \caption{Diagrama de PERT con las tareas esenciales que componen el proyecto de investigación}
     \label{fig:espec-diagrampert}
 \end{figure}
 
- \begin{figure}[h!]
+ \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{figs/PlanificacionInicial.png}
-  \caption{Planificacion inicial del Desarrollo del Proyecto}
+  \caption{Planificación temporal inicial del proyecto en formato de diagram de Gantt}
   \label{fig:expect-ganttinicial}
  \end{figure}
 
  
- \begin{table}[h!]
+ \begin{table}[H]
   \centering
   \small
   % Definimos tipos de columna con color
@@ -125,8 +126,8 @@ Tambien se ha creado un diagrama de Gantt \ref{fig:expect-ganttinicial} que incl
   \hline
   \cellcolor[HTML]{9B9B9B}\textcolor{white}{\textbf{Tarea}} 
   & \cellcolor[HTML]{9B9B9B}\textcolor{white}{\textbf{T. Esperado (días)}} 
-  & \cellcolor[HTML]{9B9B9B}\textcolor{white}{\textbf{D. Optimista (días)}} 
-  & \cellcolor[HTML]{9B9B9B}\textcolor{white}{\textbf{D. Pesimista (días)}} 
+  & \cellcolor[HTML]{9B9B9B}\textcolor{white}{\textbf{T. Optimista (días)}} 
+  & \cellcolor[HTML]{9B9B9B}\textcolor{white}{\textbf{T. Pesimista (días)}} 
   & \cellcolor[HTML]{9B9B9B}\textcolor{white}{\textbf{T. Más Probable (días)}} \\ \hline
   
   Definición del Proyecto & 3 & 1 & 5 & 2 \\ \hline
@@ -134,74 +135,76 @@ Tambien se ha creado un diagrama de Gantt \ref{fig:expect-ganttinicial} que incl
   Experimento 1: Selección de mejor Herramienta & 12 & 7 & 20 & 10 \\ \hline
   Experimento 2.1: Clasificación de muestras en base al SITI & 5 & 3 & 8 & 5 \\ \hline
   Experimento 2.2: Consumo energético en relación al SITI & 12 & 7 & 20 & 10 \\ \hline
-  Experimento 3: Consumo Energetico en relacion al numero de cores y thread & 8 & 5 & 15 & 7 \\ \hline
+  Experimento 3: Consumo Energético en relación al número de cores y threads & 8 & 5 & 15 & 7 \\ \hline
   Análisis de Resultados & 2 & 1 & 3 & 2 \\ \hline
   Redacción del TFM & 21 & 14 & 31 & 20 \\ \hline
   \end{tabularx}
-  \caption{Tareas y tiempo de realización utilizando la fórmula del Tiempo Esperado de PERT}
+  \caption{Descomposición de tareas de cada fase del proyecto de investigación junto con la estimación de coste temporal. Tiempo Esperado obtenido a partir del Tiempo Optimista, Tiempo Pesimista y el Tiempo Más Probable}
   \label{tab:tiempoesperado-pert}
  \end{table}
  
-\clearpage%<---Espacio entre pagina ---
 
 \subsection{Estimaciones Iniciales de Costes}
-% < --- Ajustar Costes a Comentrio Juan
 Al estimar los costes del proyecto, se ha tenido en cuenta que la compra del hardware se realizó al menos hace tres años; por tanto, se han ajustado los precios al año 2023. Para obtener el histórico de precios, se ha hecho uso de la extensión del buscador \textit{Keepa}, la cual me permite obtener el histórico de precios de un producto, junto con el histórico de precios de tiendas como \textit{Pangolin} \footnote{\url{https://pangoly.com/}} y \textit{CamelCamelCamel} \footnote{\url{https://camelcamelcamel.com/}}.
 
-Los datos para calcular el coste mensual se han obtenido de la página de la Seguridad Social \footnote{\url{https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10957/9932/4315}}. Destacar que el contrato es de base indefinida y que por eso se ajusta el porcentaje de desempleo al \textit{5\%}, tambien se ha añadido un $21\%$ asociado a las herramientas y datos obtenedos por otros investigadore del proyecto \textit{ECO-STREAM}. Como resultado, se ha obtenido la siguiente estimación de costes apreciables en la siguiente gráfica \ref{tab:espect-estimacion-costesfinal}.
+Los datos para calcular el coste mensual se han obtenido de la página de la Seguridad Social \footnote{\url{https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10957/9932/4315}}. Destacar que el contrato es de base indefinida y que por eso se ajusta el porcentaje de desempleo al \textit{5\%}; también se ha añadido un $21\%$ asociado a las herramientas y datos obtenidos por otros investigadores del proyecto \textit{ECO-STREAM}. Como resultado, se ha obtenido la siguiente estimación de costes apreciables en la siguiente gráfica \ref{tab:espect-estimacion-costesfinal}.
 
-\begin{table}[h!]
+\begin{table}[H]
  \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}c|}
  \hline
  \rowcolor[HTML]{9B9B9B}
- \multicolumn{2}{|c|}{\cellcolor[HTML]{9B9B9B}Datos Proyecto} \\ \hline
+ \multicolumn{2}{|c|}{\cellcolor[HTML]{9B9B9B}Datos del Proyecto} \\ \hline
  Duración Proyecto (meses) & 5 \\ \hline
  Gastos generales de funcionamiento y apoyo & 21 \% \\ \hline
  \rowcolor[HTML]{E5FF0A}
  \cellcolor[HTML]{E5FF0A}Coste Total Proyecto & \cellcolor[HTML]{E5FF0A}9964,54 € \\ \hline
  \end{tabularx}
- \caption{Coste Total del Proyecto}
+ \caption{Tabla de estimación de coste total del proyecto}
  \label{tab:espect-estimacion-costesfinal}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[H]
+\centering
+\begin{minipage}{0.45\textwidth}
+  \centering
   \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}c|}
-  \hline
-  \rowcolor[HTML]{9B9B9B}
-  Costes Variables & €/mes \\ \hline
-  Personal Doctorado No Investigadores (Jornada Parcial) & 986,00 € \\ \hline
-  Agua & 15,00 € \\ \hline
-  Electricidad & 25,00 € \\ \hline
-  \rowcolor[HTML]{C0C0C0}
-  Total Costes Variables & 1026,00 € \\ \hline
-  \end{tabularx}
-  \caption{Tabla de costes variables del proyecto}
+    \hline
+    \rowcolor[HTML]{9B9B9B}
+    Costes Variables & €/mes \\ \hline
+    Personal Doctorado No Investigadores (Jornada Parcial) & 986,00 € \\ \hline
+    Agua & 15,00 € \\ \hline
+    Electricidad & 25,00 € \\ \hline
+    \rowcolor[HTML]{C0C0C0}
+    Total Costes Variables & 1026,00 € \\ \hline
+    \end{tabularx}
+  \caption{Tabla de estimación de costes variables}
   \label{tab:espect-estimacion-variable}
+\end{minipage}
+\hfill  
+\begin{minipage}{0.45\textwidth}
+  \centering
+    \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}c|>{\centering\arraybackslash}c|}
+    \hline
+    \rowcolor[HTML]{C0C0C0}
+    \multicolumn{3}{|c|}{\cellcolor[HTML]{C0C0C0}Material \& Costes Fijos} \\ \hline
+    \rowcolor[HTML]{EFEFEF}
+    \cellcolor[HTML]{EFEFEF}Material & \cellcolor[HTML]{EFEFEF}Cantidad & \cellcolor[HTML]{EFEFEF}Precio (€) \\ \hline
+    GPU NVIDIA Quadro M4000 & 1 & 500,00 € \\ \hline
+    Disco Duro & 1 & 135,00 € \\ \hline
+    RAM 32GB & 4 & 24,00 € \\ \hline
+    CPU & 1 & 200,00 € \\ \hline
+    Mother Board & 1 & 150,00 € \\ \hline
+    Power Bank & 1 & 100,00 € \\ \hline
+    Caja Ordenador & 1 & 75,00 € \\ \hline
+    \rowcolor[HTML]{C0C0C0}
+    \cellcolor[HTML]{C0C0C0}TOTAL Costes Fijos & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{CCCCCC}1256,00 € \\ \hline
+    \end{tabularx}
+  \caption{Tabla de estimación de costes fijos}
+  \label{tab:espect-estimacion-costesfijos}
+\end{minipage}
 \end{table}
 
-
-\begin{table}[h!]
- \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}c|>{\centering\arraybackslash}c|}
- \hline
- \rowcolor[HTML]{C0C0C0}
- \multicolumn{3}{|c|}{\cellcolor[HTML]{C0C0C0}Material \& Costes Fijos} \\ \hline
- \rowcolor[HTML]{EFEFEF}
- \cellcolor[HTML]{EFEFEF}Material & \cellcolor[HTML]{EFEFEF}Cantidad & \cellcolor[HTML]{EFEFEF}Precio (€) \\ \hline
- GPU NVIDIA Quadro M4000 & 1 & 500,00 € \\ \hline
- Disco Duro & 1 & 135,00 € \\ \hline
- RAM 32GB & 4 & 24,00 € \\ \hline
- CPU & 1 & 200,00 € \\ \hline
- Mother Board & 1 & 150,00 € \\ \hline
- Power Bank & 1 & 100,00 € \\ \hline
- Caja Ordenador & 1 & 75,00 € \\ \hline
- \rowcolor[HTML]{C0C0C0}
- \cellcolor[HTML]{C0C0C0}TOTAL Costes Fijos & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{CCCCCC}1256,00 € \\ \hline
- \end{tabularx}
- \caption{Tabla de estimación de costes fijos}
- \label{tab:espect-estimacion-costesfijos}
-\end{table}
-
-\begin{table}[h!]
+\begin{table}[H]
  
 \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}c|>{ \centering\arraybackslash}c|}
   \hline
@@ -219,6 +222,6 @@ Los datos para calcular el coste mensual se han obtenido de la página de la Seg
   \rowcolor[HTML]{C0C0C0}
   \cellcolor[HTML]{C0C0C0}TOTAL Costes Fijos & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{CCCCCC}1256,00 € \\ \hline
   \end{tabularx}
-  \caption{Tabla de costes de contratación y seguridad social}
+  \caption{Tabla de estimación de costes de contratación y seguridad social}
   \label{tab:espect-estimacion-segsocial}
 \end{table}

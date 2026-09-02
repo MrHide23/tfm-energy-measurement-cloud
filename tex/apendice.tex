@@ -1,63 +1,48 @@
-\chapter{Apéndice: Codigo} \label{chapt:apendice}
-\section{Codigo}
- \subsection{Docker Compose \& Dockerfiles}
- \subsubsection*{Imagen de Docker empleada para recompilar Kepler}
+\chapter{Anexo: Código} \label{chapt:apendice}
+
+% - Codigo
+%    - Docker Files
+%    - 
+% - Fotos
+% - Graficas
+ \section{Docker Compose \& Dockerfiles}
+ \subsection*{Imagen de Docker empleada para recompilar Kepler}
      \lstinputlisting[label={code:go-dockerfile},caption={Imagen de contenedor en Go utilizada para recompilar la version modificada de Kepler}]{src/docker/Dockerfile.txt}
      
- \subsubsection*{Configuracion del Sistema y Herramientas}
+ \subsection*{Configuracion del Sistema y Herramientas}
      \lstinputlisting[label={exp0:monitor-docker-compose},caption={Docker Compose que permite desplegar Container Energy Monitoring}]{src/docker/docker-compose-monitor.yaml}
 
- \subsection{Experimentación Fase 1}
+\section{Experimento 1}
      
 
-  \subsubsection*{Arranque y toma de métricas con Kepler}
-     \lstinputlisting[language=sh,label={exp1:kepler-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energetico con la herramienta Kepler}]{src/scripts/ffmpeg_kepler_probe.sh}
-  \subsubsection*{Arranque y toma de métricas con Scaphandre}
-    \lstinputlisting[language=sh,label={exp1:scp-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energetico con la herramienta Scaphandre}]{src/scripts/ffmpeg_scaphandre_probe.sh}
- \subsubsection*{Arranque y toma de métricas con Container Energy Monitoring}
+  \subsection*{Arranque y toma de métricas con Kepler}
+     \lstinputlisting[language=sh,label={exp1:kepler-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energético con la herramienta Kepler}]{src/scripts/ffmpeg_kepler_probe.sh}
+  \subsection*{Arranque y toma de métricas con Scaphandre}
+    \lstinputlisting[language=sh,label={exp1:scp-script-probes}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energético con la herramienta Scaphandre}]{src/scripts/ffmpeg_scaphandre_probe.sh}
+ \subsection*{Arranque y toma de métricas con Container Energy Monitoring}
     \lstinputlisting[language=sh,label={exp1:monitor-script-probes-1container},caption={Script en bash empleado para llevar}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
     
-    \lstinputlisting[language=sh,label={exp1:monitor-script-probes-2containers}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energetico sobre dos contenedor simultaneamente con la herramienta Container Energy Monitoring}]{src/scripts/monitor-experiment-ffmpeg-gpu-2-container.sh}
- \subsubsection*{Procesamiento de Métricas del Experimento 1}
+    \lstinputlisting[language=sh,label={exp1:monitor-script-probes-2containers}, caption={Script en bash empleado para llevar a cabo la toma de métricas de consumo energético sobre dos contenedor simultaneamente con la herramienta Container Energy Monitoring}]{src/scripts/monitor-experiment-ffmpeg-gpu-2-container.sh}
+    
+ \subsection*{Procesamiento de Métricas del Experimento 1}
      \lstinputlisting[language=sh,label={exp1:kepler-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Kepler y los alamcena en CSV}]{src/scripts/kepler_process_data.sh}
      
      \lstinputlisting[language=sh,label={exp1:scp-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herramienta Scaphandre y los alamcena en CSV}]{src/scripts/scaphandre_process_data.sh}
      
      \lstinputlisting[language=sh,label={exp1:monitor-data-procesor},caption={Script en Bash que procesa los resultados de la experimentacion con la herrameinta Container Energy Monitoring y los alamcena en CSV}]{src/scripts/process_monitor_data.sh}
      
- \subsubsection{Obtencion de graficas Comparativas}
-     \lstinputlisting[language=python,label={exp1:python-bar-grafics},caption={Script en Python que permite obtener graficas comparativas de consumo energetico entre las herrameintas Container Energy Monitoring, Scaphandre y Kepler}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
+ \subsection{Obtencion de graficas Comparativas}
+     \lstinputlisting[language=python,label={exp1:python-bar-grafics},caption={Script en Python que permite obtener graficas comparativas de consumo energético entre las herrameintas Container Energy Monitoring, Scaphandre y Kepler}]{src/scripts/monitor-experiment-ffmpeg-gpu.sh}
      
-\subsection{Experimetacion Fase 2}
+\section{Experimento 2}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figs/exp2.3-test264-config-threads.png}
-    \caption{Experimento para comprobar la configuracion acerca de la limitacion de threads con el encoder libx264}
-    \label{fig:exp2.3-test-x264-limit-threads}
-\end{figure}
+ \subsection*{Script en Bash que realiza Experimento 2}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{figs/exp2.3-test265-config-threads.png}
-    \caption{Experimento para comprobar la configuracion acerca de la limitacion de threads con el encoder libx265}
-    \label{fig:exp2.3-test-x265-limit-threads}
-\end{figure}
+     \lstinputlisting[language=sh,label={code:exp2.2-sitienergy},caption={Script exp2.2-sisti-energy script en bash que lleva a cabo el experimento y alamacenamiento de métricas de consumo energético en realcion con el SI y el TI}]{src/scripts/exp2.2_siti_energy_encodig.sh}
 
- \subsubsection{Codigo de Experimentos en Bash}
+    
 
-     \lstinputlisting[language=sh,label={code:exp2.2-sitienergy},caption={Script exp2.2-sisti-energy script en bash que lleva a cabo el experimento y alamacenamiento de métricas de consumo energetico en realcion con el SI y el TI}]{src/scripts/exp2.2_siti_energy_encodig.sh}
-
-     \lstinputlisting[language=sh,label={code:exp2.3-threadsxenergy},caption={Script exp2.3-threadsxenergy.sh encargado de llevara el experimento en realcion con el nuemro de cores y el consumo energetico}]{src/scripts/exp2.3-threadsxenergy.sh}
-
- \subsubsection{Codigo Python para Calculo y Visualizacio de características SITI}
-     \begin{figure}[H]
-     \centering
-     \includegraphics[width=\linewidth]{figs/exp2.1-header-sititool.png}
-     \caption{Header de la estructura de datos de las características SI y TI de cada chunk}
-     \label{fig:exp2.1-sititool-header-csv}
-     \end{figure}
-     
+ \subsection*{Script en Pyhton para generar graficas en base a los datos del Experimento 2.1}
      %PLOT UBICACION CHUNKS
      \lstinputlisting[language=python,label={code:script-siti-calculation},caption={Codigo en python calcular y obtener las características SI y TI de cada chunk de video}]{src/scripts/exp2.1-siti-calculator.py}
      
@@ -65,48 +50,71 @@
      
      \lstinputlisting[language=python,label={code:exp2.1-siti-ploter},caption={Script de pyhton que muestra una grafica de puntos que representan la ubicacion de cada chunk de video procesado en base al SITI}]{src/scripts/exp2.1-siti-ploter.py}
      
-     %PLOT DE GRAFICAS 3D Exp2.2
-     \lstinputlisting[language=python,label={code:exp2.2-ploter},caption={Script de python que procesa y genera graficas comparativas entre el SI, el TI y el consumo energetico(Julios)}]{src/scripts/ploter-exp2.2.py}
+     \begin{figure}[H]
+     \centering
+     \includegraphics[width=\linewidth]{figs/exp2.1-header-sititool.png}
+     \caption{Header de la estructura de datos de las características SI y TI de cada chunk}
+     \label{fig:exp2.1-sititool-header-csv}
+     \end{figure}
+     
+  \subsection*{Script en Pyhton para generar graficas en base a los datos del Experimento 2.2}
+     \lstinputlisting[language=python,label={code:exp2.2-ploter},caption={Script de python que procesa y genera graficas comparativas entre el SI, el TI y el consumo energético(Julios)}]{src/scripts/ploter-exp2.2.py}
      
      \lstinputlisting[language=python,label={code:exp2.2-ploter-obj},caption={Objeto que facilita el almacenamiento y procesameinto de los datos del script ploter-exp2.2.py}]{src/scripts/ploter-exp2.2-obj.py}
      
      \begin{figure}[H]
-     \centering
-     \includegraphics[width=\linewidth]{figs/exp2.2-csvheader-process-data.png}
-     \caption{Header resultante del procesamiento de los datos empleando el script ploter-exp2.2}
-     \label{fig:exp2.2-csvheader-dataprocess}
+       \centering
+       \includegraphics[width=\linewidth]{figs/exp2.2-csvheader-process-data.png}
+       \caption{Header resultante del procesamiento de los datos empleando el script ploter-exp2.2}
+       \label{fig:exp2.2-csvheader-dataprocess}
      \end{figure}
 
-     % PLOT GRAFICAS EXPERIMETO EXP2.3
-     \lstinputlisting[language=python,label={code:exp2.3-ploter},caption={Script en python para obtener graficas y procesar datos del experimento llevado a cabo por el script exp2.3-threadsxenergy.sh}]{src/scripts/ploter-exp2.3.py} 
-     
-     \lstinputlisting[language=python,label={code:exp2.3-ploter-obj},caption={Objeto en python que sirve de apollo al procesamiento de datos del script ploter-exp2.3.py }]{src/scripts/ploter-exp2.3-obj.py}
+\section{Experimento 3}
 
-     \begin{figure}[h!]
-         \centering
-         \includegraphics[width=\linewidth]{figs/exp2.3-csvheader-process-data.png}
-         \caption{Header CSV del archivo de datos procesados con el scrip exp2.3-threadsxenergy.sh}
-         \label{img:exp2.3-csvheader-process-data}
-     \end{figure}
+\subsection*{Imagenes del test de configuración de threads }
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figs/exp2.3-test264-config-threads.png}
+    \caption{Experimento para comprobar la configuracion acerca de la limitacion de threads con el encoder libx264}
+    \label{fig:exp2.3-test-x264-limit-threads}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figs/exp2.3-test265-config-threads.png}
+    \caption{Experimento para comprobar la configuracion acerca de la limitacion de threads con el encoder libx265}
+    \label{fig:exp2.3-test-x265-limit-threads}
+\end{figure}
+
+\subsection*{Script que lleva a cabo el Experimento 3}
+ \lstinputlisting[language=sh,label={code:exp2.3-threadsxenergy},caption={Script exp2.3-threadsxenergy.sh encargado de llevará el experimento en realcion con el nuemro de cores y el consumo energético}]{src/scripts/exp2.3-threadsxenergy.sh}
+
+\subsection*{Script en Python para generar graficas con los datos del Experimento 3}
+% PLOT GRAFICAS EXPERIMETO EXP2.3
+\lstinputlisting[language=python,label={code:exp2.3-ploter},caption={Script en python para obtener graficas y procesar datos del experimento llevado a cabo por el script exp2.3-threadsxenergy.sh}]{src/scripts/ploter-exp2.3.py} 
+
+\lstinputlisting[language=python,label={code:exp2.3-ploter-obj},caption={Objeto en python que sirve de apollo al procesamiento de datos del script ploter-exp2.3.py }]{src/scripts/ploter-exp2.3-obj.py}
+
+
      
-\chapter{Apéndice: Graficas y Resultados}\label{apendice:graficas}
+\chapter{Anexo: Gráficas y Resultados}\label{apendice:graficas}\label{chapt:apendice-graficas}
  % Primera parte (h264_nvenc)
- \section{Experimento 2.2: Consumo Energetico en relacion con el SITI}\label{apendice:exp2.2-graficas}
+ \section{Experimento 2: Consumo Energético en relacion con el SITI}\label{apendice:exp2.2-graficas}
+ \subsection*{Graficas 3D: SI frente a TI y Consumo Energético}
 
-     \begin{figure}[ht!]
+     \begin{figure}[H]
           \centering
           \small
-          \dosubfigs
-          {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-10_ConsumoSITI.png}{h264\_nvenc - Bitrate: 10 Mbps }{fig:h264-10}
-          {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-20_ConsumoSITI.png}{h264\_nvenc - Bitrate: 20 Mbps}{fig:h264-20}
-          \dosubfigs
-          {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-25_ConsumoSITI.png}{h264\_nvenc - Bitrate: 25 Mbps}{fig:h264-25}
-          {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-30_ConsumoSITI.png}{h264\_nvenc - Bitrate: 30 Mbps}{fig:h264-30}
-          \dosubfigs
-          {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-35_ConsumoSITI.png}{h264\_nvenc - Bitrate: 35 Mbps}{fig:h264-35}
-          {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-40_ConsumoSITI.png}{h264\_nvenc - Bitrate: 40 Mbps}{fig:h264-40}
+          \tresubfigs
+           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-10_ConsumoSITI.png}{h264\_nvenc - Bitrate: 10 Mbps }{fig:h264-10}
+           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-20_ConsumoSITI.png}{h264\_nvenc - Bitrate: 20 Mbps}{fig:h264-20}
+           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-25_ConsumoSITI.png}{h264\_nvenc - Bitrate: 25 Mbps}{fig:h264-25}
+          \tresubfigs
+           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-30_ConsumoSITI.png}{h264\_nvenc - Bitrate: 30 Mbps}{fig:h264-30}
+           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-35_ConsumoSITI.png}{h264\_nvenc - Bitrate: 35 Mbps}{fig:h264-35}
+           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-40_ConsumoSITI.png}{h264\_nvenc - Bitrate: 40 Mbps}{fig:h264-40}
           
-          \begin{minipage}[b]{0.48\textwidth}
+          \begin{minipage}[b]{0.25\textwidth}
                \centering
                \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-h264_nvenc-50_ConsumoSITI.png}
                \captionof{subfigure}{h264\_nvenc - bitrate: 50 Mbps}
@@ -117,47 +125,44 @@
      \end{figure}
      
 % Segunda parte (hevc_nvenc)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-hevc_nvenc-15_ConsumoSITI.png}{hevc\_nvenc - Bitrate: 15 Mbps}{fig:hevc-15}
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-hevc_nvenc-20_ConsumoSITI.png}{hevc\_nvenc - Bitrate: 20 Mbps}{fig:hevc-20}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-hevc_nvenc-25_ConsumoSITI.png}{hevc\_nvenc - Bitrate: 25 Mbps}{fig:hevc-25}
+          \tresubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-hevc_nvenc-30_ConsumoSITI.png}{hevc\_nvenc - Bitrate: 30 Mbps}{fig:hevc-30}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-hevc_nvenc-35_ConsumoSITI.png}{hevc\_nvenc - Bitrate: 35 Mbps}{fig:hevc-35}
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-hevc_nvenc-40_ConsumoSITI.png}{hevc\_nvenc - Bitrate: 40 Mbps}{fig:hevc-40}
-          
-          \begin{minipage}[b]{0.48\textwidth}
+          \hfill
+          \begin{minipage}[b]{0.25\textwidth}
                \centering
                \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-hevc_nvenc-10_ConsumoSITI.png}
                \captionof{subfigure}{hevc\_nvenc - bitrate: 10 Mbps}
                \label{fig:exp2.2-plot-plot3d-h265}
           \end{minipage}
-
-          
           \caption{Comparativa de Consumo(J), SI y TI, codificado con HEVC\_NVENC }
           \label{fig:exp2.2-plot-plot3d-hevc}
      \end{figure}
      
 % Tercera parte (libx264)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-10_ConsumoSITI.png}{libx264 - Bitrate: 10 Mbps}{fig:libx264-10}
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-20_ConsumoSITI.png}{libx264 - Bitrate: 20 Mbps}{fig:libx264-20}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-25_ConsumoSITI.png}{libx264 - Bitrate: 25 Mbps}{fig:libx264-25}
+          \tresubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-30_ConsumoSITI.png}{libx264 - Bitrate: 30 Mbps}{fig:libx264-30}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-35_ConsumoSITI.png}{libx264 - Bitrate: 35 Mbps}{fig:libx264-35}
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-40_ConsumoSITI.png}{libx264 - Bitrate: 40 Mbps}{fig:libx264-40}
-          \begin{minipage}[b]{0.48\textwidth}
+          \hfill
+          \begin{minipage}[b]{0.25\textwidth}
                \centering
                \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx264-50_ConsumoSITI.png}
                \captionof{subfigure}{libx254 - bitrate: 50 Mbps}
@@ -168,21 +173,20 @@
     \end{figure}
      
 % Cuarta parte (libx265)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx265-15_ConsumoSITI.png}{libx265 - Bitrate:  - Bitrate: 15 Mbps}{fig:libx265-15}
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx265-20_ConsumoSITI.png}{libx265 - Bitrate:  20 Mbps}{fig:libx265-20}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx265-25_ConsumoSITI.png}{libx265 - Bitrate:  25 Mbps}{fig:libx265-25}
+          \tresubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx265-30_ConsumoSITI.png}{libx265 - Bitrate:  30 Mbps}{fig:libx265-30}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx265-35_ConsumoSITI.png}{libx265 - Bitrate:  35 Mbps}{fig:libx265-35}
           {figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx265-40_ConsumoSITI.png}{libx265 - Bitrate:  40 Mbps}{fig:libx265-40}
           
-          \begin{minipage}[b]{0.48\textwidth}
+          \begin{minipage}[b]{0.25\textwidth}
                \centering
                \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/plot3d/consumo_container0_j-libx265-10_ConsumoSITI.png}
                \captionof{subfigure}{libx265 - Bitrate: 10 Mbps}
@@ -191,117 +195,119 @@
           \caption{Comparativa de Consumo(J), SI y TI, codificado con libx265 }
           \label{fig:exp2.2-plot-plot3d-libx265}
      \end{figure}
- 
+
+\subsection*{Consumo Energético frente a SI}
      % Primera parte (h264_nvenc)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-10_ConsumoSI.png}{h264\_nvenc - Bitrate: 10 Mbps}{fig:h264-10}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-20_ConsumoSI.png}{h264\_nvenc - Bitrate: 20 Mbps}{fig:h264-20}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-25_ConsumoSI.png}{h264\_nvenc - Bitrate: 25 Mbps}{fig:h264-25}
+          
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-30_ConsumoSI.png}{h264\_nvenc - Bitrate: 30 Mbps}{fig:h264-30}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-35_ConsumoSI.png}{h264\_nvenc - Bitrate: 35 Mbps}{fig:h264-35}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-40_ConsumoSI.png}{h264\_nvenc - Bitrate: 40 Mbps}{fig:h264-40}
           
-          \begin{minipage}[b]{0.48\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-50_ConsumoSI.png}
-          \captionof{subfigure}{h264\_nvenc - Bitrate: 50}
-          \label{fig:plot-consumoxSI-h264-50}
-          \end{minipage}
-          \caption{Comparativa de consumo, SI y TI para el códec h264\_nvenc.}
+          \begin{minipage}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-h264_nvenc-50_ConsumoSI.png}
+            \captionof{subfigure}{h264\_nvenc - Bitrate: 50}
+            \label{fig:plot-consumoxSI-h264-50}
+            \end{minipage}
+            \caption{Comparativa de consumo, SI y TI para el códec h264\_nvenc.}
           \label{fig:exp2.2-consumoxsi-h264}
      \end{figure}
      
      % Segunda parte (hevc_nvenc)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-10_ConsumoSI.png}{hevc\_nvenc - Bitrate: 10 Mbps}{fig:hevc-10}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-15_ConsumoSI.png}{hevc\_nvenc - Bitrate: 15 Mbps}{fig:hevc-15}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-20_ConsumoSI.png}{hevc\_nvenc - Bitrate: 20 Mbps}{fig:hevc-20}
+          
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-25_ConsumoSI.png}{hevc\_nvenc - Bitrate: 25 Mbps}{fig:hevc-25}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-30_ConsumoSI.png}{hevc\_nvenc - Bitrate: 30 Mbps}{fig:hevc-30}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-35_ConsumoSI.png}{hevc\_nvenc - Bitrate: 35 Mbps}{fig:hevc-35}
-          \begin{minipage}[b]{0.48\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-40_ConsumoSI.png}
-          \captionof{subfigure}{hevc\_nvenc - Bitrate: 40}
-          \label{fig:exp2.2-consumoxsi-hevc-40}
+          \begin{minipage}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-hevc_nvenc-40_ConsumoSI.png}
+            \captionof{subfigure}{hevc\_nvenc - Bitrate: 40}
+            \label{fig:exp2.2-consumoxsi-hevc-40}
           \end{minipage}
           \caption{Comparativa de consumo, SI y TI para el códec hevc\_nvenc.}
           \label{fig:exp2.2-consumoxsi-hevc}
      \end{figure}
      
 % Tercera parte (libx264)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-10_ConsumoSI.png}{libx264 - Bitrate: 10 Mbps}{fig:libx264-10}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-20_ConsumoSI.png}{libx264 - Bitrate: 20 Mbps}{fig:libx264-20}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-25_ConsumoSI.png}{libx264 - Bitrate: 25 Mbps}{fig:libx264-25}
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-30_ConsumoSI.png}{libx264 - Bitrate: 30 Mbps}{fig:libx264-30}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-35_ConsumoSI.png}{libx264 - Bitrate: 35 Mbps}{fig:libx264-35}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-40_ConsumoSI.png}{libx264 - Bitrate: 40 Mbps}{fig:libx264-40}
-          \begin{minipage}[b]{0.48\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-50_ConsumoSI.png}
-          \captionof{subfigure}{libx264 - Bitrate: 50}
-          \label{fig:exp2.2-consumoxsi-libx264c-50}
+          \begin{minipage}[b]{0.43\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx264-50_ConsumoSI.png}
+            \captionof{subfigure}{libx264 - Bitrate: 50}
+            \label{fig:exp2.2-consumoxsi-libx264c-50}
           \end{minipage}
           \caption{Comparativa de consumo, SI y TI para el códec libx264.}
           \label{fig:exp2.2-consumoxsi-libx264}
      \end{figure}
      
 % Cuarta parte (libx265)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-10_ConsumoSI.png}{libx265 - Bitrate:  10 Mbps}{fig:libx265-10}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-15_ConsumoSI.png}{libx265 - Bitrate:  15 Mbps}{fig:libx265-15}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-20_ConsumoSI.png}{libx265 - Bitrate:  20 Mbps}{fig:libx265-20}
+         
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-25_ConsumoSI.png}{libx265 - Bitrate:  25 Mbps}{fig:libx265-25}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-30_ConsumoSI.png}{libx265 - Bitrate:  30 Mbps}{fig:libx265-30}
           {figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-35_ConsumoSI.png}{libx265 - Bitrate:  35 Mbps}{fig:libx265-35}
-          \begin{minipage}[b]{0.40\textwidth}
-          \centering
-          \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-40_ConsumoSI.png}
-          \captionof{subfigure}{libx265 - Bitrate:  40}
-          \label{fig:exp2.2-consumoxsi-libx265-40}
+          
+          \begin{minipage}[b]{0.25\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-si/consumo_container0_j-libx265-40_ConsumoSI.png}
+            \captionof{subfigure}{libx265 - Bitrate:  40}
+            \label{fig:exp2.2-consumoxsi-libx265-40}
           \end{minipage}
           \caption{Comparativa de consumo, SI y TI para el códec libx265.}
           \label{fig:exp2.2-consumoxsi-libx265}
      \end{figure}
 
+ \subsection*{Consumo energético frente a TI}
      % Primera parte (h264_nvenc)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-h264_nvenc-10_ConsumoTI.png}{h264\_nvenc - Bitrate: 10 Mbps}{fig:h264-10}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-h264_nvenc-20_ConsumoTI.png}{h264\_nvenc - Bitrate: 20 Mbps}{fig:h264-20}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-h264_nvenc-25_ConsumoTI.png}{h264\_nvenc - Bitrate: 25 Mbps}{fig:h264-25}
+          
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-h264_nvenc-30_ConsumoTI.png}{h264\_nvenc - Bitrate: 30 Mbps}{fig:h264-30}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-h264_nvenc-35_ConsumoTI.png}{h264\_nvenc - Bitrate: 35 Mbps}{fig:h264-35}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-h264_nvenc-40_ConsumoTI.png}{h264\_nvenc - Bitrate: 40 Mbps}{fig:h264-40}
-          \begin{minipage}[b]{0.48\textwidth}
+          \begin{minipage}[b]{0.25\textwidth}
           \centering
           \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-h264_nvenc-50_ConsumoTI.png}
           \captionof{subfigure}{h264\_nvenc - Bitrate: 50 Mbps}
@@ -312,20 +318,21 @@
      \end{figure}
      
 % Segunda parte (hevc_nvenc)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-hevc_nvenc-10_ConsumoTI.png}{hevc\_nvenc - Bitrate: 10 Mbps}{fig:hevc-10}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-hevc_nvenc-15_ConsumoTI.png}{hevc\_nvenc - Bitrate: 15 Mbps}{fig:hevc-15}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-hevc_nvenc-20_ConsumoTI.png}{hevc\_nvenc - Bitrate: 20 Mbps}{fig:hevc-20}
+
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-hevc_nvenc-25_ConsumoTI.png}{hevc\_nvenc - Bitrate: 25 Mbps}{fig:hevc-25}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-hevc_nvenc-30_ConsumoTI.png}{hevc\_nvenc - Bitrate: 30 Mbps}{fig:hevc-30}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-hevc_nvenc-35_ConsumoTI.png}{hevc\_nvenc - Bitrate: 35 Mbps}{fig:hevc-35}
-          \begin{minipage}[b]{0.48\textwidth}
+          
+          \begin{minipage}[b]{0.25\textwidth}
           \centering
           \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-hevc_nvenc-40_ConsumoTI.png}
           \captionof{subfigure}{hevc\_nvenc - Bitrate: 40 Mbps}
@@ -336,20 +343,20 @@
      \end{figure}
      
 % Tercera parte (libx264)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-10_ConsumoTI.png}{libx264 - Bitrate: 10 Mbps}{fig:libx264-10}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-20_ConsumoTI.png}{libx264 - Bitrate: 20 Mbps}{fig:libx264-20}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-25_ConsumoTI.png}{libx264 - Bitrate: 25 Mbps}{fig:libx264-25}
+
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-30_ConsumoTI.png}{libx264 - Bitrate: 30 Mbps}{fig:libx264-30}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-35_ConsumoTI.png}{libx264 - Bitrate: 35 Mbps}{fig:libx264-35}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-40_ConsumoTI.png}{libx264 - Bitrate: 40 Mbps}{fig:libx264-40}
-          \begin{minipage}[b]{0.48\textwidth}
+          \begin{minipage}[b]{0.25\textwidth}
           \centering
           \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx264-50_ConsumoTI.png}
           \captionof{subfigure}{libx264 - Bitrate: 50 Mbps}
@@ -360,20 +367,20 @@
      \end{figure}
      
 % Cuarta parte (libx265)
-     \begin{figure}[!ht]
+     \begin{figure}[H]
           \ContinuedFloat
           \centering
           \small
-          \dosubfigs
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx265-10_ConsumoTI.png}{libx265 - Bitrate:  10 Mbps}{fig:libx265-10}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx265-15_ConsumoTI.png}{libx265 - Bitrate:  15 Mbps}{fig:libx265-15}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx265-20_ConsumoTI.png}{libx265 - Bitrate:  20 Mbps}{fig:libx265-20}
+
+          \tresubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx265-25_ConsumoTI.png}{libx265 - Bitrate:  25 Mbps}{fig:libx265-25}
-          \dosubfigs
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx265-30_ConsumoTI.png}{libx265 - Bitrate:  30 Mbps}{fig:libx265-30}
           {figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx265-35_ConsumoTI.png}{libx265 - Bitrate:  35 Mbps}{fig:libx265-35}
-          \begin{minipage}[b]{0.48\textwidth}
+          \begin{minipage}[b]{0.25\textwidth}
           \centering
           \includegraphics[width=\textwidth]{figs/exp2.2/ploter2.2/consumo-ti/consumo_container0_j-libx265-40_ConsumoTI.png}
           \captionof{subfigure}{libx265 - Bitrate:  40 Mbps}
@@ -383,11 +390,181 @@
           \label{fig:exp2.2-consumoxti-libx265}
      \end{figure}
 
-\clearpage
-\section{Experimento 3: Consumo Energetico en relacion del numero de threads y cores} \label{apendice:exp2.3-graficas}
+\subsection*{Consumo energético frente a tiempo de codificación}
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/10/h264_nvenc-10_ConsumoxTiempoGroup.png}
+ {h264\_nvenc - Bitrate: 10 Mbps}
+ {fig:consumoxTiempoGroup-h264-10}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/10/hevc_nvenc-10_ConsumoxTiempoGroup.png}
+ {hevc\_nvenc - Bitrate: 10 Mbps}
+ {fig:consumoxTiempoGroup-hevc-10}
+
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/10/libx264-10_ConsumoxTiempoGroup.png}
+ {libx264 - Bitrate: 10 Mbps}
+ {fig:consumoxTiempoGroup-libx264-10}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/10/libx265-10_ConsumoxTiempoGroup.png}
+ {libx265 - Bitrate: 10 Mbps}
+ {fig:consumoxTiempoGroup-libx265-10}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 10 Mbps.}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/15/hevc_nvenc-15_ConsumoxTiempoGroup.png}
+ {hevc\_nvenc - Bitrate: 15 Mbps}
+ {fig:consumoxTiempoGroup-hevc-15}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/15/libx265-15_ConsumoxTiempoGroup.png}
+ {libx265 - Bitrate: 15 Mbps}
+ {fig:consumoxTiempoGroup-libx265-15}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 15 Mbps.}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/20/h264_nvenc-20_ConsumoxTiempoGroup.png}
+ {h264\_nvenc - Bitrate: 20 Mbps}
+ {fig:consumoxTiempoGroup-h264-20}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/20/hevc_nvenc-20_ConsumoxTiempoGroup.png}
+ {hevc\_nvenc - Bitrate: 20 Mbps}
+ {fig:consumoxTiempoGroup-hevc-20}
+
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/20/libx264-20_ConsumoxTiempoGroup.png}
+ {libx264 - Bitrate: 20 Mbps}
+ {fig:consumoxTiempoGroup-libx264-20}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/20/libx265-20_ConsumoxTiempoGroup.png}
+ {libx265 - Bitrate: 20 Mbps}
+ {fig:consumoxTiempoGroup-libx265-20}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 20 Mbps.}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/25/h264_nvenc-25_ConsumoxTiempoGroup.png}
+ {h264\_nvenc - Bitrate: 25 Mbps}
+ {fig:consumoxTiempoGroup-h264-25}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/25/hevc_nvenc-25_ConsumoxTiempoGroup.png}
+ {hevc\_nvenc - Bitrate: 25 Mbps}
+ {fig:consumoxTiempoGroup-hevc-25}
+
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/25/libx264-25_ConsumoxTiempoGroup.png}
+ {libx264 - Bitrate: 25 Mbps}
+ {fig:consumoxTiempoGroup-libx264-25}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/25/libx265-25_ConsumoxTiempoGroup.png}
+ {libx265 - Bitrate: 25 Mbps}
+ {fig:consumoxTiempoGroup-libx265-25}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 25 Mbps.}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/30/h264_nvenc-30_ConsumoxTiempoGroup.png}
+ {h264\_nvenc - Bitrate: 30 Mbps}
+ {fig:consumoxTiempoGroup-h264-30}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/30/hevc_nvenc-30_ConsumoxTiempoGroup.png}
+ {hevc\_nvenc - Bitrate: 30 Mbps}
+ {fig:consumoxTiempoGroup-hevc-30}
+
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/30/libx264-30_ConsumoxTiempoGroup.png}
+ {libx264 - Bitrate: 30 Mbps}
+ {fig:consumoxTiempoGroup-libx264-30}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/30/libx265-30_ConsumoxTiempoGroup.png}
+ {libx265 - Bitrate: 30 Mbps}
+ {fig:consumoxTiempoGroup-libx265-30}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 30 Mbps.}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/35/h264_nvenc-35_ConsumoxTiempoGroup.png}
+ {h264\_nvenc - Bitrate: 35 Mbps}
+ {fig:consumoxTiempoGroup-h264-35}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/35/hevc_nvenc-35_ConsumoxTiempoGroup.png}
+ {hevc\_nvenc - Bitrate: 35 Mbps}
+ {fig:consumoxTiempoGroup-hevc-35}
+
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/35/libx264-35_ConsumoxTiempoGroup.png}
+ {libx264 - Bitrate: 35 Mbps}
+ {fig:consumoxTiempoGroup-libx264-35}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/35/libx265-35_ConsumoxTiempoGroup.png}
+ {libx265 - Bitrate: 35 Mbps}
+ {fig:consumoxTiempoGroup-libx265-35}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 35 Mbps.}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/40/h264_nvenc-40_ConsumoxTiempoGroup.png}
+ {h264\_nvenc - Bitrate: 40 Mbps}
+ {fig:consumoxTiempoGroup-h264-40}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/40/hevc_nvenc-40_ConsumoxTiempoGroup.png}
+ {hevc\_nvenc - Bitrate: 40 Mbps}
+ {fig:consumoxTiempoGroup-hevc-40}
+
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/40/libx264-40_ConsumoxTiempoGroup.png}
+ {libx264 - Bitrate: 40 Mbps}
+ {fig:consumoxTiempoGroup-libx264-40}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/40/libx265-40_ConsumoxTiempoGroup.png}
+ {libx265 - Bitrate: 40 Mbps}
+ {fig:consumoxTiempoGroup-libx265-40}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 40 Mbps.}
+\end{figure}
+
+
+\begin{figure}[H]
+ \centering
+ \small
+ \dosubfigs
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/50/h264_nvenc-50_ConsumoxTiempoGroup.png}
+ {h264\_nvenc - Bitrate: 50 Mbps}
+ {fig:consumoxTiempoGroup-h264-50}
+ {figs/exp2.2/ploter2.2/consumoxtiempo-group/50/libx264-50_ConsumoxTiempoGroup.png}
+ {libx264 - Bitrate: 50 Mbps}
+ {fig:consumoxTiempoGroup-libx264-50}
+
+ \caption{Métrica de consumo energético frente a tiempo de codificación del proceso de codificación de vídeos con un bitrate de 50 Mbps.}
+\end{figure}
+
+
+ 
+\section{Experimento 3: Consumo Energético en relacion del numero de threads y cores} \label{apendice:exp2.3-graficas}
 % Consumoxcores
 % Consumoxcores
-     \begin{figure}[htbp]
+     \begin{figure}[H]
       \centering
       \small
       \dosubfigs
@@ -396,11 +573,11 @@
       \dosubfigs
       {figs/exp2.3/ploter2.3/consumoxcores/libx264-10Mbps_ConsumoxCores.png}{libx264 - Bitrate: 10 Mbps }{fig:consumoxcores-libx264-10}
       {figs/exp2.3/ploter2.3/consumoxcores/libx265-10Mbps_ConsumoxCores.png}{libx265 - Bitrate: 10 Mbps}{fig:consumoxcores-libx265-10}
-      \caption{Graficas resultantes de las métricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 10 Mbps}
+      \caption{Graficas resultantes de las métricas del experimente 2.3, consumo energético frente a a numero de cores emplenado codificación a 10 Mbps}
       \label{fig-group:consumoxcores-10mps}
      \end{figure}
 
-     \begin{figure}[htbp]
+     \begin{figure}[H]
       \centering
       \small
       \dosubfigs
@@ -409,12 +586,12 @@
       \dosubfigs
       {figs/exp2.3/ploter2.3/consumoxcores/libx264-30Mbps_ConsumoxCores.png}{libx264 - Bitrate: 30 Mbps }{fig:consumoxcores-libx264-30}
       {figs/exp2.3/ploter2.3/consumoxcores/libx265-30Mbps_ConsumoxCores.png}{libx265 - Bitrate: 30 Mbps}{fig:consumoxcores-libx265-30}
-      \caption{Graficas resultantes de las métricas del experimente 2.3, consumo energetico frente a a numero de cores emplenado codificacion a 30 Mbps}
+      \caption{Graficas resultantes de las métricas del experimente 2.3, consumo energético frente a a numero de cores emplenado codificación a 30 Mbps}
       \label{fig-group:consumoxcores-30mps}
      \end{figure}
 
 % gpuvscpu
-  \begin{figure}[htbp]
+  \begin{figure}[H]
    \centering
    \small
    \dosubfigs
@@ -429,13 +606,13 @@
 
 % tiempoxcores
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-eldorado-10-h264hevc}
     {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-eldorado-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-eldorado-10-libx}
     {figs/exp2.3/ploter2.3/tiempoxcores/Eldorado_chunk0010_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-eldorado-30-libx}
@@ -443,13 +620,13 @@
   \label{fig:tiempo-eldorado}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-indoor-10-h264hevc}
     {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-indoor-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-indoor-10-libx}
     {figs/exp2.3/ploter2.3/tiempoxcores/IndoorSoccer_chunk0004_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-indoor-30-libx}
@@ -457,13 +634,13 @@
   \label{fig:tiempo-indoor}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-life53-10-h264hevc}
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-life53-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-life53-10-libx}
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0053_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-life53-30-libx}
@@ -471,13 +648,13 @@
   \label{fig:tiempo-life53}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-life56-10-h264hevc}
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-life56-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-life56-10-libx}
     {figs/exp2.3/ploter2.3/tiempoxcores/LifeUntouched_chunk0056_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-life56-30-libx}
@@ -485,13 +662,13 @@
   \label{fig:tiempo-life56}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-sintel-10-h264hevc}
     {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-sintel-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-sintel-10-libx}
     {figs/exp2.3/ploter2.3/tiempoxcores/Sintel_chunk0027_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-sintel-30-libx}
@@ -499,13 +676,13 @@
   \label{fig:tiempo-sintel}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-skate-10-h264hevc}
     {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-skate-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-skate-10-libx}
     {figs/exp2.3/ploter2.3/tiempoxcores/Skateboarding_chunk0020_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-skate-30-libx}
@@ -513,13 +690,12 @@
   \label{fig:tiempo-skate}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-10Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 10 Mbps}{fig:tiempo-tears-10-h264hevc}
     {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-30Mbps_h264_hevc_TiempoxCores.png}{h264/hevc - 30 Mbps}{fig:tiempo-tears-30-h264hevc}
-  \vspace{1cm}
   \dosubfigs
     {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-10Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 10 Mbps}{fig:tiempo-tears-10-libx}
     {figs/exp2.3/ploter2.3/tiempoxcores/TearsOfSteel_chunk0235_30fps_30s-30Mbps_libx264_libx265_TiempoxCores.png}{libx264/libx265 - 30 Mbps}{fig:tiempo-tears-30-libx}
@@ -528,13 +704,12 @@
 \end{figure}
 
 % consumoxtiempo
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-eldorado10-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-eldorado10-30-h264hevc}
-  \vspace{1cm}
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-eldorado10-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0010_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-eldorado10-30-libx}
@@ -542,13 +717,13 @@
   \label{fig:consumo-eldorado10}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-eldorado15-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-eldorado15-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-eldorado15-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Eldorado_chunk0015_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-eldorado15-30-libx}
@@ -556,13 +731,13 @@
   \label{fig:consumo-eldorado15}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-indoor-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-indoor-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-indoor-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/IndoorSoccer_chunk0004_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-indoor-30-libx}
@@ -570,13 +745,13 @@
   \label{fig:consumo-indoor}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-life53-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-life53-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-life53-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0053_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-life53-30-libx}
@@ -584,13 +759,13 @@
   \label{fig:consumo-life53}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-life56-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-life56-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-life56-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/LifeUntouched_chunk0056_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-life56-30-libx}
@@ -598,13 +773,13 @@
   \label{fig:consumo-life56}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-sintel-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-sintel-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-sintel-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Sintel_chunk0027_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-sintel-30-libx}
@@ -612,13 +787,13 @@
   \label{fig:consumo-sintel}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-skate-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-skate-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-skate-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/Skateboarding_chunk0020_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-skate-30-libx}
@@ -626,13 +801,13 @@
   \label{fig:consumo-skate}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \small
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-10Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 10 Mbps}{fig:consumo-tears-10-h264hevc}
     {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-30Mbps_h264_hevc_ConsumoxTiempo.png}{h264/hevc - 30 Mbps}{fig:consumo-tears-30-h264hevc}
-  \vspace{1cm}
+  
   \dosubfigs
     {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-10Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 10 Mbps}{fig:consumo-tears-10-libx}
     {figs/exp2.3/ploter2.3/consumoxtiempo/TearsOfSteel_chunk0235_30fps_30s-30Mbps_libx264_libx265_ConsumoxTiempo.png}{libx264/libx265 - 30 Mbps}{fig:consumo-tears-30-libx}
