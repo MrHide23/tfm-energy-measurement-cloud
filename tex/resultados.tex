@@ -4,9 +4,8 @@
  \input{tex/results/exp3.tex}\label{exp3-desarrollo}
 
  \section{Resultados y Discusión}
- 
   \subsection{Resultados del Experimento 2: Consumo energético en relación al SITI}\label{subsec:exp2.2-siti}
-   Los resultados obtenidos durante la fase experimental \textbf{Experimento 2.2: Consumo energético en relación al SITI}\ref{section:exp2.2-sitixconsumo} han permitido analizar la relación existente entre el consumo energético del proceso de transcodificación, las características del contenido de vídeo, representadas mediante las características de vídeo \textit{Spatial Information} (SI) y \textit{Temporal Information} (TI), y el comportamiento de los diferentes codificadores evaluados. Las gráficas utilizadas para este análisis han sido generadas mediante el script de Python \textbf{ploter-exp2.2}, a partir de las métricas obtenidas por el script en Bash \textbf{exp2.2-sisti-energy}. Debido al elevado número de gráficas generadas, en este apartado únicamente se muestran aquellas consideradas más representativas para facilitar la interpretación de los resultados y evitar sobrecargar al lector. El conjunto completo de gráficas se encuentra disponible en la subsección \textit{Experimento 2.2: Consumo Energético en relación con el SITI} \ref{apendice:exp2.2-graficas} ubicado en el Apéndice.
+   Los resultados obtenidos durante la fase experimental \textbf{Experimento 2.2: Consumo energético en relación al SITI} \ref{section:exp2.2-sitixconsumo} han permitido analizar la relación existente entre el consumo energético del proceso de transcodificación, las características del contenido de vídeo, representadas mediante las características de vídeo \textit{Spatial Information} (SI) y \textit{Temporal Information} (TI), y el comportamiento de los diferentes codificadores evaluados. Las gráficas utilizadas para este análisis han sido generadas mediante el script de Python \textbf{ploter-exp2.2}, a partir de las métricas obtenidas por el script en Bash \textbf{exp2.2-sisti-energy}. Debido al elevado número de gráficas generadas, en este apartado únicamente se muestran aquellas consideradas más representativas para facilitar la interpretación de los resultados y evitar sobrecargar al lector. El conjunto completo de gráficas se encuentra disponible en la subsección \textit{Experimento 2.2: Consumo Energético en relación con el SITI} \ref{apendice:exp2.2-graficas} ubicado en el Apéndice.
  
    En primer lugar, se observa una tendencia general de incremento del consumo energético a medida que aumenta el \textit{bitrate} utilizado durante la codificación. Sin embargo, desde un criterio subjetivo de calidad visual, no se aprecian mejoras significativas a partir de los \textbf{35 Mbps} para los codificadores \textbf{libx264} y \textbf{H264\_NVENC}, ni a partir de los \textbf{30 Mbps} para \textbf{libx265} y \textbf{HEVC\_NVENC}. Este resultado indica que, para los vídeos y condiciones evaluados, incrementar el bitrate por encima de dichos valores supone un aumento del consumo energético sin que dicho incremento se traduzca en una mejora perceptible de la calidad. Por tanto, estos valores podrían considerarse como referencias iniciales para establecer configuraciones de codificación que busquen un compromiso entre calidad visual y eficiencia energética.
  
@@ -37,9 +36,7 @@
       {figs/exp2.2/ploter2.2/consumoxtiempo-group/30/libx264-30_ConsumoxTiempoGroup.png}{Consumo energético frente a tiempo de codificación con libx264 a 30 Mbps}{fig:exp2.2-consumoxtiempo-group-libx264-30-group}
  
   \subsection{Resultados del Experimento 3: Consumo Energético en relación al número de cores y threads}
- 
-   
- 
+
    El análisis de las gráficas obtenidas a partir de las métricas recolectadas en la sección \textbf{Experimento 3: Consumo Energético en relación al número de cores y threads}\ref{exp3-desarrollo}, ha resultado en las conclusiones acerca del consumo energético y la limitación del número de cores y threads. Dichas gráficas han sido generadas mediante el script \textbf{ploter-exp2.3.py} \ref{code:exp2.3-ploter}; no obstante, al igual que en la sección \textbf{Resultados del Experimento 2.2: Consumo energético en relación al SITI}, el número de gráficas es exacerbado y, por tanto, se han incluido en el apéndice \textbf{Experimento 3: Consumo Energético en relación al número de threads y cores} \ref{apendice:exp2.3-graficas}. Únicamente se han incluido las gráficas \ref{fig:result-exp3.2-consumoxcores-x264-30mbps}, \ref{fig:result-exp3.2-tiempoxcores-x264-30mbps} y \ref{fig:result-exp3.2-tiempoxconsumo-x264-30mbps} con el fin de facilitar la comprensión de los resultados obtenidos.
  
    
@@ -151,18 +148,18 @@
  
   \end{figure}
  
-  Debido a que no se ha extendido el tiempo del proyecto, se ha podido cumplir la estimación de costes planteada en un inicio.
- 
-  
- 
-  \begin{figure}[H]
- 
-      \centering
- 
-      \includegraphics[width=\linewidth]{figs/estimacion-inicial-coste.png}
- 
-      \caption{Header CSV del archivo de datos procesados de Kepler}
- 
-      \label{fig:coste-final-spec}
- 
-  \end{figure}
+  Debido a que no se ha extendido el tiempo del proyecto, se ha podido cumplir la estimación de costes planteada en un inicio, como se observa en la siguiente Tabla \ref{tab:results-costesfinal}.
+
+  \begin{table}[H]
+   \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}c|}
+   \hline
+   \rowcolor[HTML]{9B9B9B}
+   \multicolumn{2}{|c|}{\cellcolor[HTML]{9B9B9B}Datos del Proyecto Final} \\ \hline
+   Duración Proyecto (meses) & 5 \\ \hline
+   Gastos generales de funcionamiento y apoyo & 21 \% \\ \hline
+   \rowcolor[HTML]{E5FF0A}
+   \cellcolor[HTML]{E5FF0A}Coste Total Proyecto & \cellcolor[HTML]{E5FF0A}9964,54 € \\ \hline
+   \end{tabularx}
+   \caption{Coste del proyecto tras su realización}
+   \label{tab:results-costesfinal}
+  \end{table}

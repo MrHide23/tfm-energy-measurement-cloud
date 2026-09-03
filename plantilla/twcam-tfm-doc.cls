@@ -37,7 +37,7 @@
 \newcommand{\convocatoria}[1]{\gdef\@convocatoria{#1}}
 
 \RequirePackage[T1]{fontenc}
-\RequirePackage[spanish,activeacute]{babel}
+\RequirePackage[spanish,activeacute, es-tabla]{babel}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{fancyhdr}
@@ -101,7 +101,10 @@
   \end{minipage}%
   %\par\vspace{1ex}%
 }
-
+\addto\captionsspanish{
+ \renewcommand{\lstlistingname}{Listado} % Etiqueta en el texto
+ \renewcommand{\lstlistlistingname}{Índice de listados} % Etiqueta en el índice
+}
 % Configuración para el código usando minted
 
 \setminted{frame=single,linenos=true,fontsize=\scriptsize,numberblanklines=false}
