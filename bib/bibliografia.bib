@@ -1,8 +1,7 @@
-
 @misc{container-metrics-kubernetes,
 	title = {Container-level Energy Observability in Kubernetes Clusters},
-	url = {http://arxiv.org/abs/2504.10702},
-	doi = {10.48550/arXiv.2504.10702},
+	howpublished = {\url{http://arxiv.org/abs/2504.10702}},
+	note = { DOI: 10.48550/arXiv.2504.10702},
 	abstract = {Kubernetes has been for a number of years the default cloud orchestrator solution across multiple application and research domains. As such, optimizing the energy efficiency of Kubernetes-deployed workloads is of primary interest towards controlling operational expenses by reducing energy consumption at data center level and allocated resources at application level. A lot of research in this direction aims on reducing the total energy usage of Kubernetes clusters without establishing an understanding of their workloads, i.e. the applications deployed on the cluster. This means that there are untapped potential improvements in energy efficiency that can be achieved through, for example, application refactoring or deployment optimization. For all these cases a prerequisite is establishing fine-grained observability down to the level of individual containers and their power draw over time. A state-of-the-art tool approved by the Cloud-Native Computing Foundation, Kepler, aims to provide this functionality, but has not been assessed for its accuracy and therefore fitness for purpose. In this work we start by developing an experimental procedure to this goal, and we conclude that the reported energy usage metrics provided by Kepler are not at a satisfactory level. As a reaction to this, we develop KubeWatt as an alternative to Kepler for specific use case scenarios, and demonstrate its higher accuracy through the same experimental procedure as we used for Kepler.},
 	language = {en},
 	urldate = {2026-06-15},
@@ -10,10 +9,10 @@
 	author = {Pijnacker, Bjorn and Setz, Brian and Andrikopoulos, Vasilios},
 	month = apr,
 	year = {2025},
-	note = {arXiv:2504.10702 [cs.DC]},
+	note = {arXiv:2504.10702 [cs.DC], Accedido el 2026-06-15},
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Software Engineering},
 	annote = {Comment: 11 pages, accepted for publication at ICT4S 2025},
-	file = {PDF:/Users/guillebo/Zotero/storage/GYHVWTF2/Pijnacker et al. - 2025 - Container-level Energy Observability in Kubernetes Clusters.pdf:application/pdf},
+	
 }
 
 @article{Mico-Enguidanos-Features-2024,
@@ -30,16 +29,16 @@
   number={1},
   pages={696},
   issn={2052-4463},
-  doi={10.1038/s41597-024-03507-6},
-  url={https://doi.org/10.1038/s41597-024-03507-6}
+  note = { DOI: 10.1038/s41597-024-03507-6},
+  howpublished = {\url{https://doi.org/10.1038/s41597-024-03507-6}}
 }
 
 @article{power-consumption-estimation-models,
 	title = {Power {Consumption} {Estimation} {Models} for {Processors}, {Virtual} {Machines}, and {Servers}},
 	volume = {25},
 	issn = {1558-2183},
-	url = {https://ieeexplore.ieee.org/document/6570721},
-	doi = {10.1109/TPDS.2013.183},
+	howpublished = {\url{https://ieeexplore.ieee.org/document/6570721}},
+	note = { DOI: 10.1109/TPDS.2013.183, Accedido el 2026-08-26},
 	abstract = {The power consumption of presently available Internet servers and data centers is not proportional to the work they accomplish. The scientific community is attempting to address this problem in a number of ways, for example, by employing dynamic voltage and frequency scaling, selectively switching off idle or underutilized servers, and employing energy-aware task scheduling. Central to these approaches is the accurate estimation of the power consumption of the various subsystems of a server, particularly, the processor. We distinguish between power consumption measurement techniques and power consumption estimation models. The techniques refer to the art of instrumenting a system to measure its actual power consumption whereas the estimation models deal with indirect evidences (such as information pertaining to CPU utilization or events captured by hardware performance counters) to reason about the power consumption of a system under consideration. The paper provides a comprehensive survey of existing or proposed approaches to estimate the power consumption of single-core as well as multicore processors, virtual machines, and an entire server.},
 	number = {6},
 	urldate = {2026-08-26},
@@ -54,25 +53,24 @@
 @inproceedings{rapel-due-amd,
 	title = {Energy {Efficiency} {Aspects} of the {AMD} {Zen} 2 {Architecture}},
 	issn = {2168-9253},
-	url = {https://ieeexplore.ieee.org/abstract/document/9556102},
-	doi = {10.1109/Cluster48925.2021.00087},
+	howpublished = {\url{https://ieeexplore.ieee.org/abstract/document/9556102}},
+	note = { DOI: 10.1109/Cluster48925.2021.00087},
 	abstract = {In High Performance Computing, systems are evaluated based on their computational throughput. However, performance in contemporary server processors is primarily limited by power and thermal constraints. Ensuring operation within a given power envelope requires a wide range of sophisticated control mechanisms. While some of these are handled transparently by hardware control loops, others are controlled by the operating system. A lack of publicly disclosed implementation details further complicates this topic. However, understanding these mechanisms is a prerequisite for any effort to exploit the full computing capability and to minimize the energy consumption of today’s server systems. This paper highlights the various energy efficiency aspects of the AMD Zen 2 microarchitecture to facilitate system understanding and optimization. Key findings include qualitative and quantitative descriptions regarding core frequency transition delays, workload-based frequency limitations, effects of I/O die P-states on memory performance as well as discussion on the built-in power monitoring capabilities and its limitations. Moreover, we present specifics and caveats of idle states, wakeup times as well as the impact of idling and inactive hardware threads and cores on the performance of active resources such as other cores.},
 	urldate = {2026-08-27},
 	booktitle = {2021 {IEEE} {International} {Conference} on {Cluster} {Computing} ({CLUSTER})},
 	author = {Schöne, Robert and Ilsche, Thomas and Bielert, Mario and Velten, Markus and Schmidl, Markus and Hackenberg, Daniel},
 	month = sep,
 	year = {2021},
-	note = {ISSN: 2168-9253},
+	note = {ISSN: 2168-9253, Accedido el 2026-08-27},
 	keywords = {AMD, C-State, DVFS, energy efficiency, Energy efficiency, Epyc Rome, Hardware, High performance computing, Instruction sets, Microarchitecture, Operating systems, performance, power saving, RAPL, Throughput, Zen 2},
 	pages = {562--571},
 }
 
-
 @article{coparative-rapl-amp,
 	title = {Power measurement techniques on standard compute nodes: {A} quantitative comparison},
 	shorttitle = {Power measurement techniques on standard compute nodes},
-	url = {https://ieeexplore.ieee.org/document/6557170},
-	doi = {10.1109/ISPASS.2013.6557170},
+	howpublished = {\url{https://ieeexplore.ieee.org/document/6557170}},
+	note = { DOI: 10.1109/ISPASS.2013.6557170, Accedido el 2026-08-27},
 	abstract = {Energy efficiency is of steadily growing importance in virtually all areas from mobile to high performance computing. Therefore, lots of research projects focus on this topic and strongly rely on power measurements from their test platforms. The need for finer grained measurement data-both in terms of temporal and spatial resolution (component breakdown)-often collides with very rudimentary measurement setups that rely e.g., on non-professional power meters, IMPI based platform data or model-based interfaces such as RAPL or APM. This paper presents an in-depth study of several different AC and DC measurement methodologies as well as model approaches on test systems with the latest processor generations from both Intel and AMD. We analyze most important aspects such as signal quality, time resolution, accuracy, and measurement overhead and use a calibrated, professional power analyzer as our reference.},
 	urldate = {2026-08-27},
 	booktitle = {2013 {IEEE} {International} {Symposium} on {Performance} {Analysis} of {Systems} and {Software} ({ISPASS})},
@@ -87,15 +85,15 @@
 	title = {{AMD} {SOC} power management: {Improving} performance/watt using run-time feedback},
 	issn = {2152-3630},
 	shorttitle = {{AMD} {SOC} power management},
-	url = {https://ieeexplore.ieee.org/document/6946043/},
-	doi = {10.1109/CICC.2014.6946043},
+	howpublished = {\url{https://ieeexplore.ieee.org/document/6946043/}},
+	note = { DOI: 10.1109/CICC.2014.6946043},
 	abstract = {This paper presents an analysis of four runtime power management features implemented in AMD's recent 28nM APU. These features optimize SOC performance by shifting power and frequency resources in response to workload characteristics. The Global Efficient APM (GEAPM), Core-Bound Boost (CBB) and Memory-Bound Boost (MBB) features are shown to provide a performance improvement of up to 76\%, 4.3\% and 12.5\% respectively. The Local Efficient APM (LEAPM) feature is shown to reduce average CPU power consumption by 34\% while reducing performance by less than 1\%.},
 	urldate = {2026-08-27},
 	booktitle = {Proceedings of the {IEEE} 2014 {Custom} {Integrated} {Circuits} {Conference}},
 	author = {Bircher, W. Lloyd and Naffziger, Sam},
 	month = sep,
 	year = {2014},
-	note = {ISSN: 2152-3630},
+	note = {ISSN: 2152-3630, Accedido el 2026-08-27},
 	keywords = {Clocks, Graphics processing units, IP networks, Monitoring, Power demand, Power management, SOC, System-on-chip, Temperature, workload analysis},
 	pages = {1--4},
 }
@@ -103,8 +101,8 @@
 @article{cpu-measurement-intel-amd,
 	title = {Dissecting the software-based measurement of {CPU} energy consumption: a comparative analysis},
 	shorttitle = {Dissecting the software-based measurement of {CPU} energy consumption},
-	url = {http://arxiv.org/abs/2401.15985},
-	doi = {10.48550/arXiv.2401.15985},
+	howpublished = {\url{http://arxiv.org/abs/2401.15985}},
+	note = { DOI: 10.48550/arXiv.2401.15985},
 	abstract = {Every day, we experience the effects of the global warming: extreme weather events, major forest fires, storms, global warming, etc. The scientific community acknowledges that this crisis is a consequence of human activities where Information and Communications Technologies (ICT) are an increasingly important contributor.},
 	language = {en},
 	urldate = {2026-08-27},
@@ -112,53 +110,47 @@
 	author = {Raffin, Guillaume and Trystram, Denis},
 	month = jul,
 	year = {2024},
-	note = {arXiv:2401.15985 [cs.DC]},
+	note = {arXiv:2401.15985 [cs.DC], Accedido el 2026-08-27},
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Performance},
 }
-
 
 @misc{nvml-api-officialdoc,
  title        = {{NVML API}},
  author       = {},
  year         = {},
- note         = {Accedido: (Usa la fecha de acceso)},
+ note         = {Accedido: (2026-08-27 22:57:25)},
  howpublished = {\url{https://docs.nvidia.com/deploy/nvml-api/index.html}}
 }
 
-
 @misc{nvidia-smi-documentation,
 	title = {nvidia-smi documentation},
-	url = {https://docs.nvidia.com/deploy/nvidia-smi/index.html},
+	howpublished = {\url{https://docs.nvidia.com/deploy/nvidia-smi/index.html}},
 	urldate = {2026-08-27},
-	file = {docs.nvidia.com/deploy/nvidia-smi/index.html:/Users/guillebo/Zotero/storage/IKV8XQ3W/index.html:text/html},
+	
 }
-
-
 
 @inproceedings{gpu-measument-survery,
 	title = {Part-time {Power} {Measurements}: nvidia-smi's {Lack} of {Attention}},
 	shorttitle = {Part-time {Power} {Measurements}},
-	url = {http://arxiv.org/abs/2312.02741},
-	doi = {10.1109/SC41406.2024.00028},
+	howpublished = {\url{http://arxiv.org/abs/2312.02741}},
+	note = { DOI: 10.1109/SC41406.2024.00028},
 	abstract = {The GPU has emerged as the go-to accelerator for high throughput and parallel workloads, spanning scientific simulations to AI, thanks to its performance and power efficiency. Given that 6 out of the top 10 fastest supercomputers in the world use NVIDIA GPUs and many AI companies each employ 10,000's of NVIDIA GPUs, an accurate understanding of GPU power consumption is essential for making progress to further improve its efficiency. Despite the limited documentation and the lack of understanding of its mechanisms, NVIDIA GPUs' built-in power sensor, providing easily accessible power readings via the nvidia-smi interface, is widely used in energy efficient computing research on GPUs. Our study seeks to elucidate the internal mechanisms of the power readings provided by nvidia-smi and assess the accuracy of the power and energy consumption data. We have developed a suite of micro-benchmarks to profile the behaviour of nvidia-smi power readings and have evaluated them on over 70 different GPUs from all architectural generations since power measurement was first introduced in the 'Fermi' generation. We have identified several unforeseen problems in terms of power/energy measurement using nvidia-smi, for example on the A100 and H100 GPUs only 25\% of the runtime is sampled for power consumption, during the other 75\% of the time, the GPU can be using drastically different power and nvidia-smi and results presented by it are unaware of this. This along with other findings can lead to a drastic under/overestimation of energy consumed, especially when considering data centres housing tens of thousands of GPUs. We proposed several good practices that help to mitigate these problems. By comparing our results to those measured from an external power-meter, we have reduced the error in the energy measurement by an average of 35\% and in some cases by as much as 65\% in the test cases we present.},
 	urldate = {2026-08-27},
 	booktitle = {{SC24}: {International} {Conference} for {High} {Performance} {Computing}, {Networking}, {Storage} and {Analysis}},
 	author = {Yang, Zeyu and Adamek, Karel and Armour, Wesley},
 	month = nov,
 	year = {2024},
-	note = {arXiv:2312.02741 [cs.DC]},
+	note = {arXiv:2312.02741 [cs.DC], Accedido el 2026-08-27},
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Hardware Architecture},
 	pages = {1--17},
 }
-
-
 
 @article{gpu-hcp-use,
 	title = {A survey and measurement study of {GPU} {DVFS} on energy conservation},
 	volume = {3},
 	issn = {2352-8648},
-	url = {https://www.sciencedirect.com/science/article/pii/S2352864816300736},
-	doi = {10.1016/j.dcan.2016.10.001},
+	howpublished = {\url{https://www.sciencedirect.com/science/article/pii/S2352864816300736}},
+	note = { DOI: 10.1016/j.dcan.2016.10.001, Accedido el 2026-08-27},
 	abstract = {Energy efficiency has become one of the top design criteria for current computing systems. The dynamic voltage and frequency scaling (DVFS) has been widely adopted by laptop computers, servers, and mobile devices to conserve energy, while the GPU DVFS is still at a certain early age. This paper aims at exploring the impact of GPU DVFS on the application performance and power consumption, and furthermore, on energy conservation. We survey the state-of-the-art GPU DVFS characterizations, and then summarize recent research works on GPU power and performance models. We also conduct real GPU DVFS experiments on NVIDIA Fermi and Maxwell GPUs. According to our experimental results, GPU DVFS has significant potential for energy saving. The effect of scaling core voltage/frequency and memory voltage/frequency depends on not only the GPU architectures, but also the characteristic of GPU applications.},
 	number = {2},
 	urldate = {2026-08-27},
@@ -168,13 +160,13 @@
 	year = {2017},
 	keywords = {Dynamic voltage and frequency scaling, Energy efficiency, Graphics processing unit},
 	pages = {89--100},
-	file = {ScienceDirect Full Text PDF:/Users/guillebo/Zotero/storage/XHVNUISL/Mei et al. - 2017 - A survey and measurement study of GPU DVFS on energy conservation.pdf:application/pdf;ScienceDirect Snapshot:/Users/guillebo/Zotero/storage/69IAQRCV/S2352864816300736.html:text/html},
+	
 }
 
 @misc{energy-rapl-mesurement,
 	title = {Strategies to Measure Energy Consumption Using RAPL During Workflow Execution on Commodity Clusters},
-	url = {http://arxiv.org/abs/2505.09375},
-	doi = {10.48550/arXiv.2505.09375},
+	howpublished = {\url{http://arxiv.org/abs/2505.09375}},
+	note = { DOI: 10.48550/arXiv.2505.09375},
 	abstract = {In science, problems in many fields can be solved by processing datasets using a series of computationally expensive algorithms, sometimes referred to as workflows. Traditionally, the configurations of these workflows are optimized to achieve a short runtime for the given task and dataset on a given (often distributed) infrastructure. However, recently more attention has been drawn to energy-efficient computing, due to the negative impact of energy-inefficient computing on the environment and energy costs. To be able to assess the energy-efficiency of a given workflow configuration, reliable and accurate methods to measure the energy consumption of a system are required. One approach is the usage of built-in hardware energy counters, such as Intel RAPL. Unfortunately, effectively using RAPL for energy measurement within a workflow on a managed cluster with the typical deep software infrastructure stack can be difficult, for instance because of limited privileges and the need for communication between nodes. In this paper, we describe three ways to implement RAPL energy measurement on a Kubernetes cluster while executing scientific workflows utilizing the Nextflow workflow engine, and one additional method using IPMI. We compare them by utilizing a set of eight criteria that should be fulfilled for accurate measurement, such as the ability to react to workflow faults, portability, and added overhead. We highlight advantages and drawbacks of each method and discuss challenges and pitfalls, as well as ways to avoid them. We also empirically evaluate all methods, and find that approaches using a shell script and a Nextflow plugin are both effective and easy to implement for workflow users. Additionally, we find that measuring the energy consumption of a single task is straight forward when only one task runs at a time, but concurrent task executions on the same node require approximating per-task energy usage using metrics such as CPU utilization.},
 	language = {en},
 	urldate = {2026-06-15},
@@ -182,10 +174,10 @@
 	author = {Thamm, Philipp and Leser, Ulf},
 	month = may,
 	year = {2025},
-	note = {arXiv:2505.09375 [cs.DC]},
+	note = {arXiv:2505.09375 [cs.DC], Accedido el 2026-06-15},
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing},
 	annote = {Comment: Added missing author and acknowledgements},
-	file = {PDF:/Users/guillebo/Zotero/storage/2X7GJA5K/Thamm y Leser - 2025 - Strategies to Measure Energy Consumption Using RAPL During Workflow Execution on Commodity Clusters.pdf:application/pdf},
+	
 }
 
 @article{threads-number-encoding,
@@ -197,13 +189,12 @@
             Ademas el consumo energético es mucho mas eficiente si se lanza un gran numero de threads para segmentar el video en tareas atomicas},
 }
 
-
 @article{cloud-bases,
 	title = {A view of cloud computing},
 	volume = {53},
 	issn = {0001-0782},
-	url = {https://dl.acm.org/doi/10.1145/1721654.1721672},
-	doi = {10.1145/1721654.1721672},
+	howpublished = {\url{https://dl.acm.org/doi/10.1145/1721654.1721672}},
+	note = { DOI: 10.1145/1721654.1721672, Accedido el 2026-06-25},
 	abstract = {Clearing the clouds away from the true potential and obstacles posed by this computing capability.},
 	number = {4},
 	urldate = {2026-06-25},
@@ -228,8 +219,8 @@
 	title = {A Systematic Review of Energy Efficiency Metrics for Optimizing Cloud Data Center Operations and Management},
 	volume = {14},
 	issn = {2079-9292},
-	url = {https://www.mdpi.com/2079-9292/14/11/2214},
-	doi = {10.3390/electronics14112214},
+	howpublished = {\url{https://www.mdpi.com/2079-9292/14/11/2214}},
+	note = { DOI: 10.3390/electronics14112214, Accedido el 2026-06-16},
 	abstract = {Cloud Data Centers (CDCs) are an essential component of the infrastructure for powering the digital life of modern society, hosting and processing vast amounts of data and enabling services such as streaming, Artificial Intelligence (AI), and global connectivity. Given this importance, their energy efficiency is a top priority, as they consume significant amounts of electricity, contributing to operational costs and environmental impact. Efficient CDCs reduce energy waste, lower carbon footprints, and support sustainable growth in digital services. Consequently, energy efficiency metrics are used to measure how effectively a CDC utilizes energy for computing versus cooling and other overheads. These metrics are essential because they guide operators in optimizing resource use, reducing costs, and meeting regulatory and environmental goals. To this end, this paper reviews more than 25 energy efficiency metrics and more than 250 literature references to CDCs, different energy-consuming components, and configuration setups. Then, some real-world case studies of corporations that use these metrics are presented. Thereby, the challenges and limitations are investigated for each metric, and associated future research directions are provided. Prioritizing energy efficiency in CDCs, guided by these energy efficiency metrics, is essential for minimizing environmental impact, reducing costs, and ensuring sustainable scalability for the digital economy.},
 	language = {en},
 	number = {11},
@@ -242,54 +233,47 @@
 	pages = {2214},
 	annote = {Paper que habla del consumo energético de los centros de super computacion:
 
-
 	Define 250 herramientas fisicas y de software
-
 
     Define Consumo energetivco global mas halla del software y del hardwar
 
-
-
     },
-	file = {PDF:/Users/guillebo/Zotero/storage/N878VZP7/Safari et al. - 2025 - A Systematic Review of Energy Efficiency Metrics for Optimizing Cloud Data Center Operations and Man.pdf:application/pdf},
+	
 }
 
 @misc{iae-report-consumption,
 	title = {Electricity 2026 – Analysis},
-	url = {https://www.iea.org/reports/electricity-2026},
+	howpublished = {\url{https://www.iea.org/reports/electricity-2026}},
 	abstract = {Electricity 2026 - Analysis and key findings. A report by the International Energy Agency.},
 	language = {en-GB},
 	urldate = {2026-07-01},
 	journal = {IEA},
 	keywords = {PENDIENTE},
-	file = {Snapshot:/Users/guillebo/Zotero/storage/L8UKCB53/electricity-2026.html:text/html},
+	
 }
-
-
 
 @article{tokyo-livestreming-acceleration-gpu,
 	title = {Evaluation of {Hardware}-based {Video} {Encoders} on {Modern} {GPUs} for {UHD} {Live}-{Streaming}},
 	issn = {2637-9430},
-	url = {https://ieeexplore.ieee.org/abstract/document/10637525},
-	doi = {10.1109/ICCCN61486.2024.10637525},
+	howpublished = {\url{https://ieeexplore.ieee.org/abstract/document/10637525}},
+	note = { DOI: 10.1109/ICCCN61486.2024.10637525},
 	abstract = {Many GPUs have incorporated hardware-accelerated video encoders, which allow video encoding tasks to be offloaded from the main CPU and provide higher power efficiency. Over the years, many new video codecs such as H.265/HEVC, VP9, and AV1 were added to the latest GPU boards. Recently, the rise of live video content such as VTuber, game live-streaming, and live event broadcasts, drives the demand for high-efficiency hardware encoders in the GPUs to tackle these real-time video encoding tasks, especially at higher resolutions such as 4K/8K UHD. In this paper, RD performance, encoding speed, as well as power consumption of hardware encoders in several generations of NVIDIA, Intel GPUs as well as Qualcomm Snapdragon Mobile SoCs were evaluated and compared to the software counterparts, including the latest H.266/VVC codec, using several metrics including PSNR, SSIM, and machine-learning based VMAF. The results show that modern GPU hardware encoders can match the RD performance of software encoders in real-time encoding scenarios, and while encoding speed increased in newer hardware, there is mostly negligible RD performance improvement between hardware generations. Finally, the bitrate required for each hardware encoder to match YouTube transcoding quality was also calculated.},
 	urldate = {2026-08-25},
 	booktitle = {2024 33rd {International} {Conference} on {Computer} {Communications} and {Networks} ({ICCCN})},
 	author = {Arunruangsirilert, Kasidis and Katto, Jiro},
 	month = jul,
 	year = {2024},
-	note = {ISSN: 2637-9430},
+	note = {ISSN: 2637-9430, Accedido el 2026-08-25},
 	keywords = {Bit rate, Encoding, Graphic Processing Unit (GPU), Hardware, Hardware Acceleration, Live-Streaming, PENDIENTE, Software, Throughput, Transcoding, Ultra High-Definition (UHD), Video Encoders, Video on demand},
 	pages = {1--9},
 }
-
 
 @article{video-complexity,
 	address = {Vancouver BC Canada},
 	title = {Green video complexity analysis for efficient encoding in {Adaptive} {Video} {Streaming}},
 	isbn = {979-8-4007-0196-2},
-	url = {https://dl.acm.org/doi/10.1145/3593908.3593942},
-	doi = {10.1145/3593908.3593942},
+	howpublished = {\url{https://dl.acm.org/doi/10.1145/3593908.3593942}},
+	note = { DOI: 10.1145/3593908.3593942, Accedido el 2026-08-25},
 	abstract = {For adaptive streaming applications, low-complexity and accurate video complexity features are necessary to analyze the video content in real time, which ensures fast and compression-efficient video streaming without disruptions. State-of-the-art video complexity features are Spatial Information (SI) and Temporal Information (TI) features which do not correlate well with the encoding parameters in adaptive streaming applications. To this light, Video Complexity Analyzer (VCA) was introduced, determining the features based on Discrete Cosine Transform (DCT)-energy. This paper presents optimizations on VCA for faster and energy-efficient video complexity analysis. Experimental results show that VCA v2.0, using eight CPU threads, Single Instruction Multiple Data (SIMD), and low-pass DCT optimization, determines seven complexity features of Ultra High Definition 8-bit videos with better accuracy at a speed of up to 292.68 fps and an energy consumption of 97.06\% lower than the reference SITI implementation.},
 	language = {en},
 	urldate = {2026-08-25},
@@ -301,12 +285,11 @@
 	pages = {16--18},
 }
 
-
 @article{vm-vs-docker-unikernels,
 	title = {Hypervisors vs. {Lightweight} {Virtualization}: {A} {Performance} {Comparison}},
 	shorttitle = {Hypervisors vs. {Lightweight} {Virtualization}},
-	url = {https://ieeexplore.ieee.org/document/7092949/},
-	doi = {10.1109/IC2E.2015.74},
+	howpublished = {\url{https://ieeexplore.ieee.org/document/7092949/}},
+	note = { DOI: 10.1109/IC2E.2015.74, Accedido el 2026-08-25},
 	abstract = {Virtualization of operating systems provides a common way to run different services in the cloud. Recently, the lightweight virtualization technologies claim to offer superior performance. In this paper, we present a detailed performance comparison of traditional hypervisor based virtualization and new lightweight solutions. In our measurements, we use several benchmarks tools in order to understand the strengths, weaknesses, and anomalies introduced by these different platforms in terms of processing, storage, memory and network. Our results show that containers achieve generally better performance when compared with traditional virtual machines and other recent solutions. Albeit containers offer clearly more dense deployment of virtual machines, the performance difference with other technologies is in many cases relatively small.},
 	urldate = {2026-08-25},
 	booktitle = {2015 {IEEE} {International} {Conference} on {Cloud} {Engineering}},
@@ -315,15 +298,14 @@
 	year = {2015},
 	keywords = {Benchmark testing, Benchmarking, Container, Containers, Hypervisor, Linux, Operating systems, PENDIENTE, Performance, Virtual machine monitors, Virtualization},
 	pages = {386--393},
-	file = {Full Text PDF:/Users/guillebo/Zotero/storage/CLIR93M4/Morabito et al. - 2015 - Hypervisors vs. Lightweight Virtualization A Performance Comparison.pdf:application/pdf},
+	
 }
-
 
 @article{vm-unikernels-container-comparative,
 	address = {Cham},
 	title = {A {Performance} {Survey} of {Lightweight} {Virtualization} {Techniques}},
 	isbn = {978-3-319-67262-5},
-	doi = {10.1007/978-3-319-67262-5_3},
+	note = { DOI: 10.1007/978-3-319-67262-5\_3},
 	abstract = {The increasing prevalence of the microservice paradigm creates a new demand for low-overhead virtualization techniques. Complementing containerization, unikernels are emerging as alternative approaches. With both techniques undergoing rapid improvements, the current landscape of lightweight virtualization approaches presents a confusing scenery, complicating the task of choosing a suited technology for an intended purpose. This work provides a comprehensive performance comparison covering containers, unikernels, whole-system virtualization, native hardware, and combinations thereof. Representing common workloads in microservice-based applications, we assess application performance using HTTP servers and a key-value store. With the microservice deployment paradigm in mind, we evaluate further characteristics such as startup time, image size, network latency, and memory footprint.},
 	language = {en},
 	booktitle = {Service-{Oriented} and {Cloud} {Computing}},
@@ -333,14 +315,13 @@
 	year = {2017},
 	keywords = {PENDIENTE, HTTP Server, Microservices, Native Hardware, Startup Time, Virtualization Approaches},
 	pages = {34--48},
-	file = {Full Text PDF:/Users/guillebo/Zotero/storage/ZWKFBWJD/Plauth et al. - 2017 - A Performance Survey of Lightweight Virtualization Techniques.pdf:application/pdf},
+	
 }
-
 
 @article{gpuvscpu-videoencoding,
 	title = {Hardware and software video encoding comparison},
-	url = {https://ieeexplore.ieee.org/abstract/document/9240439},
-	doi = {10.23919/SICE48898.2020.9240439},
+	howpublished = {\url{https://ieeexplore.ieee.org/abstract/document/9240439}},
+	note = { DOI: 10.23919/SICE48898.2020.9240439, Accedido el 2026-08-25},
 	abstract = {Long time of data encoding with software encoding mechanisms might become a significant problem when transferring digital data from cameras of mobile robots. At the same time, processor manufacturers claim that an encoding process is significantly accelerated by using a hardware encoding. This work is dedicated to a hardware and a software video encoding comparison of two state-of-the-art codecs, which were selected due to their high popularity in computer vision and robotics fields - a hardware encoding with h264 vaapi and a software encoding with FFmpeg API libx265 codec. We encoded six video sequences of different resolutions and sizes with the two codecs and evaluated obtained video quality using the Structural Similarity Index, the Peak Signal-to-Noise ratio, and the Video Multimethod Assessment Fusion metrics. Software and hardware encoding processes were also compared by CPU and memory usage, and time that was taken by the encoding process. Our results demonstrated that the hardware encoding with h264 vaapi was 5 times more memory efficient and 6 times more time-efficient relatively to the software encoding with libx265, with an insignificant difference of an output video quality.},
 	urldate = {2026-08-25},
 	booktitle = {2020 59th {Annual} {Conference} of the {Society} of {Instrument} and {Control} {Engineers} of {Japan} ({SICE})},
@@ -349,46 +330,45 @@
 	year = {2020},
 	keywords = {Codecs, Computer vision, Encoding, FFmpeg, Hardware, Hardware encoding, Intel QuickSync, PENDIENTE, Quality assessment, Robot vision, Software, Software encoding, Video recording, Video sequences, Video stream},
 	pages = {924--929},
-	file = {Full Text PDF:/Users/guillebo/Zotero/storage/G5FAF6P2/Safin et al. - 2020 - Hardware and software video encoding comparison.pdf:application/pdf},
+	
 }
-
 
 @misc{h264-vs-h265,
 	title = {({PDF}) {Comparison} of {H}.264 and {H}.265},
-	url = {https://www.researchgate.net/publication/360485519_Comparison_of_H264_and_H265},
-	doi = {10.5281/zenodo.6531466},
+	howpublished = {\url{https://www.researchgate.net/publication/360485519_Comparison_of_H264_and_H265}},
+	note = { DOI: 10.5281/zenodo.6531466},
 	abstract = {PDF {\textbar} From the Stone Age to the present day, visual communication can be described as a form of communication that has evolved over various topics, from... {\textbar} Find, read and cite all the research you need on ResearchGate},
 	language = {en},
 	urldate = {2026-08-24},
 	journal = {ResearchGate},
-	doi = {10.5281/zenodo.6531466},
+	note = { DOI: 10.5281/zenodo.6531466, Accedido el 2026-08-24},
 	keywords = {PENDIENTE},
-	file = {PDF:/Users/guillebo/Zotero/storage/BS6C9BFE/(PDF) Comparison of H.264 and H.265.pdf:application/pdf},
+	
 }
 
 @misc{itu-official-h264,
 	title = {{ITU}-{H}.264},
-	url = {https://www.itu.int/rec/T-REC-H.264-202606-I/en},
-	file = {H.264\:https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-H.264-202606-I!!PDF-E&type=items},
+	howpublished = {\url{https://www.itu.int/rec/T-REC-H.264-202606-I/en}},
+	
 	urldate = {2026-08-24},
 }
 
 @misc{itu-official-h265,
 	title = {H.265:{High} efficiency video coding},
-	url = {https://www.itu.int/rec/T-REC-H.265-202601-I/en},
+	howpublished = {\url{https://www.itu.int/rec/T-REC-H.265-202601-I/en}},
 	urldate = {2026-08-24},
-	file = {H.265\:https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-H.265-202601-I!!PDF-E&type=items},
+	
 }
 
 @misc{bitmovin-9-report,
 	title = {Bitmovin {Video} {Developer} {Report} - {Bitmovin}},
-	url = {https://bitmovin.com/video-developer-report/},
+	howpublished = {\url{https://bitmovin.com/video-developer-report/}},
 	abstract = {The 10th Annual Bitmovin Video Developer Report reveals how leading video teams are putting AI to work, growing advertising revenue, and rebuilding the},
 	language = {en-GB},
 	urldate = {2026-08-24},
 	month = dec,
 	year = {2022},
-	file = {Bitmovin-9th-Report.pdf:https://bitmovin.com/downloads/bitmovin-9th-video-developer-report-2025-2026.pdf},
+	
 }
 
 @article{codecs-landscape,
@@ -403,7 +383,7 @@
 @article{multithread-energy-consumption-videoencoding,
 	address = {Bruges, Belgium},
 	title = {Experimental study of the impact of multi-threading on video encoding energy consumption},
-	url = {https://hal.science/hal-05648352},
+	howpublished = {\url{https://hal.science/hal-05648352}},
 	abstract = {Modern CPUs are equipped with more and more cores, raising the question of how parallelism leads to better energy efficiency, especially in intensive tasks like video encoding. This work investigates how video encoding using multiple threads leads to better usage of available cores, and if it actually improves energy efficiency. Based on real video transcoding energy measurements on a server, we test classical energy models in a multi-threaded context. On the one hand, we observe that the energy consumed during encoding is indeed decreasing with the number of cores used during the task. On the other hand, we also observe that this number of used cores is not always linked to the number of threads that are given in parameter to the encoder when encoding a single video. Hence, this study enables to state that the energy savings due to multi-threading is likely for small number of threads, but less achievable when the number of threads becomes high. This gain can be even greater when encoding multiple videos simultaneously.},
 	urldate = {2026-07-31},
 	booktitle = {{EUSIPCO} - {European} {Signal} {Processing} {Conference}},
@@ -412,10 +392,9 @@
 	year = {2026},
 }
 
-
 @inproceedings{radicke2014multithreaded,
 	title = {A multi-threaded full-feature {HEVC} encoder based on {Wavefront} {Parallel} {Processing}},
-	url = {https://ieeexplore.ieee.org/document/7514486/},
+	howpublished = {\url{https://ieeexplore.ieee.org/document/7514486/}},
 	abstract = {The High Efficiency Video Coding (HEVC) standard was finalized in early 2013. It provides a far better coding efficiency than any preceding standard but it also bears a significantly higher complexity. In order to cope with the high processing demands, the standard includes several parallelization schemes, that make multi-core encoding and decoding possible. However, the effective realization of these methods is up to the respective codec developers. We propose a multi-threaded encoder implementation, based on HEVC's reference test model HM11, that makes full use of the Wavefront Parallel Processing (WPP) mechanism and runs on regular consumer hardware. Furthermore, our software produces identical output bitstreams as HM11 and supports all of its features that are allowable in combination with WPP. Experimental results show that our prototype is up to 5.5 times faster than HM11 running on a machine with 6 physical processing cores.},
 	urldate = {2026-08-29},
 	booktitle = {2014 {International} {Conference} on {Signal} {Processing} and {Multimedia} {Applications} ({SIGMAP})},
@@ -424,15 +403,13 @@
 	year = {2014},
 	keywords = {Decoding, Encoding, High Efficiency Video Coding (HEVC), Multi-threading, Parallel processing, Software, Standards, Wavefront Parallel Processing (WPP)},
 	pages = {90--98},
-	file = {PDF:/Users/guillebo/Zotero/storage/LD7XSDWY/Radicke et al. - 2014 - A multi-threaded full-feature HEVC encoder based on Wavefront Parallel Processing.pdf:application/pdf},
+	
 }
-
-
 
 @inproceedings{chen2004multilevel,
 	title = {Towards efficient multi-level threading of {H}.264 encoder on {Intel} hyper-threading architectures},
-	url = {https://ieeexplore.ieee.org/document/1302990/},
-	doi = {10.1109/IPDPS.2004.1302990},
+	howpublished = {\url{https://ieeexplore.ieee.org/document/1302990/}},
+	note = { DOI: 10.1109/IPDPS.2004.1302990, Accedido el 2026-08-29},
 	abstract = {Summary form only given. Exploiting thread-level parallelism is a promising way to improve the performance of multimedia applications that are running on multithreading general-purpose processors. We describe the work in developing our threaded H.264 encoder. We parallelize the H.264 encoder using the OpenMP programming model, which allows us to leverage the advanced compiler technologies in the Intel/spl reg/ C++ compiler for Intel hyper-threading architectures. After we present our design considerations in the parallelization process, we describe two efficient methods for multilevel data partitioning, which can improve the performance of our multithreaded H.264 encoder. Furthermore, we exploit different options in the OpenMP programming. While one implementation that uses the task queuing model is slightly slower than the other implementation, it is easier to be read than the other one. The results have shown good speedups ranging from 3.74x to 4.53x over the well-optimized sequential code performance on a system of 4 Intel Xeon/spl trade/processors with hyper-threading technology.},
 	urldate = {2026-08-29},
 	booktitle = {18th {International} {Parallel} and {Distributed} {Processing} {Symposium}, 2004. {Proceedings}.},
@@ -441,16 +418,15 @@
 	year = {2004},
 	keywords = {Application software, Computer architecture, Laboratories, Motion compensation, Multithreading, Parallel processing, Parallel programming, Program processors, Transform coding, Video coding},
 	pages = {63--},
-	file = {PDF:/Users/guillebo/Zotero/storage/2JFUIQ53/Chen et al. - 2004 - Towards efficient multi-level threading of H.264 encoder on Intel hyper-threading architectures.pdf:application/pdf},
+	
 }
-
 
 @article{h264-survery,
 	title = {The {H}.264 {Video} {Coding} {Standard}},
 	volume = {13},
 	issn = {1941-0166},
-	url = {https://ieeexplore.ieee.org/abstract/document/1709847},
-	doi = {10.1109/MMUL.2006.93},
+	howpublished = {\url{https://ieeexplore.ieee.org/abstract/document/1709847}},
+	note = { DOI: 10.1109/MMUL.2006.93, Accedido el 2026-08-28},
 	abstract = {The H.264 video coding standard, also known as MPEG AVC, represents the state of the art in video compression. This article provides an overview of the H.264 standard. To help the reader understand the similarities and differences between it and MPEG-2 (and other hybrid video coding standards), the author describes the H.264 features and compare them to functionally similar MPEG-2 features},
 	number = {4},
 	urldate = {2026-08-28},
@@ -462,12 +438,11 @@
 	pages = {86--90},
 }
 
-
 @inproceedings{h265-survery,
 	title = {Towards {H}.265 video coding standard},
 	volume = {8008},
-	url = {https://www.spiedigitallibrary.org/conference-proceedings-of-spie/8008/800819/Towards-H265-video-coding-standard/10.1117/12.905583},
-	doi = {10.1117/12.905583},
+	howpublished = {\url{https://www.spiedigitallibrary.org/conference-proceedings-of-spie/8008/800819/Towards-H265-video-coding-standard/10.1117/12.905583}},
+	note = { DOI: 10.1117/12.905583, Accedido el 2026-08-28},
 	abstract = {This document presents a short description of the current stage of works on H.265/HEVC video coding standard, which is being prepared by the JCT-VC group in order to achieve a 50\% reduction of the dat},
 	language = {en},
 	urldate = {2026-08-28},
@@ -477,75 +452,21 @@
 	month = oct,
 	year = {2011},
 	pages = {387},
-	file = {PDF:/Users/guillebo/Zotero/storage/YPLLFC2I/Abramowski - 2011 - Towards H.265 video coding standard.pdf:application/pdf},
+	
 }
-
 
 @misc{video-encoding-definition,
 	title = {H.262:{Information} technology - {Generic} coding of moving pictures and associated audio information: {Video}},
-	url = {https://www.itu.int/rec/T-REC-H.262},
+	howpublished = {\url{https://www.itu.int/rec/T-REC-H.262}},
 	urldate = {2026-08-24}
 }
-
-
-@inproceedings{richard_experimental_2026,
-	address = {Bruges, Belgium},
-	title = {Experimental study of the impact of multi-threading on video encoding energy consumption},
-	url = {https://hal.science/hal-05648352},
-	abstract = {Modern CPUs are equipped with more and more cores, raising the question of how parallelism leads to better energy efficiency, especially in intensive tasks like video encoding. This work investigates how video encoding using multiple threads leads to better usage of available cores, and if it actually improves energy efficiency. Based on real video transcoding energy measurements on a server, we test classical energy models in a multi-threaded context. On the one hand, we observe that the energy consumed during encoding is indeed decreasing with the number of cores used during the task. On the other hand, we also observe that this number of used cores is not always linked to the number of threads that are given in parameter to the encoder when encoding a single video. Hence, this study enables to state that the energy savings due to multi-threading is likely for small number of threads, but less achievable when the number of threads becomes high. This gain can be even greater when encoding multiple videos simultaneously.},
-	urldate = {2026-07-31},
-	booktitle = {{EUSIPCO} - {European} {Signal} {Processing} {Conference}},
-	author = {Richard, Robin and Orgerie, Anne-Cécile and Maugey, Thomas},
-	month = aug,
-	year = {2026},
-	keywords = {ADDED, energy efficiency, experimental evaluation, multi-threading, video encoding},
-	annote = {NOTAS DEL PAPER:
-Resultado de Experimentación:
-Codificacion de video de forma aislada:
-
-
-Dependiendo del codificador se logra un mejor aprovechamiento de los threads y los cores establecidos, aunque se observa que en algunos codecs un mayor numero de cores no mejor la eficiencia sino que la perjudica.
-
-
-Esto se debe a que la codificación es un proceso secuencial complejo altamente dificil de dividir en subprocesos independientes lo que implica que en la mayoria de los casos al lanzar un thread se copia informacion y posteriormente se destruye, lo que implica un gato de energía que puede ser considerable con multiples threads
-
-
-
-
-Se comprueba que el modelo c = n es asequible para la mayoria de codificadores pero el como se comportan es diferente, alguno se ajustan a esta formula y otros saturan y no logran mejorar. Se destaca que a mas compleja, intensa y larga sea la tarea mejor paralelismo tiene
-
-
-Destacar que los presents de cada encoder en relacion con el coste computacional dela codificación afectan a la decision del encoder para emplear mas threads o simplemente descartar la idea:
-
-
-Esto se debe a que el esfuerzo de correr en paralelo frente a mono es muy sacrificado
-
-
-Se pierde granularidad en el proceso multi-thread
-
-
-
-
-Codificacion de multiples videos secuenciales:En este caso unicmente se emplea un thread del sistema por proceso de codificación
-
-
-Se aprobecha mejor la eficiencia de los cores y los codificacodres cuando se lanzan multiples videos en 1 unico threads del sistema sin especificar limitacion en cuanto a CPU y/o threads. Se observa mejoras en la eficiencia, un mejor uso de los cores logicos asi como un menor tiempo de codificación.
-
-
-Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto a numero de threads del sistema que pueden ser lanzados, siendo en este caso en torno a los 52 threads por core
-
-
-},
-	file = {PDF:/Users/guillebo/Zotero/storage/SSPZSX9H/Richard et al. - 2026 - Experimental study of the impact of multi-threading on video encoding energy consumption.pdf:application/pdf},
-}
-
 
 @article{runtime-comparation,
 	title = {Performance and isolation analysis of {RunC}, {gVisor} and {Kata} {Containers} runtimes},
 	volume = {25},
 	issn = {1573-7543},
-	url = {https://doi.org/10.1007/s10586-021-03517-8},
-	doi = {10.1007/s10586-021-03517-8},
+	howpublished = {\url{https://doi.org/10.1007/s10586-021-03517-8}},
+	note = { DOI: 10.1007/s10586-021-03517-8, Accedido el 2026-08-26},
 	abstract = {Containers are resource-efficient and most IT industries are adopting container-based infrastructure. However, the security and isolation of the container is rather weak. In this work, we aim to conduct an in-depth quantitative analysis of the performance characteristics of containerization technologies that strengthen container isolation and security, and discuss the applicable scenarios of various containerization technologies. We evaluate multiple cloud resource management dimensions of RunC, gVisor, and Kata Containers runtimes, including performance, system call, startup time, density, and isolation. Experimental results show that RunC and Kata Containers have less performance overhead, while gVisor suffers significant performance degradation in I/O and system call, although its isolation is the best. Our work deepens the understanding of the container performance characteristics and may help cloud computing practitioners in making proper decisions on platform selection, system maintenance and/or design.},
 	language = {en},
 	number = {2},
@@ -556,45 +477,44 @@ Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto 
 	year = {2022},
 	keywords = {gVisor, Isolation, Kata Containers, Performance evaluation, RunC},
 	pages = {1497--1513},
-	file = {Full Text PDF:/Users/guillebo/Zotero/storage/GQDY8DCM/Wang et al. - 2022 - Performance and isolation analysis of RunC, gVisor and Kata Containers runtimes.pdf:application/pdf},
+	
 }
 
 @inproceedings{hw-acceleration-container,
 	title = {An {Accelerated} {Edge} {Computing} with a {Container} and {Its} {Orchestration}},
 	issn = {2162-1233},
-	url = {https://ieeexplore.ieee.org/document/8939853},
-	doi = {10.1109/ICTC46691.2019.8939853},
+	howpublished = {\url{https://ieeexplore.ieee.org/document/8939853}},
+	note = { DOI: 10.1109/ICTC46691.2019.8939853},
 	abstract = {Current mobile applications are becoming more compute-intensive so that they should be offloaded to central, fog, or multi-access edge cloud (MEC). Even if the application is offloaded to a cloud and there exists more computation power compared to mobile devices, only using CPU might not be sufficient to serve a service in real-time. This makes adopting hardware accelerator such as GPU and FPGA more attractive. However, there is no cloud framework supporting heterogeneous hardware accelerators. In this paper, we propose a container-based cloud framework that makes a container possible to use heterogeneous accelerators by automatically providing pass-through between the container and accelerators. Our framework, which is based on Docker and Kubernetes, reduces container size compared to the container with manually configured pass-through and makes the container to be allocated to a proper node where the accelerator is installed. In the evaluation section, we demonstrate the efficiency of our framework in terms of the container size and the container allocation overhead.},
 	urldate = {2026-08-26},
 	booktitle = {2019 {International} {Conference} on {Information} and {Communication} {Technology} {Convergence} ({ICTC})},
 	author = {Kim, Sunghyun and Yang, Eunju and Youn, Chan-Hyun},
 	month = oct,
 	year = {2019},
-	note = {ISSN: 2162-1233},
+	note = {ISSN: 2162-1233, Accedido el 2026-08-26},
 	keywords = {Acceleration, Accelerator, Cloud computing, Container, Containers, Device drivers, Docker, Hardware, Kubernetes, Monitoring, Multi-access Edge Computing (MEC), Servers},
 	pages = {1283--1288},
-	file = {PDF:/Users/guillebo/Zotero/storage/KWFUYB8J/Kim et al. - 2019 - An Accelerated Edge Computing with a Container and Its Orchestration.pdf:application/pdf;Snapshot:/Users/guillebo/Zotero/storage/R3WP5ZHZ/8939853.html:text/html},
+	
 }
-
 
 @misc{iae-report-generation,
 	title = {Global Energy Review 2026 – Analysis},
-	url = {https://www.iea.org/reports/global-energy-review-2026},
+	howpublished = {\url{https://www.iea.org/reports/global-energy-review-2026}},
 	abstract = {Global Energy Review 2026 - Analysis and key findings. A report by the International Energy Agency.},
 	language = {en-GB},
 	urldate = {2026-06-22},
 	journal = {IEA},
 	keywords = {PENDIENTE},
-	file = {Snapshot:/Users/guillebo/Zotero/storage/QIYGZCDS/global-energy-review-2026.html:text/html},
+	
 }
 
 @misc{cloud-consuming-ieee,
 	title = {Cloud {Computing}’s {Coming} {Energy} {Crisis} - {IEEE} {Spectrum}},
-	url = {https://spectrum.ieee.org/cloud-computings-coming-energy-crisis},
+	howpublished = {\url{https://spectrum.ieee.org/cloud-computings-coming-energy-crisis}},
 	abstract = {The cloud’s electricity needs are growing unsustainably},
 	language = {en},
 	urldate = {2026-06-16},
-	file = {Snapshot:/Users/guillebo/Zotero/storage/A53U337G/cloud-computings-coming-energy-crisis.html:text/html},
+	
 }
 
 @article{rapl-tool,
@@ -602,8 +522,8 @@ Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto 
 	volume = {3},
 	issn = {2376-3639},
 	shorttitle = {{RAPL} in {Action}},
-	url = {https://dl.acm.org/doi/10.1145/3177754},
-	doi = {10.1145/3177754},
+	howpublished = {\url{https://dl.acm.org/doi/10.1145/3177754}},
+	note = { DOI: 10.1145/3177754, Accedido el 2026-06-17},
 	abstract = {To improve energy efficiency and comply with the power budgets, it is important to be able to measure the power consumption of cloud computing servers. Intel’s Running Average Power Limit (RAPL) interface is a powerful tool for this purpose. RAPL provides power limiting features and accurate energy readings for CPUs and DRAM, which are easily accessible through different interfaces on large distributed computing systems. Since its introduction, RAPL has been used extensively in power measurement and modeling. However, the advantages and disadvantages of RAPL have not been well investigated yet. To fill this gap, we conduct a series of experiments to disclose the underlying strengths and weaknesses of the RAPL interface by using both customized microbenchmarks and three well-known application level benchmarks: Stream, Stress-ng, and ParFullCMS. Moreover, to make the analysis as realistic as possible, we leverage two production-level power measurement datasets from the Taito, a supercomputing cluster of the Finnish Center of Scientific Computing and also replicate our experiments on Amazon EC2. Our results illustrate different aspects of RAPL and document the findings through comprehensive analysis. Our observations reveal that RAPL readings are highly correlated with plug power, promisingly accurate enough, and have negligible performance overhead. Experimental results suggest RAPL can be a very useful tool to measure and monitor the energy consumption of servers without deploying any complex power meters. We also show that there are still some open issues, such as driver support, non-atomicity of register updates, and unpredictable timings that might weaken the usability of RAPL in certain scenarios. For such scenarios, we pinpoint solutions and workarounds.},
 	number = {2},
 	urldate = {2026-06-17},
@@ -613,15 +533,15 @@ Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto 
 	year = {2018},
 	keywords = {PENDIENTE},
 	pages = {9:1--9:26},
-	file = {Full Text PDF:/Users/guillebo/Zotero/storage/EILV4CWW/Khan et al. - 2018 - RAPL in Action Experiences in Using RAPL for Power Measurements.pdf:application/pdf},
+	
 }
 
 @article{ec-cloud-workflows,
 	title = {A workflow scheduling algorithm with task classification for reducing energy consumption and makespan in cloud},
 	volume = {50},
 	issn = {2210-5379},
-	url = {https://www.sciencedirect.com/science/article/pii/S2210537926000338},
-	doi = {10.1016/j.suscom.2026.101323},
+	howpublished = {\url{https://www.sciencedirect.com/science/article/pii/S2210537926000338}},
+	note = { DOI: 10.1016/j.suscom.2026.101323, Accedido el 2026-06-16},
 	abstract = {With increasing popularity of cloud computing platform for extensive scientific computing, huge energy consumed by cloud data centers has become a great challenge. Therefore, significant attention has been given towards developing energy-efficient workflow scheduling algorithms in the last decade. However, the literature reveals that task classification-based scheduling has been an underexplored area. In response to this gap, this paper proposes a task classification-based dynamic scheduling (TCDS) algorithm to minimize the energy consumption (EC) and makespan when scheduling deadline-constrained workflow applications in cloud environment. TCDS consists of three main sub-algorithms: task classification, task scheduling, and dynamic resource scaling. First, considering the fact that task runtimes within a workflow are non-uniform, a new concept of execution time importance factor is introduced as a guiding principle of task classification. Accordingly, task classification algorithm marks the type of each task. The proposed task scheduler then dynamically allocates the most suitable virtual machines (VMs) to dependency-free tasks in accordance with their type and deadline constraint. To achieve balance between EC and makespan, energy-efficient and time-efficient VMs are provisioned dynamically considering the computation speed requirements and type of the tasks. In addition, TCDS performs simultaneous optimization over active number of hosts through VM consolidation, and powers-off idle hosts to minimize the EC of idle resources. To validate TCDS, extensive experiments are performed in various scenarios using real-world scientific workflows. The results verify that TCDS effectively minimizes the workflow makespan in parallel to improving energy-efficiency by 13%-40% compared with related algorithms, while demonstrating scalability under varying workloads.},
 	urldate = {2026-06-16},
 	journal = {Sustainable Computing: Informatics and Systems},
@@ -630,35 +550,36 @@ Desaparece la saturacion de threads pero aparece la limitacion fisica en cuanto 
 	year = {2026},
 	keywords = {Cloud computing, Computation speed, Energy consumption, Task classification, Workflow scheduling},
 	pages = {101323},
-	file = {ScienceDirect Snapshot:/Users/guillebo/Zotero/storage/INYE4TFT/S2210537926000338.html:text/html},
+	
 }
 
 @misc{survery-videoencoding,
 	title = {A {Survey} on {Energy} {Consumption} and {Environmental} {Impact} of {Video} {Streaming}},
-	url = {http://arxiv.org/abs/2401.09854},
-	doi = {10.48550/arXiv.2401.09854},
+	howpublished = {\url{http://arxiv.org/abs/2401.09854}},
+	note = { DOI: 10.48550/arXiv.2401.09854},
 	abstract = {Climate change challenges require a notable decrease in worldwide greenhouse gas (GHG) emissions across technology sectors. Digital technologies, especially video streaming, accounting for most Internet traffic, make no exception. Video streaming demand increases with remote working, multimedia communication services (e.g., WhatsApp, Skype), video streaming content (e.g., YouTube, Netflix), video resolution (4K/8K, 50 fps/60 fps), and multi-view video, making energy consumption and environmental footprint critical. This survey contributes to a better understanding of sustainable and efficient video streaming technologies by providing insights into the state-of-the-art and potential future directions for researchers, developers, and engineers, service providers, hosting platforms, and consumers. We widen this survey's focus on content provisioning and content consumption based on the observation that continuously active network equipment underneath video streaming consumes substantial energy independent of the transmitted data type. We propose a taxonomy of factors that affect the energy consumption in video streaming, such as encoding schemes, resource requirements, storage, content retrieval, decoding, and display. We identify notable weaknesses in video streaming that require further research for improved energy efficiency: (1) fixed bitrate ladders in HTTP live streaming; (2) inefficient hardware utilization of existing video players; (3) lack of comprehensive open energy measurement dataset covering various device types and coding parameters for reproducible research.},
 	urldate = {2026-06-16},
 	publisher = {arXiv},
 	author = {Afzal, Samira and Mehran, Narges and Ourimi, Zoha Azimi and Tashtarian, Farzad and Amirpour, Hadi and Prodan, Radu and Timmerer, Christian},
 	month = jan,
 	year = {2024},
-	note = {arXiv:2401.09854 [cs.MM]},
+	note = {arXiv:2401.09854 [cs.MM], Accedido el 2026-06-16},
 	keywords = {Computer Science - Multimedia},
 	annote = {Encuenta consumo energético basado en video y streaming.
     Remarca errore en protocolo http que lo hacen ineficiente para steaming de video
     Metrias de consumo energético
     },
-    	file = {Preprint PDF:/Users/guillebo/Zotero/storage/DWP7HIXK/Afzal et al. - 2024 - A Survey on Energy Consumption and Environmental Impact of Video Streaming.pdf:application/pdf;Snapshot:/Users/guillebo/Zotero/storage/8IAD3M68/2401.html:text/html},
+    	
     }
 
 @misc{cop2030,
     title = {COP2030 Presidency Releases Executive Report and Outlines Next Steps to Accelerate Global Climate Implementation},
-    url = {https://cop30.br/en/cop30-executive-report},
+    howpublished = {\url{https://cop30.br/en/cop30-executive-report}},
     abstract = {Document consolidates the road to Belém, summarizes conference outcomes, and highlights the COP30 Presidency’s commitments to advance Roadmaps and the Global Climate Action Agenda},
     language = {en},
     urldate = {2026-06-22},
     author = {{Share:}},
     keywords = {PENDIENTE},
-    file = {PDF:/Users/guillebo/Zotero/storage/VFSVSVP4/Share - COP30 Presidency Releases Executive Report and Outlines Next Steps to Accelerate Global Climate Impl.pdf:application/pdf;Snapshot:/Users/guillebo/Zotero/storage/YTV8NJ3T/cop30-executive-report.html:text/html},
+    
 }
+
