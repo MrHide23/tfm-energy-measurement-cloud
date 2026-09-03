@@ -101,10 +101,10 @@
   \end{minipage}%
   %\par\vspace{1ex}%
 }
-\addto\captionsspanish{
- \renewcommand{\lstlistingname}{Listado} % Etiqueta en el texto
- \renewcommand{\lstlistlistingname}{Índice de listados} % Etiqueta en el índice
-}
+%\addto\captionsspanish{
+% \renewcommand{\lstlistingname}{Listado} % Etiqueta en el texto
+% \renewcommand{\lstlistlistingname}{Índice de listados} % Etiqueta en el índice
+%}
 % Configuración para el código usando minted
 
 \setminted{frame=single,linenos=true,fontsize=\scriptsize,numberblanklines=false}
